@@ -1,0 +1,7 @@
+@mixin page-width {
+  width: min(
+    100% - (var(--stage-inline-padding) * 2),
+    var(--site-max-width)
+  );
+  margin-inline: auto;
+}

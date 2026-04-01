@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  --stage-min-height: 0;
+}
+
+.legal-stage {
+  gap: var(--section-gap);
+}
+
+.legal-stage__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zone-gap);
+}
+
+.legal-stage__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+@media (min-width: 64rem) {
+  .legal-stage__body {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .legal-stage__item {
+    max-width: 24rem;
+  }
+}

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  --stage-min-height: 90svh;
+}
+
+.contact-stage {
+  justify-content: center;
+}
+
+.contact-stage__focus {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  width: min(100%, 54rem);
+  margin-inline: auto;
+}
+
+.contact-stage__header,
+.contact-stage__body,
+.contact-stage__column {
+  align-items: center;
+  text-align: center;
+}
+
+.contact-stage__column {
+  min-height: auto;
+}

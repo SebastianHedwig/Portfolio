@@ -1,0 +1,68 @@
+:host {
+  display: block;
+  --stage-min-height: 132svh;
+}
+
+.projects-stage {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--section-gap-loose);
+}
+
+.projects-stage__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zone-gap);
+  max-width: 38rem;
+}
+
+.projects-stage__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.projects-stage__viewport {
+  display: flex;
+  flex: 1;
+  min-height: clamp(30rem, 72vh, 48rem);
+  width: 100%;
+}
+
+.projects-stage__track {
+  display: flex;
+  gap: var(--zone-gap);
+  width: 100%;
+}
+
+.projects-stage__frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  min-height: clamp(20rem, 34vh, 28rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+@media (min-width: 64rem) {
+  .projects-stage__intro {
+    width: min(34rem, 32%);
+  }
+
+  .projects-stage__viewport {
+    align-self: flex-end;
+    width: min(100%, 84rem);
+    overflow-x: auto;
+  }
+
+  .projects-stage__track {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .projects-stage__frame {
+    flex: 0 0 min(46rem, 72vw);
+    min-height: clamp(24rem, 42vh, 34rem);
+  }
+}

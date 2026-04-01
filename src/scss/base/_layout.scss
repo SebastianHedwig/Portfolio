@@ -1,0 +1,21 @@
+body {
+  background: var(--color-background);
+}
+
+app-root {
+  display: block;
+  min-height: 100%;
+}
+
+.section {
+  display: flex;
+  width: 100%;
+}
+
+.section__inner {
+  display: flex;
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-inline: auto;
+  padding-inline: var(--section-inline-padding);
+}

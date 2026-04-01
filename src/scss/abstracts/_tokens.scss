@@ -1,0 +1,19 @@
+:root {
+  --color-background: #05070d;
+  --color-text: #edf3ff;
+  --color-heading: #f1f6ff;
+  --color-muted: #b8c8de;
+  --color-accent: #35c7ff;
+  --color-accent-soft: #8cb8e6;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-glow: rgba(0, 207, 255, 0.3);
+  --site-max-width: 120rem;
+  --section-inline-padding: clamp(1.5rem, 4vw, 4.5rem);
+  --section-block-padding: clamp(4.5rem, 9vw, 8rem);
+  --section-block-padding-compact: clamp(2.5rem, 5vw, 4rem);
+  --section-gap: clamp(2.5rem, 5vw, 5rem);
+  --section-gap-loose: clamp(3.5rem, 7vw, 7rem);
+  --zone-gap: clamp(1.5rem, 3vw, 2.5rem);
+  --copy-max-width: 42rem;
+}
