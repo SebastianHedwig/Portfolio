@@ -2,10 +2,11 @@
 @use 'abstracts/tokens';
 
 .hero-identity {
-  @include mixins.stack(1rem);
+  @include mixins.stack(0.55rem);
   align-items: flex-end;
   align-self: flex-end;
   width: min(100%, 42rem);
+  text-align: right;
 
   &__name,
   &__tagline {
@@ -15,21 +16,21 @@
 
   &__name {
     color: tokens.$color-heading;
-    font-size: clamp(2.625rem, 5vw, 4.75rem);
+    font-size: clamp(2.8rem, 5.1vw, 4.9rem);
     font-weight: 700;
     line-height: 0.94;
   }
 
   &__tagline {
     color: tokens.$color-muted;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.2rem;
   }
 
   @include mixins.desktop {
-    width: min(100%, 46rem);
-    transform: translateY(clamp(2.5rem, 4vw, 3rem));
+    width: min(100%, 50rem);
+    transform: translateY(clamp(1.25rem, 3vh, 2.25rem));
   }
 }

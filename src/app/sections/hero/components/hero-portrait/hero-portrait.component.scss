@@ -9,7 +9,7 @@
 
   &__image {
     display: block;
-    width: min(100%, 34rem);
+    width: min(100%, 40rem);
     height: auto;
     max-width: none;
     margin-inline: auto auto;
@@ -20,10 +20,10 @@
   @include mixins.desktop {
     &__image {
       width: auto;
-      height: clamp(42rem, 88vh, 60rem);
-      transform: scale(1.02);
+      height: clamp(49rem, 96vh, 68rem);
+      transform: scale(1.05);
       transform-origin: bottom center;
-      margin-left: clamp(-25rem, -14vw, -10rem);
+      margin-left: clamp(-28rem, -16vw, -13rem);
     }
   }
 }

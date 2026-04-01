@@ -2,40 +2,43 @@
 @use 'abstracts/tokens';
 
 .hero {
-  @include mixins.stack(tokens.$section-gap);
+  @include mixins.stack(clamp(1.75rem, 4vh, 3.5rem));
   min-height: 100svh;
   padding-block-start: clamp(2.5rem, 4.5vw, 4rem);
+  padding-block-end: clamp(0.75rem, 2vh, 1.75rem);
   justify-content: flex-end;
 
   &__visual {
-    @include mixins.stack(tokens.$section-gap);
+    @include mixins.stack(clamp(1.25rem, 3.5vh, 3rem));
     flex: 1;
     justify-content: space-between;
-    min-height: clamp(30rem, 64vh, 52rem);
+    min-height: clamp(34rem, 70vh, 58rem);
   }
 
   @include mixins.desktop {
     flex-direction: row;
     align-items: stretch;
-    gap: clamp(2rem, 5vw, 4rem);
+    gap: clamp(2.5rem, 5.2vw, 5rem);
 
     app-hero-description {
       display: flex;
-      flex: 0 0 min(36rem, 38%);
+      flex: 0 0 min(31rem, 28%);
       max-width: none;
       min-width: 0;
-      padding-block: clamp(10rem, 20vh, 20rem);
+      padding-block-start: clamp(6.25rem, 13vh, 10rem);
+      padding-block-end: clamp(1.5rem, 5vh, 3.5rem);
     }
 
     &__visual {
-      flex: 1 1 62%;
+      flex: 1 1 72%;
       min-width: 0;
-      padding-top: clamp(1rem, 4vh, 2rem);
+      padding-top: clamp(1rem, 3.5vh, 2.25rem);
     }
 
     app-hero-identity {
       display: flex;
       justify-content: flex-end;
+      padding-right: clamp(0.25rem, 1.6vw, 1.5rem);
     }
 
     app-hero-portrait {
