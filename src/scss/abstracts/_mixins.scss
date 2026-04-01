@@ -1,4 +1,4 @@
-@use './tokens';
+@use 'abstracts/tokens';
 
 @mixin stack($gap: null) {
   display: flex;

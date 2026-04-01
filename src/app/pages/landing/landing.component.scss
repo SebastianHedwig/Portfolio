@@ -1,8 +1,4 @@
-@use '../../../scss/abstracts/mixins';
-
-:host {
-  display: block;
-}
+@use 'abstracts/mixins';
 
 .landing {
   &-page {

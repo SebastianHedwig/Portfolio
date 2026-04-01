@@ -1,76 +1,46 @@
-@use '../../../scss/abstracts/functions';
-@use '../../../scss/abstracts/mixins';
-@use '../../../scss/abstracts/tokens';
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
-:host {
-  display: block;
-  --stage-min-height: 100svh;
-}
-
-.hero-stage {
-  gap: tokens.$section-gap-loose;
-
-  &__topline {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &__identity {
-    max-width: 18rem;
-    color: tokens.$color-heading;
-    font-family: tokens.$font-eyebrow;
-    font-size: functions.rem(14.4);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  &__main {
-    @include mixins.stack(tokens.$section-gap);
-    flex: 1;
-  }
+.hero {
+  @include mixins.stack(tokens.$section-gap);
+  min-height: 100svh;
+  padding-block-start: clamp(2.5rem, 4.5vw, 4rem);
+  justify-content: flex-end;
 
   &__visual {
-    @include mixins.stack(tokens.$zone-gap);
+    @include mixins.stack(tokens.$section-gap);
     flex: 1;
     justify-content: space-between;
-    min-height: clamp(24rem, 48vh, 38rem);
-  }
-
-  &__visual-top,
-  &__visual-body,
-  &__column {
-    @include mixins.stack(functions.rem(14.4));
-  }
-
-  &__visual-body {
-    justify-content: flex-end;
-    min-height: clamp(18rem, 34vh, 28rem);
-  }
-
-  &__body {
-    max-width: 72rem;
+    min-height: clamp(30rem, 64vh, 52rem);
   }
 
   @include mixins.desktop {
-    &__main {
-      flex-direction: row;
-      align-items: stretch;
-    }
+    flex-direction: row;
+    align-items: stretch;
+    gap: clamp(2rem, 5vw, 4rem);
 
-    &__header {
-      flex: 0 0 min(44rem, 44%);
-      justify-content: flex-end;
-      padding-top: clamp(2rem, 10vh, 6rem);
+    app-hero-description {
+      display: flex;
+      flex: 0 0 min(36rem, 38%);
+      max-width: none;
+      min-width: 0;
+      padding-block: clamp(10rem, 20vh, 20rem);
     }
 
     &__visual {
-      flex: 1;
+      flex: 1 1 62%;
       min-width: 0;
+      padding-top: clamp(1rem, 4vh, 2rem);
     }
 
-    &__body {
-      margin-left: auto;
-      width: min(58rem, 72%);
+    app-hero-identity {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    app-hero-portrait {
+      display: flex;
+      flex: 1;
     }
   }
 }

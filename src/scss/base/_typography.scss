@@ -1,5 +1,4 @@
-@use '../abstracts/functions';
-@use '../abstracts/tokens';
+@use 'abstracts/tokens';
 
 @font-face {
   font-family: 'Sora';
@@ -19,7 +18,7 @@
 }
 
 html {
-  font-size: functions.rem(16);
+  font-size: 1rem;
 }
 
 body {

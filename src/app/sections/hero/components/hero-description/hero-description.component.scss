@@ -1,0 +1,69 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+.hero-description {
+  @include mixins.stack(1.2rem);
+  max-width: min(100%, 34rem);
+
+  &__eyebrow {
+    margin: 0;
+    font-family: tokens.$font-eyebrow;
+    color: tokens.$color-accent;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    padding-left: 0.5rem
+  }
+
+  &__headline {
+    @include mixins.stack;
+    margin: 0;
+    color: tokens.$color-heading;
+    font-size: clamp(2.625rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.1rem;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__text {
+    max-width: 28rem;
+    margin: 0;
+    color: tokens.$color-muted;
+    font-size: 1.125rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    padding-top: 0.5rem;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.875rem;
+    padding-inline: 1.375rem;
+    border-radius: 62.4375rem;
+    font-family: tokens.$font-primary;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &--primary {
+      background: tokens.$color-accent;
+      color: tokens.$color-background;
+    }
+
+    &--secondary {
+      border: 1px solid tokens.$color-border;
+      background: tokens.$color-surface;
+      color: tokens.$color-text;
+    }
+  }
+}

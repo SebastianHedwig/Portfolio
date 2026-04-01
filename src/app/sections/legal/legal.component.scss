@@ -1,13 +1,8 @@
-@use '../../../scss/abstracts/functions';
-@use '../../../scss/abstracts/mixins';
-@use '../../../scss/abstracts/tokens';
-
-:host {
-  display: block;
-  --stage-min-height: 0;
-}
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 .legal-stage {
+  min-height: auto;
   gap: tokens.$section-gap;
 
   &__body {
@@ -15,7 +10,7 @@
   }
 
   &__item {
-    @include mixins.stack(functions.rem(14.4));
+    @include mixins.stack(0.9rem);
   }
 
   @include mixins.desktop {

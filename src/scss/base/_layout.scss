@@ -1,12 +1,26 @@
-@use '../abstracts/mixins';
-@use '../abstracts/tokens';
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 body {
   background: tokens.$color-background;
 }
 
-app-root {
+app-root,
+app-landing,
+app-hero,
+app-hero-description,
+app-hero-identity,
+app-hero-portrait,
+app-about,
+app-tech-stack,
+app-projects,
+app-contact,
+app-legal {
   display: block;
+  width: 100%;
+}
+
+app-root {
   min-height: 100%;
 }
 

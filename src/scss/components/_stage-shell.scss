@@ -1,6 +1,5 @@
-@use '../abstracts/functions';
-@use '../abstracts/mixins';
-@use '../abstracts/tokens';
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 .stage-shell {
   @include mixins.stack(tokens.$section-gap);
@@ -14,26 +13,26 @@
   }
 
   &__header {
-    @include mixins.stack(functions.rem(20));
+    @include mixins.stack(1.25rem);
     max-width: min(48rem, 100%);
   }
 
   &__eyebrow {
     font-family: tokens.$font-eyebrow;
     color: tokens.$color-accent;
-    font-size: functions.rem(12.8);
+    font-size: 0.8rem;
     text-transform: uppercase;
   }
 
   &__title {
     max-width: 15ch;
-    font-size: clamp(functions.rem(36), 6vw, functions.rem(80));
+    font-size: clamp(2.25rem, 6vw, 5rem);
     line-height: 0.98;
   }
 
   &__lead {
     max-width: tokens.$copy-max-width;
-    font-size: clamp(functions.rem(16), 1.6vw, functions.rem(19.2));
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
   }
 
   &__body {
@@ -42,7 +41,7 @@
   }
 
   &__column {
-    @include mixins.stack(functions.rem(14.4));
+    @include mixins.stack(0.9rem);
     flex: 1;
     justify-content: flex-start;
     min-height: clamp(16rem, 28vh, 24rem);
@@ -50,13 +49,13 @@
 
   &__label {
     color: tokens.$color-heading;
-    font-size: functions.rem(15.2);
+    font-size: 0.95rem;
     text-transform: uppercase;
   }
 
   &__copy {
     max-width: min(34rem, 100%);
-    font-size: functions.rem(16);
+    font-size: 1rem;
   }
 
   @include mixins.desktop {

@@ -1,15 +1,10 @@
-@use '../../../scss/abstracts/functions';
-@use '../../../scss/abstracts/mixins';
-@use '../../../scss/abstracts/tokens';
-
-:host {
-  display: block;
-  --stage-min-height: 132svh;
-}
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 .projects-stage {
   @include mixins.stack(tokens.$section-gap-loose);
   flex: 1;
+  min-height: 132svh;
 
   &__intro {
     @include mixins.stack(tokens.$zone-gap);
@@ -17,7 +12,7 @@
   }
 
   &__summary {
-    @include mixins.stack(functions.rem(14.4));
+    @include mixins.stack(0.9rem);
   }
 
   &__viewport {
@@ -34,7 +29,7 @@
   }
 
   &__frame {
-    @include mixins.stack(functions.rem(14.4));
+    @include mixins.stack(0.9rem);
     justify-content: flex-end;
     min-height: clamp(20rem, 34vh, 28rem);
     padding-right: clamp(1rem, 3vw, 2rem);

@@ -1,7 +1,6 @@
-@use './scss/abstracts/tokens';
-@use './scss/abstracts/functions';
-@use './scss/abstracts/mixins';
-@use './scss/base/reset';
-@use './scss/base/typography';
-@use './scss/base/layout';
-@use './scss/components/stage-shell';
+@use 'abstracts/tokens';
+@use 'abstracts/mixins';
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/layout';
+@use 'components/stage-shell';

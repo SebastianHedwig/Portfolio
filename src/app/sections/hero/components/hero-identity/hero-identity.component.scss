@@ -1,0 +1,35 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+.hero-identity {
+  @include mixins.stack(1rem);
+  align-items: flex-end;
+  align-self: flex-end;
+  width: min(100%, 42rem);
+
+  &__name,
+  &__tagline {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &__name {
+    color: tokens.$color-heading;
+    font-size: clamp(2.625rem, 5vw, 4.75rem);
+    font-weight: 700;
+    line-height: 0.94;
+  }
+
+  &__tagline {
+    color: tokens.$color-muted;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+  }
+
+  @include mixins.desktop {
+    width: min(100%, 46rem);
+    transform: translateY(clamp(2.5rem, 4vw, 3rem));
+  }
+}

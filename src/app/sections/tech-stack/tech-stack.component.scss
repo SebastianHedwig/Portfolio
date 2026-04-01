@@ -1,13 +1,8 @@
-@use '../../../scss/abstracts/functions';
-@use '../../../scss/abstracts/mixins';
-@use '../../../scss/abstracts/tokens';
-
-:host {
-  display: block;
-  --stage-min-height: 96svh;
-}
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 .tech-stage {
+  min-height: 96svh;
   gap: tokens.$section-gap-loose;
 
   &__layout {
@@ -21,7 +16,7 @@
   }
 
   &__group {
-    gap: functions.rem(14.4);
+    gap: 0.9rem;
     max-width: 34rem;
     min-height: clamp(14rem, 24vh, 18rem);
   }
