@@ -1,3 +1,5 @@
+@use '../scss/abstracts/mixins';
+
 :host {
   display: block;
   min-height: 100%;
@@ -5,4 +7,5 @@
 
 .app-shell {
   min-height: 100svh;
+  @include mixins.stack;
 }

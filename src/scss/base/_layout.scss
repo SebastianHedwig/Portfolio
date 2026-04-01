@@ -1,5 +1,8 @@
+@use '../abstracts/mixins';
+@use '../abstracts/tokens';
+
 body {
-  background: var(--color-background);
+  background: tokens.$color-background;
 }
 
 app-root {
@@ -10,12 +13,9 @@ app-root {
 .section {
   display: flex;
   width: 100%;
-}
 
-.section__inner {
-  display: flex;
-  width: 100%;
-  max-width: var(--site-max-width);
-  margin-inline: auto;
-  padding-inline: var(--section-inline-padding);
+  &__inner {
+    display: flex;
+    @include mixins.page-width;
+  }
 }

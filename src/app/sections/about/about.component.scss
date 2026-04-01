@@ -1,57 +1,58 @@
+@use '../../../scss/abstracts/functions';
+@use '../../../scss/abstracts/mixins';
+@use '../../../scss/abstracts/tokens';
+
 :host {
   display: block;
   --stage-min-height: 108svh;
 }
 
 .about-stage {
-  gap: var(--section-gap-loose);
-}
+  gap: tokens.$section-gap-loose;
 
-.about-stage__layout {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--section-gap);
-}
-
-.about-stage__media,
-.about-stage__story {
-  display: flex;
-  flex-direction: column;
-}
-
-.about-stage__media {
-  justify-content: flex-end;
-  gap: 0.9rem;
-  min-height: clamp(24rem, 40vh, 34rem);
-}
-
-.about-stage__body {
-  gap: var(--zone-gap);
-}
-
-.about-stage__column {
-  max-width: 38rem;
-}
-
-@media (min-width: 64rem) {
-  .about-stage__layout {
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  .about-stage__media {
-    flex: 0 0 min(46rem, 48%);
-  }
-
-  .about-stage__story {
+  &__layout {
+    @include mixins.stack(tokens.$section-gap);
     flex: 1;
-    justify-content: flex-end;
-    padding-top: clamp(2rem, 12vh, 8rem);
   }
 
-  .about-stage__column--support {
-    margin-left: auto;
-    width: min(26rem, 80%);
+  &__media,
+  &__story {
+    @include mixins.stack;
+  }
+
+  &__media {
+    justify-content: flex-end;
+    gap: functions.rem(14.4);
+    min-height: clamp(24rem, 40vh, 34rem);
+  }
+
+  &__body {
+    gap: tokens.$zone-gap;
+  }
+
+  &__column {
+    max-width: 38rem;
+  }
+
+  @include mixins.desktop {
+    &__layout {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    &__media {
+      flex: 0 0 min(46rem, 48%);
+    }
+
+    &__story {
+      flex: 1;
+      justify-content: flex-end;
+      padding-top: clamp(2rem, 12vh, 8rem);
+    }
+
+    &__column--support {
+      margin-left: auto;
+      width: min(26rem, 80%);
+    }
   }
 }

@@ -1,55 +1,56 @@
+@use '../../../scss/abstracts/functions';
+@use '../../../scss/abstracts/mixins';
+@use '../../../scss/abstracts/tokens';
+
 :host {
   display: block;
   --stage-min-height: 96svh;
 }
 
 .tech-stage {
-  gap: var(--section-gap-loose);
-}
+  gap: tokens.$section-gap-loose;
 
-.tech-stage__layout {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--section-gap);
-}
-
-.tech-stage__group,
-.tech-stage__group-set {
-  display: flex;
-  flex-direction: column;
-}
-
-.tech-stage__group {
-  gap: 0.9rem;
-  max-width: 34rem;
-  min-height: clamp(14rem, 24vh, 18rem);
-}
-
-.tech-stage__group-set {
-  gap: var(--zone-gap);
-}
-
-@media (min-width: 64rem) {
-  .tech-stage__layout {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .tech-stage__group--primary {
-    flex: 0 0 min(30rem, 32%);
-    padding-top: clamp(1rem, 5vh, 3rem);
-  }
-
-  .tech-stage__group-set {
+  &__layout {
+    @include mixins.stack(tokens.$section-gap);
     flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: var(--section-gap);
-    min-width: 0;
   }
 
-  .tech-stage__group-set .tech-stage__group {
-    flex: 1;
+  &__group,
+  &__group-set {
+    @include mixins.stack;
+  }
+
+  &__group {
+    gap: functions.rem(14.4);
+    max-width: 34rem;
+    min-height: clamp(14rem, 24vh, 18rem);
+  }
+
+  &__group-set {
+    gap: tokens.$zone-gap;
+  }
+
+  @include mixins.desktop {
+    &__layout {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    &__group--primary {
+      flex: 0 0 min(30rem, 32%);
+      padding-top: clamp(1rem, 5vh, 3rem);
+    }
+
+    &__group-set {
+      flex: 1;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: tokens.$section-gap;
+      min-width: 0;
+    }
+
+    &__group-set &__group {
+      flex: 1;
+    }
   }
 }

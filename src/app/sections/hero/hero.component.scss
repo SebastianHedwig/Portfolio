@@ -1,77 +1,76 @@
+@use '../../../scss/abstracts/functions';
+@use '../../../scss/abstracts/mixins';
+@use '../../../scss/abstracts/tokens';
+
 :host {
   display: block;
   --stage-min-height: 100svh;
 }
 
 .hero-stage {
-  gap: var(--section-gap-loose);
-}
+  gap: tokens.$section-gap-loose;
 
-.hero-stage__topline {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.hero-stage__identity {
-  max-width: 18rem;
-  color: var(--color-heading);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.hero-stage__main {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--section-gap);
-}
-
-.hero-stage__visual {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--zone-gap);
-  min-height: clamp(24rem, 48vh, 38rem);
-}
-
-.hero-stage__visual-top,
-.hero-stage__visual-body,
-.hero-stage__column {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.hero-stage__visual-body {
-  justify-content: flex-end;
-  min-height: clamp(18rem, 34vh, 28rem);
-}
-
-.hero-stage__body {
-  max-width: 72rem;
-}
-
-@media (min-width: 64rem) {
-  .hero-stage__main {
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  .hero-stage__header {
-    flex: 0 0 min(44rem, 44%);
+  &__topline {
+    display: flex;
     justify-content: flex-end;
-    padding-top: clamp(2rem, 10vh, 6rem);
   }
 
-  .hero-stage__visual {
+  &__identity {
+    max-width: 18rem;
+    color: tokens.$color-heading;
+    font-family: tokens.$font-eyebrow;
+    font-size: functions.rem(14.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__main {
+    @include mixins.stack(tokens.$section-gap);
     flex: 1;
-    min-width: 0;
   }
 
-  .hero-stage__body {
-    margin-left: auto;
-    width: min(58rem, 72%);
+  &__visual {
+    @include mixins.stack(tokens.$zone-gap);
+    flex: 1;
+    justify-content: space-between;
+    min-height: clamp(24rem, 48vh, 38rem);
+  }
+
+  &__visual-top,
+  &__visual-body,
+  &__column {
+    @include mixins.stack(functions.rem(14.4));
+  }
+
+  &__visual-body {
+    justify-content: flex-end;
+    min-height: clamp(18rem, 34vh, 28rem);
+  }
+
+  &__body {
+    max-width: 72rem;
+  }
+
+  @include mixins.desktop {
+    &__main {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    &__header {
+      flex: 0 0 min(44rem, 44%);
+      justify-content: flex-end;
+      padding-top: clamp(2rem, 10vh, 6rem);
+    }
+
+    &__visual {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__body {
+      margin-left: auto;
+      width: min(58rem, 72%);
+    }
   }
 }

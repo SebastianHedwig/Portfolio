@@ -1,14 +1,16 @@
+@use '../../../scss/abstracts/mixins';
+
 :host {
   display: block;
 }
 
-.landing-page {
-  display: flex;
-  flex-direction: column;
-}
+.landing {
+  &-page {
+    @include mixins.stack;
+  }
 
-.landing-stage {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  &-stage {
+    @include mixins.stack;
+    width: 100%;
+  }
 }

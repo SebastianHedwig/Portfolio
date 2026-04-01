@@ -1,7 +1,23 @@
+@use './tokens';
+
+@mixin stack($gap: null) {
+  display: flex;
+  flex-direction: column;
+
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
 @mixin page-width {
-  width: min(
-    100% - (var(--stage-inline-padding) * 2),
-    var(--site-max-width)
-  );
+  width: 100%;
+  max-width: tokens.$site-max-width;
   margin-inline: auto;
+  padding-inline: tokens.$section-inline-padding;
+}
+
+@mixin desktop {
+  @media (min-width: tokens.$breakpoint-desktop) {
+    @content;
+  }
 }
