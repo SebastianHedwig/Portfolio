@@ -5,8 +5,9 @@
   @include mixins.stack(0.55rem);
   align-items: flex-end;
   align-self: flex-end;
-  width: min(100%, 42rem);
+  width: min(100%, 50rem);
   text-align: right;
+  transform: translateY(clamp(1.25rem, 3vh, 2.25rem));
 
   &__name,
   &__tagline {
@@ -27,10 +28,5 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-  }
-
-  @include mixins.desktop {
-    width: min(100%, 50rem);
-    transform: translateY(clamp(1.25rem, 3vh, 2.25rem));
   }
 }

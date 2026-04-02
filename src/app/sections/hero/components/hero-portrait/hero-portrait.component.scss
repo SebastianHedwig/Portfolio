@@ -9,21 +9,14 @@
 
   &__image {
     display: block;
-    width: min(100%, 40rem);
-    height: auto;
+    width: auto;
+    height: clamp(49rem, 96vh, 68rem);
     max-width: none;
     margin-inline: auto auto;
     opacity: 1;
     filter: brightness(1) contrast(1.25) saturate(1) sepia(0.06) hue-rotate(-6deg);
-  }
-
-  @include mixins.desktop {
-    &__image {
-      width: auto;
-      height: clamp(49rem, 96vh, 68rem);
-      transform: scale(1.05);
-      transform-origin: bottom center;
-      margin-left: clamp(-28rem, -16vw, -13rem);
-    }
+    transform: scale(1.05);
+    transform-origin: bottom center;
+    margin-left: clamp(-28rem, -16vw, -13rem);
   }
 }

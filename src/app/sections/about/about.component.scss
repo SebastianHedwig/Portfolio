@@ -2,52 +2,175 @@
 @use 'abstracts/tokens';
 
 .about-stage {
-  min-height: 108svh;
-  gap: tokens.$section-gap-loose;
-
-  &__layout {
-    @include mixins.stack(tokens.$section-gap);
-    flex: 1;
-  }
-
-  &__media,
-  &__story {
+  @include mixins.stack(clamp(6rem, 20vh, 18rem));
+  min-height: 118svh;
+  padding-block-start: 40rem;
+  padding-block-end: 20rem;
+  
+  &__chapter,
+  &__context-block,
+  &__context-rail,
+  &__image-zone,
+  &__text-rail,
+  &__text-zone {
     @include mixins.stack;
   }
 
-  &__media {
+  &__chapter--context {
+    width: 100%;
+    padding-top: clamp(2rem, 7vh, 5rem);
+  }
+
+  &__context-block {
+    gap: clamp(1rem, 2.5vh, 1.75rem);
+    width: min(100%, 22rem);
+  }
+
+  &__image-zone {
+    flex: 0 0 auto;
+    width: min(100%, 24rem);
+    justify-content: flex-start;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    clip-path: ellipse(42% 50% at 50% 50%);
+  }
+
+  &__text-rail {
+    gap: clamp(2rem, 6vh, 5rem);
+  }
+
+  &__text-zone {
+    gap: clamp(1rem, 2.5vh, 1.75rem);
+    max-width: 22rem;
     justify-content: flex-end;
-    gap: 0.9rem;
-    min-height: clamp(24rem, 40vh, 34rem);
   }
 
-  &__body {
-    gap: tokens.$zone-gap;
+  &__statement,
+  &__support {
+    margin: 0;
   }
 
-  &__column {
-    max-width: 38rem;
-  }
+  &__statement {
+    color: tokens.$color-heading;
+    font-size: clamp(2.4rem, 4.2vw, 4.25rem);
+    font-weight: 700;
+    line-height: 0.96;
 
-  @include mixins.desktop {
-    &__layout {
-      flex-direction: row;
-      align-items: stretch;
-    }
-
-    &__media {
-      flex: 0 0 min(46rem, 48%);
-    }
-
-    &__story {
-      flex: 1;
-      justify-content: flex-end;
-      padding-top: clamp(2rem, 12vh, 8rem);
-    }
-
-    &__column--support {
-      margin-left: auto;
-      width: min(26rem, 80%);
+    &--secondary {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1;
     }
   }
+
+  &__support {
+    max-width: 24rem;
+    color: tokens.$color-muted;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  &__context-title,
+  &__context-copy {
+    margin: 0;
+  }
+
+  &__context-title {
+    color: tokens.$color-heading;
+    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.02;
+  }
+
+  &__context-copy {
+    color: tokens.$color-muted;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 21rem;
+    text-align: justify;
+  }
+
+  &__context-block &__support {
+    text-align: justify;
+  }
+
+  &__chapter--intro {
+    flex-direction: row;
+    align-items: stretch;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  &__image-zone {
+    width: min(100%, 30rem);
+    align-self: flex-start;
+  }
+
+  &__text-rail {
+    flex: 1;
+    min-width: 0;
+    gap: clamp(10rem, 28vh, 20rem);
+    padding-top: clamp(5rem, 11vh, 8rem);
+  }
+
+  &__text-zone--lead {
+    width: min(20rem, 100%);
+    max-width: none;
+    align-self: flex-start;
+  }
+
+  &__text-zone--lead &__statement {
+    max-width: none;
+  }
+
+  &__text-zone--lead &__support {
+    max-width: 20rem;
+    text-align: justify;
+  }
+
+  &__text-zone--secondary {
+    width: min(20rem, 100%);
+    max-width: none;
+    align-self: flex-end;
+    margin-right: clamp(5rem, 20vw, 15rem);
+  }
+
+  &__text-zone--secondary &__statement--secondary {
+    max-width: none;
+  }
+
+  &__text-zone--secondary &__support {
+    max-width: 40rem;
+    text-align: justify;
+  }
+
+  &__context-rail {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  &__context-block--left,
+  &__context-block--center,
+  &__context-block--right {
+    width: min(30rem, 100%);
+  }
+
+  &__context-block--left {
+    align-self: flex-start;
+  }
+
+  &__context-block--center {
+    align-self: flex-start;
+    margin-top: clamp(36rem, 84vh, 60rem);
+    // margin-left: clamp(5rem, 10vw, 10rem);
+  }
+
+  &__context-block--right {
+    align-self: flex-start;
+    margin-top: clamp(12rem, 28vh, 24rem);
+    margin-left: clamp(5rem, 10vw, 10rem);
+  }
+
 }

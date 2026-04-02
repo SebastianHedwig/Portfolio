@@ -7,20 +7,12 @@
 
   &__body {
     @include mixins.stack(tokens.$zone-gap);
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   &__item {
     @include mixins.stack(0.9rem);
-  }
-
-  @include mixins.desktop {
-    &__body {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    &__item {
-      max-width: 24rem;
-    }
+    max-width: 24rem;
   }
 }

@@ -9,6 +9,7 @@
   &__intro {
     @include mixins.stack(tokens.$zone-gap);
     max-width: 38rem;
+    width: min(34rem, 32%);
   }
 
   &__summary {
@@ -20,40 +21,23 @@
     flex: 1;
     min-height: clamp(30rem, 72vh, 48rem);
     width: 100%;
+    align-self: flex-end;
+    width: min(100%, 84rem);
+    overflow-x: auto;
   }
 
   &__track {
     display: flex;
     gap: tokens.$zone-gap;
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
   }
 
   &__frame {
     @include mixins.stack(0.9rem);
+    flex: 0 0 min(46rem, 72vw);
     justify-content: flex-end;
-    min-height: clamp(20rem, 34vh, 28rem);
+    min-height: clamp(24rem, 42vh, 34rem);
     padding-right: clamp(1rem, 3vw, 2rem);
-  }
-
-  @include mixins.desktop {
-    &__intro {
-      width: min(34rem, 32%);
-    }
-
-    &__viewport {
-      align-self: flex-end;
-      width: min(100%, 84rem);
-      overflow-x: auto;
-    }
-
-    &__track {
-      width: max-content;
-      min-width: 100%;
-    }
-
-    &__frame {
-      flex: 0 0 min(46rem, 72vw);
-      min-height: clamp(24rem, 42vh, 34rem);
-    }
   }
 }

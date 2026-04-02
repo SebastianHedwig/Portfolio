@@ -15,9 +15,3 @@
   margin-inline: auto;
   padding-inline: tokens.$section-inline-padding;
 }
-
-@mixin desktop {
-  @media (min-width: tokens.$breakpoint-desktop) {
-    @content;
-  }
-}

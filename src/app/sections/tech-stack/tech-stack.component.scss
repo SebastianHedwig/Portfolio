@@ -8,6 +8,8 @@
   &__layout {
     @include mixins.stack(tokens.$section-gap);
     flex: 1;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   &__group,
@@ -23,29 +25,19 @@
 
   &__group-set {
     gap: tokens.$zone-gap;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: tokens.$section-gap;
+    min-width: 0;
   }
 
-  @include mixins.desktop {
-    &__layout {
-      flex-direction: row;
-      align-items: flex-start;
-    }
+  &__group--primary {
+    flex: 0 0 min(30rem, 32%);
+    padding-top: clamp(1rem, 5vh, 3rem);
+  }
 
-    &__group--primary {
-      flex: 0 0 min(30rem, 32%);
-      padding-top: clamp(1rem, 5vh, 3rem);
-    }
-
-    &__group-set {
-      flex: 1;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: tokens.$section-gap;
-      min-width: 0;
-    }
-
-    &__group-set &__group {
-      flex: 1;
-    }
+  &__group-set &__group {
+    flex: 1;
   }
 }

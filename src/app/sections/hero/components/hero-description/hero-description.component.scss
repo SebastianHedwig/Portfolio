@@ -3,7 +3,7 @@
 
 .hero-description {
   @include mixins.stack(clamp(0.85rem, 2vh, 1.35rem));
-  max-width: min(100%, 27rem);
+  max-width: 40rem;
 
   &__eyebrow {
     margin: 0;
@@ -66,9 +66,5 @@
       background: tokens.$color-surface;
       color: tokens.$color-text;
     }
-  }
-
-  @include mixins.desktop {
-    max-width: 40rem;
   }
 }

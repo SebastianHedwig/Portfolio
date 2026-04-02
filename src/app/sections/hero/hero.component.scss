@@ -7,43 +7,36 @@
   padding-block-start: clamp(2.5rem, 4.5vw, 4rem);
   padding-block-end: clamp(0.75rem, 2vh, 1.75rem);
   justify-content: flex-end;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(2.5rem, 5.2vw, 5rem);
 
   &__visual {
     @include mixins.stack(clamp(1.25rem, 3.5vh, 3rem));
-    flex: 1;
+    flex: 1 1 72%;
+    min-width: 0;
+    padding-top: clamp(1rem, 3.5vh, 2.25rem);
     justify-content: space-between;
     min-height: clamp(34rem, 70vh, 58rem);
   }
 
-  @include mixins.desktop {
-    flex-direction: row;
-    align-items: stretch;
-    gap: clamp(2.5rem, 5.2vw, 5rem);
+  app-hero-description {
+    display: flex;
+    flex: 0 0 min(31rem, 28%);
+    max-width: none;
+    min-width: 0;
+    padding-block-start: clamp(6.25rem, 13vh, 10rem);
+    padding-block-end: clamp(1.5rem, 5vh, 3.5rem);
+  }
 
-    app-hero-description {
-      display: flex;
-      flex: 0 0 min(31rem, 28%);
-      max-width: none;
-      min-width: 0;
-      padding-block-start: clamp(6.25rem, 13vh, 10rem);
-      padding-block-end: clamp(1.5rem, 5vh, 3.5rem);
-    }
+  app-hero-identity {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: clamp(0.25rem, 1.6vw, 1.5rem);
+  }
 
-    &__visual {
-      flex: 1 1 72%;
-      min-width: 0;
-      padding-top: clamp(1rem, 3.5vh, 2.25rem);
-    }
-
-    app-hero-identity {
-      display: flex;
-      justify-content: flex-end;
-      padding-right: clamp(0.25rem, 1.6vw, 1.5rem);
-    }
-
-    app-hero-portrait {
-      display: flex;
-      flex: 1;
-    }
+  app-hero-portrait {
+    display: flex;
+    flex: 1;
   }
 }
