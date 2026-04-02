@@ -1,0 +1,74 @@
+@use 'abstracts/tokens';
+
+.about-stage {
+  &__statement,
+  &__support,
+  &__context-title,
+  &__context-copy {
+    margin: 0;
+  }
+
+  &__statement {
+    color: tokens.$color-heading;
+    font-size: clamp(2.4rem, 4.2vw, 4.25rem);
+    font-weight: 700;
+    line-height: 0.96;
+
+    &--secondary {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1;
+    }
+  }
+
+  &__support {
+    max-width: 24rem;
+    color: tokens.$color-muted;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  &__context-title {
+    color: tokens.$color-heading;
+    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.02;
+  }
+
+  &__context-copy {
+    color: tokens.$color-muted;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 21rem;
+    text-align: justify;
+  }
+}
+
+:host(.about-stage__text-zone--lead) {
+  .about-stage__statement {
+    max-width: none;
+  }
+
+  .about-stage__support {
+    max-width: 20rem;
+    text-align: justify;
+    white-space: pre-line;
+  }
+}
+
+:host(.about-stage__text-zone--secondary) {
+  .about-stage__statement--secondary {
+    max-width: none;
+  }
+
+  .about-stage__support {
+    max-width: 40rem;
+    text-align: justify;
+    white-space: pre-line;
+  }
+}
+
+:host(.about-stage__context-block) {
+  .about-stage__support {
+    text-align: justify;
+  }
+}

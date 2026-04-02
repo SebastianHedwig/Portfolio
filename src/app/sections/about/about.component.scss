@@ -48,54 +48,6 @@
     justify-content: flex-end;
   }
 
-  &__statement,
-  &__support {
-    margin: 0;
-  }
-
-  &__statement {
-    color: tokens.$color-heading;
-    font-size: clamp(2.4rem, 4.2vw, 4.25rem);
-    font-weight: 700;
-    line-height: 0.96;
-
-    &--secondary {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1;
-    }
-  }
-
-  &__support {
-    max-width: 24rem;
-    color: tokens.$color-muted;
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
-  &__context-title,
-  &__context-copy {
-    margin: 0;
-  }
-
-  &__context-title {
-    color: tokens.$color-heading;
-    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
-    font-weight: 700;
-    line-height: 1.02;
-  }
-
-  &__context-copy {
-    color: tokens.$color-muted;
-    font-size: 0.95rem;
-    line-height: 1.75;
-    max-width: 21rem;
-    text-align: justify;
-  }
-
-  &__context-block &__support {
-    text-align: justify;
-  }
-
   &__chapter--intro {
     flex-direction: row;
     align-items: stretch;
@@ -120,29 +72,11 @@
     align-self: flex-start;
   }
 
-  &__text-zone--lead &__statement {
-    max-width: none;
-  }
-
-  &__text-zone--lead &__support {
-    max-width: 20rem;
-    text-align: justify;
-  }
-
   &__text-zone--secondary {
     width: min(20rem, 100%);
     max-width: none;
     align-self: flex-end;
     margin-right: clamp(5rem, 20vw, 15rem);
-  }
-
-  &__text-zone--secondary &__statement--secondary {
-    max-width: none;
-  }
-
-  &__text-zone--secondary &__support {
-    max-width: 40rem;
-    text-align: justify;
   }
 
   &__context-rail {
@@ -164,7 +98,6 @@
   &__context-block--center {
     align-self: flex-start;
     margin-top: clamp(36rem, 84vh, 60rem);
-    // margin-left: clamp(5rem, 10vw, 10rem);
   }
 
   &__context-block--right {

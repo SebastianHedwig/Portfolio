@@ -9,63 +9,29 @@
     </div>
 
     <div class="about-stage__text-rail">
-      <div class="about-stage__text-zone about-stage__text-zone--lead">
-        <h2 class="about-stage__statement">Ein Ziel. Ein Weg.</h2>
-        <p class="about-stage__support">
-          Für mich gibt es keine Probleme — <br>Nur Wege zur Lösung.<br><br>
-          Ich bleibe dran — <br>
-          Bis aus einer Idee etwas entsteht,
-          das wirklich funktioniert und überzeugt.
-        </p>
-      </div>
+      <app-about-text-block
+        [block]="introLead"
+      ></app-about-text-block>
 
-      <div class="about-stage__text-zone about-stage__text-zone--secondary">
-        <p class="about-stage__statement about-stage__statement--secondary">
-          Der Weg ist nicht immer gerade.
-        </p>
-        <p class="about-stage__support">
-          Manchmal geht es leichter,<br>
-          manchmal kostet es Kraft und Zeit.
-          <br><br>
-          Entscheidend ist, dranzubleiben.<br>
-          Er ist es wert, gegangen zu werden.
-        </p>
-      </div>
-
+      <app-about-text-block
+        [block]="introSecondary"
+      ></app-about-text-block>
     </div>
   </div>
 
   <div class="about-stage__chapter about-stage__chapter--context">
     <div class="about-stage__context-rail">
-      <div class="about-stage__context-block about-stage__context-block--left">
-        <p class="about-stage__context-title">Aus Flörsheim. Mit Haltung im Detail.</p>
-        <p class="about-stage__context-copy">
-          Ich arbeite strukturiert, ruhig und mit einem klaren Blick auf das, was
-          ein Projekt wirklich braucht.
-        </p>
-      </div>
+      <app-about-text-block
+        [block]="contextLeft"
+      ></app-about-text-block>
 
-      <div class="about-stage__context-block about-stage__context-block--center">
-        <p class="about-stage__statement about-stage__statement--secondary">
-          Ruhig. Klar. Direkt.
-        </p>
-        <p class="about-stage__support">
-          Klare digitale Erlebnisse entstehen nicht zufällig — 
-          Sie sind das Ergebnis von Haltung, Fokus und sauberer Umsetzung.
-        </p>
-      </div>
+      <app-about-text-block
+        [block]="contextCenter"
+      ></app-about-text-block>
 
-      <div class="about-stage__context-block about-stage__context-block--right">
-        <p class="about-stage__statement about-stage__statement--secondary">
-          Was mich antreibt.
-        </p>
-        <p class="about-stage__support">
-          Mich motiviert der Moment,
-          in dem aus einer Idee ein Erlebnis wird,
-          das nicht nur präzise ist,
-          sondern beim Nutzer spürbar etwas hinterlässt.
-        </p>
-      </div>
+      <app-about-text-block
+        [block]="contextRight"
+      ></app-about-text-block>
     </div>
   </div>
 </div>
