@@ -21,7 +21,7 @@ export class TechStackComponent {
   readonly coreStack: TechStackItem[] = [
     this.createItem('HTML', 'assets/icons/tech-stack/Html.svg'),
     this.createItem('CSS', 'assets/icons/tech-stack/Css.svg'),
-    this.createItem('JavaScript', 'assets/icons/tech-stack/JavScript.svg'),
+    this.createItem('JavaScript', 'assets/icons/tech-stack/JavaScript.svg'),
   ];
 
   readonly mainStack: TechStackItem[] = [
@@ -31,12 +31,12 @@ export class TechStackComponent {
   ];
 
   readonly extendedStack: TechStackItem[] = [
-    this.createItem('API', 'assets/icons/tech-stack/Api.svg'),
+    this.createItem('REST API', 'assets/icons/tech-stack/Api.svg'),
     this.createItem('Firebase', 'assets/icons/tech-stack/Firebase.svg'),
     this.createItem('Supabase', 'assets/icons/tech-stack/Supabase.svg'),
     this.createItem('Git', 'assets/icons/tech-stack/Git.svg'),
     this.createItem('Scrum', 'assets/icons/tech-stack/Scrum.svg'),
-    this.createItem('Figma', 'assets/icons/tech-stack/Figma.svg'),
+    this.createItem('VS Code', 'assets/icons/tech-stack/VSCode.svg'),
     this.createItem(
       'Material Design',
       'assets/icons/tech-stack/Material Design.svg',
