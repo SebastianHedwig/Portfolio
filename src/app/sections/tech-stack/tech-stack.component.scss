@@ -2,42 +2,230 @@
 @use 'abstracts/tokens';
 
 .tech-stage {
-  min-height: 96svh;
-  gap: tokens.$section-gap-loose;
+  @include mixins.stack(clamp(7rem, 16vh, 13rem));
+  min-height: 112svh;
+  padding-block: 20rem;
 
-  &__layout {
-    @include mixins.stack(tokens.$section-gap);
-    flex: 1;
-    flex-direction: row;
-    align-items: flex-start;
+  &__intro,
+  &__focus {
+    @include mixins.stack(clamp(1rem, 2.4vh, 1.75rem));
   }
 
-  &__group,
-  &__group-set {
-    @include mixins.stack;
+  &__intro {
+    width: min(40rem, 100%);
+    margin-left: 0;
   }
 
-  &__group {
-    gap: 0.9rem;
-    max-width: 34rem;
-    min-height: clamp(14rem, 24vh, 18rem);
+  &__focus {
+    width: min(28rem, 100%);
+    margin-left: auto;
+    margin-right: clamp(6rem, 14vw, 14rem);
   }
 
-  &__group-set {
-    gap: tokens.$zone-gap;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: tokens.$section-gap;
-    min-width: 0;
+  &__eyebrow,
+  &__headline,
+  &__subheadline,
+  &__copy {
+    margin: 0;
   }
 
-  &__group--primary {
-    flex: 0 0 min(30rem, 32%);
-    padding-top: clamp(1rem, 5vh, 3rem);
+  &__eyebrow {
+    color: tokens.$color-muted;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1;
   }
 
-  &__group-set &__group {
-    flex: 1;
+  &__headline,
+  &__subheadline {
+    color: tokens.$color-heading;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    line-height: 0.98;
+  }
+
+  &__headline {
+    @include mixins.stack(0.4rem);
+    font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+  }
+
+  &__subheadline {
+    font-size: clamp(2rem, 3vw, 3rem);
+    max-width: 10ch;
+  }
+
+  &__copy {
+    max-width: 27rem;
+    color: tokens.$color-muted;
+    font-size: 1rem;
+    line-height: 1.75;
+
+    &--compact {
+      max-width: 23rem;
+    }
+  }
+
+  &__stack {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &--core {
+      justify-content: center;
+      gap: clamp(2.5rem, 7vw, 7rem);
+      padding-left: clamp(4rem, 10vw, 10rem);
+    }
+
+    &--main {
+      justify-content: flex-start;
+      gap: clamp(2rem, 5vw, 5rem);
+      padding-left: clamp(12rem, 22vw, 22rem);
+      opacity: 0.9;
+    }
+
+    &--extended {
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: clamp(1.6rem, 3.5vw, 3.75rem);
+      margin-top: clamp(5rem, 12vh, 10rem);
+      padding-inline: clamp(1rem, 8vw, 8rem);
+      opacity: 0.7;
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform 180ms ease,
+      opacity 180ms ease;
+
+    &--core {
+      &:nth-child(1) {
+        transform: translateY(-0.35rem);
+      }
+
+      &:nth-child(2) {
+        transform: translateY(0.4rem);
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-0.15rem);
+      }
+    }
+
+    &--main {
+      &:nth-child(2) {
+        transform: translateY(0.3rem);
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-0.25rem);
+      }
+    }
+
+    &--extended {
+      &:nth-child(2) {
+        margin-top: 1.15rem;
+      }
+
+      &:nth-child(4) {
+        margin-top: 0.55rem;
+      }
+
+      &:nth-child(6) {
+        margin-top: 1.25rem;
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: clamp(4.6rem, 7vw, 6.2rem);
+    height: clamp(4.6rem, 7vw, 6.2rem);
+    object-fit: contain;
+    opacity: 0.94;
+    filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(297%)
+      hue-rotate(182deg) brightness(104%) contrast(101%);
+    transition:
+      transform 180ms ease,
+      filter 180ms ease,
+      opacity 180ms ease;
+
+    &--extended {
+      width: clamp(2rem, 3.2vw, 2.65rem);
+      height: clamp(2rem, 3.2vw, 2.65rem);
+      opacity: 0.78;
+    }
+  }
+
+  &__item--main &__icon {
+    width: clamp(3.4rem, 5.3vw, 4.6rem);
+    height: clamp(3.4rem, 5.3vw, 4.6rem);
+    opacity: 0.82;
+  }
+
+  &__label {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    left: 50%;
+    display: inline-flex;
+    gap: 0.02em;
+    color: tokens.$color-accent;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    white-space: pre;
+
+    &--extended {
+      font-size: 0.68rem;
+    }
+  }
+
+  &__label-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.3rem);
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease;
+
+    &:nth-child(1) { transition-delay: 0ms; }
+    &:nth-child(2) { transition-delay: 18ms; }
+    &:nth-child(3) { transition-delay: 36ms; }
+    &:nth-child(4) { transition-delay: 54ms; }
+    &:nth-child(5) { transition-delay: 72ms; }
+    &:nth-child(6) { transition-delay: 90ms; }
+    &:nth-child(7) { transition-delay: 108ms; }
+    &:nth-child(8) { transition-delay: 126ms; }
+    &:nth-child(9) { transition-delay: 144ms; }
+    &:nth-child(10) { transition-delay: 162ms; }
+    &:nth-child(11) { transition-delay: 180ms; }
+    &:nth-child(12) { transition-delay: 198ms; }
+    &:nth-child(13) { transition-delay: 216ms; }
+    &:nth-child(14) { transition-delay: 234ms; }
+    &:nth-child(15) { transition-delay: 252ms; }
+  }
+
+  &__item:hover &__label {
+    opacity: 1;
+  }
+
+  &__item:hover &__icon {
+    opacity: 1;
+    filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+      hue-rotate(160deg) brightness(101%) contrast(102%);
+    transform: translateY(-0.28rem);
+  }
+
+  &__item:hover &__label-letter {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

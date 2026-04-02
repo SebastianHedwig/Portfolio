@@ -1,40 +1,62 @@
-<div class="section__inner stage-shell tech-stage">
-  <header class="stage-shell__header tech-stage__header">
-    <p class="stage-shell__eyebrow">Tech Stack</p>
-    <h2 class="stage-shell__title">
-      Structured calm stage for tools, systems, and implementation strengths.
+<div class="section__inner tech-stage">
+  <div class="tech-stage__intro">
+    <p class="tech-stage__eyebrow">Tech Stack</p>
+    <h2 class="tech-stage__headline">
+      <span>Technologie ist Werkzeug.</span>
+      <span>Entscheidend ist, wie man sie nutzt.</span>
     </h2>
-    <p class="stage-shell__lead">
-      The layout stays open and ordered so later content can be detailed
-      without turning into a boxed grid of cards.
+    <p class="tech-stage__copy">
+      Ich arbeite nicht mit möglichst vielen Tools,<br>
+      sondern mit den richtigen — sinnvoll gewählt<br>
+      und bewusst eingesetzt.
     </p>
-  </header>
+  </div>
 
-  <div class="tech-stage__layout">
-    <div class="tech-stage__group tech-stage__group--primary">
-      <p class="stage-shell__label">Core stack zone</p>
-      <p class="stage-shell__copy">
-        Reserved for frontend technologies, architecture preferences, and
-        delivery strengths.
-      </p>
-    </div>
-
-    <div class="tech-stage__group-set">
-      <div class="tech-stage__group">
-        <p class="stage-shell__label">Architecture zone</p>
-        <p class="stage-shell__copy">
-          Reserved for state handling, scalability decisions, and structural
-          thinking.
-        </p>
+  <div class="tech-stage__stack tech-stage__stack--core">
+    @for (item of coreStack; track item.src) {
+      <div class="tech-stage__item tech-stage__item--core">
+        <img class="tech-stage__icon" [src]="item.src" [alt]="item.alt" />
+        <span class="tech-stage__label" aria-hidden="true">
+          @for (letter of item.letters; track $index) {
+            <span class="tech-stage__label-letter">{{ letter }}</span>
+          }
+        </span>
       </div>
+    }
+  </div>
 
-      <div class="tech-stage__group">
-        <p class="stage-shell__label">Workflow zone</p>
-        <p class="stage-shell__copy">
-          Reserved for tooling, quality standards, and the surrounding
-          development environment.
-        </p>
+  <div class="tech-stage__focus">
+    <h3 class="tech-stage__subheadline">Weniger ist mehr.</h3>
+    <p class="tech-stage__copy tech-stage__copy--compact">
+      Ein durchdachter, reduzierter Stack<br>
+      führt zu besseren Ergebnissen<br>
+      als komplexe Setups ohne Richtung.
+    </p>
+  </div>
+
+  <div class="tech-stage__stack tech-stage__stack--main">
+    @for (item of mainStack; track item.src) {
+      <div class="tech-stage__item tech-stage__item--main">
+        <img class="tech-stage__icon" [src]="item.src" [alt]="item.alt" />
+        <span class="tech-stage__label" aria-hidden="true">
+          @for (letter of item.letters; track $index) {
+            <span class="tech-stage__label-letter">{{ letter }}</span>
+          }
+        </span>
       </div>
-    </div>
+    }
+  </div>
+
+  <div class="tech-stage__stack tech-stage__stack--extended">
+    @for (item of extendedStack; track item.src) {
+      <div class="tech-stage__item tech-stage__item--extended">
+        <img class="tech-stage__icon tech-stage__icon--extended" [src]="item.src" [alt]="item.alt" />
+        <span class="tech-stage__label tech-stage__label--extended" aria-hidden="true">
+          @for (letter of item.letters; track $index) {
+            <span class="tech-stage__label-letter">{{ letter }}</span>
+          }
+        </span>
+      </div>
+    }
   </div>
 </div>
