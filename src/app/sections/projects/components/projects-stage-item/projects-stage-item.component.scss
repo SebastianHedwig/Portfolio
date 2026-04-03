@@ -1,0 +1,224 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+:host {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: tokens.$section-inline-padding;
+  will-change: transform, opacity;
+}
+
+.project-moment {
+  position: relative;
+  width: min(100%, 74rem);
+
+  &__scene,
+  &__content,
+  &__copy,
+  &__details,
+  &__detail,
+  &__artifact-shell {
+    @include mixins.stack;
+  }
+
+  &__scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 12;
+    flex-direction: row;
+    align-items: stretch;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: clamp(1rem, 1.6vw, 1.4rem);
+    background: linear-gradient(
+      180deg,
+      rgba(tokens.$color-accent, 0.045),
+      rgba(tokens.$color-accent, 0.014)
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0px 0px 8px rgba(tokens.$color-accent-soft, 0.6),
+      inset -1px 0 0 rgba(0, 0, 0, 0.18),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  &__scene::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(tokens.$color-accent-soft, 0.05),
+      rgba(tokens.$color-accent-soft, 0)
+    );
+    pointer-events: none;
+  }
+
+  &__scene::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.015),
+      inset 0 -18rem 24rem rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    justify-content: space-between;
+    gap: clamp(1.75rem, 4vh, 3rem);
+    flex: 0 0 min(23rem, 34%);
+    min-width: 0;
+  }
+
+  &__index,
+  &__eyebrow,
+  &__title,
+  &__summary,
+  &__detail-label,
+  &__detail-value,
+  &__artifact-label,
+  &__artifact-copy {
+    margin: 0;
+  }
+
+  &__index {
+    color: tokens.$color-accent;
+    font-size: 0.9rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  &__copy {
+    gap: 1rem;
+  }
+
+  &__eyebrow,
+  &__detail-label,
+  &__artifact-label {
+    color: tokens.$color-muted;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    color: tokens.$color-heading;
+    font-size: clamp(2.4rem, 4.7vw, 4.8rem);
+    font-weight: 700;
+    line-height: 0.96;
+    max-width: 10ch;
+  }
+
+  &__summary {
+    color: tokens.$color-muted;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 24rem;
+  }
+
+  &__details {
+    gap: 1rem;
+    margin: 0;
+    padding-top: clamp(1rem, 3vh, 2rem);
+    border-top: 1px solid tokens.$color-border;
+  }
+
+  &__detail {
+    gap: 0.35rem;
+  }
+
+  &__detail-value {
+    color: tokens.$color-text;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  &__artifact {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
+  }
+
+  &__artifact-shell {
+    position: relative;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: min(100%, 44rem);
+    height: 100%;
+    min-height: 0;
+    margin-left: auto;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border-block: 1px solid tokens.$color-border;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.04)),
+      radial-gradient(circle at 72% 32%, rgba(53, 199, 255, 0.08), transparent 42%);
+  }
+
+  &__artifact-shell::before,
+  &__artifact-shell::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &__artifact-shell::before {
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 1px;
+    background: tokens.$color-border;
+  }
+
+  &__artifact-shell::after {
+    inset-inline: clamp(1.75rem, 3vw, 2.5rem);
+    inset-block-end: clamp(1.75rem, 3vw, 2.5rem);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(53, 199, 255, 0.7), transparent 76%);
+  }
+
+  &__artifact-copy {
+    color: tokens.$color-muted;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    max-width: 22rem;
+  }
+}
+
+@media (max-width: tokens.$breakpoint-desktop) {
+  .project-moment {
+    &__scene {
+      aspect-ratio: auto;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: auto;
+    }
+
+    &__content {
+      flex-basis: auto;
+      width: min(100%, 28rem);
+      padding-block-end: 0;
+    }
+
+    &__title {
+      max-width: 12ch;
+    }
+
+    &__artifact-shell {
+      width: 100%;
+      min-height: clamp(18rem, 36vh, 24rem);
+      margin-left: 0;
+    }
+  }
+}

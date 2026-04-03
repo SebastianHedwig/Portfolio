@@ -2,7 +2,9 @@
 @use 'abstracts/tokens';
 
 body {
-  background: tokens.$color-background;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.16)),
+    tokens.$color-background;
 }
 
 app-root,

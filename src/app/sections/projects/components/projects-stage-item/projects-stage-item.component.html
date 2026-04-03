@@ -1,0 +1,29 @@
+<article class="project-moment">
+  <div class="project-moment__scene">
+    <div class="project-moment__content">
+      <p class="project-moment__index">{{ project().index }}</p>
+
+      <div class="project-moment__copy">
+        <p class="project-moment__eyebrow">{{ project().eyebrow }}</p>
+        <h3 class="project-moment__title">{{ project().title }}</h3>
+        <p class="project-moment__summary">{{ project().summary }}</p>
+      </div>
+
+      <dl class="project-moment__details">
+        @for (detail of project().details; track detail.label) {
+          <div class="project-moment__detail">
+            <dt class="project-moment__detail-label">{{ detail.label }}</dt>
+            <dd class="project-moment__detail-value">{{ detail.value }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+
+    <div class="project-moment__artifact" aria-hidden="true">
+      <div class="project-moment__artifact-shell">
+        <p class="project-moment__artifact-label">{{ project().artifactLabel }}</p>
+        <p class="project-moment__artifact-copy">{{ project().artifactCopy }}</p>
+      </div>
+    </div>
+  </div>
+</article>

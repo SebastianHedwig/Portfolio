@@ -4,5 +4,6 @@
   @include mixins.stack();
   position: relative;
   min-height: 112svh;
-  padding-block: 20rem;
+  padding-top: clamp(12rem, 18vh, 20rem);
+  padding-bottom: clamp(9rem, 14vh, 15rem);
 }

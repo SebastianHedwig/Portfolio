@@ -1,3 +1,5 @@
+@use 'abstracts/tokens';
+
 * {
   &,
   &::before,
@@ -14,6 +16,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: tokens.$color-accent-soft tokens.$color-surface;
 }
 
 body,
@@ -26,4 +29,31 @@ p {
 img {
   display: block;
   max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: tokens.$color-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(tokens.$color-accent-soft, tokens.$color-accent)
+    padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(tokens.$color-accent, tokens.$color-accent-soft)
+    padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: tokens.$color-surface;
 }
