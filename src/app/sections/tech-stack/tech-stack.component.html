@@ -23,6 +23,9 @@
         </span>
       </div>
     }
+    <span class="tech-stage__group-label tech-stage__group-label--core">
+      Fundament
+    </span>
   </div>
 
   <div class="tech-stage__focus">
@@ -45,6 +48,20 @@
         </span>
       </div>
     }
+    <span class="tech-stage__group-label tech-stage__group-label--main">
+      Täglich im Einsatz
+    </span>
+  </div>
+
+  <div class="tech-stage__learning" aria-hidden="true">
+    <div class="tech-stage__learning-icon">
+      <img [src]="learningItem.src" [alt]="learningItem.alt" />
+    </div>
+    <span class="tech-stage__label">
+      @for (letter of learningItem.letters; track $index) {
+        <span class="tech-stage__label-letter">{{ letter }}</span>
+      }
+    </span>
   </div>
 
   <div class="tech-stage__stack tech-stage__stack--extended">
@@ -58,5 +75,8 @@
         </span>
       </div>
     }
+    <span class="tech-stage__group-label tech-stage__group-label--extended">
+      Unterstützende Erweiterungen
+    </span>
   </div>
 </div>

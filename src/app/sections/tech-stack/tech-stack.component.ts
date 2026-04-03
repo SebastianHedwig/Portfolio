@@ -30,6 +30,11 @@ export class TechStackComponent {
     this.createItem('SCSS', 'assets/icons/tech-stack/Sass.svg'),
   ];
 
+  readonly learningItem = this.createItem(
+    'Still learning',
+    'assets/icons/tech-stack/Continually Learning.svg',
+  );
+
   readonly extendedStack: TechStackItem[] = [
     this.createItem('REST API', 'assets/icons/tech-stack/Api.svg'),
     this.createItem('Firebase', 'assets/icons/tech-stack/Firebase.svg'),
@@ -37,9 +42,7 @@ export class TechStackComponent {
     this.createItem('Git', 'assets/icons/tech-stack/Git.svg'),
     this.createItem('Scrum', 'assets/icons/tech-stack/Scrum.svg'),
     this.createItem('VS Code', 'assets/icons/tech-stack/VSCode.svg'),
-    this.createItem(
-      'Material Design',
-      'assets/icons/tech-stack/Material Design.svg',
+    this.createItem('Material Design', 'assets/icons/tech-stack/Material Design.svg',
     ),
   ];
 }
