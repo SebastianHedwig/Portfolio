@@ -3,58 +3,60 @@
 
 :host {
   @include mixins.stack(clamp(1rem, 2.4vh, 1.75rem));
-}
 
-:host(.tech-stage__intro) {
-  width: min(40rem, 100%);
-  margin-left: 0;
-}
+  &.tech-stage__intro {
+    width: min(40rem, 100%);
+    margin-left: 0;
+  }
 
-:host(.tech-stage__focus) {
-  width: min(28rem, 100%);
-  margin-left: auto;
-  margin-right: clamp(6rem, 14vw, 14rem);
-}
+  &.tech-stage__focus {
+    width: min(28rem, 100%);
+    margin-left: auto;
+    margin-right: clamp(6rem, 14vw, 14rem);
+  }
 
-.tech-stage__eyebrow,
-.tech-stage__headline,
-.tech-stage__subheadline,
-.tech-stage__copy {
-  margin: 0;
-}
+  .tech-stage {
+    &__eyebrow,
+    &__headline,
+    &__subheadline,
+    &__copy {
+      margin: 0;
+    }
 
-.tech-stage__eyebrow {
-  color: tokens.$color-muted;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1;
-}
+    &__eyebrow {
+      color: tokens.$color-muted;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
 
-.tech-stage__headline,
-.tech-stage__subheadline {
-  color: tokens.$color-heading;
-  font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  line-height: 0.98;
-}
+    &__headline,
+    &__subheadline {
+      color: tokens.$color-heading;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      line-height: 0.98;
+    }
 
-.tech-stage__headline {
-  @include mixins.stack(0.4rem);
-  font-size: clamp(2.8rem, 4.7vw, 5.4rem);
-}
+    &__headline {
+      @include mixins.stack(0.4rem);
+      font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+    }
 
-.tech-stage__subheadline {
-  font-size: clamp(2rem, 3vw, 3rem);
-  max-width: 10ch;
-}
+    &__subheadline {
+      font-size: clamp(2rem, 3vw, 3rem);
+      max-width: 10ch;
+    }
 
-.tech-stage__copy {
-  max-width: 27rem;
-  color: tokens.$color-muted;
-  font-size: 1rem;
-  line-height: 1.75;
-}
+    &__copy {
+      max-width: 27rem;
+      color: tokens.$color-muted;
+      font-size: 1rem;
+      line-height: 1.75;
 
-.tech-stage__copy--compact {
-  max-width: 23rem;
+      &--compact {
+        max-width: 23rem;
+      }
+    }
+  }
 }
