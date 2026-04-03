@@ -1,0 +1,247 @@
+@use 'abstracts/tokens';
+
+:host {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+:host(.tech-stage__stack--core) {
+  position: relative;
+  justify-content: center;
+  gap: clamp(2.5rem, 7vw, 7rem);
+  padding: clamp(7rem, 16vh, 13rem) 0;
+  padding-left: clamp(4rem, 10vw, 10rem);
+}
+
+:host(.tech-stage__stack--main) {
+  position: relative;
+  justify-content: flex-start;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(7rem, 16vh, 13rem);
+  padding-bottom: clamp(4rem, 12vh, 8rem);
+  padding-left: clamp(12rem, 22vw, 22rem);
+  opacity: 0.9;
+}
+
+:host(.tech-stage__stack--extended) {
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(1.6rem, 3.5vw, 3.75rem);
+  padding: clamp(7rem, 16vh, 13rem) clamp(1rem, 8vw, 8rem);
+  opacity: 0.7;
+}
+
+:host(.tech-stage__stack--core) .tech-stage__group-label--core {
+  top: 22.5%;
+  left: 35%;
+  transform: translateY(0.375rem);
+}
+
+:host(.tech-stage__stack--main) .tech-stage__group-label--main {
+  top: 25%;
+  right: 45%;
+  transform: translateY(0.375rem);
+}
+
+:host(.tech-stage__stack--extended) .tech-stage__group-label--extended {
+  top: 10%;
+  right: 15%;
+  transform: translateY(0.5rem);
+}
+
+:host:hover .tech-stage__group-label,
+.tech-stage__group-label--is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tech-stage__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.tech-stage__item--core:nth-child(1) {
+  transform: translateX(0.15rem) translateY(0.62rem);
+}
+
+.tech-stage__item--core:nth-child(2) {
+  transform: translateX(0.35rem) translateY(-0.16rem);
+}
+
+.tech-stage__item--main:nth-child(1) {
+  transform: translateX(0.2rem) translateY(0.54rem);
+}
+
+.tech-stage__item--main:nth-child(2) {
+  transform: translateX(0.45rem) translateY(-0.28rem);
+}
+
+.tech-stage__item--extended:nth-child(1) {
+  transform: translateX(2rem) translateY(8rem) scale(1.03);
+}
+
+.tech-stage__item--extended:nth-child(2) {
+  transform: translateX(1.15rem) translateY(0.25rem) scale(0.98);
+}
+
+.tech-stage__item--extended:nth-child(3) {
+  transform: translateX(3rem) translateY(6rem) scale(1.01);
+}
+
+.tech-stage__item--extended:nth-child(4) {
+  transform: translateX(0.85rem) translateY(-1.8rem) scale(0.96);
+}
+
+.tech-stage__item--extended:nth-child(5) {
+  transform: translateX(-1.35rem) translateY(8rem) scale(1.04);
+}
+
+.tech-stage__item--extended:nth-child(6) {
+  transform: translateX(1.05rem) translateY(-0.2rem) scale(0.97);
+}
+
+.tech-stage__item--extended:nth-child(7) {
+  transform: translateX(-1.25rem) translateY(6.3rem) scale(0.95);
+}
+
+.tech-stage__icon {
+  display: block;
+  width: clamp(4.6rem, 7vw, 6.2rem);
+  height: clamp(4.6rem, 7vw, 6.2rem);
+  object-fit: contain;
+  opacity: 0.94;
+  filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(297%)
+    hue-rotate(182deg) brightness(104%) contrast(101%);
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    opacity 180ms ease;
+}
+
+.tech-stage__icon--extended {
+  width: clamp(2rem, 3.2vw, 2.65rem);
+  height: clamp(2rem, 3.2vw, 2.65rem);
+  opacity: 0.78;
+}
+
+.tech-stage__item--main .tech-stage__icon {
+  width: clamp(3.4rem, 5.3vw, 4.6rem);
+  height: clamp(3.4rem, 5.3vw, 4.6rem);
+  opacity: 0.82;
+}
+
+.tech-stage__item--core:nth-child(2) .tech-stage__label,
+.tech-stage__item--main:nth-child(2) .tech-stage__label,
+.tech-stage__item--extended:nth-child(4) .tech-stage__label {
+  top: calc(100% + 0.3rem);
+  bottom: auto;
+}
+
+.tech-stage__item--extended:nth-child(1) .tech-stage__icon--extended {
+  opacity: 0.9;
+}
+
+.tech-stage__item--extended:nth-child(2) .tech-stage__icon--extended {
+  opacity: 0.66;
+}
+
+.tech-stage__item--extended:nth-child(3) .tech-stage__icon--extended {
+  opacity: 0.82;
+}
+
+.tech-stage__item--extended:nth-child(4) .tech-stage__icon--extended {
+  opacity: 0.54;
+}
+
+.tech-stage__item--extended:nth-child(5) .tech-stage__icon--extended {
+  opacity: 0.94;
+}
+
+.tech-stage__item--extended:nth-child(6) .tech-stage__icon--extended {
+  opacity: 0.72;
+}
+
+.tech-stage__label {
+  position: absolute;
+  bottom: calc(100% + 0.9rem);
+  left: 50%;
+  display: inline-flex;
+  gap: 0.02em;
+  color: tokens.$color-accent;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  white-space: pre;
+}
+
+.tech-stage__label--extended {
+  font-size: 0.8rem;
+}
+
+.tech-stage__group-label {
+  position: absolute;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: tokens.$color-accent;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.6s ease,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+
+.tech-stage__label-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.3rem);
+  transition:
+    opacity 220ms ease,
+    transform 260ms ease;
+}
+
+.tech-stage__label-letter:nth-child(1) { transition-delay: 0ms; }
+.tech-stage__label-letter:nth-child(2) { transition-delay: 18ms; }
+.tech-stage__label-letter:nth-child(3) { transition-delay: 36ms; }
+.tech-stage__label-letter:nth-child(4) { transition-delay: 54ms; }
+.tech-stage__label-letter:nth-child(5) { transition-delay: 72ms; }
+.tech-stage__label-letter:nth-child(6) { transition-delay: 90ms; }
+.tech-stage__label-letter:nth-child(7) { transition-delay: 108ms; }
+.tech-stage__label-letter:nth-child(8) { transition-delay: 126ms; }
+.tech-stage__label-letter:nth-child(9) { transition-delay: 144ms; }
+.tech-stage__label-letter:nth-child(10) { transition-delay: 162ms; }
+.tech-stage__label-letter:nth-child(11) { transition-delay: 180ms; }
+.tech-stage__label-letter:nth-child(12) { transition-delay: 198ms; }
+.tech-stage__label-letter:nth-child(13) { transition-delay: 216ms; }
+.tech-stage__label-letter:nth-child(14) { transition-delay: 234ms; }
+.tech-stage__label-letter:nth-child(15) { transition-delay: 252ms; }
+
+.tech-stage__item:hover .tech-stage__label {
+  opacity: 1;
+}
+
+.tech-stage__item:hover .tech-stage__icon {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+    hue-rotate(160deg) brightness(101%) contrast(102%);
+  transform: translateY(-0.28rem);
+}
+
+.tech-stage__item:hover .tech-stage__label-letter {
+  opacity: 1;
+  transform: translateY(0);
+}

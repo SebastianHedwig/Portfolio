@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import { type HeroDescriptionData } from '../../hero.models';
 
 @Component({
   selector: 'app-hero-description',
@@ -7,4 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './hero-description.component.html',
   styleUrl: './hero-description.component.scss',
 })
-export class HeroDescriptionComponent {}
+export class HeroDescriptionComponent {
+  readonly content = input.required<HeroDescriptionData>();
+}

@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import { type HeroPortraitData } from '../../hero.models';
 
 @Component({
   selector: 'app-hero-portrait',
@@ -7,4 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './hero-portrait.component.html',
   styleUrl: './hero-portrait.component.scss',
 })
-export class HeroPortraitComponent {}
+export class HeroPortraitComponent {
+  readonly content = input.required<HeroPortraitData>();
+}

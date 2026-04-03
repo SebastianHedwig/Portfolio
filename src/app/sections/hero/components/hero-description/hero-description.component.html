@@ -1,27 +1,24 @@
 <div class="hero-description">
-  <p class="hero-description__eyebrow">Design trifft Performance</p>
+  <p class="hero-description__eyebrow">{{ content().eyebrow }}</p>
 
   <h1 class="hero-description__headline">
-    <span>Moderne</span>
-    <span>Web</span>
-    <span>Experiences,</span>
-    <span>die nicht nur</span>
-    <span>funktionieren,</span>
-    <span>sondern</span>
-    <span>überzeugen</span>
+    @for (line of content().headlineLines; track $index) {
+      <span>{{ line }}</span>
+    }
   </h1>
 
   <p class="hero-description__text">
-    Frontend Entwicklung mit Fokus auf Interaktion, Performance und saubere
-    Umsetzung.
+    {{ content().text }}
   </p>
 
   <div class="hero-description__actions">
-    <a class="hero-description__action hero-description__action--primary" href="#projects">
-      View Projects
-    </a>
-    <a class="hero-description__action hero-description__action--secondary" href="#contact">
-      Let's Talk
-    </a>
+    @for (action of content().actions; track action.href) {
+      <a
+        class="hero-description__action {{ action.modifierClass }}"
+        [href]="action.href"
+      >
+        {{ action.label }}
+      </a>
+    }
   </div>
 </div>

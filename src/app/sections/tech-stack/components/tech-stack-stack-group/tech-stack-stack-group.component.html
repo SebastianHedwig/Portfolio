@@ -1,0 +1,17 @@
+@for (item of group().items; track item.src) {
+  <div [class]="itemClass()">
+    <img [class]="iconClass()" [src]="item.src" [alt]="item.alt" />
+
+    <span [class]="labelClass()" aria-hidden="true">
+      @for (letter of item.letters; track $index) {
+        <span class="tech-stage__label-letter">{{ letter }}</span>
+      }
+    </span>
+  </div>
+}
+
+<span [class]="groupLabelClass()">
+  @for (letter of group().groupLabel.letters; track $index) {
+    <span>{{ letter }}</span>
+  }
+</span>

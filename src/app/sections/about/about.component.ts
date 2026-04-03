@@ -1,19 +1,33 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import {
-  AboutTextBlockComponent,
-  type AboutTextBlockData,
-} from './components/about-text-block/about-text-block.component';
+import { AboutImageComponent } from './components/about-image/about-image.component';
+import { AboutTextBlockComponent } from './components/about-text-block/about-text-block.component';
+import { type AboutImageData, type AboutTextBlockData } from './about.models';
 
 @Component({
   selector: 'app-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [AboutTextBlockComponent],
+  imports: [AboutImageComponent, AboutTextBlockComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
 export class AboutComponent {
+  readonly portrait: AboutImageData = {
+    src: 'assets/images/about/sebastian-about-640.jpg',
+    srcset: `
+      assets/images/about/sebastian-about-320.jpg 320w,
+      assets/images/about/sebastian-about-480.jpg 480w,
+      assets/images/about/sebastian-about-640.jpg 640w,
+      assets/images/about/sebastian-about-960.jpg 960w
+    `,
+    sizes: '(max-width: 48rem) calc(100vw - 2rem), 30rem',
+    width: 640,
+    height: 1441,
+    decoding: 'async',
+    alt: 'Sebastian Hedwig in einer ruhigen persönlichen Szene',
+  };
+
   readonly introLead: AboutTextBlockData = {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
     title: 'Ein Ziel. Ein Weg.',

@@ -1,22 +1,6 @@
 <div class="section__inner about-stage">
   <div class="about-stage__chapter about-stage__chapter--intro">
-    <div class="about-stage__image-zone">
-      <img
-        class="about-stage__image"
-        src="assets/images/about/sebastian-about-640.jpg"
-        srcset="
-          assets/images/about/sebastian-about-320.jpg 320w,
-          assets/images/about/sebastian-about-480.jpg 480w,
-          assets/images/about/sebastian-about-640.jpg 640w,
-          assets/images/about/sebastian-about-960.jpg 960w
-        "
-        sizes="(max-width: 48rem) calc(100vw - 2rem), 30rem"
-        width="640"
-        height="1441"
-        decoding="async"
-        alt="Sebastian Hedwig in einer ruhigen persönlichen Szene"
-      />
-    </div>
+    <app-about-image [image]="portrait"></app-about-image>
 
     <div class="about-stage__text-rail">
       <app-about-text-block

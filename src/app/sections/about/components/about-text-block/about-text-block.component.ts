@@ -1,13 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-export type AboutTextBlockData = {
-  containerClass: string;
-  copy: string;
-  copyClass: string;
-  title: string;
-  titleClass: string;
-  titleTag: 'h2' | 'p';
-};
+import { type AboutTextBlockData } from '../../about.models';
 
 @Component({
   selector: 'app-about-text-block',

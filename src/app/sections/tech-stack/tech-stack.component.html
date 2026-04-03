@@ -1,82 +1,21 @@
 <div class="section__inner tech-stage">
-  <div class="tech-stage__intro">
-    <p class="tech-stage__eyebrow">Tech Stack</p>
-    <h2 class="tech-stage__headline">
-      <span>Technologie ist Werkzeug.</span>
-      <span>Entscheidend ist, wie man sie nutzt.</span>
-    </h2>
-    <p class="tech-stage__copy">
-      Ich arbeite nicht mit möglichst vielen Tools,<br>
-      sondern mit den richtigen — sinnvoll gewählt<br>
-      und bewusst eingesetzt.
-    </p>
-  </div>
+  <app-tech-stack-text-block [block]="introBlock"></app-tech-stack-text-block>
 
-  <div class="tech-stage__stack tech-stage__stack--core">
-    @for (item of coreStack; track item.src) {
-      <div class="tech-stage__item tech-stage__item--core">
-        <img class="tech-stage__icon" [src]="item.src" [alt]="item.alt" />
-        <span class="tech-stage__label" aria-hidden="true">
-          @for (letter of item.letters; track $index) {
-            <span class="tech-stage__label-letter">{{ letter }}</span>
-          }
-        </span>
-      </div>
-    }
-    <span class="tech-stage__group-label tech-stage__group-label--core">
-      Fundament
-    </span>
-  </div>
+  <app-tech-stack-stack-group
+    [group]="coreGroup"
+    [forceGroupLabelVisible]="forceCoreGroupLabelVisible()"
+  ></app-tech-stack-stack-group>
 
-  <div class="tech-stage__focus">
-    <h3 class="tech-stage__subheadline">Weniger ist mehr.</h3>
-    <p class="tech-stage__copy tech-stage__copy--compact">
-      Ein durchdachter, reduzierter Stack<br>
-      führt zu besseren Ergebnissen<br>
-      als komplexe Setups ohne Richtung.
-    </p>
-  </div>
+  <app-tech-stack-text-block [block]="focusBlock"></app-tech-stack-text-block>
 
-  <div class="tech-stage__stack tech-stage__stack--main">
-    @for (item of mainStack; track item.src) {
-      <div class="tech-stage__item tech-stage__item--main">
-        <img class="tech-stage__icon" [src]="item.src" [alt]="item.alt" />
-        <span class="tech-stage__label" aria-hidden="true">
-          @for (letter of item.letters; track $index) {
-            <span class="tech-stage__label-letter">{{ letter }}</span>
-          }
-        </span>
-      </div>
-    }
-    <span class="tech-stage__group-label tech-stage__group-label--main">
-      Täglich im Einsatz
-    </span>
-  </div>
+  <app-tech-stack-stack-group [group]="mainGroup"></app-tech-stack-stack-group>
 
-  <div class="tech-stage__learning" aria-hidden="true">
-    <div class="tech-stage__learning-icon">
-      <img [src]="learningItem.src" [alt]="learningItem.alt" />
-    </div>
-    <span class="tech-stage__label">
-      @for (letter of learningItem.letters; track $index) {
-        <span class="tech-stage__label-letter">{{ letter }}</span>
-      }
-    </span>
-  </div>
+  <app-tech-stack-learning-item
+    [item]="learningItem"
+    (hoverChanged)="handleLearningHover($event)"
+  ></app-tech-stack-learning-item>
 
-  <div class="tech-stage__stack tech-stage__stack--extended">
-    @for (item of extendedStack; track item.src) {
-      <div class="tech-stage__item tech-stage__item--extended">
-        <img class="tech-stage__icon tech-stage__icon--extended" [src]="item.src" [alt]="item.alt" />
-        <span class="tech-stage__label tech-stage__label--extended" aria-hidden="true">
-          @for (letter of item.letters; track $index) {
-            <span class="tech-stage__label-letter">{{ letter }}</span>
-          }
-        </span>
-      </div>
-    }
-    <span class="tech-stage__group-label tech-stage__group-label--extended">
-      Unterstützende Erweiterungen
-    </span>
-  </div>
+  <app-tech-stack-stack-group
+    [group]="extendedGroup"
+  ></app-tech-stack-stack-group>
 </div>

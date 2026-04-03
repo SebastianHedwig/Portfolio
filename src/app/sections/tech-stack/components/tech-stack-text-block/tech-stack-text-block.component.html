@@ -1,0 +1,26 @@
+@if (block().eyebrow) {
+  <p class="tech-stage__eyebrow">{{ block().eyebrow }}</p>
+}
+
+@if (block().titleTag === 'h2') {
+  <h2 [class]="block().titleClass">
+    @for (line of block().titleLines; track $index) {
+      <span>{{ line }}</span>
+    }
+  </h2>
+} @else {
+  <h3 [class]="block().titleClass">
+    @for (line of block().titleLines; track $index) {
+      <span>{{ line }}</span>
+    }
+  </h3>
+}
+
+<p [class]="block().copyClass">
+  @for (line of block().copyLines; track $index; let last = $last) {
+    <span>{{ line }}</span>
+    @if (!last) {
+      <br>
+    }
+  }
+</p>

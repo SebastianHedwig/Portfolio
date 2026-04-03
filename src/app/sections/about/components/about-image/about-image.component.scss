@@ -1,0 +1,15 @@
+@use 'abstracts/mixins';
+
+:host {
+  @include mixins.stack;
+  flex: 0 0 auto;
+  width: min(100%, 30rem);
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+
+.about-stage__image {
+  width: 100%;
+  height: auto;
+  clip-path: ellipse(42% 50% at 50% 50%);
+}
