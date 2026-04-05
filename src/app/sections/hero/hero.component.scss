@@ -2,7 +2,7 @@
 @use 'abstracts/tokens';
 
 .hero {
-  @include mixins.stack(clamp(1.75rem, 4vh, 3.5rem));
+  @include mixins.stack();
   min-height: 100svh;
   padding-block-start: clamp(5rem, 9vw, 8rem);
   padding-block-end: clamp(0.75rem, 2vh, 1.75rem);

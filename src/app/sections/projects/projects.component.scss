@@ -10,23 +10,6 @@
   min-height: 100%;
   padding-block: clamp(6rem, 10vh, 9rem) clamp(8rem, 12vh, 10rem);
 
-  &__entry {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-inline: tokens.$section-inline-padding;
-    will-change: transform, opacity;
-    z-index: 2;
-  }
-
-  &__header {
-    align-items: center;
-    width: min(100%, 42rem);
-    text-align: center;
-  }
-
   &__scroll-space {
     position: relative;
     width: 100%;
@@ -38,14 +21,14 @@
     top: 0;
     display: flex;
     align-items: center;
-    min-height: 100svh;
+    height: 100svh;
     width: 100%;
   }
 
   &__viewport {
     position: relative;
     width: 100%;
-    min-height: 100svh;
+    height: 100svh;
     overflow-x: hidden;
   }
 }
@@ -59,11 +42,11 @@
     }
 
     &__sticky {
-      min-height: 90svh;
+      height: 90svh;
     }
 
     &__viewport {
-      min-height: 100svh;
+      height: 100svh;
     }
   }
 }

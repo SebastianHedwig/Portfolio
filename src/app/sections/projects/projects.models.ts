@@ -8,8 +8,8 @@ export interface ProjectStageItemData {
   eyebrow: string;
   title: string;
   summary: string;
-  artifactLabel: string;
-  artifactCopy: string;
+  visualLabel: string;
+  visualCopy: string;
   details: readonly ProjectStageDetailData[];
 }
 

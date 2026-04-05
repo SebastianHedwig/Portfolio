@@ -1,0 +1,30 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+:host {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: tokens.$section-inline-padding;
+  will-change: transform, opacity;
+  z-index: 2;
+}
+
+.projects-stage__header {
+  @include mixins.stack;
+  align-items: center;
+  width: min(100%, 44rem);
+  text-align: center;
+}
+
+.projects-stage__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projects-stage__title-line {
+  display: block;
+}

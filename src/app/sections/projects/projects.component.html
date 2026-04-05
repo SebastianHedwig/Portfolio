@@ -6,19 +6,12 @@
   >
     <div class="projects-stage__sticky">
       <div class="projects-stage__viewport" aria-label="Projektsequenz">
-        <div
-          class="projects-stage__entry"
-          [style.opacity]="entryState().opacity"
-          [style.pointer-events]="entryState().pointerEvents"
-          [style.transform]="entryState().transform"
-          [style.z-index]="entryState().zIndex"
-        >
-          <header class="stage-shell__header projects-stage__header">
-            <p class="stage-shell__eyebrow">{{ entryEyebrow }}</p>
-            <h2 class="stage-shell__title">{{ entryTitle }}</h2>
-            <p class="stage-shell__lead">{{ entryLead }}</p>
-          </header>
-        </div>
+        <app-projects-stage-entry
+          [eyebrow]="entryEyebrow"
+          [titleLines]="entryTitleLines"
+          [lead]="entryLead"
+          [state]="entryState()"
+        ></app-projects-stage-entry>
 
         @for (panel of projectPanels(); track panel.project.index) {
           <app-projects-stage-item

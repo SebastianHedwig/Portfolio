@@ -1,0 +1,8 @@
+<dl class="project-moment__details-list">
+  @for (detail of details(); track detail.label) {
+    <div class="project-moment__detail">
+      <dt class="project-moment__detail-label">{{ detail.label }}</dt>
+      <dd class="project-moment__detail-value">{{ detail.value }}</dd>
+    </div>
+  }
+</dl>
