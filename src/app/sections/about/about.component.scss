@@ -2,12 +2,46 @@
 @use 'abstracts/tokens';
 
 .about-stage {
-  @include mixins.stack(clamp(6rem, 20vh, 18rem));
-  min-height: 118svh;
-  padding-block-start: 40rem;
-  padding-block-end: 20rem;
-  
-  &__chapter,
+  @include mixins.stack;
+  position: relative;
+  width: 100%;
+  gap: 0;
+  justify-content: flex-start;
+  min-height: 100%;
+  padding-block: clamp(10rem, 25vh, 20rem) clamp(8rem, 12vh, 10rem);
+
+  &__scroll-space {
+    position: relative;
+    width: 100%;
+    height: calc(var(--about-stage-scenes) * 100svh);
+  }
+
+  &__sticky {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100svh;
+  }
+
+  &__viewport {
+    position: relative;
+    display: block;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  &__chapter {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: max(100%, 1920px);
+    height: max(100%, 1080px);
+    min-height: 100%;
+    will-change: transform, opacity;
+  }
+
   &__context-block,
   &__context-rail,
   &__text-rail,
@@ -15,18 +49,9 @@
     @include mixins.stack;
   }
 
-  &__chapter--context {
-    width: 100%;
-    padding-top: clamp(2rem, 7vh, 5rem);
-  }
-
   &__context-block {
     gap: clamp(1rem, 2.5vh, 1.75rem);
     width: min(100%, 22rem);
-  }
-
-  &__text-rail {
-    gap: clamp(2rem, 6vh, 5rem);
   }
 
   &__text-zone {
@@ -36,16 +61,16 @@
   }
 
   &__chapter--intro {
-    flex-direction: row;
-    align-items: stretch;
-    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+    gap: clamp(8rem, 12vw, 16rem);
+    padding-block: clamp(4rem, 10vh, 8rem);
   }
 
   &__text-rail {
     flex: 1;
     min-width: 0;
-    gap: clamp(10rem, 28vh, 20rem);
-    padding-top: clamp(5rem, 11vh, 8rem);
+    gap: clamp(6rem, 14vh, 10rem);
+    padding-top: clamp(2rem, 5vh, 4rem);
   }
 
   &__text-zone--lead {
@@ -58,34 +83,106 @@
     width: min(20rem, 100%);
     max-width: none;
     align-self: flex-end;
-    margin-right: clamp(5rem, 20vw, 15rem);
+    margin-right: clamp(5rem, 12vw, 12rem);
+  }
+
+  &__chapter--context {
+    align-items: flex-start;
+    padding-block: clamp(6rem, 12vh, 8rem);
   }
 
   &__context-rail {
     flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
+    justify-content: space-evenly;
+    width: max(100%, 1920px);
+    height: max(100%, 1080px);
+    gap: clamp(1.5rem, 3vw, 3rem);
   }
 
   &__context-block--left,
   &__context-block--center,
   &__context-block--right {
-    width: min(30rem, 100%);
+    width: min(25rem, 20%);
   }
 
   &__context-block--left {
-    align-self: flex-start;
+    padding-top: clamp(4rem, 5vh, 6rem);
   }
 
   &__context-block--center {
-    align-self: flex-start;
-    margin-top: clamp(36rem, 84vh, 60rem);
+    align-self: center;
+    margin-top: clamp(22rem, 46vh, 34rem);
   }
 
   &__context-block--right {
     align-self: flex-start;
-    margin-top: clamp(12rem, 28vh, 24rem);
-    margin-left: clamp(5rem, 10vw, 10rem);
+    margin-top: clamp(8rem, 18vh, 14rem);
   }
 
+  app-about-image {
+    flex: 0 0 min(30rem, 34vw);
+    width: min(100%, 28rem);
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: tokens.$breakpoint-desktop) {
+  .about-stage {
+    padding-block: clamp(4rem, 8vh, 6rem) clamp(6rem, 10vh, 8rem);
+
+    &__scroll-space {
+      height: calc(var(--about-stage-scenes) * 92svh);
+    }
+
+    &__sticky,
+    &__viewport {
+      height: 92svh;
+    }
+
+    &__sticky {
+      align-items: flex-start;
+    }
+
+    &__chapter {
+      padding-block: clamp(2.5rem, 6vh, 4rem);
+    }
+
+    &__chapter--intro {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: clamp(2rem, 4vh, 3rem);
+    }
+
+    &__text-rail {
+      width: 100%;
+      gap: clamp(2.5rem, 6vh, 4rem);
+      padding-top: 0;
+    }
+
+    &__text-zone--secondary {
+      align-self: flex-start;
+      margin-right: 0;
+    }
+
+    &__chapter--context {
+      padding-block: clamp(3rem, 7vh, 4.5rem);
+    }
+
+    &__context-rail {
+      flex-direction: column;
+      gap: clamp(2rem, 5vh, 3rem);
+      padding-top: 0;
+    }
+
+    &__context-block--center,
+    &__context-block--right {
+      margin-top: 0;
+      margin-left: 0;
+    }
+
+    app-about-image {
+      flex-basis: auto;
+      width: min(20rem, 55vw);
+    }
+  }
 }

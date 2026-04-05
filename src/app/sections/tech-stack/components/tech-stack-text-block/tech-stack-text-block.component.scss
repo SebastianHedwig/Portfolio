@@ -6,13 +6,13 @@
 
   &.tech-stage__intro {
     width: min(40rem, 100%);
-    margin-left: 0;
+    margin-left: 5rem;
   }
 
   &.tech-stage__focus {
     width: min(28rem, 100%);
     margin-left: auto;
-    margin-right: clamp(6rem, 14vw, 14rem);
+    margin-right: clamp(4rem, 10vw, 7rem);
   }
 
   .tech-stage {

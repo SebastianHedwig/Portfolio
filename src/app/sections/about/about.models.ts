@@ -16,3 +16,10 @@ export type AboutImageData = {
   srcset: string;
   width: number;
 };
+
+export interface AboutStageVisualState {
+  opacity: string;
+  pointerEvents: string;
+  transform: string;
+  zIndex: string;
+}
