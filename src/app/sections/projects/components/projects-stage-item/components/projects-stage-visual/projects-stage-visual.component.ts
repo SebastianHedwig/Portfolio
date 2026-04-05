@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-projects-stage-visual',
@@ -11,6 +11,4 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   },
 })
 export class ProjectsStageVisualComponent {
-  readonly label = input.required<string>();
-  readonly copy = input.required<string>();
 }

@@ -2,29 +2,67 @@
 @use 'abstracts/tokens';
 
 :host {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.overlay-center;
   padding-inline: tokens.$section-inline-padding;
   will-change: transform, opacity;
   z-index: 2;
 }
 
-.projects-stage__header {
-  @include mixins.stack;
-  align-items: center;
-  width: min(100%, 44rem);
-  text-align: center;
-}
+.projects-stage {
+  &__header {
+    max-width: none;
+    @include mixins.stack;
+    align-items: center;
+    width: min(60%, 70rem);
+    text-align: center;
+  }
 
-.projects-stage__title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+  }
 
-.projects-stage__title-line {
-  display: block;
+  &__title-line {
+    display: inline-flex;
+    width: fit-content;
+
+    &--accent {
+      color: tokens.$color-accent-soft;
+    }
+
+    &--1 {
+      margin-inline-start: clamp(2.25rem, 4.1vw, 4.4rem);
+    }
+
+    &--2 {
+      margin-inline-end: clamp(0.6rem, 1vw, 1rem);
+    }
+
+    &--3 {
+      margin-inline-start: clamp(0.95rem, 2vw, 2rem);
+    }
+
+    &--4 {
+      margin-inline-start: clamp(1.4rem, 3vw, 3.15rem);
+    }
+
+    &--5 {
+      margin-inline-end: clamp(1.05rem, 2.3vw, 2.35rem);
+    }
+
+    &--6 {
+      margin-inline-start: clamp(1.6rem, 3.4vw, 3.6rem);
+    }
+
+    &--7 {
+      margin-inline-start: clamp(2.5rem, 5vw, 5rem);
+    }
+
+    &--8 {
+      margin-inline-start: clamp(1rem, 1.7vw, 2rem);
+    }
+  }
 }

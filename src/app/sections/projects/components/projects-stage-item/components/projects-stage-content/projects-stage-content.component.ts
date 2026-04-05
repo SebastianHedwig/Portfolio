@@ -11,5 +11,4 @@ export class ProjectsStageContentComponent {
   readonly index = input.required<string>();
   readonly eyebrow = input.required<string>();
   readonly title = input.required<string>();
-  readonly summary = input.required<string>();
 }

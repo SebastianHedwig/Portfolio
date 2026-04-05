@@ -1,21 +1,19 @@
 <article class="project-moment">
   <div class="project-moment__scene">
-    <div class="project-moment__main">
-      <app-projects-stage-content
-        [index]="project().index"
-        [eyebrow]="project().eyebrow"
-        [title]="project().title"
-        [summary]="project().summary"
-      ></app-projects-stage-content>
+    <app-projects-stage-content
+      [index]="project().index"
+      [eyebrow]="project().eyebrow"
+      [title]="project().title"
+    ></app-projects-stage-content>
 
-      <app-projects-stage-visual
-        [label]="project().visualLabel"
-        [copy]="project().visualCopy"
-      ></app-projects-stage-visual>
-    </div>
+    <app-projects-stage-visual></app-projects-stage-visual>
 
-    <app-projects-stage-details
-      [details]="project().details"
-    ></app-projects-stage-details>
+    <app-projects-stage-description
+      [description]="project().description"
+    ></app-projects-stage-description>
+
+    <app-projects-stage-stack
+      [stack]="project().stack"
+    ></app-projects-stage-stack>
   </div>
 </article>

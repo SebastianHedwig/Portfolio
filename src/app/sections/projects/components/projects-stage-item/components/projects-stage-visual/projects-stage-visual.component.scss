@@ -5,72 +5,53 @@
   @include mixins.stack;
   position: relative;
   z-index: 1;
-  flex: 1;
-  min-width: 0;
-  align-items: flex-start;
-}
-
-.project-moment__visual-shell {
-  @include mixins.stack;
-  position: relative;
-  justify-content: flex-end;
-  gap: 1rem;
   width: 100%;
-  height: 140%;
-  min-height: clamp(17.5rem, 30vw, 25rem);
-  max-height: 140%;
-  margin-top: -8rem;
-  margin-left: auto;
-  margin-right: calc(clamp(-1.15rem, -1.3vw, -0.35rem) - 5rem);
-  padding:
-    clamp(1.7rem, 3vw, 2.4rem)
-    clamp(1.55rem, 2.6vw, 2.15rem)
-    clamp(1.8rem, 3vw, 2.55rem);
-  background:
-    radial-gradient(
-      circle at 70% 28%,
-      rgba(tokens.$color-accent, 0.1),
-      transparent 48%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0,
-      rgba(255, 255, 255, 0.016) 14%,
-      rgba(255, 255, 255, 0.008) 52%,
-      rgba(tokens.$color-accent-soft, 0.035) 100%
-    );
+  height: 100%;
+  min-width: 0;
+  align-items: stretch;
 }
 
-.project-moment__visual-label,
-.project-moment__visual-copy {
-  margin: 0;
-}
-
-.project-moment__visual-label {
-  color: tokens.$color-muted;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.project-moment__visual-copy {
-  color: tokens.$color-muted;
-  font-size: 0.98rem;
-  line-height: 1.75;
-  max-width: 22rem;
+.project-moment {
+  &__visual-shell {
+    @include mixins.stack;
+    box-sizing: border-box;
+    position: relative;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    padding:
+      clamp(1.7rem, 3vw, 2.4rem)
+      clamp(1.55rem, 2.6vw, 2.15rem)
+      clamp(1.8rem, 3vw, 2.55rem);
+    background:
+      radial-gradient(
+        circle at 70% 28%,
+        rgba(tokens.$color-accent, 0.1),
+        transparent 48%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.016) 14%,
+        rgba(255, 255, 255, 0.008) 52%,
+        rgba(tokens.$color-accent-soft, 0.035) 100%
+      );
+  }
 }
 
 @media (max-width: tokens.$breakpoint-desktop) {
   :host {
     align-items: stretch;
+    height: auto;
   }
 
-  .project-moment__visual-shell {
-    width: 100%;
-    min-height: clamp(18rem, 36vh, 24rem);
-    max-height: none;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
+  .project-moment {
+    &__visual-shell {
+      width: 100%;
+      min-height: clamp(18rem, 36vh, 24rem);
+      height: auto;
+      margin: 0;
+    }
   }
 }

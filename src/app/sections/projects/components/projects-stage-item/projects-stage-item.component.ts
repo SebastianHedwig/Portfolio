@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { ProjectsStageContentComponent } from './components/projects-stage-content/projects-stage-content.component';
-import { ProjectsStageDetailsComponent } from './components/projects-stage-details/projects-stage-details.component';
+import { ProjectsStageDescriptionComponent } from './components/projects-stage-description/projects-stage-description.component';
+import { ProjectsStageStackComponent } from './components/projects-stage-stack/projects-stage-stack.component';
 import { ProjectsStageVisualComponent } from './components/projects-stage-visual/projects-stage-visual.component';
 import {
   type ProjectStageItemData,
@@ -14,7 +15,8 @@ import {
   standalone: true,
   imports: [
     ProjectsStageContentComponent,
-    ProjectsStageDetailsComponent,
+    ProjectsStageDescriptionComponent,
+    ProjectsStageStackComponent,
     ProjectsStageVisualComponent,
   ],
   templateUrl: './projects-stage-item.component.html',

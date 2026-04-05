@@ -36,15 +36,6 @@ export class ProjectsComponent implements OnDestroy {
   readonly entryPause = 0.5;
   readonly centerPause = 0.5;
   readonly exitPause = 0.5;
-  readonly entryEyebrow = 'Selected Work';
-  readonly entryTitleLines = [
-    'Drei Arbeiten, die zeigen,',
-    'wie aus Struktur,',
-    'Haltung und Praezision',
-    'digitale Erlebnisse entstehen.',
-  ] as const;
-  readonly entryLead = 'Kein Katalog. Kein Raster. Nur drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.';
-
   readonly projects: readonly ProjectStageItemData[] = PROJECTS_STAGE_ITEMS;
 
   readonly centerPauseCount = this.projects.length - 1;

@@ -9,6 +9,25 @@
   }
 }
 
+@mixin overlay-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin caps-label(
+  $size,
+  $color: tokens.$color-muted,
+  $spacing: 0.18em
+) {
+  color: $color;
+  font-size: $size;
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+}
+
 @mixin page-width {
   width: 100%;
   max-width: tokens.$site-max-width;

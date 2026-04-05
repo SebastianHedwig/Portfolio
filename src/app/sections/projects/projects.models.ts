@@ -7,10 +7,8 @@ export interface ProjectStageItemData {
   index: string;
   eyebrow: string;
   title: string;
-  summary: string;
-  visualLabel: string;
-  visualCopy: string;
-  details: readonly ProjectStageDetailData[];
+  description: ProjectStageDetailData;
+  stack: ProjectStageDetailData;
 }
 
 export interface ProjectStageVisualState {

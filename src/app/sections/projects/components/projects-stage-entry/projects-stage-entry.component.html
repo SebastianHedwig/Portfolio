@@ -1,9 +1,14 @@
 <header class="stage-shell__header projects-stage__header">
-  <p class="stage-shell__eyebrow">{{ eyebrow() }}</p>
+  <p class="stage-shell__eyebrow">{{ eyebrow }}</p>
   <h2 class="stage-shell__title projects-stage__title">
-    @for (line of titleLines(); track line) {
-      <span class="projects-stage__title-line">{{ line }}</span>
+    @for (line of lines(); track line.className) {
+      <span
+        [class]="line.className"
+        [class.projects-stage__title-line--accent]="line.accent"
+      >
+        {{ line.text }}
+      </span>
     }
   </h2>
-  <p class="stage-shell__lead">{{ lead() }}</p>
+  <p class="stage-shell__lead">{{ lead }}</p>
 </header>

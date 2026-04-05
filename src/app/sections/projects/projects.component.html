@@ -6,12 +6,7 @@
   >
     <div class="projects-stage__sticky">
       <div class="projects-stage__viewport" aria-label="Projektsequenz">
-        <app-projects-stage-entry
-          [eyebrow]="entryEyebrow"
-          [titleLines]="entryTitleLines"
-          [lead]="entryLead"
-          [state]="entryState()"
-        ></app-projects-stage-entry>
+        <app-projects-stage-entry [state]="entryState()"></app-projects-stage-entry>
 
         @for (panel of projectPanels(); track panel.project.index) {
           <app-projects-stage-item

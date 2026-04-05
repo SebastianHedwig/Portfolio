@@ -2,59 +2,76 @@
 @use 'abstracts/tokens';
 
 :host {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.overlay-center;
   padding-inline: tokens.$section-inline-padding;
   will-change: transform, opacity;
 }
 
 .project-moment {
   position: relative;
-  width: min(100%, 100rem);
-  min-height: clamp(39rem, 72vh, 42rem);
-  margin-top: 5rem;
-
-  &__scene,
-  &__main {
-    @include mixins.stack;
-  }
+  width: 90%;
+  height: 90svh;
+  align-content: center;
 
   &__scene {
     position: relative;
-    width: 100%;
-    min-height: 100%;
-    gap: clamp(8rem, 14vh, 12rem);
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(20, minmax(0, 1fr));
+    column-gap: clamp(1.4rem, 2vw, 2.3rem);
+    row-gap: clamp(0.45rem, 0.9vh, 0.85rem);
+    align-items: start;
+    justify-self: center;
+    width: min(100%, 1920px);
+    height: min(100%, 1080px);
     padding:
       clamp(2rem, 3vw, 2.7rem)
       clamp(2.6rem, 3.9vw, 3.45rem)
       clamp(2rem, 3vw, 2.7rem)
       clamp(2.2rem, 3.3vw, 2.85rem);
-  }
 
-  &__main {
-    flex-direction: row;
-    align-items: stretch;
-    flex: 1;
-    min-height: 0;
+    app-projects-stage-content {
+      grid-column: 1 / span 4;
+      grid-row: 4 / span 14;
+      align-self: start;
+    }
+
+    app-projects-stage-visual {
+      grid-column: 5 / span 8;
+      grid-row: 2 / span 10;
+      align-self: stretch;
+    }
+
+    app-projects-stage-description {
+      grid-column: 4 / span 4;
+      grid-row: 17 / span 3;
+      align-self: start;
+    }
+
+    app-projects-stage-stack {
+      grid-column: 9 / span 3;
+      grid-row: 15 / span 3;
+      align-self: start;
+    }
   }
 }
 
 @media (max-width: tokens.$breakpoint-desktop) {
   .project-moment {
-    min-height: auto;
+    height: auto;
 
     &__scene {
+      display: flex;
       aspect-ratio: auto;
-      min-height: auto;
-    }
+      height: auto;
+      gap: clamp(4rem, 8vh, 6rem);
 
-    &__main {
-      flex-direction: column;
-      align-items: stretch;
-      min-height: auto;
+      app-projects-stage-content,
+      app-projects-stage-visual,
+      app-projects-stage-description,
+      app-projects-stage-stack {
+        align-self: auto;
+      }
     }
   }
 }

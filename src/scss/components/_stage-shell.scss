@@ -19,9 +19,7 @@
 
   &__eyebrow {
     font-family: tokens.$font-eyebrow;
-    color: tokens.$color-accent;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    @include mixins.caps-label(0.8rem, tokens.$color-accent);
   }
 
   &__title {
