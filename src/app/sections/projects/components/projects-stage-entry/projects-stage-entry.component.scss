@@ -2,10 +2,7 @@
 @use 'abstracts/tokens';
 
 :host {
-  @include mixins.overlay-center;
-  padding-inline: tokens.$section-inline-padding;
-  will-change: transform, opacity;
-  z-index: 2;
+  @include mixins.stage-overlay-panel(2);
 }
 
 .projects-stage {
@@ -68,6 +65,6 @@
 }
 
 .stage-shell__subtitle {
-    text-align: justify;
-    padding-left: 14rem;
+  padding-left: 14rem;
+  text-align: justify;
 }

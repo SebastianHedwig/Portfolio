@@ -2,9 +2,7 @@
 @use 'abstracts/tokens';
 
 :host {
-  @include mixins.overlay-center;
-  padding-inline: tokens.$section-inline-padding;
-  will-change: transform, opacity;
+  @include mixins.stage-overlay-panel;
 }
 
 .project-moment {

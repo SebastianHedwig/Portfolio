@@ -2,16 +2,12 @@
 @use 'abstracts/tokens';
 
 :host {
-  display: block;
-  width: 100%;
-  min-width: 0;
+  @include mixins.project-moment-meta-host;
 }
 
 .project-moment {
   &__description {
-    @include mixins.stack;
-    gap: 0.35rem;
-    min-width: 0;
+    @include mixins.project-moment-meta-block;
   }
 
   &__description-label,

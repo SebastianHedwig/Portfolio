@@ -44,6 +44,21 @@
 }
 
 :host {
+  &.about-stage__context-block,
+  &.about-stage__text-zone--lead,
+  &.about-stage__text-zone--secondary {
+    .about-stage__support {
+      text-align: justify;
+    }
+  }
+
+  &.about-stage__text-zone--lead,
+  &.about-stage__text-zone--secondary {
+    .about-stage__support {
+      white-space: pre-line;
+    }
+  }
+
   &.about-stage__text-zone--lead {
     .about-stage__statement {
       max-width: none;
@@ -51,8 +66,6 @@
 
     .about-stage__support {
       max-width: 20rem;
-      text-align: justify;
-      white-space: pre-line;
     }
   }
 
@@ -63,14 +76,6 @@
 
     .about-stage__support {
       max-width: 40rem;
-      text-align: justify;
-      white-space: pre-line;
-    }
-  }
-
-  &.about-stage__context-block {
-    .about-stage__support {
-      text-align: justify;
     }
   }
 }

@@ -17,6 +17,16 @@
   justify-content: center;
 }
 
+@mixin stage-overlay-panel($z-index: null) {
+  @include overlay-center;
+  padding-inline: tokens.$section-inline-padding;
+  will-change: transform, opacity;
+
+  @if $z-index != null {
+    z-index: $z-index;
+  }
+}
+
 @mixin caps-label(
   $size,
   $color: tokens.$color-muted,
@@ -33,4 +43,48 @@
   max-width: tokens.$site-max-width;
   margin-inline: auto;
   padding-inline: tokens.$section-inline-padding;
+}
+
+@mixin tech-stage-label($font-size) {
+  position: absolute;
+  left: 50%;
+  display: inline-flex;
+  gap: 0.02em;
+  color: tokens.$color-accent;
+  font-family: tokens.$font-eyebrow;
+  font-size: $font-size;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  white-space: pre;
+}
+
+@mixin tech-stage-label-letters {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.3rem);
+  transition:
+    opacity 220ms ease,
+    transform 260ms ease;
+
+  @for $index from 1 through 15 {
+    &:nth-child(#{$index}) {
+      transition-delay: #{($index - 1) * 18}ms;
+    }
+  }
+}
+
+@mixin project-moment-meta-host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+@mixin project-moment-meta-block {
+  @include stack;
+  gap: 0.35rem;
+  min-width: 0;
 }

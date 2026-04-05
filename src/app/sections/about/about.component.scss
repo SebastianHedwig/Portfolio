@@ -83,11 +83,10 @@
   }
 
   &__text-zone--lead {
-    width: min(20rem, 100%);
-    max-width: none;
     align-self: flex-start;
   }
 
+  &__text-zone--lead,
   &__text-zone--secondary {
     width: min(20rem, 100%);
     max-width: none;

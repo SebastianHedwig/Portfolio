@@ -36,7 +36,8 @@ img {
   height: 0.8rem;
 }
 
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
   background: tokens.$color-surface;
 }
 
@@ -52,8 +53,4 @@ img {
   background:
     linear-gradient(tokens.$color-accent, tokens.$color-accent-soft)
     padding-box;
-}
-
-::-webkit-scrollbar-corner {
-  background: tokens.$color-surface;
 }

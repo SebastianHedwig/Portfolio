@@ -1,3 +1,4 @@
+@use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
 :host {
@@ -5,8 +6,13 @@
   align-items: center;
   width: 100%;
 
-  &.tech-stage__stack--core {
+  &.tech-stage__stack--core,
+  &.tech-stage__stack--main,
+  &.tech-stage__stack--extended {
     position: relative;
+  }
+
+  &.tech-stage__stack--core {
     justify-content: center;
     gap: clamp(2.5rem, 7vw, 7rem);
     padding: clamp(7rem, 16vh, 13rem) 0;
@@ -20,7 +26,6 @@
   }
 
   &.tech-stage__stack--main {
-    position: relative;
     justify-content: flex-start;
     gap: clamp(2rem, 5vw, 5rem);
     padding-block: clamp(7rem, 16vh, 13rem);
@@ -35,7 +40,6 @@
   }
 
   &.tech-stage__stack--extended {
-    position: relative;
     justify-content: space-between;
     align-items: flex-start;
     gap: clamp(1.6rem, 3.5vw, 3.75rem);
@@ -76,11 +80,6 @@
 
         &:nth-child(2) {
           transform: translateX(0.35rem) translateY(-0.16rem);
-
-          .tech-stage__label {
-            top: calc(100% + 0.3rem);
-            bottom: auto;
-          }
         }
       }
 
@@ -91,11 +90,6 @@
 
         &:nth-child(2) {
           transform: translateX(0.45rem) translateY(-0.28rem);
-
-          .tech-stage__label {
-            top: calc(100% + 0.3rem);
-            bottom: auto;
-          }
         }
 
         .tech-stage__icon {
@@ -133,11 +127,6 @@
         &:nth-child(4) {
           transform: translateX(0.85rem) translateY(-1.8rem) scale(0.96);
 
-          .tech-stage__label {
-            top: calc(100% + 0.3rem);
-            bottom: auto;
-          }
-
           .tech-stage__icon--extended {
             opacity: 0.54;
           }
@@ -161,6 +150,15 @@
 
         &:nth-child(7) {
           transform: translateX(-1.25rem) translateY(6.3rem) scale(0.95);
+        }
+      }
+
+      &--core:nth-child(2),
+      &--main:nth-child(2),
+      &--extended:nth-child(4) {
+        .tech-stage__label {
+          top: calc(100% + 0.3rem);
+          bottom: auto;
         }
       }
 
@@ -205,54 +203,20 @@
 
     &__label {
       bottom: calc(100% + 0.9rem);
-      position: absolute;
-      left: 50%;
-      display: inline-flex;
-      gap: 0.02em;
-      color: tokens.$color-accent;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      line-height: 1;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(-50%);
-      white-space: pre;
+      @include mixins.tech-stage-label(0.9rem);
 
       &--extended {
         font-size: 0.8rem;
       }
 
       &-letter {
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(0.3rem);
-        transition:
-          opacity 220ms ease,
-          transform 260ms ease;
-
-        &:nth-child(1) { transition-delay: 0ms; }
-        &:nth-child(2) { transition-delay: 18ms; }
-        &:nth-child(3) { transition-delay: 36ms; }
-        &:nth-child(4) { transition-delay: 54ms; }
-        &:nth-child(5) { transition-delay: 72ms; }
-        &:nth-child(6) { transition-delay: 90ms; }
-        &:nth-child(7) { transition-delay: 108ms; }
-        &:nth-child(8) { transition-delay: 126ms; }
-        &:nth-child(9) { transition-delay: 144ms; }
-        &:nth-child(10) { transition-delay: 162ms; }
-        &:nth-child(11) { transition-delay: 180ms; }
-        &:nth-child(12) { transition-delay: 198ms; }
-        &:nth-child(13) { transition-delay: 216ms; }
-        &:nth-child(14) { transition-delay: 234ms; }
-        &:nth-child(15) { transition-delay: 252ms; }
+        @include mixins.tech-stage-label-letters;
       }
     }
 
     &__group-label {
       position: absolute;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: tokens.$font-eyebrow;
       font-size: 2rem;
       font-weight: 500;
       color: tokens.$color-accent;
