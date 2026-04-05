@@ -3,7 +3,7 @@
 
   <h1 class="hero-description__headline">
     @for (line of content().headlineLines; track $index) {
-      <span>{{ line }}</span>
+      <span [class.hero-description__headline-line--accent]="isAccentLine(line)">{{ line }}</span>
     }
   </h1>
 

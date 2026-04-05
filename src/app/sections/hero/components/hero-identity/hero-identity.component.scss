@@ -22,6 +22,10 @@
     line-height: 0.94;
   }
 
+  &__name-accent {
+    color: tokens.$color-accent;
+  }
+
   &__tagline {
     color: tokens.$color-muted;
     font-size: 1.05rem;

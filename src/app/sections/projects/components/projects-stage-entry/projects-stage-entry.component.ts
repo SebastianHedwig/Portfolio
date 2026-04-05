@@ -27,7 +27,7 @@ export class ProjectsStageEntryComponent {
   readonly titleLines = [
     'Projekte',
     'die zeigen ',
-    'wie aus:',
+    'wie aus :',
     'Struktur',
     'Haltung',
     'Präzision',

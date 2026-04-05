@@ -5,8 +5,12 @@
   @include mixins.stack(clamp(1rem, 2.4vh, 1.75rem));
 
   &.tech-stage__intro {
-    width: min(40rem, 100%);
+    width: min(42rem, 100%);
     margin-left: 5rem;
+
+    .tech-stage__headline {
+      gap: clamp(2.7rem, 6vh, 4.2rem);
+    }
   }
 
   &.tech-stage__focus {
@@ -41,6 +45,10 @@
     &__headline {
       @include mixins.stack(0.4rem);
       font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+    }
+
+    &__accent-word {
+      color: tokens.$color-accent-soft;
     }
 
     &__subheadline {

@@ -39,7 +39,10 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: clamp(1.6rem, 3.5vw, 3.75rem);
-    padding: clamp(7rem, 16vh, 13rem) clamp(1rem, 8vw, 8rem);
+    padding:
+      clamp(7rem, 16vh, 13rem)
+      clamp(4rem, 8vw, 8rem)
+      clamp(10.5rem, 24vh, 19.5rem);
     opacity: 0.7;
 
     .tech-stage__group-label--extended {
@@ -201,8 +204,8 @@
     }
 
     &__label {
-      position: absolute;
       bottom: calc(100% + 0.9rem);
+      position: absolute;
       left: 50%;
       display: inline-flex;
       gap: 0.02em;

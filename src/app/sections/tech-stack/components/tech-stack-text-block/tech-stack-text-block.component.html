@@ -5,13 +5,21 @@
 @if (block().titleTag === 'h2') {
   <h2 [class]="block().titleClass">
     @for (line of block().titleLines; track $index) {
-      <span>{{ line }}</span>
+      <span>
+        @for (segment of getTitleSegments(line); track segment.text + $index) {
+          <span [class.tech-stage__accent-word]="segment.accent">{{ segment.text }}</span>
+        }
+      </span>
     }
   </h2>
 } @else {
   <h3 [class]="block().titleClass">
     @for (line of block().titleLines; track $index) {
-      <span>{{ line }}</span>
+      <span>
+        @for (segment of getTitleSegments(line); track segment.text + $index) {
+          <span [class.tech-stage__accent-word]="segment.accent">{{ segment.text }}</span>
+        }
+      </span>
     }
   </h3>
 }

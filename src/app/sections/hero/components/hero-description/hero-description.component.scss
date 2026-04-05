@@ -29,6 +29,10 @@
     }
   }
 
+  &__headline-line--accent {
+    color: tokens.$color-accent-soft;
+  }
+
   &__text {
     max-width: 21rem;
     margin: clamp(0.5rem, 1.5vh, 1rem) 0 0;

@@ -35,7 +35,6 @@
 
 @media (max-width: tokens.$breakpoint-desktop) {
   .projects-stage {
-    padding-block: clamp(4rem, 8vh, 6rem) clamp(6rem, 10vh, 8rem);
 
     &__scroll-space {
       height: calc(var(--projects-stage-scenes) * 92svh);

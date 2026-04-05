@@ -31,7 +31,7 @@ app-root {
   display: flex;
   width: 100%;
 
-  &:not(.section--projects) > * {
+  &:not(.section--projects):not(.section--about) > * {
     width: 100%;
     max-width: tokens.$site-max-width;
     margin-inline: auto;

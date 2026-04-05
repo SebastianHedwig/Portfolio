@@ -19,7 +19,7 @@ export const TECH_STACK_INTRO_BLOCK: TechStackTextBlockData = {
   titleClass: 'tech-stage__headline',
   titleLines: [
     'Technologie ist Werkzeug.',
-    'Entscheidend ist, wie man sie nutzt.',
+    'Ihr Nutzen entsteht durch die Art der Anwendung.',
   ],
   titleTag: 'h2',
   copyClass: 'tech-stage__copy',
