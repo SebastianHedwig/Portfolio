@@ -17,10 +17,11 @@
 
   &__description-label {
     @include mixins.caps-label(1.5rem);
+    color: tokens.$color-accent-soft;
   }
 
   &__description-value {
-    color: tokens.$color-text;
+    color: #fff;
     font-size: 1.2rem;
     line-height: 1.55;
   }

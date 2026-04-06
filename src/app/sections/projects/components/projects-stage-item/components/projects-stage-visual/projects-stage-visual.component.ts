@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import { type ProjectStageVisualData } from '../../../../projects.models';
 
 @Component({
   selector: 'app-projects-stage-visual',
@@ -11,4 +13,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   },
 })
 export class ProjectsStageVisualComponent {
+  readonly visual = input<ProjectStageVisualData>();
 }

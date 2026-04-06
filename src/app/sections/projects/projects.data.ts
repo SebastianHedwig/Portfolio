@@ -3,41 +3,103 @@ import { type ProjectStageItemData } from './projects.models';
 export const PROJECTS_STAGE_ITEMS: readonly ProjectStageItemData[] = [
   {
     index: 'Projekt 01',
-    eyebrow: 'Editorial Commerce',
-    title: 'Atlas Atelier',
+    eyebrow: 'KanBan Board',
+    title: 'Join',
     description: {
       label: 'Beschreibung',
-      value: 'Editorial Commerce mit ruhiger Fuehrung, klaren Prioritaeten und einer Oberflaeche, die bewusst auf Druck verzichtet.',
+      value: 'Ein Aufgabenmanager, inspiriert vom Kanban-System, der Struktur, Interaktion und Zusammenarbeit in eine klare Oberfläche übersetzt. Umgesetzt mit reinem JavaScript, Drag-and-Drop und Echtzeit-Synchronisierung über Firebase.',
     },
     stack: {
       label: 'Stack',
-      value: 'Angular, TypeScript, SCSS und Content Modellierung.',
+      value: 'Java Script, CSS HTML und Firebase.',
+      icons: [
+        {
+          src: 'assets/icons/tech-stack/JavaScript.svg',
+          alt: 'JavaScript',
+        },
+        {
+          src: 'assets/icons/tech-stack/Css.svg',
+          alt: 'CSS',
+        },
+        {
+          src: 'assets/icons/tech-stack/Html.svg',
+          alt: 'HTML',
+        },
+        {
+          src: 'assets/icons/tech-stack/Firebase.svg',
+          alt: 'Firebase',
+        },
+      ],
+    },
+    visual: {
+      src: 'assets/images/projects/project-join-1500.png',
+      alt: 'Projektvorschau von Join',
     },
   },
   {
     index: 'Projekt 02',
-    eyebrow: 'Structured Platform',
-    title: 'Northline Workspace',
+    eyebrow: '2d - Platformer',
+    title: 'Panda - Jungle Run',
     description: {
       label: 'Beschreibung',
-      value: 'Eine dichte Plattformstruktur, die viele Ebenen aufnehmen kann, ohne an Ruhe, Lesbarkeit oder Ordnung zu verlieren.',
+      value: 'Ein 2D-Platformer im Browser. Entwickelt in JavaScript mit eigener Engine. Inspiriert von klassischen Side-Scrolling-Platformern und für alle Endgeräte optimiert. Zentrale Spielfigur ist ein Panda, der sich durch den Dschungel bewegt und dabei auf verschiedene Herausforderungen trifft.',
     },
     stack: {
       label: 'Stack',
-      value: 'Angular, Signals, modulare Komponenten und SCSS.',
+      value: 'Java Script, HTML und CSS.',
+      icons: [
+        {
+          src: 'assets/icons/tech-stack/JavaScript.svg',
+          alt: 'JavaScript',
+        },
+        {
+          src: 'assets/icons/tech-stack/Html.svg',
+          alt: 'HTML',
+        },
+        {
+          src: 'assets/icons/tech-stack/Css.svg',
+          alt: 'CSS',
+        },
+      ],
+    },
+    visual: {
+      src: 'assets/images/projects/project-panda-1500.png',
+      alt: 'Projektvorschau von Panda Jungle Run',
     },
   },
   {
     index: 'Projekt 03',
-    eyebrow: 'Brand Showcase',
-    title: 'Monarch Motion Lab',
+    eyebrow: 'API - basierte Anwendung',
+    title: 'Pokédex',
     description: {
       label: 'Beschreibung',
-      value: 'Ein markengetriebener Auftritt, der Typografie, Raum und spaetere Bewegung schon in der statischen Komposition vorbereitet.',
+      value: 'Ein Pokédex im Browser, basierend auf der PokéAPI. Die Anwendung strukturiert und visualisiert umfangreiche Datensätze und macht sie über eine klare Oberfläche zugänglich.',
     },
     stack: {
       label: 'Stack',
-      value: 'Angular, SCSS Architektur und motionbereite Struktur.',
+      value: 'Java Script, HTML, CSS und REST API.',
+      icons: [
+        {
+          src: 'assets/icons/tech-stack/JavaScript.svg',
+          alt: 'JavaScript',
+        },
+        {
+          src: 'assets/icons/tech-stack/Html.svg',
+          alt: 'HTML',
+        },
+        {
+          src: 'assets/icons/tech-stack/Css.svg',
+          alt: 'CSS',
+        },
+        {
+          src: 'assets/icons/tech-stack/Api.svg',
+          alt: 'REST API',
+        },
+      ],
+    },
+    visual: {
+      src: 'assets/images/projects/project-pokedex-1280.png',
+      alt: 'Projektvorschau eines Pokédex',
     },
   },
 ];

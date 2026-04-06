@@ -1,4 +1,21 @@
 <div class="project-moment__stack">
   <p class="project-moment__stack-label">{{ stack().label }}</p>
-  <p class="project-moment__stack-value">{{ stack().value }}</p>
+  @if (stack().icons?.length) {
+    <div class="project-moment__stack-icons" aria-label="{{ stack().value }}">
+      @for (icon of stack().icons; track icon.src) {
+        <div class="project-moment__stack-item">
+          <img
+            class="project-moment__stack-icon"
+            [src]="icon.src"
+            [alt]="icon.alt"
+            loading="lazy"
+            decoding="async"
+          >
+          <p class="project-moment__stack-icon-label">{{ icon.alt }}</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="project-moment__stack-value">{{ stack().value }}</p>
+  }
 </div>
