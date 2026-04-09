@@ -130,6 +130,10 @@
           .tech-stage__icon--extended {
             opacity: 0.54;
           }
+
+          .tech-stage__icon--git {
+            opacity: 0.82;
+          }
         }
 
         &:nth-child(5) {
@@ -172,6 +176,10 @@
           filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
             hue-rotate(160deg) brightness(101%) contrast(102%);
           transform: translateY(-0.28rem);
+        }
+
+        .tech-stage__icon--git {
+          opacity: 1;
         }
 
         .tech-stage__label-letter {

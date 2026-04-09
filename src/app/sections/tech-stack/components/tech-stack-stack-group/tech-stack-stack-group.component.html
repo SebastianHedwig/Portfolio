@@ -1,6 +1,11 @@
 @for (item of group().items; track item.src) {
   <div [class]="itemClass()">
-    <img [class]="iconClass()" [src]="item.src" [alt]="item.alt" />
+    <img
+      [class]="iconClass()"
+      [class.tech-stage__icon--git]="item.alt === 'Git'"
+      [src]="item.src"
+      [alt]="item.alt"
+    />
 
     <span [class]="labelClass()" aria-hidden="true">
       @for (letter of item.letters; track $index) {

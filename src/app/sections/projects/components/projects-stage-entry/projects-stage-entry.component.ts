@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-
-import { type ProjectStageVisualState } from '../../projects.models';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 
 interface ProjectsStageEntryLine {
   accent: boolean;
@@ -16,10 +14,6 @@ interface ProjectsStageEntryLine {
   styleUrl: './projects-stage-entry.component.scss',
   host: {
     'class': 'projects-stage__entry',
-    '[style.opacity]': 'opacity()',
-    '[style.pointer-events]': 'pointerEvents()',
-    '[style.transform]': 'transform()',
-    '[style.z-index]': 'zIndex()',
   },
 })
 export class ProjectsStageEntryComponent {
@@ -36,13 +30,7 @@ export class ProjectsStageEntryComponent {
   ] as const;
   readonly lead =
     'Kein Katalog. Kein Raster. Nur drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.';
-  readonly state = input.required<ProjectStageVisualState>();
   readonly lines = computed(() => this.createLines());
-
-  readonly opacity = computed(() => this.state().opacity);
-  readonly pointerEvents = computed(() => this.state().pointerEvents);
-  readonly transform = computed(() => this.state().transform);
-  readonly zIndex = computed(() => this.state().zIndex);
 
   private createLines(): readonly ProjectsStageEntryLine[] {
     return this.titleLines.map((text, index) => ({

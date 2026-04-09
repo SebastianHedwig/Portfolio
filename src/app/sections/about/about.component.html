@@ -1,17 +1,10 @@
 <div class="about-stage">
-  <div
-    #scrollSpace
-    class="about-stage__scroll-space"
-    [style.--about-stage-scenes]="sceneCount"
-  >
+  <div #scrollSpace class="about-stage__scroll-space">
     <div class="about-stage__sticky">
       <div class="about-stage__viewport" aria-label="About-Sequenz">
         <div
+          #introChapter
           class="about-stage__chapter about-stage__chapter--intro"
-          [style.opacity]="introState().opacity"
-          [style.pointer-events]="introState().pointerEvents"
-          [style.transform]="introState().transform"
-          [style.z-index]="introState().zIndex"
         >
           <div class="about-stage__scene about-stage__scene--intro">
             <app-about-image [image]="portrait"></app-about-image>
@@ -29,11 +22,8 @@
         </div>
 
         <div
+          #contextChapter
           class="about-stage__chapter about-stage__chapter--context"
-          [style.opacity]="contextState().opacity"
-          [style.pointer-events]="contextState().pointerEvents"
-          [style.transform]="contextState().transform"
-          [style.z-index]="contextState().zIndex"
         >
           <div class="about-stage__scene about-stage__scene--context">
             <div class="about-stage__context-rail">

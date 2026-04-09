@@ -1,18 +1,11 @@
 <div class="projects-stage">
-  <div
-    #scrollSpace
-    class="projects-stage__scroll-space"
-    [style.--projects-stage-scenes]="sceneCount"
-  >
+  <div #scrollSpace class="projects-stage__scroll-space">
     <div class="projects-stage__sticky">
-      <div class="projects-stage__viewport" aria-label="Projektsequenz">
-        <app-projects-stage-entry [state]="entryState()"></app-projects-stage-entry>
+      <div #viewport class="projects-stage__viewport" aria-label="Projektsequenz">
+        <app-projects-stage-entry></app-projects-stage-entry>
 
-        @for (panel of projectPanels(); track panel.project.index) {
-          <app-projects-stage-item
-            [project]="panel.project"
-            [state]="panel.state"
-          ></app-projects-stage-item>
+        @for (project of projects; track project.index) {
+          <app-projects-stage-item [project]="project"></app-projects-stage-item>
         }
       </div>
     </div>

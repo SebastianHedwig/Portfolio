@@ -1,8 +1,13 @@
 @use 'abstracts/mixins';
 
+:host {
+  display: block;
+}
+
 .tech-stage {
   @include mixins.stack();
   position: relative;
   min-height: 112svh;
   padding-block: clamp(9rem, 14vh, 15rem);
+  will-change: transform, opacity;
 }

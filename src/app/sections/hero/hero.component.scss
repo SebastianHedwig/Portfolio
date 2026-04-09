@@ -4,7 +4,6 @@
 .hero {
   @include mixins.stack();
   min-height: 100svh;
-  padding-block-start: clamp(5rem, 9vw, 8rem);
   padding-block-end: clamp(0.75rem, 2vh, 1.75rem);
   justify-content: flex-end;
   flex-direction: row;

@@ -13,7 +13,7 @@
   &__scroll-space {
     position: relative;
     width: 100%;
-    height: calc(var(--projects-stage-scenes) * 100svh);
+    height: 500svh;
   }
 
   &__sticky {
@@ -37,7 +37,7 @@
   .projects-stage {
 
     &__scroll-space {
-      height: calc(var(--projects-stage-scenes) * 92svh);
+      height: 460svh;
     }
 
     &__sticky {

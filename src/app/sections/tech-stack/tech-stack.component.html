@@ -1,21 +1,39 @@
-<div class="section__inner tech-stage">
-  <app-tech-stack-text-block [block]="introBlock"></app-tech-stack-text-block>
+<div #stage class="section__inner tech-stage">
+  <app-tech-stack-text-block
+    data-scroll-reveal
+    data-scroll-reveal-profile="tech-intro"
+    [block]="introBlock"
+  ></app-tech-stack-text-block>
 
   <app-tech-stack-stack-group
+    data-scroll-reveal
+    data-scroll-reveal-profile="tech"
     [group]="coreGroup"
     [forceGroupLabelVisible]="forceCoreGroupLabelVisible()"
   ></app-tech-stack-stack-group>
 
-  <app-tech-stack-text-block [block]="focusBlock"></app-tech-stack-text-block>
+  <app-tech-stack-text-block
+    data-scroll-reveal
+    data-scroll-reveal-profile="tech"
+    [block]="focusBlock"
+  ></app-tech-stack-text-block>
 
-  <app-tech-stack-stack-group [group]="mainGroup"></app-tech-stack-stack-group>
+  <app-tech-stack-stack-group
+    data-scroll-reveal
+    data-scroll-reveal-profile="tech"
+    [group]="mainGroup"
+  ></app-tech-stack-stack-group>
 
   <app-tech-stack-learning-item
+    data-scroll-reveal
+    data-scroll-reveal-profile="tech"
     [item]="learningItem"
     (hoverChanged)="handleLearningHover($event)"
   ></app-tech-stack-learning-item>
 
   <app-tech-stack-stack-group
+    data-scroll-reveal
+    data-scroll-reveal-profile="tech"
     [group]="extendedGroup"
   ></app-tech-stack-stack-group>
 </div>

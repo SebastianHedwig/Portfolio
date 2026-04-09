@@ -13,7 +13,7 @@
   &__scroll-space {
     position: relative;
     width: 100%;
-    height: calc(var(--about-stage-scenes) * 100svh);
+    height: 340svh;
   }
 
   &__sticky {
@@ -36,6 +36,7 @@
     @include mixins.overlay-center;
     padding-inline: tokens.$section-inline-padding;
     will-change: transform, opacity;
+    visibility: hidden;
   }
 
   &__scene {
@@ -137,7 +138,7 @@
     padding-block: clamp(4rem, 8vh, 6rem) clamp(6rem, 10vh, 8rem);
 
     &__scroll-space {
-      height: calc(var(--about-stage-scenes) * 92svh);
+      height: 312svh;
     }
 
     &__sticky,
