@@ -5,6 +5,7 @@ import { ContactComponent } from '../../sections/contact/contact.component';
 import { HeroComponent } from '../../sections/hero/hero.component';
 import { LegalComponent } from '../../sections/legal/legal.component';
 import { ProjectsComponent } from '../../sections/projects/projects.component';
+import { ReferencesComponent } from '../../sections/references/references.component';
 import { TechStackComponent } from '../../sections/tech-stack/tech-stack.component';
 
 @Component({
@@ -16,6 +17,7 @@ import { TechStackComponent } from '../../sections/tech-stack/tech-stack.compone
     AboutComponent,
     TechStackComponent,
     ProjectsComponent,
+    ReferencesComponent,
     ContactComponent,
     LegalComponent,
   ],
