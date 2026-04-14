@@ -31,6 +31,13 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
     grid-column: 14 / span 4;
     grid-row: 1;
     margin: 0;
+    color: tokens.$color-muted;
+    font-family: tokens.$font-eyebrow;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
   }
 
   &__title {

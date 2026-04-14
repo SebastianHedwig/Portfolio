@@ -16,7 +16,7 @@ export const HERO_DESCRIPTION: HeroDescriptionData = {
     'überzeugen',
   ],
   text:
-    'Frontend Entwicklung mit Fokus auf Interaktion, Performance und saubere Umsetzung.',
+    'Frontend Entwicklung mit Fokus auf Interaktion, Erlebnis und Performance. Sauber umgesetzt mit ANGULAR, TYPESCRIPT und SCSS.',
   actions: [
     {
       href: '#projects',
