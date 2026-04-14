@@ -1,12 +1,7 @@
 <header
   class="stage-shell__header projects-stage__header"
 >
-  <p
-    class="stage-shell__eyebrow projects-stage__eyebrow"
-    data-scroll-reveal
-    data-scroll-reveal-start="top 92%"
-    data-scroll-reveal-end="top 56%"
-  >
+  <p class="stage-shell__eyebrow projects-stage__eyebrow">
     {{ eyebrow }}
   </p>
   <h2 class="stage-shell__title projects-stage__title">
@@ -14,22 +9,12 @@
       <span
         [class]="line.className"
         [class.projects-stage__title-line--accent]="line.accent"
-        data-scroll-reveal
-        [attr.data-scroll-reveal-end]="line.revealEnd"
-        [attr.data-scroll-reveal-start]="line.revealStart"
-        [attr.data-scroll-reveal-trigger]="line.revealTrigger"
       >
         {{ line.text }}
       </span>
     }
   </h2>
-  <p
-    class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle"
-    data-scroll-reveal
-    data-scroll-reveal-start="top 74%"
-    data-scroll-reveal-end="top 40%"
-    data-scroll-reveal-trigger=".projects-stage__title-line--7"
-  >
+  <p class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle">
     {{ lead }}
   </p>
 </header>

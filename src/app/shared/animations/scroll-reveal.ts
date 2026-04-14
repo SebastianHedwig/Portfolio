@@ -1,28 +1,50 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  type RevealProfile,
+  type ScrollRevealConfig,
+} from './scroll-reveal-config';
+import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh';
 
 gsap.registerPlugin(ScrollTrigger);
-
-type RevealProfile = 'default' | 'tech' | 'tech-intro';
 
 interface RevealRange {
   end: number;
   start: number;
 }
 
+interface ResolvedRevealTarget {
+  config?: ScrollRevealConfig;
+  target: HTMLElement;
+}
+
 const BASE_VIEWPORT_HEIGHT = 1080;
 
-export function initScrollReveals(root: HTMLElement): void {
-  const targets = gsap.utils.toArray<HTMLElement>('[data-scroll-reveal]', root);
+export function initScrollReveals(
+  root: HTMLElement,
+  configs: readonly ScrollRevealConfig[] = [],
+): void {
+  const targets = resolveRevealTargets(root, configs);
+  const triggerCache = new Map<string, HTMLElement | null>();
 
-  targets.forEach((target) => {
-    const range = getRevealRange(target);
-    const start = target.dataset['scrollRevealStart'] ?? `top ${range.start}%`;
-    const end = target.dataset['scrollRevealEnd'] ?? `top ${range.end}%`;
-    const triggerSelector = target.dataset['scrollRevealTrigger'];
-    const trigger =
-      (triggerSelector ? root.querySelector<HTMLElement>(triggerSelector) : null) ??
-      target;
+  if (targets.length === 0) return;
+
+  targets.forEach(({ target, config }) => {
+    const range = getRevealRange(target, config?.profile);
+    const start =
+      config?.start ?? target.dataset['scrollRevealStart'] ?? `top ${range.start}%`;
+    const end =
+      config?.end ?? target.dataset['scrollRevealEnd'] ?? `top ${range.end}%`;
+    const triggerSelector = config?.trigger ?? target.dataset['scrollRevealTrigger'];
+    const cachedTrigger =
+      triggerSelector === undefined
+        ? null
+        : (triggerCache.has(triggerSelector)
+            ? triggerCache.get(triggerSelector)
+            : triggerCache
+                .set(triggerSelector, root.querySelector<HTMLElement>(triggerSelector))
+                .get(triggerSelector)) ?? null;
+    const trigger = cachedTrigger ?? target;
 
     gsap.fromTo(
       target,
@@ -43,10 +65,33 @@ export function initScrollReveals(root: HTMLElement): void {
       },
     );
   });
+
+  scheduleScrollTriggerRefresh();
 }
 
-function getRevealRange(target: HTMLElement): RevealRange {
-  const profile = getRevealProfile(target);
+function resolveRevealTargets(
+  root: HTMLElement,
+  configs: readonly ScrollRevealConfig[],
+): readonly ResolvedRevealTarget[] {
+  if (configs.length > 0) {
+    return configs.flatMap((config) =>
+      Array.from(root.querySelectorAll<HTMLElement>(config.selector), (target) => ({
+        target,
+        config,
+      })),
+    );
+  }
+
+  return gsap
+    .utils.toArray<HTMLElement>('[data-scroll-reveal]', root)
+    .map((target) => ({ target }));
+}
+
+function getRevealRange(
+  target: HTMLElement,
+  profileOverride?: RevealProfile,
+): RevealRange {
+  const profile = getRevealProfile(target, profileOverride);
   const heightProgress = getViewportHeightProgress();
 
   if (profile === 'tech-intro') {
@@ -69,8 +114,11 @@ function getRevealRange(target: HTMLElement): RevealRange {
   };
 }
 
-function getRevealProfile(target: HTMLElement): RevealProfile {
-  const profile = target.dataset['scrollRevealProfile'];
+function getRevealProfile(
+  target: HTMLElement,
+  profileOverride?: RevealProfile,
+): RevealProfile {
+  const profile = profileOverride ?? target.dataset['scrollRevealProfile'];
 
   if (profile === 'tech' || profile === 'tech-intro') return profile;
   return 'default';

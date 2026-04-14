@@ -3,11 +3,54 @@ import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 interface ProjectsStageEntryLine {
   accent: boolean;
   className: string;
-  revealEnd: string;
-  revealStart: string;
-  revealTrigger: string;
   text: string;
 }
+
+export const PROJECTS_STAGE_ENTRY_REVEALS = [
+  {
+    selector: '.projects-stage__eyebrow',
+    start: 'top 92%',
+    end: 'top 56%',
+  },
+  {
+    selector:
+      '.projects-stage__title-line--1, .projects-stage__title-line--2, .projects-stage__title-line--3',
+    start: 'top 90%',
+    end: 'top 52%',
+    trigger: '.projects-stage__title-line--1',
+  },
+  {
+    selector: '.projects-stage__title-line--4',
+    start: 'top 98%',
+    end: 'top 58%',
+    trigger: '.projects-stage__title-line--4',
+  },
+  {
+    selector: '.projects-stage__title-line--5',
+    start: 'top 92%',
+    end: 'top 52%',
+    trigger: '.projects-stage__title-line--5',
+  },
+  {
+    selector: '.projects-stage__title-line--6',
+    start: 'top 86%',
+    end: 'top 46%',
+    trigger: '.projects-stage__title-line--6',
+  },
+  {
+    selector:
+      '.projects-stage__title-line--7, .projects-stage__title-line--8, .projects-stage__title-line--9',
+    start: 'top 84%',
+    end: 'top 48%',
+    trigger: '.projects-stage__title-line--7',
+  },
+  {
+    selector: '.projects-stage__subtitle',
+    start: 'top 74%',
+    end: 'top 40%',
+    trigger: '.projects-stage__title-line--7',
+  },
+] as const;
 
 @Component({
   selector: 'app-projects-stage-entry',
@@ -40,52 +83,11 @@ export class ProjectsStageEntryComponent {
     return this.titleLines.map((text, index) => ({
       accent: this.isAccentLine(index),
       className: `projects-stage__title-line projects-stage__title-line--${index + 1}`,
-      ...this.getRevealConfig(index),
       text,
     }));
   }
 
   private isAccentLine(index: number): boolean {
     return index >= 3 && index <= 5;
-  }
-
-  private getRevealConfig(index: number): Omit<ProjectsStageEntryLine, 'accent' | 'className' | 'text'> {
-    if (index <= 2) {
-      return {
-        revealEnd: 'top 52%',
-        revealStart: 'top 90%',
-        revealTrigger: '.projects-stage__title-line--1',
-      };
-    }
-
-    if (index === 3) {
-      return {
-        revealEnd: 'top 58%',
-        revealStart: 'top 98%',
-        revealTrigger: '.projects-stage__title-line--4',
-      };
-    }
-
-    if (index === 4) {
-      return {
-        revealEnd: 'top 52%',
-        revealStart: 'top 92%',
-        revealTrigger: '.projects-stage__title-line--5',
-      };
-    }
-
-    if (index === 5) {
-      return {
-        revealEnd: 'top 46%',
-        revealStart: 'top 86%',
-        revealTrigger: '.projects-stage__title-line--6',
-      };
-    }
-
-    return {
-      revealEnd: 'top 48%',
-      revealStart: 'top 84%',
-      revealTrigger: '.projects-stage__title-line--7',
-    };
   }
 }

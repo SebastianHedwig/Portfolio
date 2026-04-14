@@ -9,6 +9,16 @@ import {
 import { gsap } from 'gsap';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
+import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
+
+const CONTACT_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: '.contact-stage__header',
+  },
+  {
+    selector: '.contact-stage__column',
+  },
+] as const;
 
 @Component({
   selector: 'app-contact',
@@ -33,7 +43,7 @@ export class ContactComponent implements OnDestroy {
   private initAnimation(): void {
     this.animationContext?.revert();
     this.animationContext = gsap.context(() => {
-      initScrollReveals(this.host.nativeElement);
+      initScrollReveals(this.host.nativeElement, CONTACT_REVEALS);
     }, this.host.nativeElement);
   }
 }

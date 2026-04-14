@@ -5,14 +5,110 @@
   min-height: 86svh;
   gap: tokens.$section-gap;
 
-  &__body {
-    @include mixins.stack(tokens.$zone-gap);
-    flex-direction: row;
-    justify-content: space-between;
+  &__eyebrow {
+    color: tokens.$color-muted;
+    font-family: tokens.$font-eyebrow;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
   }
 
-  &__item {
-    @include mixins.stack(0.9rem);
-    max-width: 24rem;
+  &__body {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: clamp(5rem, 10vw, 11rem);
+    min-height: clamp(38rem, 78vh, 56rem);
+    padding-top: clamp(2rem, 5vh, 4rem);
+  }
+
+  &__quote {
+    @include mixins.stack(clamp(0.85rem, 1.8vh, 1.25rem));
+    position: relative;
+    width: min(100%, 34rem);
+    padding: clamp(1.35rem, 2.6vh, 2rem) clamp(1.5rem, 3vw, 2.2rem);
+    animation: references-float 6s ease-in-out infinite;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: clamp(0.75rem, 1.2vw, 1rem);
+      background: rgba(233, 240, 251, 0.005);
+      opacity: 0.9;
+      z-index: 0;
+    }
+  }
+
+  &__quote--primary {
+    margin-top: clamp(1rem, 2vh, 2rem);
+    order: 2;
+  }
+
+  &__quote--secondary {
+    align-self: flex-end;
+    width: min(100%, 30rem);
+    margin-right: clamp(1rem, 4vw, 4rem);
+    animation-delay: -1.8s;
+    order: 1;
+  }
+
+  &__quote-text,
+  &__quote-author {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+  }
+
+  &__quote-text {
+    max-width: 31rem;
+    color: tokens.$color-heading;
+    font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+    line-height: 1.72;
+  }
+
+  &__quote-author {
+    margin-top: clamp(0.5rem, 1.2vh, 0.85rem);
+    color: tokens.$color-muted;
+    font-family: tokens.$font-eyebrow;
+    font-size: clamp(0.92rem, 1vw, 1rem);
+    line-height: 1.5;
+  }
+}
+
+@keyframes references-float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.58rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: tokens.$breakpoint-desktop) {
+  .references-stage {
+    &__body {
+      flex-direction: column;
+      gap: clamp(2.5rem, 5vh, 4rem);
+      min-height: auto;
+      padding-top: clamp(1.5rem, 3vh, 2.5rem);
+    }
+
+    &__quote,
+    &__quote--primary,
+    &__quote--secondary {
+      width: min(100%, 38rem);
+      margin: 0;
+      animation-delay: 0s;
+    }
   }
 }

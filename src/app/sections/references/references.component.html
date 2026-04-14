@@ -1,44 +1,23 @@
 <div class="section__inner stage-shell references-stage">
   <header
     class="stage-shell__header references-stage__header"
-    data-scroll-reveal
-    data-scroll-reveal-start="top 104%"
-    data-scroll-reveal-end="top 62%"
   >
-    <p class="stage-shell__eyebrow">References</p>
-    <h2 class="stage-shell__title">
-      Stage reserved for proof, trust signals, and external validation.
-    </h2>
-    <p class="stage-shell__lead">
-      Reserved for testimonials, client feedback, collaboration context, or
-      later reference material that supports the portfolio narrative.
-    </p>
+    <p class="stage-shell__eyebrow references-stage__eyebrow">{{ eyebrow }}</p>
+    <h2 class="stage-shell__title references-stage__title">{{ title }}</h2>
   </header>
 
   <div class="references-stage__body">
-    <div
-      class="references-stage__item"
-      data-scroll-reveal
-      data-scroll-reveal-start="top 100%"
-      data-scroll-reveal-end="top 58%"
-    >
-      <p class="stage-shell__label">Voice zone</p>
-      <p class="stage-shell__copy">
-        Reserved for short quotes, endorsements, or project-related feedback.
-      </p>
-    </div>
-
-    <div
-      class="references-stage__item"
-      data-scroll-reveal
-      data-scroll-reveal-start="top 100%"
-      data-scroll-reveal-end="top 58%"
-    >
-      <p class="stage-shell__label">Source zone</p>
-      <p class="stage-shell__copy">
-        Reserved for names, roles, company context, or structured reference
-        metadata.
-      </p>
-    </div>
+    @for (quote of quotes; track quote.author) {
+      <div
+        class="references-stage__quote"
+        [class.references-stage__quote--primary]="quote.variant === 'primary'"
+        [class.references-stage__quote--secondary]="quote.variant === 'secondary'"
+      >
+        @for (paragraph of quote.paragraphs; track paragraph) {
+          <p class="references-stage__quote-text">{{ paragraph }}</p>
+        }
+        <p class="references-stage__quote-author">{{ quote.author }}</p>
+      </div>
+    }
   </div>
 </div>

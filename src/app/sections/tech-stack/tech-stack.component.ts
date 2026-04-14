@@ -11,6 +11,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
+import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
 import { TechStackLearningItemComponent } from './components/tech-stack-learning-item/tech-stack-learning-item.component';
 import { TechStackStackGroupComponent } from './components/tech-stack-stack-group/tech-stack-stack-group.component';
 import { TechStackTextBlockComponent } from './components/tech-stack-text-block/tech-stack-text-block.component';
@@ -24,6 +25,39 @@ import {
 } from './tech-stack.data';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: '.tech-stage__intro',
+    start: 'top 148%',
+    end: 'top 82%',
+  },
+  {
+    selector: '.tech-stage__stack--core',
+    start: 'top 144%',
+    end: 'top 88%',
+  },
+  {
+    selector: '.tech-stage__learning',
+    start: 'top 146%',
+    end: 'top 90%',
+  },
+  {
+    selector: '.tech-stage__focus',
+    start: 'top 146%',
+    end: 'top 92%',
+  },
+  {
+    selector: '.tech-stage__stack--main',
+    start: 'top 140%',
+    end: 'top 86%',
+  },
+  {
+    selector: '.tech-stage__stack--extended',
+    start: 'top 132%',
+    end: 'top 80%',
+  },
+] as const;
 
 @Component({
   selector: 'app-tech-stack',
@@ -63,73 +97,88 @@ export class TechStackComponent implements OnDestroy {
     const stage = this.stage().nativeElement;
 
     this.animationContext?.revert();
-    this.animationContext = gsap.context(() => {
-      gsap.set(stage, {
-        yPercent: 24,
-        autoAlpha: 0.2,
-      });
+    this.animationContext = gsap.context(() => this.buildAnimation(stage), this.host.nativeElement);
+  }
 
-      gsap.timeline({
-        defaults: {
-          ease: 'none',
-        },
-        scrollTrigger: {
-          trigger: this.host.nativeElement,
-          start: 'top bottom+=275%',
-          end: 'top 62%',
-          scrub: 1.7,
-          invalidateOnRefresh: true,
-        },
-      }).to(stage, {
-        yPercent: 0,
-        autoAlpha: 1,
-        duration: 1,
-      });
+  private buildAnimation(stage: HTMLElement): void {
+    this.setInitialStageState(stage);
+    this.createStageEntrance(stage);
+    initScrollReveals(stage, TECH_STACK_REVEALS);
+    this.initScrollLabels(stage);
+  }
 
-      initScrollReveals(stage);
-      this.initScrollLabels(stage);
-    }, this.host.nativeElement);
+  private setInitialStageState(stage: HTMLElement): void {
+    gsap.set(stage, { yPercent: 24, autoAlpha: 0.2 });
+  }
 
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+  private createStageEntrance(stage: HTMLElement): void {
+    gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: this.host.nativeElement,
+        start: 'top bottom+=275%',
+        end: 'top 62%',
+        scrub: 1.7,
+        invalidateOnRefresh: true,
+      },
+    }).to(stage, { yPercent: 0, autoAlpha: 1, duration: 1 });
   }
 
   private initScrollLabels(stage: HTMLElement): void {
-    const stackGroups = Array.from(
-      stage.querySelectorAll<HTMLElement>('app-tech-stack-stack-group'),
+    this.createGroupLabelTriggers(this.getStackGroups(stage));
+    this.createLearningLabelTrigger(stage);
+  }
+
+  private getStackGroups(stage: HTMLElement): HTMLElement[] {
+    return Array.from(stage.querySelectorAll<HTMLElement>('app-tech-stack-stack-group'));
+  }
+
+  private createGroupLabelTriggers(groups: readonly HTMLElement[]): void {
+    groups.forEach((group) => this.createGroupLabelTrigger(group));
+  }
+
+  private createGroupLabelTrigger(group: HTMLElement): void {
+    const label = group.querySelector<HTMLElement>('.tech-stage__group-label');
+    if (!label) return;
+
+    this.createVisibilityTrigger(
+      group,
+      label,
+      this.getRevealStart(group),
+      'tech-stage__group-label--is-visible',
     );
+  }
 
-    stackGroups.forEach((group) => {
-      const label = group.querySelector<HTMLElement>('.tech-stage__group-label');
-      const start = group.dataset['scrollRevealStart'] ?? 'top 88%';
-      const end = group.dataset['scrollRevealEnd'] ?? 'bottom top';
-
-      if (!label) return;
-
-      ScrollTrigger.create({
-        trigger: group,
-        start,
-        end,
-        onEnter: () => label.classList.add('tech-stage__group-label--is-visible'),
-        onEnterBack: () => label.classList.add('tech-stage__group-label--is-visible'),
-        onLeaveBack: () => label.classList.remove('tech-stage__group-label--is-visible'),
-      });
-    });
-
+  private createLearningLabelTrigger(stage: HTMLElement): void {
     const learning = stage.querySelector<HTMLElement>('app-tech-stack-learning-item');
     const learningLabel = learning?.querySelector<HTMLElement>('.tech-stage__learning-label');
-
     if (!learning || !learningLabel) return;
 
-    const start = learning.dataset['scrollRevealStart'] ?? 'top 88%';
-    const end = learning.dataset['scrollRevealEnd'] ?? 'bottom top';
+    this.createVisibilityTrigger(
+      learning,
+      learningLabel,
+      this.getRevealStart(learning),
+      'tech-stage__label--is-visible',
+    );
+  }
 
+  private getRevealStart(element: HTMLElement): string {
+    return TECH_STACK_REVEALS.find((config) => element.matches(config.selector))?.start ?? 'top 88%';
+  }
+
+  private createVisibilityTrigger(
+    trigger: HTMLElement,
+    label: HTMLElement,
+    start: string,
+    visibleClass: string,
+  ): void {
     ScrollTrigger.create({
-      trigger: learning,
+      trigger,
       start,
-      end,
-      onEnter: () => learningLabel.classList.add('tech-stage__label--is-visible'),
-      onEnterBack: () => learningLabel.classList.add('tech-stage__label--is-visible'),
-      onLeaveBack: () => learningLabel.classList.remove('tech-stage__label--is-visible'),
+      onEnter: () => label.classList.add(visibleClass),
+      onEnterBack: () => label.classList.add(visibleClass),
+      onLeave: () => label.classList.remove(visibleClass),
+      onLeaveBack: () => label.classList.remove(visibleClass),
     });
   }
 }

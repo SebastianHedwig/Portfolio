@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scheduleScrollTriggerRefresh } from '../../shared/animations/scroll-trigger-refresh';
 
 import {
   ABOUT_CONTEXT_CENTER,
@@ -22,6 +23,15 @@ import { AboutImageComponent } from './components/about-image/about-image.compon
 import { AboutTextBlockComponent } from './components/about-text-block/about-text-block.component';
 
 gsap.registerPlugin(ScrollTrigger);
+
+interface AboutAnimationElements {
+  contextChapter: HTMLElement;
+  introChapter: HTMLElement;
+  scrollSpace: HTMLElement;
+  section: HTMLElement;
+}
+
+const ABOUT_BASE_VIEWPORT_HEIGHT = 1080;
 
 @Component({
   selector: 'app-about',
@@ -56,77 +66,119 @@ export class AboutComponent implements OnDestroy {
   }
 
   private initAnimation(): void {
-    const section = this.host.nativeElement;
-    const scrollSpace = this.scrollSpace().nativeElement;
-    const introChapter = this.introChapter().nativeElement;
-    const contextChapter = this.contextChapter().nativeElement;
+    const elements = this.getAnimationElements();
 
     this.animationContext?.revert();
-    this.animationContext = gsap.context(() => {
-      gsap.set(introChapter, {
-        xPercent: -132,
-        scale: 0.92,
-        autoAlpha: 0.08,
-      });
+    this.animationContext = gsap.context(
+      () => this.buildAnimation(elements),
+      this.host.nativeElement,
+    );
+    scheduleScrollTriggerRefresh();
+  }
 
-      gsap.set(contextChapter, {
-        xPercent: -132,
-        scale: 0.6,
-        autoAlpha: 0.08,
-      });
+  private getAnimationElements(): AboutAnimationElements {
+    return {
+      section: this.host.nativeElement,
+      scrollSpace: this.scrollSpace().nativeElement,
+      introChapter: this.introChapter().nativeElement,
+      contextChapter: this.contextChapter().nativeElement,
+    };
+  }
 
-      const timeline = gsap.timeline({
-        defaults: {
-          ease: 'none',
-        },
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom+=100%',
-          endTrigger: scrollSpace,
-          end: 'bottom top-=20%',
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
-      });
+  private buildAnimation(elements: AboutAnimationElements): void {
+    this.setInitialChapterState(elements);
+    this.buildTimeline(elements);
+  }
 
-      timeline
-        .addLabel('intro-enter')
-        .to(introChapter, {
-          xPercent: 0,
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.72,
-        })
-        .addLabel('context-enter')
-        .to(
-          introChapter,
-          {
-            xPercent: 124,
-            scale: 0.6,
-            autoAlpha: 0.08,
-            duration: 0.54,
-          },
-          'context-enter',
-        )
-        .to(
-          contextChapter,
-          {
-            xPercent: 0,
-            scale: 1,
-            autoAlpha: 1,
-            duration: 0.54,
-          },
-          'context-enter',
-        )
-        .addLabel('about-exit')
-        .to(contextChapter, {
-          xPercent: 112,
-          scale: 0.6,
-          autoAlpha: 0.04,
-          duration: 0.48,
-        });
-    }, this.host.nativeElement);
+  private setInitialChapterState(elements: AboutAnimationElements): void {
+    gsap.set(elements.introChapter, { xPercent: -132, scale: 0.92, autoAlpha: 0.08 });
+    gsap.set(elements.contextChapter, { xPercent: -132, scale: 0.6, autoAlpha: 0.08 });
+  }
 
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+  private buildTimeline(elements: AboutAnimationElements): void {
+    const timeline = this.createTimeline(elements);
+
+    this.addIntroEnter(timeline, elements.introChapter);
+    this.addContextTransition(timeline, elements);
+    this.addAboutExit(timeline, elements.contextChapter);
+  }
+
+  private createTimeline(elements: AboutAnimationElements): gsap.core.Timeline {
+    return gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: elements.section,
+        start: this.getEntryStart(),
+        endTrigger: elements.scrollSpace,
+        end: 'bottom top-=20%',
+        scrub: 1.2,
+        invalidateOnRefresh: true,
+      },
+    });
+  }
+
+  private addIntroEnter(timeline: gsap.core.Timeline, introChapter: HTMLElement): void {
+    timeline.addLabel('intro-enter').to(introChapter, {
+      xPercent: 0,
+      scale: 1,
+      autoAlpha: 1,
+      duration: 0.72,
+    });
+  }
+
+  private addContextTransition(
+    timeline: gsap.core.Timeline,
+    elements: AboutAnimationElements,
+  ): void {
+    timeline.addLabel('context-enter');
+    this.addIntroExitForContext(timeline, elements.introChapter);
+    this.addContextEnter(timeline, elements.contextChapter);
+  }
+
+  private addIntroExitForContext(
+    timeline: gsap.core.Timeline,
+    introChapter: HTMLElement,
+  ): void {
+    timeline.to(introChapter, {
+      xPercent: 124,
+      scale: 0.6,
+      autoAlpha: 0.08,
+      duration: 0.54,
+    }, 'context-enter');
+  }
+
+  private addContextEnter(
+    timeline: gsap.core.Timeline,
+    contextChapter: HTMLElement,
+  ): void {
+    timeline.to(contextChapter, {
+      xPercent: 0,
+      scale: 1,
+      autoAlpha: 1,
+      duration: 0.54,
+    }, 'context-enter');
+  }
+
+  private addAboutExit(timeline: gsap.core.Timeline, contextChapter: HTMLElement): void {
+    timeline.addLabel('about-exit').to(contextChapter, {
+      xPercent: 112,
+      scale: 0.6,
+      autoAlpha: 0.04,
+      duration: 0.48,
+    });
+  }
+
+  private getEntryStart(): string {
+    return `top bottom+=${this.getEntryOffsetPercent()}%`;
+  }
+
+  private getEntryOffsetPercent(): number {
+    const offsetPercent =
+      ((ABOUT_BASE_VIEWPORT_HEIGHT * 1.8) / window.innerHeight) * 100;
+    return this.roundToTenth(Math.min(100, offsetPercent));
+  }
+
+  private roundToTenth(value: number): number {
+    return Math.round(value * 10) / 10;
   }
 }
