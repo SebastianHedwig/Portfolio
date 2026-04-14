@@ -10,6 +10,7 @@ import {
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { ProjectsStageEntryComponent } from './components/projects-stage-entry/projects-stage-entry.component';
 import { ProjectsStageItemComponent } from './components/projects-stage-item/projects-stage-item.component';
 import { type ProjectStageItemData } from './projects.models';
@@ -45,30 +46,17 @@ export class ProjectsComponent implements OnDestroy {
   private initAnimation(): void {
     const scrollSpace = this.scrollSpace().nativeElement;
     const viewport = this.viewport().nativeElement;
-    const entryPanel = viewport.querySelector<HTMLElement>('app-projects-stage-entry');
     const projectPanels = Array.from(
       viewport.querySelectorAll<HTMLElement>('app-projects-stage-item'),
     );
 
-    if (!entryPanel || projectPanels.length !== this.projects.length) return;
+    if (projectPanels.length !== this.projects.length) return;
 
     this.animationContext?.revert();
     this.animationContext = gsap.context(() => {
-      const panels = [entryPanel, ...projectPanels];
-
-      gsap.set(panels, {
-        xPercent: 110,
-        scale: 0.92,
-        autoAlpha: 0.08,
-      });
-
       gsap.set(projectPanels, {
-        scale: 0.6,
-      });
-
-      gsap.set(entryPanel, {
         xPercent: 110,
-        scale: 0.92,
+        scale: 0.6,
         autoAlpha: 0.08,
       });
 
@@ -77,26 +65,26 @@ export class ProjectsComponent implements OnDestroy {
           ease: 'none',
         },
         scrollTrigger: {
-          trigger: this.host.nativeElement,
-          start: 'top bottom+=60%',
+          trigger: scrollSpace,
+          start: 'top bottom+=46%',
           endTrigger: scrollSpace,
-          end: 'bottom 42%',
-          scrub: 1.2,
+          end: 'bottom',
+          scrub: 1.25,
           invalidateOnRefresh: true,
         },
       });
 
       timeline
-        .addLabel('entry-enter')
-        .to(entryPanel, {
+        .addLabel('projects-enter')
+        .to(projectPanels[0], {
           xPercent: 0,
           scale: 1,
           autoAlpha: 1,
-          duration: 1.4,
+          duration: 1.25,
         });
 
-      panels.forEach((panel, index) => {
-        const nextPanel = panels[index + 1];
+      projectPanels.forEach((panel, index) => {
+        const nextPanel = projectPanels[index + 1];
 
         if (nextPanel) {
           timeline
@@ -107,7 +95,7 @@ export class ProjectsComponent implements OnDestroy {
                 xPercent: -112,
                 scale: 0.6,
                 autoAlpha: 0.08,
-                duration: 1.08,
+                duration: index === 1 ? 0.82 : 1.08,
               },
               `stage-${index + 1}-transition`,
             )
@@ -117,7 +105,7 @@ export class ProjectsComponent implements OnDestroy {
                 xPercent: 0,
                 scale: 1,
                 autoAlpha: 1,
-                duration: 1.08,
+                duration: index === 1 ? 0.82 : 1.08,
               },
               `stage-${index + 1}-transition`,
             );
@@ -133,6 +121,8 @@ export class ProjectsComponent implements OnDestroy {
             duration: 1.02,
           });
       });
+
+      initScrollReveals(this.host.nativeElement);
     }, this.host.nativeElement);
 
     requestAnimationFrame(() => ScrollTrigger.refresh());

@@ -5,7 +5,6 @@ import {
   OnDestroy,
   afterNextRender,
   inject,
-  signal,
   viewChild,
 } from '@angular/core';
 import { gsap } from 'gsap';
@@ -42,7 +41,6 @@ export class TechStackComponent implements OnDestroy {
   readonly stage = viewChild.required<ElementRef<HTMLElement>>('stage');
 
   private readonly host = inject(ElementRef<HTMLElement>);
-  private readonly isLearningHovered = signal(false);
   private animationContext: gsap.Context | null = null;
 
   readonly introBlock = TECH_STACK_INTRO_BLOCK;
@@ -52,8 +50,6 @@ export class TechStackComponent implements OnDestroy {
   readonly mainGroup = TECH_STACK_MAIN_GROUP;
   readonly extendedGroup = TECH_STACK_EXTENDED_GROUP;
 
-  readonly forceCoreGroupLabelVisible = this.isLearningHovered.asReadonly();
-
   constructor() {
     afterNextRender(() => this.initAnimation());
   }
@@ -61,10 +57,6 @@ export class TechStackComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.animationContext?.revert();
     this.animationContext = null;
-  }
-
-  handleLearningHover(isHovered: boolean): void {
-    this.isLearningHovered.set(isHovered);
   }
 
   private initAnimation(): void {
@@ -95,8 +87,49 @@ export class TechStackComponent implements OnDestroy {
       });
 
       initScrollReveals(stage);
+      this.initScrollLabels(stage);
     }, this.host.nativeElement);
 
     requestAnimationFrame(() => ScrollTrigger.refresh());
+  }
+
+  private initScrollLabels(stage: HTMLElement): void {
+    const stackGroups = Array.from(
+      stage.querySelectorAll<HTMLElement>('app-tech-stack-stack-group'),
+    );
+
+    stackGroups.forEach((group) => {
+      const label = group.querySelector<HTMLElement>('.tech-stage__group-label');
+      const start = group.dataset['scrollRevealStart'] ?? 'top 88%';
+      const end = group.dataset['scrollRevealEnd'] ?? 'bottom top';
+
+      if (!label) return;
+
+      ScrollTrigger.create({
+        trigger: group,
+        start,
+        end,
+        onEnter: () => label.classList.add('tech-stage__group-label--is-visible'),
+        onEnterBack: () => label.classList.add('tech-stage__group-label--is-visible'),
+        onLeaveBack: () => label.classList.remove('tech-stage__group-label--is-visible'),
+      });
+    });
+
+    const learning = stage.querySelector<HTMLElement>('app-tech-stack-learning-item');
+    const learningLabel = learning?.querySelector<HTMLElement>('.tech-stage__learning-label');
+
+    if (!learning || !learningLabel) return;
+
+    const start = learning.dataset['scrollRevealStart'] ?? 'top 88%';
+    const end = learning.dataset['scrollRevealEnd'] ?? 'bottom top';
+
+    ScrollTrigger.create({
+      trigger: learning,
+      start,
+      end,
+      onEnter: () => learningLabel.classList.add('tech-stage__label--is-visible'),
+      onEnterBack: () => learningLabel.classList.add('tech-stage__label--is-visible'),
+      onLeaveBack: () => learningLabel.classList.remove('tech-stage__label--is-visible'),
+    });
   }
 }

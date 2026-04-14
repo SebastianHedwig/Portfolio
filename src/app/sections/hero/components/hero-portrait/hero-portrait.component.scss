@@ -3,6 +3,7 @@
 .hero-portrait {
   display: flex;
   flex: 1;
+  min-height: 0;
   align-items: flex-end;
   justify-content: center;
   width: 100%;
@@ -10,7 +11,8 @@
   &__image {
     display: block;
     width: auto;
-    height: clamp(49rem, 96vh, 68rem);
+    height: min(100%, 68rem);
+    max-height: 100%;
     max-width: none;
     margin-inline: auto auto;
     opacity: 1;

@@ -56,15 +56,9 @@
     }
   }
 
-  &:hover {
-    .tech-stage__group-label {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .tech-stage {
     &__item {
+      --tech-stack-offset-x: 0rem;
       position: relative;
       display: flex;
       align-items: center;
@@ -75,21 +69,35 @@
 
       &--core {
         &:nth-child(1) {
-          transform: translateX(0.15rem) translateY(0.62rem);
+          --tech-stack-offset-x: 0.15rem;
+          animation: tech-stack-float 6s ease-in-out infinite;
         }
 
         &:nth-child(2) {
-          transform: translateX(0.35rem) translateY(-0.16rem);
+          --tech-stack-offset-x: 0.35rem;
+          animation: tech-stack-float 6s ease-in-out infinite -3s;
+        }
+
+        &:nth-child(3) {
+          --tech-stack-offset-x: 0rem;
+          animation: tech-stack-float 6s ease-in-out infinite -1.5s;
         }
       }
 
       &--main {
         &:nth-child(1) {
-          transform: translateX(0.2rem) translateY(0.54rem);
+          --tech-stack-offset-x: 0.2rem;
+          animation: tech-stack-float 6s ease-in-out infinite;
         }
 
         &:nth-child(2) {
-          transform: translateX(0.45rem) translateY(-0.28rem);
+          --tech-stack-offset-x: 0.45rem;
+          animation: tech-stack-float 6s ease-in-out infinite -3s;
+        }
+
+        &:nth-child(3) {
+          --tech-stack-offset-x: 0rem;
+          animation: tech-stack-float 6s ease-in-out infinite -1.5s;
         }
 
         .tech-stage__icon {
@@ -157,8 +165,8 @@
         }
       }
 
-      &--core:nth-child(2),
-      &--main:nth-child(2),
+      &--core,
+      &--main,
       &--extended:nth-child(4) {
         .tech-stage__label {
           top: calc(100% + 0.3rem);
@@ -241,5 +249,19 @@
         transform: translateY(0);
       }
     }
+  }
+}
+
+@keyframes tech-stack-float {
+  0% {
+    transform: translateX(var(--tech-stack-offset-x)) translateY(0);
+  }
+
+  50% {
+    transform: translateX(var(--tech-stack-offset-x)) translateY(-0.45rem);
+  }
+
+  100% {
+    transform: translateX(var(--tech-stack-offset-x)) translateY(0);
   }
 }

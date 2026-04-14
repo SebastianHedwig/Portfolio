@@ -81,7 +81,7 @@ export class AboutComponent implements OnDestroy {
         },
         scrollTrigger: {
           trigger: section,
-          start: 'top bottom+=150%',
+          start: 'top bottom+=100%',
           endTrigger: scrollSpace,
           end: 'bottom top-=20%',
           scrub: 1.2,

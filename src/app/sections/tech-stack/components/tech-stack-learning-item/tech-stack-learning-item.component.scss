@@ -12,7 +12,7 @@
 
   .tech-stage {
     &__learning-icon {
-      animation: learning-float 10s ease-in-out infinite;
+      animation: learning-float 6s ease-in-out infinite;
       transform: scale(1.1) rotate(-2.8deg) translateY(0);
       transform-origin: center;
     }
@@ -47,15 +47,17 @@
         hue-rotate(160deg) brightness(101%) contrast(102%);
       transform: translateY(-0.2rem) scale(1.15);
     }
+  }
+}
 
-    .tech-stage__label {
-      opacity: 0.85;
-    }
+.tech-stage__learning-label {
+  &.tech-stage__label--is-visible {
+    opacity: 0.85;
+  }
 
-    .tech-stage__label-letter {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  &.tech-stage__label--is-visible .tech-stage__label-letter {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

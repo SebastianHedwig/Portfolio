@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output,
 } from '@angular/core';
 
 import { type TechStackItemData } from '../../tech-stack.models';
@@ -16,15 +15,8 @@ import { type TechStackItemData } from '../../tech-stack.models';
   host: {
     'class': 'tech-stage__learning',
     'aria-hidden': 'true',
-    '(mouseenter)': 'setHovered(true)',
-    '(mouseleave)': 'setHovered(false)',
   },
 })
 export class TechStackLearningItemComponent {
   readonly item = input.required<TechStackItemData>();
-  readonly hoverChanged = output<boolean>();
-
-  setHovered(isHovered: boolean): void {
-    this.hoverChanged.emit(isHovered);
-  }
 }

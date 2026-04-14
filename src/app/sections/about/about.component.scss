@@ -49,7 +49,8 @@
 
   &__scene--intro {
     align-items: center;
-    gap: clamp(6rem, 10vw, 12rem);
+    justify-content: space-between;
+    gap: clamp(3rem, 5vw, 6rem);
     padding-block-start: clamp(2rem, 5vh, 4rem);
     padding-block-end: clamp(4rem, 10vh, 8rem);
   }
@@ -85,6 +86,7 @@
 
   &__text-zone--lead {
     align-self: flex-start;
+    order: 3;
   }
 
   &__text-zone--lead,
@@ -94,8 +96,9 @@
   }
 
   &__text-zone--secondary {
+    margin-left: 2rem;
     align-self: flex-end;
-    margin-right: clamp(5rem, 12vw, 12rem);
+    order: 1;
   }
 
   &__context-rail {
@@ -129,6 +132,7 @@
   app-about-image {
     flex: 0 0 min(28rem, 34vw);
     width: min(100%, 28rem);
+    order: 2;
     align-self: flex-start;
   }
 }
@@ -166,13 +170,12 @@
       padding-block: clamp(2.5rem, 6vh, 4rem);
     }
 
-    &__text-rail {
-      width: 100%;
-      gap: clamp(2.5rem, 6vh, 4rem);
-      padding-top: 0;
+    &__text-zone--lead {
+      order: 1;
     }
 
     &__text-zone--secondary {
+      order: 3;
       align-self: flex-start;
       margin-right: 0;
     }
@@ -196,6 +199,7 @@
     }
 
     app-about-image {
+      order: 2;
       flex-basis: auto;
       width: min(20rem, 55vw);
     }

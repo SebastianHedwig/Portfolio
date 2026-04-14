@@ -7,17 +7,15 @@
           class="about-stage__chapter about-stage__chapter--intro"
         >
           <div class="about-stage__scene about-stage__scene--intro">
+            <app-about-text-block
+              [block]="introSecondary"
+            ></app-about-text-block>
+
             <app-about-image [image]="portrait"></app-about-image>
 
-            <div class="about-stage__text-rail">
-              <app-about-text-block
-                [block]="introLead"
-              ></app-about-text-block>
-
-              <app-about-text-block
-                [block]="introSecondary"
-              ></app-about-text-block>
-            </div>
+            <app-about-text-block
+              [block]="introLead"
+            ></app-about-text-block>
           </div>
         </div>
 

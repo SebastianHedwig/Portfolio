@@ -19,6 +19,10 @@ export function initScrollReveals(root: HTMLElement): void {
     const range = getRevealRange(target);
     const start = target.dataset['scrollRevealStart'] ?? `top ${range.start}%`;
     const end = target.dataset['scrollRevealEnd'] ?? `top ${range.end}%`;
+    const triggerSelector = target.dataset['scrollRevealTrigger'];
+    const trigger =
+      (triggerSelector ? root.querySelector<HTMLElement>(triggerSelector) : null) ??
+      target;
 
     gsap.fromTo(
       target,
@@ -30,7 +34,7 @@ export function initScrollReveals(root: HTMLElement): void {
         autoAlpha: 1,
         ease: 'none',
         scrollTrigger: {
-          trigger: target,
+          trigger,
           start,
           end,
           scrub: 0.8,

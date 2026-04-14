@@ -19,7 +19,6 @@ import { type TechStackGroupData } from '../../tech-stack.models';
 })
 export class TechStackStackGroupComponent {
   readonly group = input.required<TechStackGroupData>();
-  readonly forceGroupLabelVisible = input(false);
 
   readonly hostClass = computed(
     () => `tech-stage__stack tech-stage__stack--${this.group().variant}`,
@@ -41,11 +40,7 @@ export class TechStackStackGroupComponent {
       : 'tech-stage__label',
   );
 
-  readonly groupLabelClass = computed(() => {
-    const visibleClass = this.forceGroupLabelVisible()
-      ? ' tech-stage__group-label--is-visible'
-      : '';
-
-    return `tech-stage__group-label tech-stage__group-label--${this.group().variant}${visibleClass}`;
-  });
+  readonly groupLabelClass = computed(
+    () => `tech-stage__group-label tech-stage__group-label--${this.group().variant}`,
+  );
 }
