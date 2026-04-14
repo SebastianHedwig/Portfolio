@@ -1,5 +1,6 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
+@use 'interactive-icon-hover';
 
 .tech-stage__stack {
   display: flex;
@@ -11,13 +12,11 @@
     &__item {
       --tech-stack-float-delay: 0s;
       --tech-stack-offset-x: 0rem;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition:
-        transform 180ms ease,
-        opacity 180ms ease;
+      @include interactive-icon-hover.interactive-icon-hover-host(
+        '.tech-stage__label',
+        '.tech-stage__icon',
+        '.tech-stage__label-letter',
+      );
 
       &--core,
       &--main {
@@ -55,24 +54,8 @@
       }
 
       &:hover {
-        .tech-stage__label {
-          opacity: 1;
-        }
-
-        .tech-stage__icon {
-          opacity: 1;
-          filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
-            hue-rotate(160deg) brightness(101%) contrast(102%);
-          transform: translateY(-0.28rem);
-        }
-
         .tech-stage__icon--git {
           opacity: 1;
-        }
-
-        .tech-stage__label-letter {
-          opacity: 1;
-          transform: translateY(0);
         }
       }
     }
@@ -160,13 +143,7 @@
       width: clamp(4.6rem, 7vw, 6.2rem);
       height: clamp(4.6rem, 7vw, 6.2rem);
       object-fit: contain;
-      opacity: 0.94;
-      filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(297%)
-        hue-rotate(182deg) brightness(104%) contrast(101%);
-      transition:
-        transform 180ms ease,
-        filter 180ms ease,
-        opacity 180ms ease;
+      @include interactive-icon-hover.interactive-icon-hover-icon;
 
       &--extended {
         width: clamp(2rem, 3.2vw, 2.65rem);
@@ -177,14 +154,14 @@
 
     &__label {
       bottom: calc(100% + 0.9rem);
-      @include mixins.tech-stage-label(0.9rem);
+      @include interactive-icon-hover.interactive-icon-hover-label(0.9rem);
 
       &--extended {
         font-size: 0.8rem;
       }
 
       &-letter {
-        @include mixins.tech-stage-label-letters;
+        @include interactive-icon-hover.interactive-icon-hover-letter;
       }
     }
 

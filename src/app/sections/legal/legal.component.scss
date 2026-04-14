@@ -3,16 +3,175 @@
 
 .legal-stage {
   min-height: auto;
-  gap: tokens.$section-gap;
+  gap: 0;
 
   &__body {
-    @include mixins.stack(tokens.$zone-gap);
-    flex-direction: row;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: clamp(2rem, 5vw, 5rem);
   }
 
-  &__item {
-    @include mixins.stack(0.9rem);
-    max-width: 24rem;
+  &__column {
+    min-width: 0;
+  }
+
+  &__column--brand {
+    @include mixins.stack();
+    align-items: flex-start;
+    cursor: pointer;
+
+    &:hover .legal-stage__logo {
+      transform: rotate(8deg) scale(1.05);
+    }
+  }
+
+  &__brand-link {
+    color: inherit;
+  }
+
+  &__column--meta {
+    @include mixins.stack(clamp(0.55rem, 1.2vh, 0.8rem));
+    align-items: center;
+    flex: 0 1 26rem;
+    text-align: center;
+  }
+
+  &__column--links {
+    flex: 0 0 auto;
+    @include mixins.stack(1rem);
+    align-items: flex-end;
+  }
+
+  &__brand-row {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    width: clamp(3rem, 4.8vw, 4.2rem);
+    height: clamp(3rem, 4.8vw, 4.2rem);
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &__name,
+  &__role,
+  &__meta-line {
+    margin: 0;
+  }
+
+  &__name {
+    @include mixins.stack(0.2rem);
+    color: tokens.$color-heading;
+    font-family: tokens.$font-primary;
+    font-size: clamp(1.35rem, 2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 0.96;
+    margin-bottom: -0.5rem;
+    margin-left: -0.3rem;
+  }
+
+  &__name-accent {
+    color: tokens.$color-accent;
+  }
+
+  &__role {
+    color: tokens.$color-muted;
+    font-family: tokens.$font-eyebrow;
+    font-size: clamp(0.88rem, 1vw, 1rem);
+    font-weight: 500;
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
+  }
+
+  &__meta-line {
+    color: tokens.$color-muted;
+    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+    line-height: 1.45;
+  }
+
+  &__meta-line--copyright {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  &__copyright-symbol {
+    font-size: 1.2em;
+    line-height: 1;
+  }
+
+  &__icon-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.4rem);
+  }
+
+  &__icon-item {
+    cursor: pointer;
+  }
+
+  &__icon {
+    width: clamp(1.7rem, 2.2vw, 2rem);
+    height: clamp(1.7rem, 2.2vw, 2rem);
+    object-fit: contain;
+  }
+
+  &__icon-label {
+    bottom: calc(100% + 0.8rem);
+  }
+
+  &__imprint-link {
+    color: tokens.$color-muted;
+    font-family: tokens.$font-eyebrow;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    transition:
+      color 180ms ease,
+      opacity 180ms ease;
+
+    &:hover {
+      color: tokens.$color-accent;
+    }
+  }
+
+  @media (max-width: 64rem) {
+    &__body {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__column--brand,
+    &__column--meta,
+    &__column--links {
+      align-items: center;
+      flex: initial;
+    }
+
+    &__brand-row {
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    &__role {
+      letter-spacing: 0.08rem;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    &__icon-row {
+      gap: 1rem;
+    }
+
+    &__icon-label {
+      font-size: 0.85rem;
+    }
+
+    &__icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
   }
 }

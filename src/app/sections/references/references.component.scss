@@ -31,7 +31,11 @@
     position: relative;
     width: min(100%, 34rem);
     padding: clamp(1.35rem, 2.6vh, 2rem) clamp(1.5rem, 3vw, 2.2rem);
+    border-radius: clamp(0.75rem, 1.2vw, 1rem);
     animation: references-float 6s ease-in-out infinite;
+    box-shadow:
+      0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
+      0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08);
 
     &::before {
       content: '';

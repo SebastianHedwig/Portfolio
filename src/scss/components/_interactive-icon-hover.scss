@@ -1,0 +1,73 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+@mixin interactive-icon-hover-host(
+  $label-selector,
+  $icon-selector,
+  $letter-selector,
+  $translate-y: -0.28rem
+) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+
+  &:hover {
+    #{$label-selector} {
+      opacity: 1;
+    }
+
+    #{$icon-selector} {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+        hue-rotate(160deg) brightness(101%) contrast(102%);
+      transform: translateY($translate-y);
+    }
+
+    #{$letter-selector} {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@mixin interactive-icon-hover-icon {
+  opacity: 0.94;
+  filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(297%)
+    hue-rotate(182deg) brightness(104%) contrast(101%);
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    opacity 180ms ease;
+}
+
+@mixin interactive-icon-hover-label($font-size: 0.9rem) {
+  @include mixins.tech-stage-label($font-size);
+}
+
+@mixin interactive-icon-hover-letter {
+  @include mixins.tech-stage-label-letters;
+}
+
+.interactive-icon-hover {
+  @include interactive-icon-hover-host(
+    '.interactive-icon-hover__label',
+    '.interactive-icon-hover__icon',
+    '.interactive-icon-hover__letter',
+  );
+
+  &__icon {
+    @include interactive-icon-hover-icon;
+  }
+
+  &__label {
+    @include interactive-icon-hover-label;
+  }
+
+  &__letter {
+    @include interactive-icon-hover-letter;
+  }
+}

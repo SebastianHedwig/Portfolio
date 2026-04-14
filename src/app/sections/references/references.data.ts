@@ -12,11 +12,11 @@ export const REFERENCES_QUOTES: readonly ReferenceQuote[] = [
   {
     variant: 'primary',
     paragraphs: [
-      '„Sehr zuverlässig und immer den Überblick – man muss sich keine Sorgen machen, dass etwas untergeht. Er hat ein wirklich ausgeprägtes Verantwortungsbewusstsein, ohne dabei verkrampft zu wirken – was ehrlich gesagt selten ist..',
+      '„Sehr zuverlässig und immer den Überblick – man muss sich keine Sorgen machen, dass etwas untergeht. Er hat ein wirklich ausgeprägtes Verantwortungsbewusstsein, ohne dabei verkrampft zu wirken – was ehrlich gesagt selten ist.',
       'Er ist einfach ein angenehmer Mensch im Umgang. Man kommt leicht mit ihm ins Gespräch und die Zusammenarbeit ist unkompliziert. Außerdem verbessert er das Teamklima spürbar, allein durch seine Art.',
       'Die Art von Kollege, mit der man wirklich gerne zusammenarbeitet.“',
     ],
-    author: '— Daniel M., Teamkollege in der Developer Akademie',
+    author: 'Daniel M. — Teamkollege in der Developer Akademie',
   },
   {
     variant: 'secondary',

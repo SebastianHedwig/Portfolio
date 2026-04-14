@@ -1,9 +1,9 @@
 <div class="tech-stage__learning-icon">
-  <img [src]="item().src" [alt]="item().alt" />
+  <img class="interactive-icon-hover__icon" [src]="item().src" [alt]="item().alt" />
 </div>
 
-<span class="tech-stage__label tech-stage__learning-label">
+<span class="tech-stage__label tech-stage__learning-label interactive-icon-hover__label">
   @for (letter of item().letters; track $index) {
-    <span class="tech-stage__label-letter">{{ letter }}</span>
+    <span class="tech-stage__label-letter interactive-icon-hover__letter">{{ letter }}</span>
   }
 </span>

@@ -1,26 +1,60 @@
-<div class="section__inner stage-shell stage-shell--compact legal-stage">
-  <header class="stage-shell__header legal-stage__header">
-    <p class="stage-shell__eyebrow">Legal</p>
-    <h2 class="stage-shell__title">Closing stage for legal links and final metadata.</h2>
-    <p class="stage-shell__lead">
-      Reserved for imprint, privacy references, and a restrained portfolio
-      sign-off.
-    </p>
-  </header>
-
+<footer class="section__inner stage-shell stage-shell--compact legal-stage">
   <div class="legal-stage__body">
-    <div class="legal-stage__item">
-      <p class="stage-shell__label">Closing zone</p>
-      <p class="stage-shell__copy">
-        Minimal footer area for legal navigation and small closing details.
+    <a
+      class="legal-stage__column legal-stage__column--brand legal-stage__brand-link"
+      href="#hero"
+      aria-label="Zur Hero Stage springen"
+    >
+      <div class="legal-stage__brand-row">
+        <img
+          class="legal-stage__logo"
+          [src]="footer.brand.logoSrc"
+          [alt]="footer.brand.logoAlt"
+        />
+
+        <p class="legal-stage__name">
+          <span>{{ footer.brand.firstName }}</span>
+          <span>
+            <span class="legal-stage__name-accent">{{ footer.brand.surnameInitial }}</span>{{ footer.brand.surnameTail }}
+          </span>
+        </p>
+      </div>
+
+      <p class="legal-stage__role">
+        {{ footer.brand.role }}
       </p>
+    </a>
+
+    <div class="legal-stage__column legal-stage__column--meta">
+      <p class="legal-stage__meta-line legal-stage__meta-line--copyright">
+        <span class="legal-stage__copyright-symbol">©</span>
+        <span>{{ footer.meta.copyrightText }}</span>
+      </p>
+      <p class="legal-stage__meta-line">{{ footer.meta.location }}</p>
     </div>
 
-    <div class="legal-stage__item">
-      <p class="stage-shell__label">Meta zone</p>
-      <p class="stage-shell__copy">
-        Reserved for copyright, legal links, and final portfolio metadata.
-      </p>
+    <div class="legal-stage__column legal-stage__column--links">
+      <div class="legal-stage__icon-row">
+        @for (icon of footer.icons; track icon.src) {
+          <div class="legal-stage__icon-item interactive-icon-hover">
+            <span class="legal-stage__icon-label interactive-icon-hover__label" aria-hidden="true">
+              @for (letter of icon.letters; track $index) {
+                <span class="legal-stage__icon-label-letter interactive-icon-hover__letter">{{ letter }}</span>
+              }
+            </span>
+
+            <img
+              class="legal-stage__icon interactive-icon-hover__icon"
+              [src]="icon.src"
+              [alt]="icon.alt"
+            />
+          </div>
+        }
+      </div>
+
+      <a class="legal-stage__imprint-link" href="#legal">
+        Impressum
+      </a>
     </div>
   </div>
-</div>
+</footer>

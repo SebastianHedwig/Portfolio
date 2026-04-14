@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LEGAL_FOOTER } from './legal.data';
 
 @Component({
   selector: 'app-legal',
@@ -7,4 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './legal.component.html',
   styleUrl: './legal.component.scss',
 })
-export class LegalComponent {}
+export class LegalComponent {
+  readonly footer = LEGAL_FOOTER;
+}

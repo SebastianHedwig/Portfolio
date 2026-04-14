@@ -19,10 +19,9 @@
 
     &__label {
       top: calc(100% + 0.8rem);
-      @include mixins.tech-stage-label(1rem);
+      font-size: 1rem;
 
       &-letter {
-        @include mixins.tech-stage-label-letters;
       }
     }
   }
