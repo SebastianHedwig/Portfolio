@@ -9,6 +9,15 @@
   }
 }
 
+@mixin beside($gap: null) {
+  display: flex;
+  flex-direction: row;
+
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
 @mixin overlay-center {
   position: absolute;
   inset: 0;

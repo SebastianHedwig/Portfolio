@@ -17,8 +17,7 @@
 
   &__body {
     position: relative;
-    display: flex;
-    flex-direction: row;
+    @include mixins.beside;
     justify-content: space-evenly;
     align-items: flex-start;
     gap: clamp(5rem, 10vw, 11rem);

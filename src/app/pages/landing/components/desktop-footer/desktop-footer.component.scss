@@ -1,9 +1,8 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
-.legal-stage {
+.desktop-footer {
   min-height: auto;
-  gap: 0;
 
   &__body {
     display: flex;
@@ -21,7 +20,7 @@
     align-items: flex-start;
     cursor: pointer;
 
-    &:hover .legal-stage__logo {
+    &:hover .desktop-footer__logo {
       transform: rotate(8deg) scale(1.05);
     }
   }
@@ -46,6 +45,7 @@
   &__brand-row {
     display: flex;
     align-items: center;
+    margin-block-end: -0.3rem;
   }
 
   &__logo {
@@ -68,7 +68,6 @@
     font-size: clamp(1.35rem, 2vw, 1.5rem);
     font-weight: 600;
     line-height: 0.96;
-    margin-bottom: -0.5rem;
     margin-left: -0.3rem;
   }
 
@@ -123,17 +122,29 @@
   }
 
   &__imprint-link {
-    color: tokens.$color-muted;
+    display: inline-block;
+    padding-block: 0.18rem;
+    margin-block: -0.18rem;
+    color: rgba(tokens.$color-heading, 0.78);
     font-family: tokens.$font-eyebrow;
     font-size: 0.9rem;
     letter-spacing: 0.08em;
-    transition:
-      color 180ms ease,
-      opacity 180ms ease;
+    text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
+    transition: color 180ms ease, opacity 180ms ease;
 
     &:hover {
       color: tokens.$color-accent;
+
+      .desktop-footer__imprint-text {
+        text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
+        transform: translateY(-0.05rem);
+      }
     }
+  }
+
+  &__imprint-text {
+    display: inline-block;
+    transition: transform 220ms ease, text-shadow 220ms ease;
   }
 
   @media (max-width: 64rem) {
@@ -172,6 +183,12 @@
     &__icon {
       width: 1.75rem;
       height: 1.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__imprint-text {
+      transition: text-shadow 220ms ease;
     }
   }
 }

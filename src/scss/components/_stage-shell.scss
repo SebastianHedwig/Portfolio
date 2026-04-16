@@ -34,9 +34,8 @@
   }
 
   &__body {
-    @include mixins.stack(tokens.$section-gap);
+    @include mixins.beside(tokens.$section-gap);
     flex: 1;
-    flex-direction: row;
     align-items: stretch;
   }
 

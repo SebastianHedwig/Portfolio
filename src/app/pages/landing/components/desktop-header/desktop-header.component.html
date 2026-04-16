@@ -1,0 +1,26 @@
+<header #header class="desktop-header" [class.desktop-header--hidden]="isHidden()">
+  <div class="desktop-header__inner">
+    <a class="desktop-header__brand" href="#hero" aria-label="Zur Hero Stage springen">
+      <img
+        class="desktop-header__logo"
+        [src]="brand.logoSrc"
+        [alt]="brand.logoAlt"
+      />
+
+      <p class="desktop-header__name">
+        <span>{{ brand.firstName }}</span>
+        <span>
+          <span class="desktop-header__name-accent">{{ brand.surnameInitial }}</span>{{ brand.surnameTail }}
+        </span>
+      </p>
+    </a>
+
+    <nav class="desktop-header__nav" aria-label="Primary">
+      @for (item of navItems; track item.href) {
+        <a class="desktop-header__link" [href]="item.href">
+          <span class="desktop-header__link-text">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+  </div>
+</header>

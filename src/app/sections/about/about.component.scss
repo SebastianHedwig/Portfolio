@@ -5,7 +5,6 @@
   @include mixins.stack;
   position: relative;
   width: 100%;
-  gap: 0;
   justify-content: flex-start;
   min-height: 100%;
   padding-block: clamp(10rem, 25vh, 20rem) clamp(8rem, 12vh, 10rem);
@@ -14,6 +13,15 @@
     position: relative;
     width: 100%;
     height: 340svh;
+  }
+
+  &__anchor {
+    position: absolute;
+    top: clamp(10.25rem, 14.5vh, 13rem);
+    left: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
   }
 
   &__sticky {
@@ -102,7 +110,7 @@
   }
 
   &__context-rail {
-    flex-direction: row;
+    @include mixins.beside;
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
@@ -177,7 +185,6 @@
     &__text-zone--secondary {
       order: 3;
       align-self: flex-start;
-      margin-right: 0;
     }
 
     &__scene--context {
@@ -195,7 +202,6 @@
     &__context-block--center,
     &__context-block--right {
       margin-top: 0;
-      margin-left: 0;
     }
 
     app-about-image {

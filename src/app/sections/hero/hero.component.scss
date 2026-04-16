@@ -2,11 +2,10 @@
 @use 'abstracts/tokens';
 
 .hero {
-  @include mixins.stack();
+  @include mixins.beside();
   min-height: 100svh;
-  padding-block-end: clamp(0.75rem, 2vh, 1.75rem);
+  padding-block: clamp(0.75rem, 2vh, 1.75rem);
   justify-content: flex-end;
-  flex-direction: row;
   align-items: stretch;
   gap: clamp(2.5rem, 5.2vw, 5rem);
 
@@ -31,7 +30,6 @@
   app-hero-identity {
     display: flex;
     justify-content: flex-end;
-    padding-right: clamp(0.25rem, 1.6vw, 1.5rem);
   }
 
   app-hero-portrait {

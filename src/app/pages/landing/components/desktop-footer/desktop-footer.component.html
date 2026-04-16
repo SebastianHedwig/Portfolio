@@ -1,0 +1,60 @@
+<footer class="section__inner stage-shell stage-shell--compact desktop-footer">
+  <div class="desktop-footer__body">
+    <a
+      class="desktop-footer__column desktop-footer__column--brand desktop-footer__brand-link"
+      href="#hero"
+      aria-label="Zur Hero Stage springen"
+    >
+      <div class="desktop-footer__brand-row">
+        <img
+          class="desktop-footer__logo"
+          [src]="footer.brand.logoSrc"
+          [alt]="footer.brand.logoAlt"
+        />
+
+        <p class="desktop-footer__name">
+          <span>{{ footer.brand.firstName }}</span>
+          <span>
+            <span class="desktop-footer__name-accent">{{ footer.brand.surnameInitial }}</span>{{ footer.brand.surnameTail }}
+          </span>
+        </p>
+      </div>
+
+      <p class="desktop-footer__role">
+        {{ footer.brand.role }}
+      </p>
+    </a>
+
+    <div class="desktop-footer__column desktop-footer__column--meta">
+      <p class="desktop-footer__meta-line desktop-footer__meta-line--copyright">
+        <span class="desktop-footer__copyright-symbol">©</span>
+        <span>{{ footer.meta.copyrightText }}</span>
+      </p>
+      <p class="desktop-footer__meta-line">{{ footer.meta.location }}</p>
+    </div>
+
+    <div class="desktop-footer__column desktop-footer__column--links">
+      <div class="desktop-footer__icon-row">
+        @for (icon of footer.icons; track icon.src) {
+          <div class="desktop-footer__icon-item interactive-icon-hover">
+            <span class="desktop-footer__icon-label interactive-icon-hover__label" aria-hidden="true">
+              @for (letter of icon.letters; track $index) {
+                <span class="desktop-footer__icon-label-letter interactive-icon-hover__letter">{{ letter }}</span>
+              }
+            </span>
+
+            <img
+              class="desktop-footer__icon interactive-icon-hover__icon"
+              [src]="icon.src"
+              [alt]="icon.alt"
+            />
+          </div>
+        }
+      </div>
+
+      <a class="desktop-footer__imprint-link" href="#legal">
+        <span class="desktop-footer__imprint-text">Impressum</span>
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,11 +1,11 @@
-export interface LegalFooterIcon {
+export interface FooterIcon {
   alt: string;
   label: string;
   letters: readonly string[];
   src: string;
 }
 
-export const LEGAL_FOOTER = {
+export const FOOTER_CONTENT = {
   brand: {
     logoSrc: 'assets/icons/logo/sh-monogram-128.png',
     logoAlt: 'Logo von Sebastian Hedwig',
@@ -37,5 +37,5 @@ export const LEGAL_FOOTER = {
       letters: ['L', 'i', 'n', 'k', 'e', 'd', 'I', 'n'],
       src: 'assets/icons/footer/linkedIn-icon.svg',
     },
-  ] as const satisfies readonly LegalFooterIcon[],
+  ] as const satisfies readonly FooterIcon[],
 } as const;
