@@ -1,36 +1,62 @@
 <div class="section__inner stage-shell contact-stage">
-  <div class="contact-stage__focus">
-    <header
-      class="stage-shell__header contact-stage__header"
-    >
-      <p class="stage-shell__eyebrow">Contact</p>
-      <h2 class="stage-shell__title">
-        Action stage reserved for direct connection and next-step conversion.
-      </h2>
-      <p class="stage-shell__lead">
-        The structure stays broad so the closing call to action can later feel
-        decisive instead of crowded.
-      </p>
-    </header>
+  <div class="stage-shell__body contact-stage__body">
+    <section class="stage-shell__column contact-stage__column contact-stage__column--content">
+      <p class="stage-shell__eyebrow contact-stage__eyebrow">{{ content.eyebrow }}</p>
+      <h2 class="stage-shell__title contact-stage__title">{{ content.title }}</h2>
 
-    <div class="stage-shell__body contact-stage__body">
-      <div
-        class="stage-shell__column contact-stage__column"
-      >
-        <p class="stage-shell__label">Call to action zone</p>
-        <p class="stage-shell__copy">
-          Reserved for invitation copy, contact prompt, and next-step framing.
-        </p>
+      <div class="contact-stage__copy">
+        @for (paragraph of content.copy; track paragraph) {
+          <p class="contact-stage__paragraph">{{ paragraph }}</p>
+        }
       </div>
 
-      <div
-        class="stage-shell__column contact-stage__column"
+      <a
+        class="contact-stage__cv-link"
+        [href]="content.cvHref"
+        target="_blank"
+        rel="noopener"
       >
-        <p class="stage-shell__label">Contact channel zone</p>
-        <p class="stage-shell__copy">
-          Reserved for email, social links, or a later focused contact method.
-        </p>
-      </div>
-    </div>
+        {{ content.cvLinkLabel }}
+      </a>
+    </section>
+
+    <form class="stage-shell__column contact-stage__column contact-stage__form" (submit)="$event.preventDefault()" novalidate>
+      <label class="contact-stage__field">
+        <span class="contact-stage__field-label">Name</span>
+        <input class="contact-stage__input" type="text" name="name" autocomplete="name">
+      </label>
+
+      <label class="contact-stage__field">
+        <span class="contact-stage__field-label">Email</span>
+        <input class="contact-stage__input" type="email" name="email" autocomplete="email">
+      </label>
+
+      <label class="contact-stage__field contact-stage__field--message">
+        <span class="contact-stage__field-label">Nachricht</span>
+        <textarea class="contact-stage__input contact-stage__input--textarea" name="message" rows="5"></textarea>
+      </label>
+
+      <label class="contact-stage__consent">
+        <input
+          class="contact-stage__consent-input"
+          type="checkbox"
+          name="privacy-consent"
+          required
+        >
+        <span class="contact-stage__consent-box" aria-hidden="true"></span>
+        <span class="contact-stage__consent-text">
+          {{ content.consentPrefix }}
+          <a class="contact-stage__consent-link" [href]="content.consentHref">
+            {{ content.consentLinkLabel }}
+          </a>{{ content.consentMiddle }}<br>{{ content.consentSuffix }}
+        </span>
+      </label>
+
+      <app-primary-button
+        class="contact-stage__submit"
+        [label]="content.submitLabel"
+        type="submit"
+      />
+    </form>
   </div>
 </div>

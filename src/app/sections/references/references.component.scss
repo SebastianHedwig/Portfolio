@@ -5,6 +5,10 @@
   min-height: 86svh;
   gap: tokens.$section-gap;
 
+  &__header {
+    margin-left: 5rem;
+  }
+
   &__eyebrow {
     color: tokens.$color-muted;
     font-family: tokens.$font-eyebrow;
