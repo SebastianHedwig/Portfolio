@@ -1,0 +1,23 @@
+@use 'components/button-mixins';
+
+:host {
+  display: inline-flex;
+}
+
+.secondary-button {
+  @include button-mixins.button-base;
+  @include button-mixins.button-secondary;
+  @include button-mixins.button-content-swap(
+    '.secondary-button__label',
+    '.secondary-button__arrow'
+  );
+
+  &__label {
+    @include button-mixins.button-label;
+  }
+
+  &__arrow {
+    @include button-mixins.button-arrow;
+    color: rgba(255, 255, 255, 0.44);
+  }
+}

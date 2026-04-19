@@ -1,11 +1,10 @@
-export type HeroActionData = {
+export type HeroPrimaryActionData = {
   href: string;
   label: string;
-  modifierClass: string;
 };
 
 export type HeroDescriptionData = {
-  actions: HeroActionData[];
+  action: HeroPrimaryActionData;
   eyebrow: string;
   headlineLines: string[];
   text: string;

@@ -17,18 +17,10 @@ export const HERO_DESCRIPTION: HeroDescriptionData = {
   ],
   text:
     'Frontend Entwicklung mit Fokus auf Interaktion, Erlebnis und Performance. Sauber umgesetzt mit ANGULAR, TYPESCRIPT und SCSS.',
-  actions: [
-    {
-      href: '#projects',
-      label: 'View Projects',
-      modifierClass: 'hero-description__action--primary',
-    },
-    {
-      href: '#contact',
-      label: "Let's Talk",
-      modifierClass: 'hero-description__action--secondary',
-    },
-  ],
+  action: {
+    href: '#contact',
+    label: "Let's Talk",
+  },
 };
 
 export const HERO_IDENTITY: HeroIdentityData = {

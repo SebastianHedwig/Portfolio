@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+import { PrimaryButtonComponent } from '../../../../shared/components/primary-button/primary-button.component';
 import { type HeroDescriptionData } from '../../hero.models';
 
 @Component({
   selector: 'app-hero-description',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [PrimaryButtonComponent],
   templateUrl: './hero-description.component.html',
   styleUrl: './hero-description.component.scss',
 })

@@ -5,4 +5,20 @@
     <app-hero-identity [content]="identity"></app-hero-identity>
     <app-hero-portrait [content]="portrait"></app-hero-portrait>
   </div>
+
+  <div class="hero__statement-band" aria-hidden="true">
+    <div class="hero__statement-strip">
+      @for (track of [0, 1]; track track) {
+        <div class="hero__statement-track">
+          @for (repeat of statementRepeats; track repeat) {
+            <span class="hero__statement-item">
+              @for (part of statementParts; track part) {
+                <span class="hero__statement-part">{{ part }}</span>
+              }
+            </span>
+          }
+        </div>
+      }
+    </div>
+  </div>
 </div>

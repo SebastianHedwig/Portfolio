@@ -1,0 +1,11 @@
+@if (href(); as targetHref) {
+  <a class="secondary-button" [href]="targetHref">
+    <span class="secondary-button__label">{{ label() }}</span>
+    <span class="secondary-button__arrow" aria-hidden="true"></span>
+  </a>
+} @else {
+  <button class="secondary-button" [type]="type()">
+    <span class="secondary-button__label">{{ label() }}</span>
+    <span class="secondary-button__arrow" aria-hidden="true"></span>
+  </button>
+}

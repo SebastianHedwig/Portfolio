@@ -12,13 +12,9 @@
   </p>
 
   <div class="hero-description__actions">
-    @for (action of content().actions; track action.href) {
-      <a
-        class="hero-description__action {{ action.modifierClass }}"
-        [href]="action.href"
-      >
-        {{ action.label }}
-      </a>
-    }
+    <app-primary-button
+      [href]="content().action.href"
+      [label]="content().action.label"
+    ></app-primary-button>
   </div>
 </div>
