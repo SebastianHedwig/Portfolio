@@ -1,7 +1,19 @@
 @if (block().titleTag === 'h2') {
-  <h2 [class]="block().titleClass">{{ block().title }}</h2>
+  <h2 [class]="block().titleClass">
+    @for (line of titleLines(); track line + $index) {
+      <span>{{ line }}</span>
+    }
+  </h2>
 } @else {
-  <p [class]="block().titleClass">{{ block().title }}</p>
+  <p [class]="block().titleClass">
+    @for (line of titleLines(); track line + $index) {
+      <span>{{ line }}</span>
+    }
+  </p>
 }
 
-<p [class]="block().copyClass">{{ block().copy }}</p>
+<p [class]="block().copyClass">
+  @for (segment of copySegments(); track segment.text + $index) {
+    <span [class.about-stage__copy-accent]="segment.accent">{{ segment.text }}</span>
+  }
+</p>

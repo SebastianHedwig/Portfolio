@@ -37,17 +37,7 @@ export const ABOUT_INTRO_SECONDARY: AboutTextBlockData = {
 
 export const ABOUT_CONTEXT_LEFT: AboutTextBlockData = {
   containerClass: 'about-stage__context-block about-stage__context-block--left',
-  title: 'Aus Flörsheim. Mit Haltung im Detail.',
-  titleClass: 'about-stage__context-title',
-  titleTag: 'p',
-  copy:
-    'Ich arbeite strukturiert, ruhig und mit einem klaren Blick auf das, was ein Projekt wirklich braucht.',
-  copyClass: 'about-stage__context-copy',
-};
-
-export const ABOUT_CONTEXT_CENTER: AboutTextBlockData = {
-  containerClass: 'about-stage__context-block about-stage__context-block--center',
-  title: 'Ruhig. Klar. Direkt.',
+  title: 'Ruhig.\nKlar.\nDirekt.',
   titleClass: 'about-stage__statement about-stage__statement--secondary',
   titleTag: 'p',
   copy:
@@ -55,12 +45,22 @@ export const ABOUT_CONTEXT_CENTER: AboutTextBlockData = {
   copyClass: 'about-stage__support',
 };
 
-export const ABOUT_CONTEXT_RIGHT: AboutTextBlockData = {
-  containerClass: 'about-stage__context-block about-stage__context-block--right',
+export const ABOUT_CONTEXT_CENTER: AboutTextBlockData = {
+  containerClass: 'about-stage__context-block about-stage__context-block--center',
   title: 'Was mich antreibt.',
   titleClass: 'about-stage__statement about-stage__statement--secondary',
   titleTag: 'p',
   copy:
     'Mich motiviert der Moment, in dem aus einer Idee ein Erlebnis wird, das nicht nur präzise ist, sondern beim Nutzer spürbar etwas hinterlässt.',
   copyClass: 'about-stage__support',
+};
+
+export const ABOUT_CONTEXT_RIGHT: AboutTextBlockData = {
+  containerClass: 'about-stage__context-block about-stage__context-block--right',
+  title: 'Aus Flörsheim. Mit Haltung im Detail.',
+  titleClass: 'about-stage__context-title',
+  titleTag: 'p',
+  copy:
+    'Ich arbeite strukturiert, ruhig und mit einem klaren Blick auf das, was ein Projekt wirklich braucht.',
+  copyClass: 'about-stage__context-copy',
 };

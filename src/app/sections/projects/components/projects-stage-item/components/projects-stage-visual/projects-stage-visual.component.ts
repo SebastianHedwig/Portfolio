@@ -14,4 +14,5 @@ import { type ProjectStageVisualData } from '../../../../projects.models';
 })
 export class ProjectsStageVisualComponent {
   readonly visual = input<ProjectStageVisualData>();
+  readonly ambientClass = input<string | null>(null);
 }

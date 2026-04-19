@@ -20,14 +20,59 @@
     width: 100%;
     height: 100%;
     margin-left: auto;
+    overflow: visible;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -16% -10% -18% -14%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0ms linear;
+    }
+  }
+
+  &__visual-shell--ambient-3 {
+    &::before {
+      opacity: 0.8;
+      background: radial-gradient(
+        circle at 34% 72%,
+        rgba(78, 145, 176, 0.045) 0%,
+        transparent 78%
+      );
+      filter: blur(4.2rem);
+      transform: scale(1.2, 1.16);
+    }
   }
 
   &__visual-image {
+    position: relative;
+    z-index: 1;
     display: block;
     width: min(100%, 65rem);
     height: auto;
     object-fit: contain;
     border-radius: 1rem;
+    box-shadow:
+      0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
+      0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08);
+    animation: project-visual-float 7.2s ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
+@keyframes project-visual-float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.32rem);
+  }
+
+  100% {
+    transform: translateY(0);
   }
 }
 

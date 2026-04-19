@@ -1,16 +1,18 @@
-<p class="project-moment__index">{{ index() }}</p>
+<div class="project-moment__panel" [class]="ambientClass()">
+  <p class="project-moment__index">{{ index() }}</p>
 
-<div class="project-moment__copy">
-  <p class="project-moment__eyebrow">{{ eyebrow() }}</p>
-  <h3 class="project-moment__title">
-    @if (isJoinTitle()) {
-      <span class="project-moment__title-initial">{{ titleInitial() }}</span>{{ titleRemainder() }}
-    } @else {
-      {{ title() }}
-    }
-  </h3>
-  <div class="project-moment__action">
-    <app-primary-button label="Github"></app-primary-button>
-    <app-secondary-button label="Live Test"></app-secondary-button>
+  <div class="project-moment__copy">
+    <p class="project-moment__eyebrow">{{ eyebrow() }}</p>
+    <h3 class="project-moment__title">
+      @if (isJoinTitle()) {
+        <span class="project-moment__title-initial">{{ titleInitial() }}</span>{{ titleRemainder() }}
+      } @else {
+        {{ title() }}
+      }
+    </h3>
+    <div class="project-moment__action">
+      <app-primary-button label="Github"></app-primary-button>
+      <app-secondary-button label="Live Test"></app-secondary-button>
+    </div>
   </div>
 </div>

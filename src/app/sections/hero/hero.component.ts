@@ -23,7 +23,7 @@ export class HeroComponent {
   readonly portrait = HERO_PORTRAIT;
   readonly statementParts = [
     'BASED IN FLÖRSHEIM',
-    'OPEN FOR PROJECTS',
+    'OPEN FOR OPPORTUNITIES',
     'AVAILABLE FOR REMOTE WORK',
   ] as const;
   readonly statementRepeats = Array.from({ length: 4 }, (_, index) => index);

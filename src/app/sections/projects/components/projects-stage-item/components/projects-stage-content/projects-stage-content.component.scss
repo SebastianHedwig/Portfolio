@@ -10,6 +10,7 @@
   width: 100%;
   max-width: 28rem;
   min-width: 0;
+  overflow: visible;
 }
 
 .project-moment__index,
@@ -19,6 +20,41 @@
 }
 
 .project-moment {
+  &__panel {
+    @include mixins.stack;
+    position: relative;
+    gap: clamp(1.35rem, 3vh, 2.1rem);
+    isolation: isolate;
+    overflow: visible;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -16% -10% -18% -14%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__panel--ambient-1 {
+    &::before {
+      opacity: 0.8;
+      background: radial-gradient(
+        circle at 34% 72%,
+        rgba(78, 145, 176, 0.045) 0%,
+        transparent 78%
+      );
+      filter: blur(4.2rem);
+      transform: scale(1.2, 1.16);
+    }
+  }
+
   &__index {
     color: tokens.$color-accent;
     font-size: 3rem;

@@ -15,4 +15,22 @@ import { type AboutTextBlockData } from '../../about.models';
 export class AboutTextBlockComponent {
   readonly block = input.required<AboutTextBlockData>();
   readonly containerClass = computed(() => this.block().containerClass);
+  readonly titleLines = computed(() => this.block().title.split('\n'));
+  readonly copySegments = computed(() => this.getCopySegments());
+
+  private getCopySegments(): Array<{ accent: boolean; text: string }> {
+    const copy = this.block().copy;
+
+    if (!this.containerClass().includes('about-stage__context-block--left')) {
+      return [{ accent: false, text: copy }];
+    }
+
+    const accentPattern = /(Erlebnisse|sind das Ergebnis)/g;
+    const segments = copy.split(accentPattern).filter((segment) => segment.length > 0);
+
+    return segments.map((segment) => ({
+      accent: segment === 'Erlebnisse' || segment === 'sind das Ergebnis',
+      text: segment,
+    }));
+  }
 }

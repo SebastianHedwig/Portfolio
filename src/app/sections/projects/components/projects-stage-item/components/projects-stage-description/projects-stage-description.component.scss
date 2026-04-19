@@ -3,11 +3,43 @@
 
 :host {
   @include mixins.project-moment-meta-host;
+  position: relative;
+  overflow: visible;
 }
 
 .project-moment {
   &__description {
     @include mixins.project-moment-meta-block;
+    position: relative;
+    overflow: visible;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -16% -10% -18% -14%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0ms linear;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__description--ambient-2 {
+    &::before {
+      opacity: 0.8;
+      background: radial-gradient(
+        circle at 34% 72%,
+        rgba(78, 145, 176, 0.045) 0%,
+        transparent 78%
+      );
+      filter: blur(4.2rem);
+      transform: scale(1.2, 1.16);
+    }
   }
 
   &__description-label,

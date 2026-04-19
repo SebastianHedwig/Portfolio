@@ -15,6 +15,7 @@ export class ProjectsStageContentComponent {
   readonly index = input.required<string>();
   readonly eyebrow = input.required<string>();
   readonly title = input.required<string>();
+  readonly ambientClass = input<string | null>(null);
 
   isJoinTitle(): boolean {
     return this.title().toLowerCase() === 'join';

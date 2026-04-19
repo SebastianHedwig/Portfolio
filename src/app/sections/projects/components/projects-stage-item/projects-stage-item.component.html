@@ -4,12 +4,17 @@
       [index]="project().index"
       [eyebrow]="project().eyebrow"
       [title]="project().title"
+      [ambientClass]="contentAmbientClass()"
     ></app-projects-stage-content>
 
-    <app-projects-stage-visual [visual]="project().visual"></app-projects-stage-visual>
+    <app-projects-stage-visual
+      [visual]="project().visual"
+      [ambientClass]="visualAmbientClass()"
+    ></app-projects-stage-visual>
 
     <app-projects-stage-description
       [description]="project().description"
+      [ambientClass]="descriptionAmbientClass()"
     ></app-projects-stage-description>
 
     <app-projects-stage-stack

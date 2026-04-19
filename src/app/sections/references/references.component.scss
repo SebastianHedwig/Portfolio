@@ -15,6 +15,13 @@
     text-transform: none;
   }
 
+  &__title {
+    text-shadow:
+      0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
+      0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
+      0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+  }
+
   &__body {
     position: relative;
     @include mixins.beside;
@@ -22,7 +29,6 @@
     align-items: flex-start;
     gap: clamp(5rem, 10vw, 11rem);
     min-height: clamp(38rem, 78vh, 56rem);
-    padding-top: clamp(2rem, 5vh, 4rem);
   }
 
   &__quote {
@@ -48,12 +54,11 @@
   }
 
   &__quote--primary {
-    margin-top: clamp(1rem, 2vh, 2rem);
     order: 2;
   }
 
   &__quote--secondary {
-    align-self: flex-end;
+    align-self: center;
     width: min(100%, 30rem);
     margin-right: clamp(1rem, 4vw, 4rem);
     animation-delay: -1.8s;

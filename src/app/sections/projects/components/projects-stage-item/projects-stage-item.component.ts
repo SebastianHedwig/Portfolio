@@ -24,4 +24,16 @@ import { type ProjectStageItemData } from '../../projects.models';
 })
 export class ProjectsStageItemComponent {
   readonly project = input.required<ProjectStageItemData>();
+
+  contentAmbientClass(): string | null {
+    return null;
+  }
+
+  descriptionAmbientClass(): string | null {
+    return null;
+  }
+
+  visualAmbientClass(): string | null {
+    return 'project-moment__visual-shell--ambient-3';
+  }
 }

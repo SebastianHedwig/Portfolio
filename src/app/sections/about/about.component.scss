@@ -37,7 +37,7 @@
     position: relative;
     width: 100%;
     height: 100svh;
-    overflow-x: hidden;
+    overflow: clip;
   }
 
   &__chapter {
@@ -94,6 +94,7 @@
 
   &__text-zone--lead {
     align-self: flex-start;
+    padding-top: clamp(2.5rem, 4vh, 3rem);
     order: 3;
   }
 
@@ -124,16 +125,14 @@
   }
 
   &__context-block--left {
-    padding-top: clamp(4rem, 5vh, 6rem);
+    align-self: flex-start;
   }
 
   &__context-block--center {
-    align-self: center;
     margin-top: clamp(22rem, 46vh, 34rem);
   }
 
   &__context-block--right {
-    align-self: flex-start;
     margin-top: clamp(8rem, 18vh, 14rem);
   }
 

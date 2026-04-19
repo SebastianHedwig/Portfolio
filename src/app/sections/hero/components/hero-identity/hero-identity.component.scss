@@ -20,6 +20,10 @@
     font-size: clamp(2.8rem, 5.1vw, 4.9rem);
     font-weight: 700;
     line-height: 0.94;
+    text-shadow:
+      0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
+      0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
+      0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
   }
 
   &__name-accent {

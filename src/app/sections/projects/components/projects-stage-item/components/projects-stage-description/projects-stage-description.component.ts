@@ -11,4 +11,5 @@ import { type ProjectStageDetailData } from '../../../../projects.models';
 })
 export class ProjectsStageDescriptionComponent {
   readonly description = input.required<ProjectStageDetailData>();
+  readonly ambientClass = input<string | null>(null);
 }
