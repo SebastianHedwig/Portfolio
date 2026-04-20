@@ -30,11 +30,6 @@ export function initScrollReveals(
   if (targets.length === 0) return;
 
   targets.forEach(({ target, config }) => {
-    const range = getRevealRange(target, config?.profile);
-    const start =
-      config?.start ?? target.dataset['scrollRevealStart'] ?? `top ${range.start}%`;
-    const end =
-      config?.end ?? target.dataset['scrollRevealEnd'] ?? `top ${range.end}%`;
     const triggerSelector = config?.trigger ?? target.dataset['scrollRevealTrigger'];
     const cachedTrigger =
       triggerSelector === undefined
@@ -57,8 +52,9 @@ export function initScrollReveals(
         ease: 'none',
         scrollTrigger: {
           trigger,
-          start,
-          end,
+          start: () => resolveRevealStart(target, config),
+          end: () => resolveRevealEnd(target, config),
+          invalidateOnRefresh: true,
           scrub: 0.8,
         },
         y: 0,
@@ -67,6 +63,22 @@ export function initScrollReveals(
   });
 
   scheduleScrollTriggerRefresh();
+}
+
+function resolveRevealStart(
+  target: HTMLElement,
+  config?: ScrollRevealConfig,
+): string {
+  const range = getRevealRange(target, config?.profile);
+  return config?.start ?? target.dataset['scrollRevealStart'] ?? `top ${range.start}%`;
+}
+
+function resolveRevealEnd(
+  target: HTMLElement,
+  config?: ScrollRevealConfig,
+): string {
+  const range = getRevealRange(target, config?.profile);
+  return config?.end ?? target.dataset['scrollRevealEnd'] ?? `top ${range.end}%`;
 }
 
 function resolveRevealTargets(

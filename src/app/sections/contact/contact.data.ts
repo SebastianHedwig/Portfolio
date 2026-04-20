@@ -2,9 +2,8 @@ export const CONTACT_CONTENT = {
   eyebrow: 'Contact',
   title: 'Bereit, etwas umzusetzen?',
   copy: [
-    'Wenn du eine Idee hast oder etwas aufbauen möchtest, lass uns sprechen.',
-    'Ich lege großen Wert auf saubere, durchdachte Lösungen und entwickle mich kontinuierlich weiter.',
-    'Offen für neue Möglichkeiten und Zusammenarbeit.',
+    'Wenn du eine Idee hast oder etwas aufbauen möchtest —\nLass uns sprechen.',
+    'Ich lege großen Wert auf saubere, durchdachte Lösungen, entwickle mich kontinuierlich weiter und bin offen für neue Herausforderungen und Zusammenarbeit.',
   ],
   cvLinkLabel: 'Lebenslauf ansehen (PDF)',
   cvHref: 'assets/docs/Sebastian-Hedwig-Lebenslauf.pdf',
