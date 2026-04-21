@@ -23,6 +23,11 @@ interface AnimatedNodeState {
   baseY: number
   angle: number
   radiusRatio: number
+  spatialX: number
+  spatialY: number
+  biasedX: number
+  biasedY: number
+  baseAmplitude: number
   radialX: number
   radialY: number
   tangentX: number
@@ -30,6 +35,11 @@ interface AnimatedNodeState {
   phaseA: number
   phaseB: number
   phaseC: number
+  orbitPhase: number
+  crossPhase: number
+  detailPhase: number
+  tangentialPhaseA: number
+  tangentialPhaseB: number
   amplitudeBias: number
   stretchBias: number
   shearBias: number
@@ -65,12 +75,31 @@ interface ClusterRuntimeState {
   phaseF: number
   asymmetryX: number
   asymmetryY: number
+  fieldX0: number
+  fieldY0: number
+  viewportDriftX0: number
+  viewportDriftY0: number
+  localDriftX0: number
+  localDriftY0: number
 }
 
 const OPACITY_TIER_COUNT = 3
 const LINE_OPACITY_TIERS = [0.62, 0.88, 0.9]
 const POINT_OPACITY_TIERS = [0.64, 0.89, 0.92]
 const POINT_SIZE_TIERS = [0.93, 0.99, 1.01]
+
+interface MutableClusterTransform {
+  centerX: number
+  centerY: number
+  scaleX: number
+  scaleY: number
+  rotation: number
+}
+
+interface MutableNodeOffset {
+  x: number
+  y: number
+}
 
 export class PolygonNetworkLayer {
   private readonly group = new THREE.Group()
@@ -86,6 +115,14 @@ export class PolygonNetworkLayer {
   private readonly linePositionsByTier: Float32Array[]
   private readonly pointPositionsByTier: Float32Array[]
   private readonly pulsePositions: Float32Array
+  private readonly clusterTransformScratch: MutableClusterTransform = {
+    centerX: 0,
+    centerY: 0,
+    scaleX: 1,
+    scaleY: 1,
+    rotation: 0,
+  }
+  private readonly nodeOffsetScratch: MutableNodeOffset = { x: 0, y: 0 }
 
   constructor(
     private readonly definition: NetworkLayerDefinition,
@@ -156,12 +193,12 @@ export class PolygonNetworkLayer {
 
   update(_: number, nowMs: number): void {
     this.writeAnimatedPositions(nowMs)
-    this.linePositionAttributes.forEach((attribute) => {
+    for (const attribute of this.linePositionAttributes) {
       attribute.needsUpdate = true
-    })
-    this.pointPositionAttributes.forEach((attribute) => {
+    }
+    for (const attribute of this.pointPositionAttributes) {
       attribute.needsUpdate = true
-    })
+    }
     this.pulsePositionAttribute.needsUpdate = true
     this.pulseMaterial.uniforms['uTime'].value = nowMs * 0.001
   }
@@ -198,6 +235,7 @@ export class PolygonNetworkLayer {
     const totalLineSegmentsByTier = new Array<number>(OPACITY_TIER_COUNT).fill(0)
     const clusters: ClusterRuntimeState[] = []
     const pulseBindings: PulseNodeBinding[] = []
+    const radiusFactor = this.definition.motion.nodeOffsetRange
 
     for (const cluster of this.definition.clusters) {
       const nodes = createRelaxedClusterNodes(cluster)
@@ -213,19 +251,32 @@ export class PolygonNetworkLayer {
       const opacityTier = pickOpacityTier(random)
       const tierPointOffset = totalPointsByTier[opacityTier] * 3
       const tierLineOffset = totalLineSegmentsByTier[opacityTier] * 6
+      const radiusBase = Math.max(cluster.radius, 1)
       const runtimeNodes = nodes.map((node) => {
         const basis = normalized(node.x, node.y)
+        const radiusRatio = clamp(
+          Math.hypot(node.x, node.y) / Math.max(cluster.radius * cluster.aspect, 1),
+          0.18,
+          1,
+        )
+        const amplitudeBias = 0.72 + random() * 0.56
+        const spatialX = node.x / radiusBase
+        const spatialY = node.y / radiusBase
 
         return {
           id: node.id,
           baseX: node.x,
           baseY: node.y,
           angle: Math.atan2(node.y, node.x),
-          radiusRatio: clamp(
-            Math.hypot(node.x, node.y) / Math.max(cluster.radius * cluster.aspect, 1),
-            0.18,
-            1,
-          ),
+          radiusRatio,
+          spatialX,
+          spatialY,
+          biasedX: 0,
+          biasedY: 0,
+          baseAmplitude: cluster.radius
+            * radiusFactor
+            * (0.34 + radiusRatio * 0.84)
+            * amplitudeBias,
           radialX: basis.x,
           radialY: basis.y,
           tangentX: -basis.y,
@@ -233,7 +284,12 @@ export class PolygonNetworkLayer {
           phaseA: random() * Math.PI * 2,
           phaseB: random() * Math.PI * 2,
           phaseC: random() * Math.PI * 2,
-          amplitudeBias: 0.72 + random() * 0.56,
+          orbitPhase: 0,
+          crossPhase: 0,
+          detailPhase: 0,
+          tangentialPhaseA: 0,
+          tangentialPhaseB: 0,
+          amplitudeBias,
           stretchBias: 0.7 + random() * 0.6,
           shearBias: 0.65 + random() * 0.7,
           orbitBias: 0.7 + random() * 0.6,
@@ -244,11 +300,54 @@ export class PolygonNetworkLayer {
       totalPointsByTier[opacityTier] += runtimeNodes.length
       totalLineSegmentsByTier[opacityTier] += edges.length
 
+      const viewportDriftX = (random() < 0.5 ? -1 : 1) * (0.7 + random() * 0.6)
+      const viewportDriftY = (random() < 0.5 ? -1 : 1) * (0.7 + random() * 0.6)
+      const phaseA = random() * Math.PI * 2
+      const phaseB = random() * Math.PI * 2
+      const phaseC = random() * Math.PI * 2
+      const phaseD = random() * Math.PI * 2
+      const phaseE = random() * Math.PI * 2
+      const phaseF = random() * Math.PI * 2
+      const asymmetryX = random() * 2 - 1
+      const asymmetryY = random() * 2 - 1
+      const fieldX0 = (
+        Math.sin(phaseA) * 0.42
+        + Math.sin(phaseC) * 0.33
+        + Math.cos(phaseE) * 0.25
+      )
+      const fieldY0 = (
+        Math.cos(phaseB) * 0.38
+        + Math.sin(phaseD) * 0.34
+        + Math.cos(phaseF) * 0.28
+      )
+      const viewportDriftX0 = (
+        Math.sin(phaseA) * 0.64
+        + Math.cos(phaseD) * 0.36
+      ) * viewportDriftX
+      const viewportDriftY0 = (
+        Math.cos(phaseB) * 0.58
+        + Math.sin(phaseE) * 0.42
+      ) * viewportDriftY
+      const localDriftX0 = Math.sin(phaseA) * 0.62
+        + Math.sin(phaseB) * 0.38
+      const localDriftY0 = Math.cos(phaseC) * 0.56
+        + Math.sin(phaseD) * 0.44
+
+      for (const node of runtimeNodes) {
+        node.biasedX = node.spatialX + asymmetryX * 0.32
+        node.biasedY = node.spatialY + asymmetryY * 0.32
+        node.orbitPhase = node.angle * 1.62 + phaseE
+        node.crossPhase = (node.spatialX - node.spatialY) * 1.94 + phaseF
+        node.detailPhase = node.phaseA + node.spatialX * 1.04 - node.spatialY * 0.58
+        node.tangentialPhaseA = node.angle * 1.16 + node.phaseB
+        node.tangentialPhaseB = node.biasedX + node.biasedY + node.phaseC
+      }
+
       clusters.push({
         restCenterX: center.x,
         restCenterY: center.y,
-        viewportDriftX: (random() < 0.5 ? -1 : 1) * (0.7 + random() * 0.6),
-        viewportDriftY: (random() < 0.5 ? -1 : 1) * (0.7 + random() * 0.6),
+        viewportDriftX,
+        viewportDriftY,
         opacityTier,
         tierPointOffset,
         tierLineOffset,
@@ -256,14 +355,20 @@ export class PolygonNetworkLayer {
         edges,
         worldPositions: new Float32Array(runtimeNodes.length * 2),
         radius: cluster.radius,
-        phaseA: random() * Math.PI * 2,
-        phaseB: random() * Math.PI * 2,
-        phaseC: random() * Math.PI * 2,
-        phaseD: random() * Math.PI * 2,
-        phaseE: random() * Math.PI * 2,
-        phaseF: random() * Math.PI * 2,
-        asymmetryX: random() * 2 - 1,
-        asymmetryY: random() * 2 - 1,
+        phaseA,
+        phaseB,
+        phaseC,
+        phaseD,
+        phaseE,
+        phaseF,
+        asymmetryX,
+        asymmetryY,
+        fieldX0,
+        fieldY0,
+        viewportDriftX0,
+        viewportDriftY0,
+        localDriftX0,
+        localDriftY0,
       })
 
       const pulseNodeIndices = selectPulseNodeIndices(
@@ -409,30 +514,37 @@ export class PolygonNetworkLayer {
 
   private syncGeometry(): void {
     this.writeAnimatedPositions(0)
-    this.lineGeometries.forEach((geometryEntry) => {
-      geometryEntry.computeBoundingSphere()
-    })
-    this.pointGeometries.forEach((geometryEntry) => {
-      geometryEntry.computeBoundingSphere()
-    })
-    this.pulseGeometry.computeBoundingSphere()
   }
 
   private writeAnimatedPositions(nowMs: number): void {
+    const time = nowMs * 0.001
+    const driftTime = time * this.definition.motion.driftSpeed
+    const morphTime = time * this.definition.motion.morphSpeed
+    const sweepTime = time * this.definition.motion.sweepSpeed
+    const deformationTime = time * this.definition.motion.deformationSpeed
+    const clusterTransform = this.clusterTransformScratch
+    const nodeOffset = this.nodeOffsetScratch
+
     for (const cluster of this.clusters) {
       const pointPositions = this.pointPositionsByTier[cluster.opacityTier]
       const linePositions = this.linePositionsByTier[cluster.opacityTier]
       let pointCursor = cluster.tierPointOffset
       let lineCursor = cluster.tierLineOffset
-      const clusterTransform = this.readClusterTransform(cluster, nowMs)
+      this.readClusterTransform(
+        cluster,
+        driftTime,
+        morphTime,
+        sweepTime,
+        clusterTransform,
+      )
       const cos = Math.cos(clusterTransform.rotation)
       const sin = Math.sin(clusterTransform.rotation)
 
       for (let index = 0; index < cluster.nodes.length; index += 1) {
         const node = cluster.nodes[index]
-        const offset = this.readNodeOffset(cluster, node, nowMs)
-        const localX = (node.baseX + offset.x) * clusterTransform.scaleX
-        const localY = (node.baseY + offset.y) * clusterTransform.scaleY
+        this.readNodeOffset(cluster, node, deformationTime, nodeOffset)
+        const localX = (node.baseX + nodeOffset.x) * clusterTransform.scaleX
+        const localY = (node.baseY + nodeOffset.y) * clusterTransform.scaleY
         const worldX = clusterTransform.centerX + localX * cos - localY * sin
         const worldY = clusterTransform.centerY + localX * sin + localY * cos
         const worldCursor = index * 2
@@ -442,7 +554,6 @@ export class PolygonNetworkLayer {
 
         pointPositions[pointCursor] = worldX
         pointPositions[pointCursor + 1] = worldY
-        pointPositions[pointCursor + 2] = 0
         pointCursor += 3
       }
 
@@ -452,10 +563,8 @@ export class PolygonNetworkLayer {
 
         linePositions[lineCursor] = cluster.worldPositions[startCursor]
         linePositions[lineCursor + 1] = cluster.worldPositions[startCursor + 1]
-        linePositions[lineCursor + 2] = 0
         linePositions[lineCursor + 3] = cluster.worldPositions[endCursor]
         linePositions[lineCursor + 4] = cluster.worldPositions[endCursor + 1]
-        linePositions[lineCursor + 5] = 0
         lineCursor += 6
       }
     }
@@ -468,24 +577,16 @@ export class PolygonNetworkLayer {
 
       this.pulsePositions[pulseCursor] = cluster.worldPositions[nodeCursor]
       this.pulsePositions[pulseCursor + 1] = cluster.worldPositions[nodeCursor + 1]
-      this.pulsePositions[pulseCursor + 2] = 0
     }
   }
 
   private readClusterTransform(
     cluster: ClusterRuntimeState,
-    nowMs: number,
-  ): {
-    centerX: number
-    centerY: number
-    scaleX: number
-    scaleY: number
-    rotation: number
-  } {
-    const time = nowMs * 0.001
-    const driftTime = time * this.definition.motion.driftSpeed
-    const morphTime = time * this.definition.motion.morphSpeed
-    const sweepTime = time * this.definition.motion.sweepSpeed
+    driftTime: number,
+    morphTime: number,
+    sweepTime: number,
+    transform: MutableClusterTransform,
+  ): MutableClusterTransform {
     const driftAmplitude = cluster.radius * this.definition.motion.clusterOffsetRange
     const travelX = this.viewport.width * this.definition.motion.viewportDriftRange
     const travelY = this.viewport.height * this.definition.motion.viewportDriftRange * 0.92
@@ -501,57 +602,27 @@ export class PolygonNetworkLayer {
     )
     const viewportDriftAmplitude = this.viewport.minDimension
       * this.definition.motion.viewportDriftRange
-    const viewportDriftX = viewportDriftAmplitude * (
-      Math.sin(driftTime * 0.21 + cluster.phaseA) * 0.64
-      + Math.cos(driftTime * 0.11 + cluster.phaseD) * 0.36
-    ) * cluster.viewportDriftX
-    const viewportDriftY = viewportDriftAmplitude * (
-      Math.cos(driftTime * 0.17 + cluster.phaseB) * 0.58
-      + Math.sin(driftTime * 0.09 + cluster.phaseE) * 0.42
-    ) * cluster.viewportDriftY
-    const fieldX0 = (
-      Math.sin(cluster.phaseA) * 0.42
-      + Math.sin(cluster.phaseC) * 0.33
-      + Math.cos(cluster.phaseE) * 0.25
-    )
-    const fieldY0 = (
-      Math.cos(cluster.phaseB) * 0.38
-      + Math.sin(cluster.phaseD) * 0.34
-      + Math.cos(cluster.phaseF) * 0.28
-    )
-    const viewportDriftX0 = (
-      Math.sin(cluster.phaseA) * 0.64
-      + Math.cos(cluster.phaseD) * 0.36
-    ) * cluster.viewportDriftX
-    const viewportDriftY0 = (
-      Math.cos(cluster.phaseB) * 0.58
-      + Math.sin(cluster.phaseE) * 0.42
-    ) * cluster.viewportDriftY
-    const localDriftX0 = Math.sin(cluster.phaseA) * 0.62
-      + Math.sin(cluster.phaseB) * 0.38
-    const localDriftY0 = Math.cos(cluster.phaseC) * 0.56
-      + Math.sin(cluster.phaseD) * 0.44
     const centerX = cluster.restCenterX
-      + travelX * (fieldX - fieldX0) * cluster.viewportDriftX
+      + travelX * (fieldX - cluster.fieldX0) * cluster.viewportDriftX
       + viewportDriftAmplitude * ((
         Math.sin(driftTime * 0.21 + cluster.phaseA) * 0.64
         + Math.cos(driftTime * 0.11 + cluster.phaseD) * 0.36
-      ) * cluster.viewportDriftX - viewportDriftX0)
+      ) * cluster.viewportDriftX - cluster.viewportDriftX0)
       + driftAmplitude * (
         Math.sin(driftTime + cluster.phaseA) * 0.62
         + Math.sin(driftTime * 0.43 + cluster.phaseB) * 0.38
-        - localDriftX0
+        - cluster.localDriftX0
       )
     const centerY = cluster.restCenterY
-      + travelY * (fieldY - fieldY0) * cluster.viewportDriftY
+      + travelY * (fieldY - cluster.fieldY0) * cluster.viewportDriftY
       + viewportDriftAmplitude * ((
         Math.cos(driftTime * 0.17 + cluster.phaseB) * 0.58
         + Math.sin(driftTime * 0.09 + cluster.phaseE) * 0.42
-      ) * cluster.viewportDriftY - viewportDriftY0)
+      ) * cluster.viewportDriftY - cluster.viewportDriftY0)
       + driftAmplitude * (
         Math.cos(driftTime * 0.88 + cluster.phaseC) * 0.56
         + Math.sin(driftTime * 0.37 + cluster.phaseD) * 0.44
-        - localDriftY0
+        - cluster.localDriftY0
       )
     const scaleBase = 1 + this.definition.motion.scaleRange * (
       Math.sin(morphTime * 0.92 + cluster.phaseC) * 0.58
@@ -577,69 +648,55 @@ export class PolygonNetworkLayer {
       this.viewport.height * 0.5 + cluster.radius * 0.34,
     )
 
-    return {
-      centerX: containedCenterX,
-      centerY: containedCenterY,
-      scaleX,
-      scaleY,
-      rotation,
-    }
+    transform.centerX = containedCenterX
+    transform.centerY = containedCenterY
+    transform.scaleX = scaleX
+    transform.scaleY = scaleY
+    transform.rotation = rotation
+    return transform
   }
 
   private readNodeOffset(
     cluster: ClusterRuntimeState,
     node: AnimatedNodeState,
-    nowMs: number,
-  ): { x: number; y: number } {
-    const time = nowMs * 0.001
-    const deformationTime = time * this.definition.motion.deformationSpeed
-    const spatialX = node.baseX / Math.max(cluster.radius, 1)
-    const spatialY = node.baseY / Math.max(cluster.radius, 1)
-    const biasedX = spatialX + cluster.asymmetryX * 0.32
-    const biasedY = spatialY + cluster.asymmetryY * 0.32
-    const amplitude = cluster.radius
-      * this.definition.motion.nodeOffsetRange
-      * (0.34 + node.radiusRatio * 0.84)
-      * node.amplitudeBias
+    deformationTime: number,
+    offset: MutableNodeOffset,
+  ): MutableNodeOffset {
     const stretchX = Math.sin(deformationTime * 0.86 + cluster.phaseA)
     const stretchY = Math.cos(deformationTime * 0.64 + cluster.phaseB)
     const shear = Math.sin(deformationTime * 0.52 + cluster.phaseC)
     const bend = Math.cos(deformationTime * 0.41 + cluster.phaseD)
-    const orbitBand = Math.sin(
-      deformationTime * 0.94 + node.angle * 1.62 + cluster.phaseE,
-    )
-    const crossBand = Math.cos(
-      deformationTime * 0.72 + (spatialX - spatialY) * 1.94 + cluster.phaseF,
-    )
-    const localDetail = Math.sin(
-      deformationTime * 1.18 + node.phaseA + spatialX * 1.04 - spatialY * 0.58,
-    ) * this.definition.motion.detailMix
+    const orbitBand = Math.sin(deformationTime * 0.94 + node.orbitPhase)
+    const crossBand = Math.cos(deformationTime * 0.72 + node.crossPhase)
+    const localDetail = Math.sin(deformationTime * 1.18 + node.detailPhase)
+      * this.definition.motion.detailMix
 
-    const structuralX = amplitude * (
-      biasedX * stretchX * (0.62 * node.stretchBias)
-      + biasedY * shear * (0.34 * node.shearBias)
-      + bend * (biasedX * biasedY) * (0.28 + 0.12 * node.shearBias)
+    const structuralX = node.baseAmplitude * (
+      node.biasedX * stretchX * (0.62 * node.stretchBias)
+      + node.biasedY * shear * (0.34 * node.shearBias)
+      + bend * (node.biasedX * node.biasedY) * (0.28 + 0.12 * node.shearBias)
       + orbitBand * (0.16 + 0.1 * node.orbitBias)
       + localDetail * (0.08 + 0.14 * node.detailBias)
     )
-    const structuralY = amplitude * (
-      biasedY * stretchY * (0.64 * node.stretchBias)
-      + biasedX * shear * (0.3 * node.shearBias)
-      - bend * (biasedX * biasedX - biasedY * biasedY) * (0.22 + 0.1 * node.shearBias)
+    const structuralY = node.baseAmplitude * (
+      node.biasedY * stretchY * (0.64 * node.stretchBias)
+      + node.biasedX * shear * (0.3 * node.shearBias)
+      - bend * (
+        node.biasedX * node.biasedX - node.biasedY * node.biasedY
+      ) * (0.22 + 0.1 * node.shearBias)
       + crossBand * (0.16 + 0.12 * node.orbitBias)
       + localDetail * (0.08 + 0.14 * node.detailBias)
     )
-    const tangentialAmount = amplitude * 0.16 * (
-      Math.sin(deformationTime * 0.58 + node.angle * 1.16 + node.phaseB)
+    const tangentialAmount = node.baseAmplitude * 0.16 * (
+      Math.sin(deformationTime * 0.58 + node.tangentialPhaseA)
         * (0.44 + 0.18 * node.orbitBias)
-      + Math.cos(deformationTime * 0.38 + biasedX + biasedY + node.phaseC)
+      + Math.cos(deformationTime * 0.38 + node.tangentialPhaseB)
         * (0.2 + 0.18 * node.detailBias)
     ) * (0.18 + node.radiusRatio * 0.7)
 
-    return {
-      x: structuralX + node.tangentX * tangentialAmount,
-      y: structuralY + node.tangentY * tangentialAmount,
-    }
+    offset.x = structuralX + node.tangentX * tangentialAmount
+    offset.y = structuralY + node.tangentY * tangentialAmount
+    return offset
   }
 }
 
@@ -1086,7 +1143,7 @@ function selectPulseNodeIndices(
     .sort((left, right) => right.score - left.score)
 
   const selection: number[] = []
-  const targetCount = nodes.length
+  const targetCount = clamp(desiredCount, 0, nodes.length)
 
   for (const candidate of scored) {
     if (selection.length >= targetCount) {

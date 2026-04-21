@@ -28,21 +28,29 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
 
   private readonly ngZone = inject(NgZone)
   private controller: ViewportBackgroundController | null = null
+  private initFrameId = 0
   private readonly handleResize = () => {
     this.controller?.resize()
   }
 
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => {
-      this.controller = new ViewportBackgroundController(
-        this.canvasRef.nativeElement,
-      )
-      this.controller.start()
-      window.addEventListener('resize', this.handleResize, { passive: true })
+      this.initFrameId = window.requestAnimationFrame(() => {
+        this.initFrameId = 0
+        this.controller = new ViewportBackgroundController(
+          this.canvasRef.nativeElement,
+        )
+        this.controller.start()
+        window.addEventListener('resize', this.handleResize, { passive: true })
+      })
     })
   }
 
   ngOnDestroy(): void {
+    if (this.initFrameId) {
+      window.cancelAnimationFrame(this.initFrameId)
+      this.initFrameId = 0
+    }
     window.removeEventListener('resize', this.handleResize)
     this.controller?.destroy()
     this.controller = null

@@ -4,6 +4,9 @@ import { createPhaseTwoLayers } from './viewport-background.config'
 import { PolygonNetworkLayer } from './viewport-background.network'
 import { BackgroundViewport } from './viewport-background.models'
 
+const BACKGROUND_TARGET_FPS = 45
+const BACKGROUND_FRAME_INTERVAL_MS = 1000 / BACKGROUND_TARGET_FPS
+
 export class ViewportBackgroundController {
   private readonly renderer: THREE.WebGLRenderer
   private readonly scene = new THREE.Scene()
@@ -11,6 +14,7 @@ export class ViewportBackgroundController {
   private currentLayers: PolygonNetworkLayer[] = []
   private animationFrameId = 0
   private lastFrameTime = 0
+  private lastFrameGateTime = 0
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
@@ -25,13 +29,24 @@ export class ViewportBackgroundController {
   }
 
   start(): void {
-    this.resize()
     this.stop()
-    this.lastFrameTime = performance.now()
+    this.resize()
+    const now = performance.now()
+    this.lastFrameTime = now
+    this.lastFrameGateTime = now
 
     const loop = (now: number) => {
+      const elapsedSinceLastGate = now - this.lastFrameGateTime
+
+      if (elapsedSinceLastGate < BACKGROUND_FRAME_INTERVAL_MS) {
+        this.animationFrameId = window.requestAnimationFrame(loop)
+        return
+      }
+
       const deltaMs = now - this.lastFrameTime
       this.lastFrameTime = now
+      this.lastFrameGateTime = now
+        - (elapsedSinceLastGate % BACKGROUND_FRAME_INTERVAL_MS)
 
       for (const layer of this.currentLayers) {
         layer.update(deltaMs, now)
@@ -41,7 +56,7 @@ export class ViewportBackgroundController {
       this.animationFrameId = window.requestAnimationFrame(loop)
     }
 
-    loop(this.lastFrameTime)
+    this.animationFrameId = window.requestAnimationFrame(loop)
   }
 
   resize(): void {
@@ -59,7 +74,9 @@ export class ViewportBackgroundController {
     this.camera.updateProjectionMatrix()
 
     this.replaceLayers(viewport)
-    this.lastFrameTime = performance.now()
+    const now = performance.now()
+    this.lastFrameTime = now
+    this.lastFrameGateTime = now
     this.renderer.render(this.scene, this.camera)
   }
 
