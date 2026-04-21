@@ -91,7 +91,7 @@
     @include mixins.stack(0.65rem);
     width: 100%;
     padding-bottom: 0.45rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
 
     &--message {
       padding-bottom: 0.6rem;

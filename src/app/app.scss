@@ -1,6 +1,13 @@
 @use 'abstracts/mixins';
 
 .app-shell {
+  position: relative;
   min-height: 100svh;
   @include mixins.stack;
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+  }
 }
