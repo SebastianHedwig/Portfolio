@@ -1,0 +1,17 @@
+<p class="stage-shell__eyebrow contact-stage__eyebrow">{{ content().eyebrow }}</p>
+<h2 class="stage-shell__title contact-stage__title">{{ content().title }}</h2>
+
+<div class="contact-stage__copy">
+  @for (paragraph of content().copy; track paragraph) {
+    <p class="contact-stage__paragraph">{{ paragraph }}</p>
+  }
+</div>
+
+<a
+  class="contact-stage__cv-link"
+  [href]="content().cvHref"
+  target="_blank"
+  rel="noopener"
+>
+  {{ content().cvLinkLabel }}
+</a>

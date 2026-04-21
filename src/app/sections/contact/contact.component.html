@@ -1,62 +1,6 @@
 <div class="section__inner stage-shell contact-stage">
   <div class="stage-shell__body contact-stage__body">
-    <section class="stage-shell__column contact-stage__column contact-stage__column--content">
-      <p class="stage-shell__eyebrow contact-stage__eyebrow">{{ content.eyebrow }}</p>
-      <h2 class="stage-shell__title contact-stage__title">{{ content.title }}</h2>
-
-      <div class="contact-stage__copy">
-        @for (paragraph of content.copy; track paragraph) {
-          <p class="contact-stage__paragraph">{{ paragraph }}</p>
-        }
-      </div>
-
-      <a
-        class="contact-stage__cv-link"
-        [href]="content.cvHref"
-        target="_blank"
-        rel="noopener"
-      >
-        {{ content.cvLinkLabel }}
-      </a>
-    </section>
-
-    <form class="stage-shell__column contact-stage__column contact-stage__form" (submit)="$event.preventDefault()" novalidate>
-      <label class="contact-stage__field">
-        <span class="contact-stage__field-label">Name</span>
-        <input class="contact-stage__input" type="text" name="name" autocomplete="name">
-      </label>
-
-      <label class="contact-stage__field">
-        <span class="contact-stage__field-label">E-Mail</span>
-        <input class="contact-stage__input" type="email" name="email" autocomplete="email">
-      </label>
-
-      <label class="contact-stage__field contact-stage__field--message">
-        <span class="contact-stage__field-label">NACHRICHT</span>
-        <textarea class="contact-stage__input contact-stage__input--textarea" name="message" rows="5"></textarea>
-      </label>
-
-      <label class="contact-stage__consent">
-        <input
-          class="contact-stage__consent-input"
-          type="checkbox"
-          name="privacy-consent"
-          required
-        >
-        <span class="contact-stage__consent-box" aria-hidden="true"></span>
-        <span class="contact-stage__consent-text">
-          {{ content.consentPrefix }}
-          <a class="contact-stage__consent-link" [href]="content.consentHref">
-            {{ content.consentLinkLabel }}
-          </a>{{ content.consentMiddle }}<br>{{ content.consentSuffix }}
-        </span>
-      </label>
-
-      <app-primary-button
-        class="contact-stage__submit"
-        [label]="content.submitLabel"
-        type="submit"
-      />
-    </form>
+    <app-contact-stage-content [content]="content" />
+    <app-contact-stage-form [content]="content" />
   </div>
 </div>

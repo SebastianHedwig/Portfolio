@@ -1,10 +1,21 @@
 @if (href(); as targetHref) {
-  <a class="primary-button" [href]="targetHref">
+  <a
+    class="primary-button"
+    [class.primary-button--disabled]="disabled()"
+    [href]="disabled() ? null : targetHref"
+    [attr.aria-disabled]="disabled()"
+    [attr.tabindex]="disabled() ? -1 : null"
+  >
     <span class="primary-button__label">{{ label() }}</span>
     <span class="primary-button__arrow" aria-hidden="true"></span>
   </a>
 } @else {
-  <button class="primary-button" [type]="type()">
+  <button
+    class="primary-button"
+    [class.primary-button--disabled]="disabled()"
+    [type]="type()"
+    [disabled]="disabled()"
+  >
     <span class="primary-button__label">{{ label() }}</span>
     <span class="primary-button__arrow" aria-hidden="true"></span>
   </button>

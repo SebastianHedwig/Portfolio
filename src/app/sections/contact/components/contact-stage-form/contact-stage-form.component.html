@@ -1,0 +1,105 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <label class="contact-stage__field">
+    <span class="contact-stage__field-label">Name</span>
+    <input
+      class="contact-stage__input"
+      type="text"
+      name="name"
+      autocomplete="name"
+      formControlName="name"
+      maxlength="50"
+      placeholder="Dein Name"
+    >
+    @if (showError(form.controls.name)) {
+      <span class="contact-stage__field-error">
+        @if (form.controls.name.hasError('required')) {
+          Bitte gib deinen Namen ein.
+        } @else if (form.controls.name.hasError('maxlength')) {
+          Der Name darf maximal 50 Zeichen lang sein.
+        }
+      </span>
+    }
+  </label>
+
+  <label class="contact-stage__field">
+    <span class="contact-stage__field-label">E-Mail</span>
+    <input
+      class="contact-stage__input"
+      type="email"
+      name="email"
+      autocomplete="email"
+      formControlName="email"
+      placeholder="name@beispiel.de"
+    >
+    @if (showError(form.controls.email)) {
+      <span class="contact-stage__field-error">
+        @if (form.controls.email.hasError('required')) {
+          Bitte gib deine E-Mail-Adresse ein.
+        } @else if (form.controls.email.hasError('blockedDomain')) {
+          Bitte nutze keine Test- oder Wegwerfadresse.
+        } @else if (form.controls.email.hasError('email')) {
+          Bitte gib eine gueltige E-Mail-Adresse ein.
+        }
+      </span>
+    }
+  </label>
+
+  <label class="contact-stage__field contact-stage__field--message">
+    <span class="contact-stage__field-label">NACHRICHT</span>
+    <textarea
+      class="contact-stage__input contact-stage__input--textarea"
+      name="message"
+      rows="5"
+      formControlName="message"
+      maxlength="800"
+      placeholder="Erzaehl mir kurz, worum es geht."
+    ></textarea>
+    <span
+      class="contact-stage__field-meta"
+      [style.opacity]="messageLength() > 0 ? 0.72 : 0.38"
+    >
+      {{ messageLength() }} / {{ messageMaxLength }} Zeichen
+    </span>
+    @if (showError(form.controls.message)) {
+      <span class="contact-stage__field-error">
+        @if (form.controls.message.hasError('required')) {
+          Bitte gib eine Nachricht ein.
+        } @else if (form.controls.message.hasError('minlength')) {
+          Die Nachricht muss mindestens 10 Zeichen lang sein.
+        } @else if (form.controls.message.hasError('maxlength')) {
+          Die Nachricht darf maximal 800 Zeichen lang sein.
+        }
+      </span>
+    }
+  </label>
+
+  <div class="contact-stage__consent-wrap">
+    <label class="contact-stage__consent">
+      <input
+        class="contact-stage__consent-input"
+        type="checkbox"
+        name="privacy-consent"
+        formControlName="consent"
+      >
+      <span class="contact-stage__consent-box" aria-hidden="true"></span>
+      <span class="contact-stage__consent-text">
+        {{ content().consentPrefix }}
+        <a class="contact-stage__consent-link" [href]="content().consentHref">
+          {{ content().consentLinkLabel }}
+        </a>{{ content().consentMiddle }}<br>{{ content().consentSuffix }}
+      </span>
+    </label>
+    @if (showError(form.controls.consent)) {
+      <span class="contact-stage__field-error contact-stage__field-error--consent">
+        Bitte bestaetige den Datenschutzhinweis.
+      </span>
+    }
+  </div>
+
+  <app-primary-button
+    class="contact-stage__submit"
+    [label]="content().submitLabel"
+    type="submit"
+    [disabled]="form.invalid"
+  />
+</form>

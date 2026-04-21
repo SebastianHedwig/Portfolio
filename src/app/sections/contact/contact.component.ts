@@ -10,7 +10,8 @@ import { gsap } from 'gsap';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
-import { PrimaryButtonComponent } from '../../shared/components/primary-button/primary-button.component';
+import { ContactStageContentComponent } from './components/contact-stage-content/contact-stage-content.component';
+import { ContactStageFormComponent } from './components/contact-stage-form/contact-stage-form.component';
 import { CONTACT_CONTENT } from './contact.data';
 
 const CONTACT_REVEALS: readonly ScrollRevealConfig[] = [
@@ -26,7 +27,7 @@ const CONTACT_REVEALS: readonly ScrollRevealConfig[] = [
   selector: 'app-contact',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [PrimaryButtonComponent],
+  imports: [ContactStageContentComponent, ContactStageFormComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })

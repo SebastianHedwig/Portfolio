@@ -20,4 +20,10 @@
     @include button-mixins.button-arrow;
     color: rgba(53, 199, 255, 0.62);
   }
+
+  &--disabled {
+    opacity: 0.46;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }

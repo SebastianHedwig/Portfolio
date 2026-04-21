@@ -1,0 +1,60 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  gap: clamp(1.4rem, 2.8vh, 2rem);
+}
+
+.contact-stage {
+  &__eyebrow {
+    margin: 0;
+    color: tokens.$color-muted;
+    font-family: tokens.$font-eyebrow;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+  }
+
+  &__title {
+    max-width: 11ch;
+    text-shadow:
+      0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
+      0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
+      0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+  }
+
+  &__copy {
+    @include mixins.stack(clamp(0.9rem, 1.8vh, 1.25rem));
+    max-width: 32rem;
+  }
+
+  &__paragraph {
+    margin: 0;
+    color: tokens.$color-muted;
+    font-size: 1.02rem;
+    line-height: 1.82;
+    white-space: pre-line;
+  }
+
+  &__cv-link {
+    width: fit-content;
+    color: rgba(tokens.$color-muted, 0.78);
+    font-size: 0.94rem;
+    line-height: 1.5;
+    margin-block-start: 4rem;
+    transition:
+      color 180ms ease,
+      opacity 180ms ease;
+
+    &:hover,
+    &:focus-visible {
+      color: tokens.$color-accent;
+      opacity: 1;
+    }
+  }
+}
