@@ -20,4 +20,42 @@
     @include button-mixins.button-arrow;
     color: rgba(255, 255, 255, 0.44);
   }
+
+  &--compact {
+    min-width: 8.2rem;
+    min-height: 2.55rem;
+    padding-inline: 1.15rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+
+    .secondary-button__arrow {
+      width: 1.65rem;
+      height: 1.55rem;
+    }
+  }
+
+  &--left {
+    @include button-mixins.button-content-swap(
+      '.secondary-button__label',
+      '.secondary-button__arrow'
+    );
+
+    .secondary-button__label {
+      transform: translateX(0);
+    }
+
+    .secondary-button__arrow {
+      transform: translateX(0.5rem) rotate(180deg);
+    }
+
+    &:hover {
+      .secondary-button__label {
+        transform: translateX(0.45rem);
+      }
+
+      .secondary-button__arrow {
+        transform: translateX(0) rotate(180deg);
+      }
+    }
+  }
 }

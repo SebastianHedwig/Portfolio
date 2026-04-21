@@ -84,7 +84,12 @@
       <span class="contact-stage__consent-box" aria-hidden="true"></span>
       <span class="contact-stage__consent-text">
         {{ content().consentPrefix }}
-        <a class="contact-stage__consent-link" [href]="content().consentHref">
+        <a
+          class="contact-stage__consent-link"
+          [href]="content().consentHref"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {{ content().consentLinkLabel }}
         </a>{{ content().consentMiddle }}<br>{{ content().consentSuffix }}
       </span>

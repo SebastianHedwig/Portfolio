@@ -23,7 +23,7 @@ export const CONTACT_CONTENT: ContactContent = {
   cvHref: 'https://ceqznaimpbtixlgvypcy.supabase.co/storage/v1/object/public/cv/Lebenslauf_Hedwig_Sebastian.pdf',
   consentPrefix: 'Ich habe die ',
   consentLinkLabel: 'Datenschutzerklärung',
-  consentHref: '#legal',
+  consentHref: '/datenschutz',
   consentMiddle: ' gelesen und stimme der Verarbeitung',
   consentSuffix: 'meiner Daten zur Kontaktaufnahme zu.',
   submitLabel: 'Nachricht senden',

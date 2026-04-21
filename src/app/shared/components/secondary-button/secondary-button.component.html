@@ -1,10 +1,21 @@
 @if (href(); as targetHref) {
-  <a class="secondary-button" [href]="targetHref">
+  <a
+    class="secondary-button"
+    [class.secondary-button--compact]="size() === 'compact'"
+    [class.secondary-button--left]="direction() === 'left'"
+    [href]="targetHref"
+  >
     <span class="secondary-button__label">{{ label() }}</span>
     <span class="secondary-button__arrow" aria-hidden="true"></span>
   </a>
 } @else {
-  <button class="secondary-button" [type]="type()">
+  <button
+    class="secondary-button"
+    [class.secondary-button--compact]="size() === 'compact'"
+    [class.secondary-button--left]="direction() === 'left'"
+    [type]="type()"
+    (click)="clicked.emit()"
+  >
     <span class="secondary-button__label">{{ label() }}</span>
     <span class="secondary-button__arrow" aria-hidden="true"></span>
   </button>

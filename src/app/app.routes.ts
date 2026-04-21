@@ -9,6 +9,20 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'impressum',
+    loadComponent: () =>
+      import('./pages/imprint/imprint.component').then(
+        (module) => module.ImprintComponent,
+      ),
+  },
+  {
+    path: 'datenschutz',
+    loadComponent: () =>
+      import('./pages/privacy/privacy.component').then(
+        (module) => module.PrivacyComponent,
+      ),
+  },
+  {
     path: '**',
     redirectTo: '',
   },
