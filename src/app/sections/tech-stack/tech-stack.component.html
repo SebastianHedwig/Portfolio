@@ -1,25 +1,25 @@
 <div #stage class="section__inner tech-stage">
   <app-tech-stack-text-block
-    [block]="introBlock"
+    [block]="introBlock()"
   ></app-tech-stack-text-block>
 
   <app-tech-stack-stack-group
-    [group]="coreGroup"
+    [group]="coreGroup()"
   ></app-tech-stack-stack-group>
 
   <app-tech-stack-learning-item
-    [item]="learningItem"
+    [item]="learningItem()"
   ></app-tech-stack-learning-item>
 
   <app-tech-stack-text-block
-    [block]="focusBlock"
+    [block]="focusBlock()"
   ></app-tech-stack-text-block>
 
   <app-tech-stack-stack-group
-    [group]="mainGroup"
+    [group]="mainGroup()"
   ></app-tech-stack-stack-group>
 
   <app-tech-stack-stack-group
-    [group]="extendedGroup"
+    [group]="extendedGroup()"
   ></app-tech-stack-stack-group>
 </div>

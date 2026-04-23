@@ -2,23 +2,23 @@
   <div class="section__inner stage-shell legal-page__shell">
     <header class="stage-shell__header legal-page__header">
       <app-secondary-button
-        label="Schliessen"
+        [label]="content().closeLabel"
         size="compact"
         direction="left"
         (clicked)="closePage()"
       />
-      <p class="stage-shell__eyebrow legal-page__eyebrow">Legal</p>
-      <h1 class="stage-shell__title legal-page__title">Impressum</h1>
+      <p class="stage-shell__eyebrow legal-page__eyebrow">{{ content().eyebrow }}</p>
+      <h1 class="stage-shell__title legal-page__title">{{ content().title }}</h1>
       <p class="stage-shell__lead legal-page__lead">
-        Diese Seite ist vorbereitet und wird mit deinem finalen Impressumstext vervollstaendigt.
+        {{ content().lead }}
       </p>
     </header>
 
     <div class="legal-page__content">
-      @for (section of sections; track section.title) {
+      @for (section of content().sections; track $index) {
         <section class="legal-page__panel">
           <h2 class="legal-page__section-title">{{ section.title }}</h2>
-          @for (paragraph of section.paragraphs; track paragraph) {
+          @for (paragraph of section.paragraphs; track $index) {
             <p class="legal-page__paragraph">{{ paragraph }}</p>
           }
         </section>

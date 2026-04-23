@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
 import { HeroDescriptionComponent } from './components/hero-description/hero-description.component';
 import { HeroIdentityComponent } from './components/hero-identity/hero-identity.component';
 import { HeroPortraitComponent } from './components/hero-portrait/hero-portrait.component';
-import { HERO_DESCRIPTION, HERO_IDENTITY, HERO_PORTRAIT } from './hero.data';
+import { LanguageStore } from '../../i18n/language.store';
+import { getHeroContent } from './hero.data';
 
 @Component({
   selector: 'app-hero',
@@ -18,13 +19,12 @@ import { HERO_DESCRIPTION, HERO_IDENTITY, HERO_PORTRAIT } from './hero.data';
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
-  readonly description = HERO_DESCRIPTION;
-  readonly identity = HERO_IDENTITY;
-  readonly portrait = HERO_PORTRAIT;
-  readonly statementParts = [
-    'BASED IN FLÖRSHEIM',
-    'OPEN FOR OPPORTUNITIES',
-    'AVAILABLE FOR REMOTE WORK',
-  ] as const;
+  private readonly languageStore = inject(LanguageStore);
+
+  readonly content = computed(() => getHeroContent(this.languageStore.language()));
+  readonly description = computed(() => this.content().description);
+  readonly identity = computed(() => this.content().identity);
+  readonly portrait = computed(() => this.content().portrait);
+  readonly statementParts = computed(() => this.content().statementParts);
   readonly statementRepeats = Array.from({ length: 4 }, (_, index) => index);
 }

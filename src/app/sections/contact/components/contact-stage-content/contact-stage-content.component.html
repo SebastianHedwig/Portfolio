@@ -2,7 +2,7 @@
 <h2 class="stage-shell__title contact-stage__title">{{ content().title }}</h2>
 
 <div class="contact-stage__copy">
-  @for (paragraph of content().copy; track paragraph) {
+  @for (paragraph of content().copy; track $index) {
     <p class="contact-stage__paragraph">{{ paragraph }}</p>
   }
 </div>

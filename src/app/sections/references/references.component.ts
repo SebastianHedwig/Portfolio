@@ -4,17 +4,15 @@ import {
   ElementRef,
   OnDestroy,
   afterNextRender,
+  computed,
   inject,
 } from '@angular/core';
 import { gsap } from 'gsap';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
-import {
-  REFERENCES_EYEBROW,
-  REFERENCES_QUOTES,
-  REFERENCES_TITLE,
-} from './references.data';
+import { LanguageStore } from '../../i18n/language.store';
+import { getReferencesContent } from './references.data';
 
 const REFERENCES_REVEALS: readonly ScrollRevealConfig[] = [
   {
@@ -42,12 +40,14 @@ const REFERENCES_REVEALS: readonly ScrollRevealConfig[] = [
   styleUrl: './references.component.scss',
 })
 export class ReferencesComponent implements OnDestroy {
-  readonly eyebrow = REFERENCES_EYEBROW;
-  readonly title = REFERENCES_TITLE;
-  readonly quotes = REFERENCES_QUOTES;
-
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly languageStore = inject(LanguageStore);
   private animationContext: gsap.Context | null = null;
+
+  readonly content = computed(() => getReferencesContent(this.languageStore.language()));
+  readonly eyebrow = computed(() => this.content().eyebrow);
+  readonly title = computed(() => this.content().title);
+  readonly quotes = computed(() => this.content().quotes);
 
   constructor() {
     afterNextRender(() => this.initAnimation());

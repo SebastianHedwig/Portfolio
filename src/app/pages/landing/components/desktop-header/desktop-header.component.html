@@ -1,26 +1,70 @@
-<header #header class="desktop-header" [class.desktop-header--hidden]="isHidden()">
+<header
+  #header
+  class="desktop-header"
+  [class.desktop-header--hidden]="isHidden()"
+  [class.desktop-header--language-switching]="isLanguageSwitching()"
+>
   <div class="desktop-header__inner">
-    <a class="desktop-header__brand" href="#hero" aria-label="Zur Hero Stage springen">
+    <a
+      class="desktop-header__brand"
+      [href]="anchorNavigation.buildHref('#hero')"
+      [attr.aria-label]="brand().ariaLabel"
+      (click)="anchorNavigation.handleClick($event, '#hero')"
+    >
       <img
         class="desktop-header__logo"
-        [src]="brand.logoSrc"
-        [alt]="brand.logoAlt"
+        [src]="brand().logoSrc"
+        [alt]="brand().logoAlt"
       />
 
       <p class="desktop-header__name">
-        <span>{{ brand.firstName }}</span>
+        <span>{{ brand().firstName }}</span>
         <span>
-          <span class="desktop-header__name-accent">{{ brand.surnameInitial }}</span>{{ brand.surnameTail }}
+          <span class="desktop-header__name-accent">{{ brand().surnameInitial }}</span>{{ brand().surnameTail }}
         </span>
       </p>
     </a>
 
-    <nav class="desktop-header__nav" aria-label="Primary">
-      @for (item of navItems; track item.href) {
-        <a class="desktop-header__link" [href]="item.href">
-          <span class="desktop-header__link-text">{{ item.label }}</span>
-        </a>
-      }
-    </nav>
+    <div class="desktop-header__controls">
+      <nav class="desktop-header__nav" [attr.aria-label]="content().navAriaLabel">
+        @for (item of navItems(); track item.href) {
+          <a
+            class="desktop-header__link"
+            [href]="anchorNavigation.buildHref(item.href)"
+            (click)="anchorNavigation.handleClick($event, item.href)"
+          >
+            <span class="desktop-header__link-text">{{ item.label }}</span>
+          </a>
+        }
+      </nav>
+
+      <div
+        class="desktop-header__language-toggle"
+        [class.desktop-header__language-toggle--en]="activeLanguage() === 'en'"
+        [attr.aria-label]="content().languageToggleAriaLabel"
+        [title]="content().languageToggleLabel"
+      >
+        <button
+          class="desktop-header__language-option"
+          [class.desktop-header__language-option--active]="activeLanguage() === 'de'"
+          type="button"
+          aria-label="Deutsch"
+          [attr.aria-pressed]="activeLanguage() === 'de'"
+          (click)="switchLanguage('de')"
+        >
+          DE
+        </button>
+        <button
+          class="desktop-header__language-option"
+          [class.desktop-header__language-option--active]="activeLanguage() === 'en'"
+          type="button"
+          aria-label="English"
+          [attr.aria-pressed]="activeLanguage() === 'en'"
+          (click)="switchLanguage('en')"
+        >
+          EN
+        </button>
+      </div>
+    </div>
   </div>
 </header>

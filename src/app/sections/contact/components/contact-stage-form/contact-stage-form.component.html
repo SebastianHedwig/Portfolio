@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
   <label class="contact-stage__field">
-    <span class="contact-stage__field-label">Name</span>
+    <span class="contact-stage__field-label">{{ content().form.name.label }}</span>
     <input
       class="contact-stage__input"
       type="text"
@@ -8,66 +8,87 @@
       autocomplete="name"
       formControlName="name"
       maxlength="50"
-      placeholder="Dein Name"
+      [placeholder]="content().form.name.placeholder"
     >
     @if (showError(form.controls.name)) {
       <span class="contact-stage__field-error">
         @if (form.controls.name.hasError('required')) {
-          Bitte gib deinen Namen ein.
+          {{ content().form.name.requiredError }}
         } @else if (form.controls.name.hasError('maxlength')) {
-          Der Name darf maximal 50 Zeichen lang sein.
+          {{ content().form.name.maxlengthError }}
         }
       </span>
     }
   </label>
 
   <label class="contact-stage__field">
-    <span class="contact-stage__field-label">E-Mail</span>
+    <span class="contact-stage__field-label">{{ content().form.email.label }}</span>
     <input
       class="contact-stage__input"
       type="email"
       name="email"
       autocomplete="email"
       formControlName="email"
-      placeholder="name@beispiel.de"
+      [placeholder]="content().form.email.placeholder"
     >
     @if (showError(form.controls.email)) {
       <span class="contact-stage__field-error">
         @if (form.controls.email.hasError('required')) {
-          Bitte gib deine E-Mail-Adresse ein.
+          {{ content().form.email.requiredError }}
         } @else if (form.controls.email.hasError('blockedDomain')) {
-          Bitte nutze keine Test- oder Wegwerfadresse.
+          {{ content().form.email.blockedDomainError }}
         } @else if (form.controls.email.hasError('email')) {
-          Bitte gib eine gueltige E-Mail-Adresse ein.
+          {{ content().form.email.emailError }}
+        }
+      </span>
+    }
+  </label>
+
+  <label class="contact-stage__field">
+    <span class="contact-stage__field-label">{{ content().form.subject.label }}</span>
+    <input
+      class="contact-stage__input"
+      type="text"
+      name="subject"
+      formControlName="subject"
+      maxlength="100"
+      [placeholder]="content().form.subject.placeholder"
+    >
+    @if (showError(form.controls.subject)) {
+      <span class="contact-stage__field-error">
+        @if (form.controls.subject.hasError('required')) {
+          {{ content().form.subject.requiredError }}
+        } @else if (form.controls.subject.hasError('maxlength')) {
+          {{ content().form.subject.maxlengthError }}
         }
       </span>
     }
   </label>
 
   <label class="contact-stage__field contact-stage__field--message">
-    <span class="contact-stage__field-label">NACHRICHT</span>
+    <span class="contact-stage__field-label">{{ content().form.message.label }}</span>
     <textarea
       class="contact-stage__input contact-stage__input--textarea"
       name="message"
       rows="5"
       formControlName="message"
       maxlength="800"
-      placeholder="Erzähle mir, worum es geht."
+      [placeholder]="content().form.message.placeholder"
     ></textarea>
     <span
       class="contact-stage__field-meta"
       [style.opacity]="messageLength() > 0 ? 0.72 : 0.38"
     >
-      {{ messageLength() }} / {{ messageMaxLength }} Zeichen
+      {{ messageLength() }} / {{ messageMaxLength }} {{ content().form.message.counterSuffix }}
     </span>
     @if (showError(form.controls.message)) {
       <span class="contact-stage__field-error">
         @if (form.controls.message.hasError('required')) {
-          Bitte gib eine Nachricht ein.
+          {{ content().form.message.requiredError }}
         } @else if (form.controls.message.hasError('minlength')) {
-          Die Nachricht muss mindestens 10 Zeichen lang sein.
+          {{ content().form.message.minlengthError }}
         } @else if (form.controls.message.hasError('maxlength')) {
-          Die Nachricht darf maximal 800 Zeichen lang sein.
+          {{ content().form.message.maxlengthError }}
         }
       </span>
     }
@@ -96,7 +117,7 @@
     </label>
     @if (showError(form.controls.consent)) {
       <span class="contact-stage__field-error contact-stage__field-error--consent">
-        Bitte bestaetige den Datenschutzhinweis.
+        {{ content().form.consentError }}
       </span>
     }
   </div>

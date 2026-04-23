@@ -2,18 +2,18 @@
   <header
     class="stage-shell__header references-stage__header"
   >
-    <p class="stage-shell__eyebrow references-stage__eyebrow">{{ eyebrow }}</p>
-    <h2 class="stage-shell__title references-stage__title">{{ title }}</h2>
+    <p class="stage-shell__eyebrow references-stage__eyebrow">{{ eyebrow() }}</p>
+    <h2 class="stage-shell__title references-stage__title">{{ title() }}</h2>
   </header>
 
   <div class="references-stage__body">
-    @for (quote of quotes; track quote.author) {
+    @for (quote of quotes(); track $index) {
       <div
         class="references-stage__quote"
         [class.references-stage__quote--primary]="quote.variant === 'primary'"
         [class.references-stage__quote--secondary]="quote.variant === 'secondary'"
       >
-        @for (paragraph of quote.paragraphs; track paragraph) {
+        @for (paragraph of quote.paragraphs; track $index) {
           <p class="references-stage__quote-text">{{ paragraph }}</p>
         }
         <p class="references-stage__quote-author">{{ quote.author }}</p>

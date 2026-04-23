@@ -13,9 +13,15 @@ import { type HeroDescriptionData } from '../../hero.models';
 })
 export class HeroDescriptionComponent {
   readonly content = input.required<HeroDescriptionData>();
-  private readonly accentLines = new Set(['Moderne', 'Experiences,', 'überzeugen']);
+  private readonly accentLines = new Set([
+    'moderne',
+    'experiences,',
+    'überzeugen',
+    'modern',
+    'convince',
+  ]);
 
   isAccentLine(line: string): boolean {
-    return this.accentLines.has(line);
+    return this.accentLines.has(line.toLowerCase());
   }
 }

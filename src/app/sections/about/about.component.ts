@@ -4,21 +4,16 @@ import {
   ElementRef,
   OnDestroy,
   afterNextRender,
+  computed,
   inject,
   viewChild,
 } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scheduleScrollTriggerRefresh } from '../../shared/animations/scroll-trigger-refresh';
+import { LanguageStore } from '../../i18n/language.store';
 
-import {
-  ABOUT_CONTEXT_CENTER,
-  ABOUT_CONTEXT_LEFT,
-  ABOUT_CONTEXT_RIGHT,
-  ABOUT_INTRO_LEAD,
-  ABOUT_INTRO_SECONDARY,
-  ABOUT_PORTRAIT,
-} from './about.data';
+import { getAboutContent } from './about.data';
 import { AboutImageComponent } from './components/about-image/about-image.component';
 import { AboutTextBlockComponent } from './components/about-text-block/about-text-block.component';
 
@@ -46,15 +41,17 @@ export class AboutComponent implements OnDestroy {
   readonly introChapter = viewChild.required<ElementRef<HTMLElement>>('introChapter');
   readonly contextChapter = viewChild.required<ElementRef<HTMLElement>>('contextChapter');
 
-  readonly portrait = ABOUT_PORTRAIT;
-  readonly introLead = ABOUT_INTRO_LEAD;
-  readonly introSecondary = ABOUT_INTRO_SECONDARY;
-  readonly contextLeft = ABOUT_CONTEXT_LEFT;
-  readonly contextCenter = ABOUT_CONTEXT_CENTER;
-  readonly contextRight = ABOUT_CONTEXT_RIGHT;
-
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly languageStore = inject(LanguageStore);
   private animationContext: gsap.Context | null = null;
+
+  readonly content = computed(() => getAboutContent(this.languageStore.language()));
+  readonly portrait = computed(() => this.content().portrait);
+  readonly introLead = computed(() => this.content().introLead);
+  readonly introSecondary = computed(() => this.content().introSecondary);
+  readonly contextLeft = computed(() => this.content().contextLeft);
+  readonly contextCenter = computed(() => this.content().contextCenter);
+  readonly contextRight = computed(() => this.content().contextRight);
 
   constructor() {
     afterNextRender(() => this.initAnimation());

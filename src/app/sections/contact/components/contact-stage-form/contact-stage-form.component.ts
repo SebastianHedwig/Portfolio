@@ -12,6 +12,7 @@ import { PrimaryButtonComponent } from '../../../../shared/components/primary-bu
 import { type ContactContent } from '../../contact.data'
 
 const NAME_MAX_LENGTH = 50
+const SUBJECT_MAX_LENGTH = 100
 const MESSAGE_MIN_LENGTH = 10
 const MESSAGE_MAX_LENGTH = 800
 const BLOCKED_EMAIL_DOMAINS = new Set([
@@ -47,6 +48,7 @@ const BLOCKED_EMAIL_DOMAINS = new Set([
 export class ContactStageFormComponent {
   readonly content = input.required<ContactContent>()
   readonly nameMaxLength = NAME_MAX_LENGTH
+  readonly subjectMaxLength = SUBJECT_MAX_LENGTH
   readonly messageMinLength = MESSAGE_MIN_LENGTH
   readonly messageMaxLength = MESSAGE_MAX_LENGTH
   readonly form = new FormGroup({
@@ -57,6 +59,10 @@ export class ContactStageFormComponent {
     email: new FormControl('', {
       nonNullable: true,
       validators: [requiredTrimmed, ianaEmailValidator],
+    }),
+    subject: new FormControl('', {
+      nonNullable: true,
+      validators: [requiredTrimmed, Validators.maxLength(SUBJECT_MAX_LENGTH)],
     }),
     message: new FormControl('', {
       nonNullable: true,

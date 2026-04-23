@@ -4,6 +4,7 @@ import {
   ElementRef,
   OnDestroy,
   afterNextRender,
+  computed,
   inject,
   viewChild,
 } from '@angular/core';
@@ -12,17 +13,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
+import { LanguageStore } from '../../i18n/language.store';
 import { TechStackLearningItemComponent } from './components/tech-stack-learning-item/tech-stack-learning-item.component';
 import { TechStackStackGroupComponent } from './components/tech-stack-stack-group/tech-stack-stack-group.component';
 import { TechStackTextBlockComponent } from './components/tech-stack-text-block/tech-stack-text-block.component';
-import {
-  TECH_STACK_CORE_GROUP,
-  TECH_STACK_EXTENDED_GROUP,
-  TECH_STACK_FOCUS_BLOCK,
-  TECH_STACK_INTRO_BLOCK,
-  TECH_STACK_LEARNING_ITEM,
-  TECH_STACK_MAIN_GROUP,
-} from './tech-stack.data';
+import { getTechStackContent } from './tech-stack.data';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,14 +70,16 @@ export class TechStackComponent implements OnDestroy {
   readonly stage = viewChild.required<ElementRef<HTMLElement>>('stage');
 
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly languageStore = inject(LanguageStore);
   private animationContext: gsap.Context | null = null;
 
-  readonly introBlock = TECH_STACK_INTRO_BLOCK;
-  readonly focusBlock = TECH_STACK_FOCUS_BLOCK;
-  readonly learningItem = TECH_STACK_LEARNING_ITEM;
-  readonly coreGroup = TECH_STACK_CORE_GROUP;
-  readonly mainGroup = TECH_STACK_MAIN_GROUP;
-  readonly extendedGroup = TECH_STACK_EXTENDED_GROUP;
+  readonly content = computed(() => getTechStackContent(this.languageStore.language()));
+  readonly introBlock = computed(() => this.content().introBlock);
+  readonly focusBlock = computed(() => this.content().focusBlock);
+  readonly learningItem = computed(() => this.content().learningItem);
+  readonly coreGroup = computed(() => this.content().coreGroup);
+  readonly mainGroup = computed(() => this.content().mainGroup);
+  readonly extendedGroup = computed(() => this.content().extendedGroup);
 
   constructor() {
     afterNextRender(() => this.initAnimation());

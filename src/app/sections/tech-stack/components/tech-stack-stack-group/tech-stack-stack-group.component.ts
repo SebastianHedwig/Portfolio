@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
+import { LanguageStore } from '../../../../i18n/language.store';
 import { type TechStackGroupData } from '../../tech-stack.models';
 
 @Component({
@@ -20,8 +22,11 @@ import { type TechStackGroupData } from '../../tech-stack.models';
 export class TechStackStackGroupComponent {
   readonly group = input.required<TechStackGroupData>();
 
+  private readonly languageStore = inject(LanguageStore);
+
   readonly hostClass = computed(
-    () => `tech-stage__stack tech-stage__stack--${this.group().variant}`,
+    () =>
+      `tech-stage__stack tech-stage__stack--${this.group().variant} tech-stage__stack--lang-${this.languageStore.language()}`,
   );
 
   readonly itemClass = computed(

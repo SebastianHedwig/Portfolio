@@ -3,20 +3,20 @@
     <span id="about-intro" class="about-stage__anchor" aria-hidden="true"></span>
 
     <div class="about-stage__sticky">
-      <div class="about-stage__viewport" aria-label="About-Sequenz">
+      <div class="about-stage__viewport" [attr.aria-label]="content().viewportAriaLabel">
         <div
           #introChapter
           class="about-stage__chapter about-stage__chapter--intro"
         >
           <div class="about-stage__scene about-stage__scene--intro">
             <app-about-text-block
-              [block]="introSecondary"
+              [block]="introSecondary()"
             ></app-about-text-block>
 
-            <app-about-image [image]="portrait"></app-about-image>
+            <app-about-image [image]="portrait()"></app-about-image>
 
             <app-about-text-block
-              [block]="introLead"
+              [block]="introLead()"
             ></app-about-text-block>
           </div>
         </div>
@@ -28,15 +28,15 @@
           <div class="about-stage__scene about-stage__scene--context">
             <div class="about-stage__context-rail">
               <app-about-text-block
-                [block]="contextLeft"
+                [block]="contextLeft()"
               ></app-about-text-block>
 
               <app-about-text-block
-                [block]="contextCenter"
+                [block]="contextCenter()"
               ></app-about-text-block>
 
               <app-about-text-block
-                [block]="contextRight"
+                [block]="contextRight()"
               ></app-about-text-block>
             </div>
           </div>

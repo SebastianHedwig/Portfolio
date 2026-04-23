@@ -2,9 +2,10 @@
   <a
     class="primary-button"
     [class.primary-button--disabled]="disabled()"
-    [href]="disabled() ? null : targetHref"
+    [href]="disabled() ? null : resolvedHref()"
     [attr.aria-disabled]="disabled()"
     [attr.tabindex]="disabled() ? -1 : null"
+    (click)="handleLinkClick($event)"
   >
     <span class="primary-button__label">{{ label() }}</span>
     <span class="primary-button__arrow" aria-hidden="true"></span>

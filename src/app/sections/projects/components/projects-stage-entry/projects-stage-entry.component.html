@@ -2,7 +2,7 @@
   class="stage-shell__header projects-stage__header"
 >
   <p class="stage-shell__eyebrow projects-stage__eyebrow">
-    {{ eyebrow }}
+    {{ content().eyebrow }}
   </p>
   <h2 class="stage-shell__title projects-stage__title">
     @for (line of lines(); track line.className) {
@@ -15,6 +15,6 @@
     }
   </h2>
   <p class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle">
-    {{ lead }}
+    {{ content().lead }}
   </p>
 </header>

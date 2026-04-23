@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { SecondaryButtonComponent } from '../../shared/components/secondary-button/secondary-button.component';
+import { LanguageStore } from '../../i18n/language.store';
+import { getImprintContent } from './imprint.data';
 
 @Component({
   selector: 'app-imprint',
@@ -10,33 +12,17 @@ import { SecondaryButtonComponent } from '../../shared/components/secondary-butt
   styleUrl: './imprint.component.scss',
 })
 export class ImprintComponent {
-  readonly sections = [
-    {
-      title: 'Anbieterangaben',
-      paragraphs: [
-        'Die finalen Angaben fuer das Impressum werden hier im naechsten Schritt eingefuegt.',
-        'Aktuell dient dieser Bereich als Platzhalter fuer Name, Anschrift, Kontakt und weitere gesetzlich erforderliche Informationen.',
-      ],
-    },
-    {
-      title: 'Kontakt',
-      paragraphs: [
-        'Hier folgt spaeter der verbindliche Kontaktblock mit E-Mail-Adresse und weiteren Pflichtangaben.',
-      ],
-    },
-    {
-      title: 'Hinweise',
-      paragraphs: [
-        'Sobald der finale Text vorliegt, wird diese Seite inhaltlich vollstaendig ersetzt, das Layout kann so bestehen bleiben.',
-      ],
-    },
-  ] as const;
+  private readonly languageStore = inject(LanguageStore);
+
+  readonly content = computed(() => getImprintContent(this.languageStore.language()));
 
   closePage(): void {
     window.close();
 
     window.setTimeout(() => {
-      window.location.href = '/';
+      window.location.href = this.languageStore.buildLocalizedPath(
+        this.languageStore.language(),
+      );
     }, 120);
   }
 }

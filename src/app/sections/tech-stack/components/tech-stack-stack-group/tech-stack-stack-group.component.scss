@@ -20,6 +20,11 @@
     --tech-stage-group-label-shift: 0.375rem;
   }
 
+  &.tech-stage__stack--main.tech-stage__stack--lang-en {
+    --tech-stage-group-label-right: 39.5%;
+    --tech-stage-group-label-width: calc(18ch + 3.4em);
+  }
+
   &.tech-stage__stack--extended {
     justify-content: space-between;
     align-items: flex-start;
@@ -30,7 +35,12 @@
       clamp(10.5rem, 24vh, 19.5rem);
     opacity: 0.7;
     --tech-stage-group-label-top: 10%;
-    --tech-stage-group-label-right: 15%;
+    --tech-stage-group-label-right: 18%;
     --tech-stage-group-label-shift: 0.5rem;
+  }
+
+  &.tech-stage__stack--extended.tech-stage__stack--lang-en {
+    --tech-stage-group-label-right: 10%;
+    --tech-stage-group-label-width: calc(28ch + 5.4em);
   }
 }

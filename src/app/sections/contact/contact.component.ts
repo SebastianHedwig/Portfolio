@@ -4,15 +4,17 @@ import {
   ElementRef,
   OnDestroy,
   afterNextRender,
+  computed,
   inject,
 } from '@angular/core';
 import { gsap } from 'gsap';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
+import { LanguageStore } from '../../i18n/language.store';
 import { ContactStageContentComponent } from './components/contact-stage-content/contact-stage-content.component';
 import { ContactStageFormComponent } from './components/contact-stage-form/contact-stage-form.component';
-import { CONTACT_CONTENT } from './contact.data';
+import { type ContactContent, getContactContent } from './contact.data';
 
 const CONTACT_REVEALS: readonly ScrollRevealConfig[] = [
   {
@@ -32,10 +34,19 @@ const CONTACT_REVEALS: readonly ScrollRevealConfig[] = [
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent implements OnDestroy {
-  readonly content = CONTACT_CONTENT;
-
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly languageStore = inject(LanguageStore);
   private animationContext: gsap.Context | null = null;
+
+  readonly content = computed<ContactContent>(() => {
+    const language = this.languageStore.language();
+    const content = getContactContent(language);
+
+    return {
+      ...content,
+      consentHref: this.languageStore.buildLocalizedPath(language, content.consentHref),
+    };
+  });
 
   constructor() {
     afterNextRender(() => this.initAnimation());

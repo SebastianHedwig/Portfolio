@@ -1,12 +1,12 @@
 <div class="projects-stage">
-  <app-projects-stage-entry></app-projects-stage-entry>
+  <app-projects-stage-entry [content]="content().entry"></app-projects-stage-entry>
 
   <div #scrollSpace class="projects-stage__scroll-space">
     <span id="projects-first" class="projects-stage__anchor" aria-hidden="true"></span>
 
     <div class="projects-stage__sticky">
-      <div #viewport class="projects-stage__viewport" aria-label="Projektsequenz">
-        @for (project of projects; track project.index) {
+      <div #viewport class="projects-stage__viewport" [attr.aria-label]="content().viewportAriaLabel">
+        @for (project of projects(); track $index) {
           <app-projects-stage-item [project]="project"></app-projects-stage-item>
         }
       </div>

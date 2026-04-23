@@ -17,6 +17,13 @@ export class AboutTextBlockComponent {
   readonly containerClass = computed(() => this.block().containerClass);
   readonly titleLines = computed(() => this.block().title.split('\n'));
   readonly copySegments = computed(() => this.getCopySegments());
+  private readonly accentPattern = /(Erlebnisse|sind das Ergebnis|experiences|they are the result)/gi;
+  private readonly accentSegments = new Set([
+    'erlebnisse',
+    'sind das ergebnis',
+    'experiences',
+    'they are the result',
+  ]);
 
   private getCopySegments(): Array<{ accent: boolean; text: string }> {
     const copy = this.block().copy;
@@ -25,11 +32,10 @@ export class AboutTextBlockComponent {
       return [{ accent: false, text: copy }];
     }
 
-    const accentPattern = /(Erlebnisse|sind das Ergebnis)/g;
-    const segments = copy.split(accentPattern).filter((segment) => segment.length > 0);
+    const segments = copy.split(this.accentPattern).filter((segment) => segment.length > 0);
 
     return segments.map((segment) => ({
-      accent: segment === 'Erlebnisse' || segment === 'sind das Ergebnis',
+      accent: this.accentSegments.has(segment.toLowerCase()),
       text: segment,
     }));
   }

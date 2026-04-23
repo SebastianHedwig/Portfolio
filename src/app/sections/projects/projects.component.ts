@@ -4,6 +4,8 @@ import {
   ElementRef,
   OnDestroy,
   afterNextRender,
+  computed,
+  effect,
   inject,
   viewChild,
 } from '@angular/core';
@@ -12,13 +14,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
+import { scheduleScrollTriggerRefresh } from '../../shared/animations/scroll-trigger-refresh';
+import { LanguageStore } from '../../i18n/language.store';
 import {
   ProjectsStageEntryComponent,
   PROJECTS_STAGE_ENTRY_REVEALS,
 } from './components/projects-stage-entry/projects-stage-entry.component';
 import { ProjectsStageItemComponent } from './components/projects-stage-item/projects-stage-item.component';
 import { type ProjectStageItemData } from './projects.models';
-import { PROJECTS_STAGE_ITEMS } from './projects.data';
+import { getProjectsContent } from './projects.data';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,18 +42,43 @@ interface ProjectsAnimationElements {
 export class ProjectsComponent implements OnDestroy {
   readonly scrollSpace = viewChild.required<ElementRef<HTMLElement>>('scrollSpace');
   readonly viewport = viewChild.required<ElementRef<HTMLElement>>('viewport');
-  readonly projects: readonly ProjectStageItemData[] = PROJECTS_STAGE_ITEMS;
 
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly languageStore = inject(LanguageStore);
   private animationContext: gsap.Context | null = null;
+  private projectsTimeline: gsap.core.Timeline | null = null;
+  private hasInitializedLanguage = false;
+
+  readonly content = computed(() => getProjectsContent(this.languageStore.language()));
+  readonly projects = computed<readonly ProjectStageItemData[]>(() => this.content().items);
 
   constructor() {
     afterNextRender(() => this.initAnimation());
+    effect((onCleanup) => {
+      this.languageStore.language();
+
+      if (!this.hasInitializedLanguage) {
+        this.hasInitializedLanguage = true;
+        return;
+      }
+
+      const preservedProgress = this.getActiveProjectsProgress();
+      if (preservedProgress === null) {
+        return;
+      }
+
+      const refreshFrameId = requestAnimationFrame(() => {
+        scheduleScrollTriggerRefresh(() => this.restoreProjectsProgress(preservedProgress));
+      });
+
+      onCleanup(() => cancelAnimationFrame(refreshFrameId));
+    });
   }
 
   ngOnDestroy(): void {
     this.animationContext?.revert();
     this.animationContext = null;
+    this.projectsTimeline = null;
   }
 
   private initAnimation(): void {
@@ -66,7 +95,7 @@ export class ProjectsComponent implements OnDestroy {
   private getAnimationElements(): ProjectsAnimationElements | null {
     const viewport = this.viewport().nativeElement;
     const projectPanels = Array.from(viewport.querySelectorAll<HTMLElement>('app-projects-stage-item'));
-    if (projectPanels.length !== this.projects.length) return null;
+    if (projectPanels.length !== this.projects().length) return null;
 
     return {
       scrollSpace: this.scrollSpace().nativeElement,
@@ -86,6 +115,7 @@ export class ProjectsComponent implements OnDestroy {
 
   private buildTimeline(elements: ProjectsAnimationElements): void {
     const timeline = this.createTimeline(elements.scrollSpace);
+    this.projectsTimeline = timeline;
 
     this.addProjectsEnter(timeline, elements.projectPanels[0]);
     this.addPanelTransitions(timeline, elements.projectPanels);
@@ -182,5 +212,27 @@ export class ProjectsComponent implements OnDestroy {
       this.host.nativeElement,
       PROJECTS_STAGE_ENTRY_REVEALS as readonly ScrollRevealConfig[],
     );
+  }
+
+  private getActiveProjectsProgress(): number | null {
+    const progress = this.projectsTimeline?.scrollTrigger?.progress;
+
+    if (progress === undefined || progress <= 0 || progress >= 1) {
+      return null;
+    }
+
+    return progress;
+  }
+
+  private restoreProjectsProgress(progress: number): void {
+    const scrollTrigger = this.projectsTimeline?.scrollTrigger;
+    if (!scrollTrigger) {
+      return;
+    }
+
+    const nextScrollTop = scrollTrigger.start + progress * (scrollTrigger.end - scrollTrigger.start);
+
+    window.scrollTo({ top: nextScrollTop, behavior: 'auto' });
+    ScrollTrigger.update();
   }
 }

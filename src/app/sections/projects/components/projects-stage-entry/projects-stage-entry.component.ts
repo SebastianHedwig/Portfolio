@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { type ProjectsEntryContent } from '../../projects.data';
 
 interface ProjectsStageEntryLine {
   accent: boolean;
@@ -63,24 +64,11 @@ export const PROJECTS_STAGE_ENTRY_REVEALS = [
   },
 })
 export class ProjectsStageEntryComponent {
-  readonly eyebrow = 'Selected Work';
-  readonly titleLines = [
-    'Projekte',
-    'die zeigen ',
-    'wie aus :',
-    'Struktur',
-    'Haltung',
-    'Präzision',
-    'digitale',
-    'Ergebnisse',
-    'entstehen.',
-  ] as const;
-  readonly lead =
-    'Kein Katalog. Kein Raster. Nur drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.';
+  readonly content = input.required<ProjectsEntryContent>();
   readonly lines = computed(() => this.createLines());
 
   private createLines(): readonly ProjectsStageEntryLine[] {
-    return this.titleLines.map((text, index) => ({
+    return this.content().titleLines.map((text, index) => ({
       accent: this.isAccentLine(index),
       className: `projects-stage__title-line projects-stage__title-line--${index + 1}`,
       text,
