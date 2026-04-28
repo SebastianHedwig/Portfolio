@@ -6,9 +6,9 @@
   position: relative;
   z-index: 1;
   justify-content: flex-start;
-  gap: clamp(1.35rem, 3vh, 2.1rem);
+  gap: clamp(1rem, 2.6vh, 2.1rem);
   width: 100%;
-  max-width: 28rem;
+  max-width: clamp(23rem, 24vw, 28rem);
   min-width: 0;
   overflow: visible;
 }
@@ -23,7 +23,7 @@
   &__panel {
     @include mixins.stack;
     position: relative;
-    gap: clamp(1.35rem, 3vh, 2.1rem);
+    gap: clamp(1rem, 2.6vh, 2.1rem);
     isolation: isolate;
     overflow: visible;
 
@@ -57,10 +57,11 @@
 
   &__index {
     color: tokens.$color-accent;
-    font-size: 3rem;
+    font-size: clamp(2rem, 2.65vw, 3rem);
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding-bottom: clamp(3rem, 6vw, 8rem);
+    white-space: nowrap;
+    padding-bottom: clamp(2.4rem, 5.2vw, 8rem);
   }
 
   &__copy {
@@ -70,14 +71,14 @@
 
   &__eyebrow {
     @include mixins.caps-label(0.78rem);
-    padding-inline-start: 1rem;
-    padding-block-end: 1rem;
+    padding-inline-start: clamp(0.75rem, 0.9vw, 1rem);
+    padding-block-end: clamp(0.7rem, 1.2vh, 1rem);
 
   }
 
   &__title {
     color: tokens.$color-heading;
-    font-size: clamp(2.4rem, 4.7vw, 4.8rem);
+    font-size: clamp(2.4rem, 4.35vw, 4.8rem);
     font-weight: 700;
     line-height: 0.96;
     max-width: 10ch;
@@ -105,13 +106,13 @@
   &__action {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 3rem;
-    padding-top: 5rem;
+    flex-wrap: nowrap;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    padding-top: clamp(2.4rem, 5vh, 5rem);
   }
 }
 
-@media (max-width: tokens.$breakpoint-desktop) {
+@media (max-width: 1023px) {
   :host {
     width: min(100%, 28rem);
   }
@@ -119,6 +120,54 @@
   .project-moment {
     &__title {
       max-width: 12ch;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  :host {
+    gap: clamp(1rem, 2vh, 1.45rem);
+    max-width: 27rem;
+  }
+
+  .project-moment {
+    &__panel {
+      gap: clamp(1rem, 2vh, 1.45rem);
+    }
+
+    &__index {
+      font-size: clamp(2rem, 2.55vw, 2.35rem);
+      padding-bottom: clamp(2rem, 4vw, 4rem);
+    }
+
+    &__eyebrow {
+      font-size: 0.7rem;
+      padding-inline-start: 0.75rem;
+      padding-block-end: 0.7rem;
+    }
+
+    &__title {
+      font-size: clamp(2rem, 4.3vw, 3.6rem);
+      max-width: 11ch;
+    }
+
+    &__copy {
+      height: 16rem;
+    }
+
+    &__action {
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: clamp(1rem, 2vw, 1.45rem);
+      height: 4rem;
+      margin-top: auto;
+      padding-top: 0;
+
+      app-primary-button,
+      app-secondary-button {
+        transform: scale(0.88);
+        transform-origin: center;
+      }
     }
   }
 }

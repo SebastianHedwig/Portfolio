@@ -4,7 +4,10 @@
     gap: clamp(2.5rem, 7vw, 7rem);
     padding: clamp(7rem, 16vh, 13rem) 0;
     padding-left: clamp(4rem, 10vw, 10rem);
-    --tech-stage-group-label-top: 22.5%;
+    --tech-stage-group-label-top: auto;
+    --tech-stage-group-label-bottom: calc(
+      50% + (clamp(4.6rem, 7vw, 6.2rem) / 2) + clamp(1.7rem, 3.2vh, 2.45rem)
+    );
     --tech-stage-group-label-left: 35%;
     --tech-stage-group-label-shift: 0.375rem;
   }
@@ -15,7 +18,10 @@
     padding-block: clamp(7rem, 16vh, 13rem);
     padding-left: clamp(12rem, 22vw, 22rem);
     opacity: 0.9;
-    --tech-stage-group-label-top: 25%;
+    --tech-stage-group-label-top: auto;
+    --tech-stage-group-label-bottom: calc(
+      50% + (clamp(3.4rem, 5.3vw, 4.6rem) / 2) + clamp(1.7rem, 3.2vh, 2.45rem)
+    );
     --tech-stage-group-label-right: 45%;
     --tech-stage-group-label-shift: 0.375rem;
   }
@@ -34,7 +40,7 @@
       clamp(4rem, 8vw, 8rem)
       clamp(10.5rem, 24vh, 19.5rem);
     opacity: 0.7;
-    --tech-stage-group-label-top: 10%;
+    --tech-stage-group-label-top: clamp(0.25rem, 2.5vh, 1.75rem);
     --tech-stage-group-label-right: 18%;
     --tech-stage-group-label-shift: 0.5rem;
   }
@@ -42,5 +48,45 @@
   &.tech-stage__stack--extended.tech-stage__stack--lang-en {
     --tech-stage-group-label-right: 10%;
     --tech-stage-group-label-width: calc(28ch + 5.4em);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  :host {
+    &.tech-stage__stack--core {
+      gap: clamp(1.8rem, 5vw, 4.5rem);
+      padding: clamp(5rem, 12vh, 8rem) 0;
+      padding-left: clamp(2.5rem, 7vw, 6rem);
+      --tech-stage-group-label-bottom: calc(
+        50% + (clamp(4.6rem, 7vw, 6.2rem) / 2) + clamp(1.55rem, 3vh, 2.25rem)
+      );
+    }
+
+    &.tech-stage__stack--main {
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      padding-block: clamp(5rem, 12vh, 8rem);
+      padding-left: clamp(8rem, 18vw, 15rem);
+      --tech-stage-group-label-bottom: calc(
+        50% + (clamp(3.4rem, 5.3vw, 4.6rem) / 2) + clamp(1.55rem, 3vh, 2.25rem)
+      );
+      --tech-stage-group-label-right: 42%;
+    }
+
+    &.tech-stage__stack--main.tech-stage__stack--lang-en {
+      --tech-stage-group-label-right: 36%;
+    }
+
+    &.tech-stage__stack--extended {
+      gap: clamp(1.2rem, 3vw, 2.6rem);
+      padding:
+        clamp(7rem, 16vh, 13rem)
+        clamp(2.5rem, 6vw, 5rem)
+        clamp(7.5rem, 18vh, 13rem);
+      --tech-stage-group-label-right: 16%;
+    }
+
+    &.tech-stage__stack--extended.tech-stage__stack--lang-en {
+      --tech-stage-group-label-right: 8%;
+    }
   }
 }

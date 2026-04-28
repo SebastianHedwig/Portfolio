@@ -36,7 +36,7 @@ export const CONTACT_CONTENT_EN: ContactContent = {
       maxlengthError: 'The subject must be 100 characters or fewer.',
     },
     message: {
-      label: 'MESSAGE',
+      label: 'Message',
       placeholder: 'Tell me what this is about.',
       requiredError: 'Please enter a message.',
       minlengthError: 'Your message must be at least 10 characters long.',

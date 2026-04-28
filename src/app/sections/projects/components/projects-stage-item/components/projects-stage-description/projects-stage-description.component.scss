@@ -50,11 +50,25 @@
   &__description-label {
     @include mixins.caps-label(1.5rem);
     color: tokens.$color-accent-soft;
+    font-size: clamp(1.15rem, 1.9vw, 1.5rem);
   }
 
   &__description-value {
     color: #fff;
-    font-size: 1.2rem;
-    line-height: 1.55;
+    font-size: clamp(0.98rem, 1.45vw, 1.2rem);
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  .project-moment {
+    &__description-label {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    }
+
+    &__description-value {
+      font-size: clamp(0.9rem, 1.45vw, 1rem);
+      line-height: 1.48;
+    }
   }
 }

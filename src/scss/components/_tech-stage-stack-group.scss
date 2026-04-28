@@ -169,6 +169,7 @@
       position: absolute;
       display: block;
       top: var(--tech-stage-group-label-top);
+      bottom: var(--tech-stage-group-label-bottom, auto);
       right: var(--tech-stage-group-label-right, auto);
       left: var(--tech-stage-group-label-left, auto);
       width: var(--tech-stage-group-label-width, auto);

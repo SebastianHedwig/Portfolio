@@ -11,3 +11,10 @@
   padding-block: clamp(9rem, 14vh, 15rem);
   will-change: transform, opacity;
 }
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  .tech-stage {
+    min-height: 100svh;
+    padding-block: clamp(6.5rem, 12vh, 9rem);
+  }
+}

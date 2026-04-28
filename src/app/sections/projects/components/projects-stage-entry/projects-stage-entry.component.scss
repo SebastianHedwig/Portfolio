@@ -167,7 +167,7 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
   }
 }
 
-@media (max-width: tokens.$breakpoint-desktop) {
+@media (max-width: 1023px) {
   .projects-stage {
     &__header {
       @include mixins.stack;
@@ -240,6 +240,55 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       width: auto;
       margin: 0;
       text-align: justify;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  .projects-stage {
+    &__header {
+      display: grid;
+      grid-template-columns: repeat(20, minmax(0, 1fr));
+      grid-template-rows: repeat(12, auto);
+      width: min(100%, 86rem);
+      min-height: 86svh;
+      margin-bottom: clamp(6rem, 12vh, 9rem);
+      row-gap: clamp(0.3rem, 0.7vh, 0.65rem);
+      text-align: left;
+    }
+
+    &__eyebrow {
+      grid-column: 14 / span 4;
+      grid-row: 1;
+      font-size: clamp(0.9rem, 1.3vw, 1rem);
+    }
+
+    &__title {
+      display: contents;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+    }
+
+    &__title-line {
+      display: block;
+      width: max-content;
+      margin-inline: 0;
+      white-space: nowrap;
+
+      &--3 {
+        margin-bottom: clamp(4rem, 8vh, 7rem);
+      }
+
+      &--7 {
+        margin-top: clamp(4rem, 8vh, 7rem);
+      }
+    }
+
+    &__subtitle {
+      grid-column: 12 / span 7;
+      width: min(100%, 22rem);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      text-align: left;
     }
   }
 }

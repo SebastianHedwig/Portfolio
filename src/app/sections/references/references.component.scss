@@ -106,7 +106,7 @@
   }
 }
 
-@media (max-width: tokens.$breakpoint-desktop) {
+@media (max-width: 1023px) {
   .references-stage {
     &__body {
       flex-direction: column;
@@ -121,6 +121,47 @@
       width: min(100%, 38rem);
       margin: 0;
       animation-delay: 0s;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  .references-stage {
+    min-height: 76svh;
+    gap: clamp(2rem, 4vw, 3.5rem);
+
+    &__header {
+      margin-left: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    &__eyebrow {
+      font-size: clamp(0.9rem, 1.3vw, 1rem);
+    }
+
+    &__body {
+      flex-direction: row;
+      gap: clamp(3rem, 7vw, 6rem);
+      min-height: clamp(26rem, 62vh, 40rem);
+      padding-top: 0;
+    }
+
+    &__quote,
+    &__quote--primary,
+    &__quote--secondary {
+      width: min(100%, 27rem);
+    }
+
+    &__quote--secondary {
+      margin-right: clamp(0.5rem, 2vw, 2rem);
+    }
+
+    &__quote-text {
+      font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+      line-height: 1.62;
+    }
+
+    &__quote-author {
+      font-size: clamp(0.82rem, 1.05vw, 0.92rem);
     }
   }
 }

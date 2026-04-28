@@ -39,7 +39,7 @@
   }
 }
 
-@media (max-width: tokens.$breakpoint-desktop) {
+@media (max-width: 1023px) {
   .projects-stage {
 
     &__scroll-space {
@@ -50,6 +50,21 @@
       height: 90svh;
     }
 
+    &__viewport {
+      height: 100svh;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  .projects-stage {
+    padding-block: clamp(4.5rem, 9vh, 7rem) clamp(6rem, 10vh, 8rem);
+
+    &__scroll-space {
+      height: 324svh;
+    }
+
+    &__sticky,
     &__viewport {
       height: 100svh;
     }

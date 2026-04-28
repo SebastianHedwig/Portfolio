@@ -36,7 +36,7 @@ export const CONTACT_CONTENT_DE: ContactContent = {
       maxlengthError: 'Der Betreff darf maximal 100 Zeichen lang sein.',
     },
     message: {
-      label: 'NACHRICHT',
+      label: 'Nachricht',
       placeholder: 'Erzähle mir, worum es geht.',
       requiredError: 'Bitte gib eine Nachricht ein.',
       minlengthError: 'Die Nachricht muss mindestens 10 Zeichen lang sein.',

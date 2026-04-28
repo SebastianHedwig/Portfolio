@@ -18,7 +18,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
   viewportAriaLabel: 'About sequence',
   introLead: {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
-    title: 'One goal. One path.',
+    title: 'One goal.\nOne path.',
     titleClass: 'about-stage__statement',
     titleTag: 'h2',
     copy:

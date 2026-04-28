@@ -10,6 +10,7 @@
   --stage-min-height: 82svh;
   max-width: 1920px;
   justify-content: flex-start;
+  padding-block: clamp(2.5rem, 6.5vh, 4rem);
 
   &__body {
     justify-content: space-between;
@@ -36,7 +37,7 @@
   }
 }
 
-@media (max-width: tokens.$breakpoint-desktop) {
+@media (max-width: 1023px) {
   .contact-stage {
     &__body {
       flex-direction: column;
@@ -49,6 +50,29 @@
       width: 100%;
       max-width: 100%;
       margin: 0;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+  .contact-stage {
+    --stage-min-height: 76svh;
+
+    &__body {
+      flex-direction: row;
+      gap: clamp(2.5rem, 5vw, 4rem);
+      margin-inline: clamp(2rem, 5vw, 4rem);
+    }
+
+    &__column--content,
+    &__form {
+      flex: 1 1 0;
+      width: auto;
+      max-width: none;
+    }
+
+    &__form {
+      margin-block-start: clamp(2rem, 5vh, 3rem);
     }
   }
 }
