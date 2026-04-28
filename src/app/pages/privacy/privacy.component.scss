@@ -18,7 +18,10 @@
 
   &__header {
     gap: 1.15rem;
-    max-width: min(48rem, 100%);
+    width: min(100%, 58rem);
+    max-width: min(100%, 58rem);
+    margin-inline: auto;
+    text-align: left;
   }
 
   &__back-link {
@@ -34,6 +37,18 @@
       color: tokens.$color-accent;
       transform: translateX(0.12rem);
     }
+  }
+
+  &__topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  &__close-button {
+    flex: 0 0 auto;
   }
 
   &__eyebrow {
@@ -52,10 +67,13 @@
   &__content {
     @include mixins.stack(clamp(1rem, 2vw, 1.4rem));
     width: min(100%, 58rem);
+    margin-inline: auto;
+    text-align: left;
   }
 
   &__panel {
     @include mixins.stack(1rem);
+    align-items: flex-start;
     padding: clamp(1.3rem, 2vw, 1.8rem);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
@@ -78,6 +96,40 @@
     max-width: 64ch;
     color: rgba(tokens.$color-heading, 0.76);
     line-height: 1.72;
+    white-space: pre-line;
+  }
+
+  &__subsection-title,
+  &__detail-title {
+    margin: 0.35rem 0 0;
+    max-width: 64ch;
+    color: rgba(tokens.$color-heading, 0.9);
+    line-height: 1.35;
+  }
+
+  &__subsection-title {
+    font-size: clamp(1rem, 1.35vw, 1.15rem);
+  }
+
+  &__detail-title {
+    font-size: 0.98rem;
+  }
+
+  &__list {
+    margin: 0;
+    max-width: 64ch;
+    padding-left: 1.25rem;
+    color: rgba(tokens.$color-heading, 0.76);
+    line-height: 1.72;
+  }
+
+  &__link {
+    color: tokens.$color-accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 

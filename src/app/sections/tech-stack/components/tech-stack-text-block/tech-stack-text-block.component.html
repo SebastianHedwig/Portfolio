@@ -3,7 +3,7 @@
 }
 
 @if (block().titleTag === 'h2') {
-  <h2 [class]="block().titleClass">
+  <h2 id="tech-stack-title" [class]="block().titleClass">
     @for (line of block().titleLines; track $index) {
       <span>
         @for (segment of getTitleSegments(line); track segment.text + $index) {

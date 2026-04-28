@@ -108,13 +108,20 @@
   }
 
   &__icon-item {
+    color: inherit;
     cursor: pointer;
+    text-decoration: none;
   }
 
   &__icon {
     width: clamp(1.7rem, 2.2vw, 2rem);
     height: clamp(1.7rem, 2.2vw, 2rem);
     object-fit: contain;
+  }
+
+  &__icon[src$='xing-icon.png'] {
+    width: clamp(1.38rem, 1.8vw, 1.64rem);
+    height: clamp(1.38rem, 1.8vw, 1.64rem);
   }
 
   &__icon-label {
@@ -183,6 +190,11 @@
     &__icon {
       width: 1.75rem;
       height: 1.75rem;
+    }
+
+    &__icon[src$='xing-icon.png'] {
+      width: 1.42rem;
+      height: 1.42rem;
     }
   }
 

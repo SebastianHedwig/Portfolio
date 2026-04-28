@@ -1,7 +1,7 @@
 <div class="hero-description">
   <p class="hero-description__eyebrow">{{ content().eyebrow }}</p>
 
-  <h1 class="hero-description__headline">
+  <h1 id="hero-title" class="hero-description__headline">
     @for (line of content().headlineLines; track $index) {
       <span [class.hero-description__headline-line--accent]="isAccentLine(line)">{{ line }}</span>
     }

@@ -3,9 +3,31 @@ import { IMPRINT_CONTENT_DE } from './imprint.data.de';
 import { IMPRINT_CONTENT_EN } from './imprint.data.en';
 
 export interface LegalPageSection {
+  blocks?: readonly LegalPageBlock[];
   paragraphs: readonly string[];
   title: string;
 }
+
+export type LegalPageBlock =
+  | {
+      text: string;
+      type: 'paragraph';
+    }
+  | {
+      level: 3 | 4;
+      text: string;
+      type: 'heading';
+    }
+  | {
+      items: readonly string[];
+      type: 'list';
+    }
+  | {
+      href: string;
+      label: string;
+      text: string;
+      type: 'source';
+    };
 
 export interface LegalPageContent {
   closeLabel: string;

@@ -19,18 +19,21 @@ export const FOOTER_CONTENT_DE: FooterContent = {
   icons: [
     {
       alt: 'Mail',
+      href: 'mailto:sebastian.hedwig@web.de',
       letters: ['M', 'a', 'i', 'l'],
       src: 'assets/icons/footer/Mail-icon.svg',
     },
     {
       alt: 'GitHub',
+      href: 'https://github.com/SebastianHedwig',
       letters: ['G', 'i', 't', 'H', 'u', 'b'],
       src: 'assets/icons/footer/GitHub-icon.svg',
     },
     {
-      alt: 'LinkedIn',
-      letters: ['L', 'i', 'n', 'k', 'e', 'd', 'I', 'n'],
-      src: 'assets/icons/footer/linkedIn-icon.svg',
+      alt: 'Xing',
+      href: 'https://www.xing.com/profile/Sebastian_Hedwig038158',
+      letters: ['X', 'i', 'n', 'g'],
+      src: 'assets/icons/footer/xing-icon.png',
     },
   ],
 } as const;

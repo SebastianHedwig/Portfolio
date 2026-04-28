@@ -4,7 +4,7 @@
   <p class="stage-shell__eyebrow projects-stage__eyebrow">
     {{ content().eyebrow }}
   </p>
-  <h2 class="stage-shell__title projects-stage__title">
+  <h2 id="projects-title" class="stage-shell__title projects-stage__title">
     @for (line of lines(); track line.className) {
       <span
         [class]="line.className"

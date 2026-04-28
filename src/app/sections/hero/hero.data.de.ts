@@ -28,8 +28,8 @@ export const HERO_CONTENT_DE: HeroContent = {
     alt: 'Portrait von Sebastian Hedwig',
   },
   statementParts: [
-    'BASED IN FLÖRSHEIM',
-    'OPEN FOR OPPORTUNITIES',
-    'AVAILABLE FOR REMOTE WORK',
+    'WOHNHAFT IN FLÖRSHEIM',
+    'OFFEN FÜR NEUE MÖGLICHKEITEN',
+    'VERFÜGBAR FÜR REMOTE-ARBEIT',
   ],
 } as const;

@@ -6,7 +6,6 @@ import { AboutComponent } from '../../sections/about/about.component';
 import { ContactComponent } from '../../sections/contact/contact.component';
 import { HeroComponent } from '../../sections/hero/hero.component';
 import { LanguageStore } from '../../i18n/language.store';
-import { scheduleScrollTriggerRefresh } from '../../shared/animations/scroll-trigger-refresh';
 import { ProjectsComponent } from '../../sections/projects/projects.component';
 import { ReferencesComponent } from '../../sections/references/references.component';
 import { TechStackComponent } from '../../sections/tech-stack/tech-stack.component';
@@ -36,10 +35,18 @@ export class LandingComponent {
       this.languageStore.language();
 
       const refreshFrameId = requestAnimationFrame(() => {
-        scheduleScrollTriggerRefresh();
+        void this.scheduleScrollTriggerRefresh();
       });
 
       onCleanup(() => cancelAnimationFrame(refreshFrameId));
     });
+  }
+
+  private async scheduleScrollTriggerRefresh(): Promise<void> {
+    const { scheduleScrollTriggerRefresh } = await import(
+      '../../shared/animations/scroll-trigger-refresh'
+    );
+
+    scheduleScrollTriggerRefresh();
   }
 }

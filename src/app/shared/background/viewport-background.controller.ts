@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import { OrthographicCamera, Scene, WebGLRenderer } from 'three'
 
 import { createPhaseTwoLayers } from './viewport-background.config'
 import { PolygonNetworkLayer } from './viewport-background.network'
@@ -8,16 +8,16 @@ const BACKGROUND_TARGET_FPS = 45
 const BACKGROUND_FRAME_INTERVAL_MS = 1000 / BACKGROUND_TARGET_FPS
 
 export class ViewportBackgroundController {
-  private readonly renderer: THREE.WebGLRenderer
-  private readonly scene = new THREE.Scene()
-  private readonly camera = new THREE.OrthographicCamera()
+  private readonly renderer: WebGLRenderer
+  private readonly scene = new Scene()
+  private readonly camera = new OrthographicCamera()
   private currentLayers: PolygonNetworkLayer[] = []
   private animationFrameId = 0
   private lastFrameTime = 0
   private lastFrameGateTime = 0
 
   constructor(private readonly canvas: HTMLCanvasElement) {
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       canvas,
       alpha: true,
       antialias: true,

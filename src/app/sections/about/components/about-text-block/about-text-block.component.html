@@ -1,5 +1,5 @@
 @if (block().titleTag === 'h2') {
-  <h2 [class]="block().titleClass">
+  <h2 id="about-title" [class]="block().titleClass">
     @for (line of titleLines(); track line + $index) {
       <span>{{ line }}</span>
     }

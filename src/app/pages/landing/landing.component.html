@@ -1,31 +1,43 @@
 <app-desktop-header></app-desktop-header>
 
 <main class="landing-page">
-  <section class="landing-stage section section--hero" id="hero">
+  <section class="landing-stage section section--hero" id="hero" aria-labelledby="hero-title">
     <app-hero></app-hero>
   </section>
 
-  <section class="landing-stage section section--about" id="about">
-    <app-about></app-about>
+  <section class="landing-stage section section--about" id="about" aria-labelledby="about-title">
+    @defer (on idle) {
+      <app-about></app-about>
+    }
   </section>
 
-  <section class="landing-stage section section--tech-stack" id="tech-stack">
-    <app-tech-stack></app-tech-stack>
+  <section class="landing-stage section section--tech-stack" id="tech-stack" aria-labelledby="tech-stack-title">
+    @defer (on idle) {
+      <app-tech-stack></app-tech-stack>
+    }
   </section>
 
-  <section class="landing-stage section section--projects" id="projects">
-    <app-projects></app-projects>
+  <section class="landing-stage section section--projects" id="projects" aria-labelledby="projects-title">
+    @defer (on idle) {
+      <app-projects></app-projects>
+    }
   </section>
 
-  <section class="landing-stage section section--references" id="references">
-    <app-references></app-references>
+  <section class="landing-stage section section--references" id="references" aria-labelledby="references-title">
+    @defer (on idle) {
+      <app-references></app-references>
+    }
   </section>
 
-  <section class="landing-stage section section--contact" id="contact">
-    <app-contact></app-contact>
+  <section class="landing-stage section section--contact" id="contact" aria-labelledby="contact-title">
+    @defer (on idle) {
+      <app-contact></app-contact>
+    }
   </section>
 
-  <section class="landing-stage section section--legal" id="legal">
-    <app-desktop-footer></app-desktop-footer>
+  <section class="landing-stage section section--legal" id="legal" aria-label="Footer">
+    @defer (on idle) {
+      <app-desktop-footer></app-desktop-footer>
+    }
   </section>
 </main>

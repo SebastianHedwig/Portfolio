@@ -9,7 +9,7 @@ import {
   inject,
 } from '@angular/core'
 
-import { ViewportBackgroundController } from './viewport-background.controller'
+import type { ViewportBackgroundController } from './viewport-background.controller'
 
 @Component({
   selector: 'app-viewport-background',
@@ -29,24 +29,23 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
   private readonly ngZone = inject(NgZone)
   private controller: ViewportBackgroundController | null = null
   private initFrameId = 0
+  private isDestroyed = false
   private readonly handleResize = () => {
     this.controller?.resize()
   }
 
   ngAfterViewInit(): void {
+    this.isDestroyed = false
     this.ngZone.runOutsideAngular(() => {
       this.initFrameId = window.requestAnimationFrame(() => {
         this.initFrameId = 0
-        this.controller = new ViewportBackgroundController(
-          this.canvasRef.nativeElement,
-        )
-        this.controller.start()
-        window.addEventListener('resize', this.handleResize, { passive: true })
+        void this.createController()
       })
     })
   }
 
   ngOnDestroy(): void {
+    this.isDestroyed = true
     if (this.initFrameId) {
       window.cancelAnimationFrame(this.initFrameId)
       this.initFrameId = 0
@@ -54,5 +53,21 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.handleResize)
     this.controller?.destroy()
     this.controller = null
+  }
+
+  private async createController(): Promise<void> {
+    const { ViewportBackgroundController } = await import(
+      './viewport-background.controller'
+    )
+
+    if (this.isDestroyed) {
+      return
+    }
+
+    this.controller = new ViewportBackgroundController(
+      this.canvasRef.nativeElement,
+    )
+    this.controller.start()
+    window.addEventListener('resize', this.handleResize, { passive: true })
   }
 }

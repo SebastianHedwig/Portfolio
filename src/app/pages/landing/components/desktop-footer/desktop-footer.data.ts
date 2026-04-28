@@ -4,6 +4,7 @@ import { FOOTER_CONTENT_EN } from './desktop-footer.data.en';
 
 export interface FooterIcon {
   alt: string;
+  href?: string;
   letters: readonly string[];
   src: string;
 }

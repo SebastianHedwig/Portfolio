@@ -4,25 +4,60 @@ export const IMPRINT_CONTENT_DE: LegalPageContent = {
   closeLabel: 'Schliessen',
   eyebrow: 'Rechtliches',
   title: 'Impressum',
-  lead: 'Diese Seite ist vorbereitet und wird mit deinem finalen Impressumstext vervollstaendigt.',
+  lead: 'Angaben gemäß § 5 TMG.',
   sections: [
     {
       title: 'Anbieterangaben',
       paragraphs: [
-        'Die finalen Angaben fuer das Impressum werden hier im naechsten Schritt eingefuegt.',
-        'Aktuell dient dieser Bereich als Platzhalter fuer Name, Anschrift, Kontakt und weitere gesetzlich erforderliche Informationen.',
+        'Sebastian Hedwig\nMoselstraße 3\n65439 Flörsheim am Main',
       ],
     },
     {
       title: 'Kontakt',
       paragraphs: [
-        'Hier folgt spaeter der verbindliche Kontaktblock mit E-Mail-Adresse und weiteren Pflichtangaben.',
+        'Telefon: 0151 23537848\nE-Mail: sebastian.hedwig@web.de',
       ],
     },
     {
-      title: 'Hinweise',
+      title: 'Datenschutz',
+      paragraphs: [],
+      blocks: [
+        {
+          type: 'source',
+          label: 'Die Datenschutzerklärung finden Sie hier:',
+          text: 'Hier klicken',
+          href: '/de/datenschutz',
+        },
+      ],
+    },
+    {
+      title: 'Haftung für Links',
       paragraphs: [
-        'Sobald der finale Text vorliegt, wird diese Seite inhaltlich vollstaendig ersetzt, das Layout kann so bestehen bleiben.',
+        'Diese Website enthält Links zu externen Websites Dritter. Auf deren Inhalte habe ich keinen Einfluss. Deshalb kann ich für diese fremden Inhalte keine Gewähr übernehmen. Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen Inhalte erkennbar. Bei Bekanntwerden von Rechtsverletzungen werde ich entsprechende Links umgehend entfernen.',
+      ],
+    },
+    {
+      title: 'Assets von',
+      paragraphs: [],
+      blocks: [
+        {
+          type: 'source',
+          label: 'Pixabay:',
+          text: 'https://pixabay.com',
+          href: 'https://pixabay.com',
+        },
+        {
+          type: 'source',
+          label: 'Flaticon:',
+          text: 'https://www.flaticon.com',
+          href: 'https://www.flaticon.com',
+        },
+        {
+          type: 'source',
+          label: 'Icons8:',
+          text: 'https://icons8.com',
+          href: 'https://icons8.com',
+        },
       ],
     },
   ],

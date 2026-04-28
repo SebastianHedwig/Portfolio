@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ViewportBackgroundComponent } from './shared/background/viewport-background.component';
+import { SeoService } from './shared/seo/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,6 @@ import { ViewportBackgroundComponent } from './shared/background/viewport-backgr
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {}
+export class App {
+  private readonly seo = inject(SeoService);
+}

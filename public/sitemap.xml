@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://sebastian-hedwig.de/de</loc>
+    <lastmod>2026-04-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de" />
+  </url>
+  <url>
+    <loc>https://sebastian-hedwig.de/en</loc>
+    <lastmod>2026-04-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de" />
+  </url>
+  <url>
+    <loc>https://sebastian-hedwig.de/de/impressum</loc>
+    <lastmod>2026-04-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de/impressum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en/impressum" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de/impressum" />
+  </url>
+  <url>
+    <loc>https://sebastian-hedwig.de/en/impressum</loc>
+    <lastmod>2026-04-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de/impressum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en/impressum" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de/impressum" />
+  </url>
+  <url>
+    <loc>https://sebastian-hedwig.de/de/datenschutz</loc>
+    <lastmod>2026-04-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de/datenschutz" />
+  </url>
+  <url>
+    <loc>https://sebastian-hedwig.de/en/datenschutz</loc>
+    <lastmod>2026-04-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de/datenschutz" />
+  </url>
+</urlset>

@@ -1,13 +1,16 @@
 <main class="legal-page section">
   <div class="section__inner stage-shell legal-page__shell">
     <header class="stage-shell__header legal-page__header">
-      <app-secondary-button
-        [label]="content().closeLabel"
-        size="compact"
-        direction="left"
-        (clicked)="closePage()"
-      />
-      <p class="stage-shell__eyebrow legal-page__eyebrow">{{ content().eyebrow }}</p>
+      <div class="legal-page__topline">
+        <p class="stage-shell__eyebrow legal-page__eyebrow">{{ content().eyebrow }}</p>
+        <app-secondary-button
+          class="legal-page__close-button"
+          [label]="content().closeLabel"
+          size="compact"
+          direction="left"
+          (clicked)="closePage()"
+        />
+      </div>
       <h1 class="stage-shell__title legal-page__title">{{ content().title }}</h1>
       <p class="stage-shell__lead legal-page__lead">
         {{ content().lead }}
@@ -20,6 +23,35 @@
           <h2 class="legal-page__section-title">{{ section.title }}</h2>
           @for (paragraph of section.paragraphs; track $index) {
             <p class="legal-page__paragraph">{{ paragraph }}</p>
+          }
+          @for (block of section.blocks ?? []; track $index) {
+            @switch (block.type) {
+              @case ('heading') {
+                @if (block.level === 3) {
+                  <h3 class="legal-page__subsection-title">{{ block.text }}</h3>
+                } @else {
+                  <h4 class="legal-page__detail-title">{{ block.text }}</h4>
+                }
+              }
+              @case ('paragraph') {
+                <p class="legal-page__paragraph">{{ block.text }}</p>
+              }
+              @case ('list') {
+                <ul class="legal-page__list">
+                  @for (item of block.items; track $index) {
+                    <li>{{ item }}</li>
+                  }
+                </ul>
+              }
+              @case ('source') {
+                <p class="legal-page__paragraph">
+                  {{ block.label }}
+                  <a class="legal-page__link" [href]="block.href" target="_blank" rel="noopener noreferrer">
+                    {{ block.text }}
+                  </a>
+                </p>
+              }
+            }
           }
         </section>
       }
