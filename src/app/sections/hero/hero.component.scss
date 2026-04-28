@@ -15,7 +15,7 @@
   &__statement-band {
     position: absolute;
     left: clamp(32rem, 44vw, 51rem);
-    bottom: clamp(4.5rem, 10vh, 7.25rem);
+    bottom: max(clamp(6.75rem, 13vh, 9.5rem), calc(100svh - 71rem));
     z-index: 3;
     width: min(70rem, 58vw);
     overflow: hidden;
@@ -76,6 +76,7 @@
     @include mixins.stack(clamp(1.25rem, 3.5vh, 3rem));
     position: relative;
     z-index: 2;
+    align-self: flex-start;
     flex: 1 1 72%;
     min-width: 0;
     padding-top: clamp(1rem, 3.5vh, 2.25rem);
@@ -128,13 +129,7 @@
 
 @media (max-height: 68rem) {
   .hero__statement-band {
-    bottom: clamp(10.25rem, 22vh, 13.5rem);
-  }
-}
-
-@media (min-height: 82rem) {
-  .hero__statement-band {
-    bottom: clamp(3.75rem, 8vh, 6.25rem);
+    bottom: max(clamp(10.25rem, 22vh, 13.5rem), calc(100svh - 71rem));
   }
 }
 

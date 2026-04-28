@@ -15,6 +15,7 @@
     margin-inline: auto auto;
     margin-left: clamp(-28rem, -16vw, -13rem);
     overflow: visible;
+    transform: translateY(-2rem);
 
     &::before {
       content: '';

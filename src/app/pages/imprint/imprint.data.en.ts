@@ -58,6 +58,12 @@ export const IMPRINT_CONTENT_EN: LegalPageContent = {
           text: 'https://icons8.com',
           href: 'https://icons8.com',
         },
+        {
+          type: 'source',
+          label: 'Developer Academy:',
+          text: 'https://developerakademie.com',
+          href: 'https://developerakademie.com',
+        },
       ],
     },
   ],
