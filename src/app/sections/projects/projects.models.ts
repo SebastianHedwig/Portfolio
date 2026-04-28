@@ -10,6 +10,10 @@ export interface ProjectStageVisualData {
 }
 
 export interface ProjectStageItemData {
+  actions?: {
+    githubHref?: string;
+    liveHref?: string;
+  };
   index: string;
   eyebrow: string;
   title: string;

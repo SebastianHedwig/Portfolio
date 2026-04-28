@@ -43,4 +43,8 @@ export class PrimaryButtonComponent {
   private isAnchorHref(targetHref: string): boolean {
     return targetHref.startsWith('#');
   }
+
+  isExternalHref(targetHref: string): boolean {
+    return /^https?:\/\//.test(targetHref);
+  }
 }

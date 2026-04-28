@@ -23,6 +23,9 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       index: 'Project 01',
       eyebrow: 'Kanban board',
       title: 'Join',
+      actions: {
+        githubHref: 'https://github.com/SebastianHedwig/Project_Join',
+      },
       description: {
         label: 'Description',
         value: 'A task manager inspired by the Kanban system, translating structure, interaction, and collaboration into a clear interface. Built with vanilla JavaScript, drag and drop, and real-time synchronization through Firebase.',
@@ -58,6 +61,9 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       index: 'Project 02',
       eyebrow: '2D platformer',
       title: 'Panda - Jungle Run',
+      actions: {
+        githubHref: 'https://github.com/SebastianHedwig/Panda_Jungle_Run',
+      },
       description: {
         label: 'Description',
         value: 'A 2D browser platformer developed in JavaScript with a custom engine. Inspired by classic side-scrolling platformers and optimized for all screen sizes. The central character is a panda moving through the jungle while facing different challenges.',
@@ -89,6 +95,9 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       index: 'Project 03',
       eyebrow: 'API-based application',
       title: 'Pokédex',
+      actions: {
+        githubHref: 'https://github.com/SebastianHedwig/Pokedex_Page',
+      },
       description: {
         label: 'Description',
         value: 'A browser-based Pokédex powered by the PokéAPI. The application structures and visualizes large data sets, making them accessible through a clear interface.',

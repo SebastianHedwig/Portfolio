@@ -11,7 +11,10 @@
       }
     </h3>
     <div class="project-moment__action">
-      <app-primary-button label="Github"></app-primary-button>
+      <app-primary-button
+        label="Github"
+        [href]="actions()?.githubHref ?? null"
+      ></app-primary-button>
       <app-secondary-button label="Live Test"></app-secondary-button>
     </div>
   </div>

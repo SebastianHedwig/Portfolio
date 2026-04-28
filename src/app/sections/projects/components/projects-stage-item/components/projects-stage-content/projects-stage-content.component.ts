@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { PrimaryButtonComponent } from '../../../../../../shared/components/primary-button/primary-button.component';
 import { SecondaryButtonComponent } from '../../../../../../shared/components/secondary-button/secondary-button.component';
+import { type ProjectStageItemData } from '../../../../projects.models';
 
 @Component({
   selector: 'app-projects-stage-content',
@@ -15,6 +16,7 @@ export class ProjectsStageContentComponent {
   readonly index = input.required<string>();
   readonly eyebrow = input.required<string>();
   readonly title = input.required<string>();
+  readonly actions = input<ProjectStageItemData['actions']>();
   readonly ambientClass = input<string | null>(null);
 
   isJoinTitle(): boolean {

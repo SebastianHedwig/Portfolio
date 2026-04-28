@@ -1,0 +1,65 @@
+@use 'abstracts/tokens';
+
+:host {
+  display: contents;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1px solid rgba(tokens.$color-accent, 0.72);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0) scale(0.82);
+  transition:
+    opacity 120ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+  will-change: transform, opacity;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -0.24rem;
+    border: 1px solid rgba(tokens.$color-accent-soft, 0.42);
+    border-radius: inherit;
+    opacity: 0;
+    transform: scale(0.78);
+  }
+
+  &--visible {
+    opacity: 0.78;
+  }
+
+  &--interactive {
+    border-color: rgba(tokens.$color-accent, 0.95);
+    background-color: rgba(tokens.$color-accent, 0.08);
+  }
+
+  &--clicking::after {
+    animation: cursor-ring-click 260ms ease-out;
+  }
+}
+
+@keyframes cursor-ring-click {
+  0% {
+    opacity: 0.92;
+    transform: scale(0.68);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.82);
+  }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    display: none;
+  }
+}

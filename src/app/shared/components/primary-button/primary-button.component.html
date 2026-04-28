@@ -5,6 +5,8 @@
     [href]="disabled() ? null : resolvedHref()"
     [attr.aria-disabled]="disabled()"
     [attr.tabindex]="disabled() ? -1 : null"
+    [attr.target]="isExternalHref(targetHref) ? '_blank' : null"
+    [attr.rel]="isExternalHref(targetHref) ? 'noopener noreferrer' : null"
     (click)="handleLinkClick($event)"
   >
     <span class="primary-button__label">{{ label() }}</span>

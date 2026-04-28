@@ -4,6 +4,8 @@
     [class.secondary-button--compact]="size() === 'compact'"
     [class.secondary-button--left]="direction() === 'left'"
     [href]="targetHref"
+    [attr.target]="isExternalHref(targetHref) ? '_blank' : null"
+    [attr.rel]="isExternalHref(targetHref) ? 'noopener noreferrer' : null"
   >
     <span class="secondary-button__label">{{ label() }}</span>
     <span class="secondary-button__arrow" aria-hidden="true"></span>

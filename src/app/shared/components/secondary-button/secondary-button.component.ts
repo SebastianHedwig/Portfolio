@@ -14,4 +14,8 @@ export class SecondaryButtonComponent {
   readonly size = input<'compact' | 'default'>('default');
   readonly type = input<'button' | 'submit' | 'reset'>('button');
   readonly clicked = output<void>();
+
+  isExternalHref(targetHref: string): boolean {
+    return /^https?:\/\//.test(targetHref);
+  }
 }
