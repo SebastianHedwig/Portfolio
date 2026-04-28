@@ -127,7 +127,7 @@
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     cursor: pointer;
-    transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+    transition: background-color 180ms ease, color 180ms ease;
 
     &:hover {
       color: tokens.$color-heading;
@@ -161,12 +161,12 @@
 
   &__link-text {
     display: inline-block;
-    transition: transform 220ms ease, text-shadow 220ms ease;
+    transition: transform 220ms ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
     &__link-text {
-      transition: text-shadow 220ms ease;
+      transition: none;
     }
 
     &__language-option {

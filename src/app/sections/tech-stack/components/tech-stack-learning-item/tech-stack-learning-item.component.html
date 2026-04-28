@@ -1,5 +1,11 @@
 <div class="tech-stage__learning-icon">
-  <img class="interactive-icon-hover__icon" [src]="item().src" [alt]="item().alt" />
+  <img
+    class="interactive-icon-hover__icon"
+    [src]="item().src"
+    [alt]="item().alt"
+    loading="lazy"
+    decoding="async"
+  />
 </div>
 
 <span class="tech-stage__label tech-stage__learning-label interactive-icon-hover__label">

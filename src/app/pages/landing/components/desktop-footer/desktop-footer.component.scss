@@ -151,7 +151,7 @@
 
   &__imprint-text {
     display: inline-block;
-    transition: transform 220ms ease, text-shadow 220ms ease;
+    transition: transform 220ms ease;
   }
 
   @media (max-width: 64rem) {
@@ -200,7 +200,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     &__imprint-text {
-      transition: text-shadow 220ms ease;
+      transition: none;
     }
   }
 }

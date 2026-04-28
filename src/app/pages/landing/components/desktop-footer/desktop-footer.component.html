@@ -11,6 +11,8 @@
           class="desktop-footer__logo"
           [src]="footer().brand.logoSrc"
           [alt]="footer().brand.logoAlt"
+          loading="lazy"
+          decoding="async"
         />
 
         <p class="desktop-footer__name">
@@ -55,6 +57,8 @@
                 class="desktop-footer__icon interactive-icon-hover__icon"
                 [src]="icon.src"
                 [alt]="icon.alt"
+                loading="lazy"
+                decoding="async"
               />
             </a>
           } @else {
@@ -69,6 +73,8 @@
                 class="desktop-footer__icon interactive-icon-hover__icon"
                 [src]="icon.src"
                 [alt]="icon.alt"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           }

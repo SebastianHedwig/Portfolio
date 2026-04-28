@@ -5,6 +5,8 @@
       [class.tech-stage__icon--git]="item.alt === 'Git'"
       [src]="item.src"
       [alt]="item.alt"
+      loading="lazy"
+      decoding="async"
     />
 
     <span [class]="labelClass()" aria-hidden="true">

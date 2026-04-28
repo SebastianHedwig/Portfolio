@@ -34,7 +34,6 @@
     filter: brightness(0) saturate(100%) invert(88%) sepia(22%) saturate(600%)
       hue-rotate(160deg) brightness(95%) contrast(95%);
     transition:
-      filter 180ms ease,
       transform 180ms ease;
   }
 

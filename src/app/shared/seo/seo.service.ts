@@ -147,7 +147,7 @@ export class SeoService {
     const script = this.document.createElement('script');
     script.id = JSON_LD_ID;
     script.type = 'application/ld+json';
-    this.document.head.appendChild(script);
+    this.document.body.appendChild(script);
     return script;
   }
 }
@@ -181,7 +181,7 @@ function createStructuredData(language: AppLanguage): object[] {
 const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
   de: {
     '': {
-      title: 'Sebastian Hedwig | Frontend Developer',
+      title: 'Moderne Web Experiences | Sebastian Hedwig',
       description: 'Portfolio von Sebastian Hedwig, Frontend Developer aus Flörsheim mit Fokus auf Angular, TypeScript, SCSS, Interaktion und Performance.',
       path: '',
       robots: 'index, follow',
@@ -201,7 +201,7 @@ const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
   },
   en: {
     '': {
-      title: 'Sebastian Hedwig | Frontend Developer',
+      title: 'Modern Web Experiences | Sebastian Hedwig',
       description: 'Portfolio of Sebastian Hedwig, frontend developer based in Flörsheim with a focus on Angular, TypeScript, SCSS, interaction, and performance.',
       path: '',
       robots: 'index, follow',
