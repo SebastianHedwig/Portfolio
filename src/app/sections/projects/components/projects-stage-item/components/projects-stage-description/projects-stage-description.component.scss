@@ -50,13 +50,12 @@
   &__description-label {
     @include mixins.caps-label(1.5rem);
     color: tokens.$color-accent-soft;
-    font-size: clamp(1.15rem, 1.9vw, 1.5rem);
   }
 
   &__description-value {
     color: #fff;
-    font-size: clamp(0.98rem, 1.45vw, 1.2rem);
-    line-height: 1.5;
+    font-size: 1.2rem;
+    line-height: 1.55;
   }
 }
 

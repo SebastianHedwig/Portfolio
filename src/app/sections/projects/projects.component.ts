@@ -26,6 +26,11 @@ import { getProjectsContent } from './projects.data';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const TABLET_LANDSCAPE_QUERY =
+  '(min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px)';
+const PROJECTS_SCROLL_START = 'top bottom+=46%';
+const PROJECTS_SCROLL_START_TABLET_LANDSCAPE = 'top bottom+=24%';
+
 interface ProjectsAnimationElements {
   projectPanels: HTMLElement[];
   scrollSpace: HTMLElement;
@@ -126,13 +131,21 @@ export class ProjectsComponent implements OnDestroy {
       defaults: { ease: 'none' },
       scrollTrigger: {
         trigger: scrollSpace,
-        start: 'top bottom+=46%',
+        start: () => this.getProjectsScrollStart(),
         endTrigger: scrollSpace,
         end: 'bottom',
         scrub: 1.25,
         invalidateOnRefresh: true,
       },
     });
+  }
+
+  private getProjectsScrollStart(): string {
+    if (window.matchMedia(TABLET_LANDSCAPE_QUERY).matches) {
+      return PROJECTS_SCROLL_START_TABLET_LANDSCAPE;
+    }
+
+    return PROJECTS_SCROLL_START;
   }
 
   private addProjectsEnter(timeline: gsap.core.Timeline, firstPanel: HTMLElement): void {

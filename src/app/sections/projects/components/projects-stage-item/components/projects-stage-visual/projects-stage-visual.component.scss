@@ -16,9 +16,8 @@
     box-sizing: border-box;
     position: relative;
     justify-content: center;
-    width: min(100%, 65rem);
-    aspect-ratio: 3 / 2;
-    height: auto;
+    width: 100%;
+    height: 100%;
     margin-left: auto;
     overflow: visible;
 
@@ -50,9 +49,9 @@
     position: relative;
     z-index: 1;
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: min(100%, 65rem);
+    height: auto;
+    object-fit: contain;
     border-radius: 1rem;
     box-shadow:
       0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
@@ -61,6 +60,15 @@
     will-change: transform;
   }
 
+}
+
+@media (min-width: 1369px) {
+  .project-moment {
+    &__visual-image {
+      aspect-ratio: 160 / 99;
+      object-fit: cover;
+    }
+  }
 }
 
 @keyframes project-visual-float {
@@ -98,9 +106,14 @@
     &__visual-shell {
       min-height: 0;
       width: min(100%, 54rem);
+      aspect-ratio: 3 / 2;
+      height: auto;
     }
 
     &__visual-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 0.85rem;
     }
 

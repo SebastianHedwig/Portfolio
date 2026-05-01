@@ -6,7 +6,7 @@
 
 .project-moment {
   position: relative;
-  width: 90%;
+  width: min(90%, 108rem);
   height: 90svh;
   align-content: center;
 
@@ -19,7 +19,7 @@
     row-gap: clamp(0.45rem, 0.9vh, 0.85rem);
     align-items: start;
     justify-self: center;
-    width: min(100%, 1920px);
+    width: 100%;
     height: min(100%, 1080px);
     padding:
       clamp(2rem, 3vw, 2.7rem)
@@ -40,13 +40,13 @@
     }
 
     app-projects-stage-description {
-      grid-column: 2 / span 5;
+      grid-column: 2 / span 4;
       grid-row: 17 / span 4;
       align-self: start;
     }
 
     app-projects-stage-stack {
-      grid-column: 8 / span 5;
+      grid-column: 8 / span 4;
       grid-row: 15 / span 3;
       align-self: start;
     }

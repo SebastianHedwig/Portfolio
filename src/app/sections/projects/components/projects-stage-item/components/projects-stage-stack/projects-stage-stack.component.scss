@@ -18,31 +18,30 @@
   &__stack-label {
     @include mixins.caps-label(1.5rem);
     color: tokens.$color-accent-soft;
-    font-size: clamp(1.15rem, 1.9vw, 1.5rem);
   }
 
   &__stack-value {
     color: tokens.$color-text;
-    font-size: clamp(0.98rem, 1.45vw, 1.2rem);
-    line-height: 1.5;
+    font-size: 1.2rem;
+    line-height: 1.55;
   }
 
   &__stack-icons {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: clamp(0.85rem, 1.8vw, 1.6rem);
+    gap: clamp(1.1rem, 2vw, 1.6rem);
   }
 
   &__stack-item {
-    @include mixins.stack(clamp(0.55rem, 0.8vw, 0.7rem));
+    @include mixins.stack(0.7rem);
     align-items: center;
   }
 
   &__stack-icon {
     display: block;
-    width: clamp(2.75rem, 4.4vw, 4.6rem);
-    height: clamp(2.75rem, 4.4vw, 4.6rem);
+    width: clamp(3.4rem, 5.3vw, 4.6rem);
+    height: clamp(3.4rem, 5.3vw, 4.6rem);
     object-fit: contain;
     opacity: 1;
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
@@ -53,7 +52,7 @@
     margin: 0;
     color: tokens.$color-text;
     font-family: tokens.$font-eyebrow;
-    font-size: clamp(0.74rem, 0.9vw, 0.9rem);
+    font-size: 0.9rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     line-height: 1;
