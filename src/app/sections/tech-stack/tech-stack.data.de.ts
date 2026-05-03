@@ -73,6 +73,7 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
       createItem('Git', 'assets/icons/tech-stack/Git.svg'),
       createItem('Scrum', 'assets/icons/tech-stack/Scrum.svg'),
       createItem('VS Code', 'assets/icons/tech-stack/VSCode.svg'),
+      createItem('Three.js', 'assets/icons/tech-stack/ThreeJS.svg'),
       createItem('Material Design', 'assets/icons/tech-stack/Material Design.svg'),
     ],
   },

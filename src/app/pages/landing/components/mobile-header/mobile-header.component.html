@@ -1,0 +1,100 @@
+<header
+  #header
+  class="mobile-header"
+  [class.mobile-header--hidden]="isHidden()"
+  [class.mobile-header--language-switching]="isLanguageSwitching()"
+  [class.mobile-header--menu-open]="isMobileMenuOpen()"
+  [class.mobile-header--menu-closing]="isMobileMenuClosing()"
+>
+  <div class="mobile-header__inner">
+    <a
+      class="mobile-header__brand"
+      [href]="anchorNavigation.buildHref('#hero')"
+      [attr.aria-label]="brand().ariaLabel"
+      (click)="navigateFromMobileMenu($event, '#hero')"
+    >
+      <img
+        class="mobile-header__logo"
+        [src]="brand().logoSrc"
+        [alt]="brand().logoAlt"
+        loading="eager"
+        decoding="async"
+      />
+
+      <p class="mobile-header__name">
+        <span>{{ brand().firstName }}</span>
+        <span>
+          <span class="mobile-header__name-accent">{{ brand().surnameInitial }}</span>{{ brand().surnameTail }}
+        </span>
+      </p>
+    </a>
+
+    <button
+      class="mobile-header__menu-button"
+      type="button"
+      aria-label="Navigation"
+      aria-controls="mobile-navigation-panel"
+      [attr.aria-expanded]="isMobileMenuOpen()"
+      (click)="toggleMobileMenu()"
+    >
+      <span class="mobile-header__menu-line"></span>
+      <span class="mobile-header__menu-line"></span>
+      <span class="mobile-header__menu-line"></span>
+    </button>
+  </div>
+
+  <button
+    class="mobile-header__mobile-backdrop"
+    type="button"
+    tabindex="-1"
+    aria-hidden="true"
+    (click)="closeMobileMenu()"
+  ></button>
+
+  <div
+    id="mobile-navigation-panel"
+    class="mobile-header__mobile-panel"
+    [attr.aria-hidden]="!isMobileMenuOpen()"
+    [attr.inert]="isMobileMenuOpen() ? null : ''"
+  >
+    <nav class="mobile-header__mobile-nav" [attr.aria-label]="content().navAriaLabel">
+      @for (item of navItems(); track item.href) {
+        <a
+          class="mobile-header__mobile-link"
+          [href]="anchorNavigation.buildHref(item.href)"
+          (click)="navigateFromMobileMenu($event, item.href)"
+        >
+          <span class="mobile-header__link-text">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+
+    <div
+      class="mobile-header__language-toggle mobile-header__mobile-language-toggle"
+      [class.mobile-header__language-toggle--en]="activeLanguage() === 'en'"
+      [attr.aria-label]="content().languageToggleAriaLabel"
+      [title]="content().languageToggleLabel"
+    >
+      <button
+        class="mobile-header__language-option"
+        [class.mobile-header__language-option--active]="activeLanguage() === 'de'"
+        type="button"
+        aria-label="Deutsch"
+        [attr.aria-pressed]="activeLanguage() === 'de'"
+        (click)="switchLanguage('de')"
+      >
+        DE
+      </button>
+      <button
+        class="mobile-header__language-option"
+        [class.mobile-header__language-option--active]="activeLanguage() === 'en'"
+        type="button"
+        aria-label="English"
+        [attr.aria-pressed]="activeLanguage() === 'en'"
+        (click)="switchLanguage('en')"
+      >
+        EN
+      </button>
+    </div>
+  </div>
+</header>

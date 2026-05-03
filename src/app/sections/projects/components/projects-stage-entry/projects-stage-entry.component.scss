@@ -244,6 +244,109 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
   }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  :host {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .projects-stage {
+    &__header {
+      display: grid;
+      grid-template-columns: repeat(20, minmax(0, 1fr));
+      grid-template-rows: repeat(12, auto);
+      align-content: center;
+      width: min(100%, 120rem);
+      max-width: 100%;
+      min-width: 0;
+      min-height: 100svh;
+      row-gap: clamp(0.4rem, 0.8vh, 0.9rem);
+      text-align: left;
+    }
+
+    &__eyebrow {
+      grid-column: 13 / span 6;
+      grid-row: 1;
+      transform: translateX(clamp(0.75rem, 1.35vw, 1.15rem));
+    }
+
+    &__title {
+      display: contents;
+    }
+
+    &__title-line {
+      display: block;
+      width: max-content;
+      max-width: none;
+      margin-inline: 0;
+      white-space: nowrap;
+
+      &--1 {
+        grid-column: 13;
+        grid-row: 2;
+        transform: translateX(clamp(0.75rem, 1.35vw, 1.15rem));
+      }
+
+      &--2 {
+        grid-column: 13;
+        grid-row: 3;
+        transform: translateX(clamp(0.75rem, 1.35vw, 1.15rem));
+      }
+
+      &--3 {
+        grid-column: 13;
+        grid-row: 4;
+        margin-bottom: $projects-stage-row-gap-large;
+        transform: translateX(clamp(0.75rem, 1.35vw, 1.15rem));
+      }
+
+      &--4 {
+        grid-column: 2;
+        grid-row: 5;
+        margin-top: $projects-stage-half-row-gap;
+      }
+
+      &--5 {
+        grid-column: 8;
+        grid-row: 6;
+        margin-top: clamp(0.2rem, 0.4vh, 0.45rem);
+      }
+
+      &--6 {
+        grid-column: 14;
+        grid-row: 7;
+        margin-top: clamp(0.2rem, 0.4vh, 0.45rem);
+      }
+
+      &--7 {
+        grid-column: 2;
+        grid-row: 8;
+        margin-top: $projects-stage-row-gap-large;
+      }
+
+      &--8 {
+        grid-column: 2;
+        grid-row: 9;
+        margin-top: clamp(-0.2rem, -0.2vh, 0rem);
+      }
+
+      &--9 {
+        grid-column: 2;
+        grid-row: 10;
+        margin-top: clamp(-0.45rem, -0.5vh, -0.2rem);
+      }
+    }
+
+    &__subtitle {
+      grid-column: 12 / span 8;
+      grid-row: 11 / span 2;
+      width: min(100%, 30rem);
+      margin: clamp(2rem, 4svh, 3rem) 0 0;
+      text-align: left;
+    }
+  }
+}
+
 @media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
   .projects-stage {
     &__header {

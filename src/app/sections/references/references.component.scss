@@ -5,10 +5,6 @@
   min-height: 86svh;
   gap: tokens.$section-gap;
 
-  &__header {
-    margin-left: 5rem;
-  }
-
   &__eyebrow {
     color: tokens.$color-muted;
     font-family: tokens.$font-eyebrow;
@@ -129,10 +125,6 @@
   .references-stage {
     min-height: 76svh;
     gap: clamp(2rem, 4vw, 3.5rem);
-
-    &__header {
-      margin-left: clamp(2rem, 4vw, 3.5rem);
-    }
 
     &__eyebrow {
       font-size: clamp(0.9rem, 1.3vw, 1rem);

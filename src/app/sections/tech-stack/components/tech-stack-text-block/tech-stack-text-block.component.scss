@@ -120,3 +120,17 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  :host {
+    &.tech-stage__intro {
+      margin-left: 0;
+    }
+
+    &.tech-stage__focus {
+      align-self: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

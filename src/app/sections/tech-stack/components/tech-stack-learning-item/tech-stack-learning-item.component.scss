@@ -72,3 +72,22 @@
     transform: scale(1.1) rotate(-2.8deg) translateY(0);
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  :host {
+    position: static;
+    align-self: center;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1023px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  .tech-stage__learning-label {
+    opacity: 0.85;
+
+    .tech-stage__label-letter {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

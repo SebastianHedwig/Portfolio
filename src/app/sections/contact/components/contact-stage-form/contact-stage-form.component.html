@@ -76,7 +76,7 @@
       name="message"
       rows="5"
       formControlName="message"
-      maxlength="800"
+      [maxlength]="messageMaxLength"
       [placeholder]="content().form.message.placeholder"
     ></textarea>
     <span

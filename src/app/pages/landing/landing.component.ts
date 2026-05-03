@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 
 import { DesktopHeaderComponent } from './components/desktop-header/desktop-header.component';
 import { DesktopFooterComponent } from './components/desktop-footer/desktop-footer.component';
+import { MobileHeaderComponent } from './components/mobile-header/mobile-header.component';
+import { MobileFooterComponent } from './components/mobile-footer/mobile-footer.component';
 import { AboutComponent } from '../../sections/about/about.component';
 import { ContactComponent } from '../../sections/contact/contact.component';
 import { HeroComponent } from '../../sections/hero/hero.component';
@@ -16,6 +18,7 @@ import { TechStackComponent } from '../../sections/tech-stack/tech-stack.compone
   standalone: true,
   imports: [
     DesktopHeaderComponent,
+    MobileHeaderComponent,
     HeroComponent,
     AboutComponent,
     TechStackComponent,
@@ -23,6 +26,7 @@ import { TechStackComponent } from '../../sections/tech-stack/tech-stack.compone
     ReferencesComponent,
     ContactComponent,
     DesktopFooterComponent,
+    MobileFooterComponent,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',

@@ -116,3 +116,86 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  :host.about-stage__text-zone--secondary {
+    .about-stage__statement--secondary {
+      max-width: 13.8ch;
+    }
+  }
+
+  :host.about-stage__context-block--left {
+    align-items: center;
+    margin-inline: auto;
+
+    .about-stage__statement--secondary {
+      flex-direction: row;
+      justify-content: center;
+      gap: 0.45rem;
+      white-space: nowrap;
+
+      > span {
+        display: inline-flex;
+        align-items: baseline;
+        font-size: 0;
+      }
+
+      > span:not(:last-child)::after {
+        content: '—';
+        margin-left: 0.45rem;
+        font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+      }
+
+      > span:nth-child(1)::before {
+        content: 'Ruhig';
+      }
+
+      > span:nth-child(2)::before {
+        content: 'Klar';
+      }
+
+      > span:nth-child(3)::before {
+        content: 'Direkt';
+      }
+
+      > span::before {
+        font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+      }
+    }
+
+    .about-stage__support {
+      margin-inline: auto;
+      text-align: center;
+    }
+  }
+
+  :host.about-stage__context-block--right {
+    align-items: flex-start;
+
+    .about-stage__context-title {
+      font-size: 0;
+      text-align: left;
+
+      &::before {
+        content: 'Aus Flörsheim.\A Mit Haltung im Detail.';
+        font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+        white-space: pre-line;
+      }
+    }
+
+    .about-stage__context-copy {
+      text-align: left;
+    }
+  }
+
+  :host.about-stage__context-block--center {
+    align-items: flex-end;
+
+    .about-stage__statement--secondary,
+    .about-stage__support {
+      width: min(100%, 27rem);
+      max-width: 27rem;
+      text-align: left;
+    }
+  }
+}

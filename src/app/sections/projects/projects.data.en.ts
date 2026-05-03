@@ -20,7 +20,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
   viewportAriaLabel: 'Project sequence',
   items: [
     {
-      index: 'Project 01',
+      index: 'Structure, so that it works.',
       eyebrow: 'Kanban board',
       title: 'Join',
       actions: {
@@ -58,7 +58,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
     },
     {
-      index: 'Project 02',
+      index: 'A Game With Real Flow',
       eyebrow: '2D platformer',
       title: 'Panda - Jungle Run',
       actions: {
@@ -92,7 +92,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
     },
     {
-      index: 'Project 03',
+      index: 'Pokémon. Easy to explore.',
       eyebrow: 'API-based application',
       title: 'Pokédex',
       actions: {

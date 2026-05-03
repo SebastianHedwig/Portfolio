@@ -75,3 +75,17 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  .hero-portrait {
+    &__image-shell {
+      margin-left: clamp(2.5rem, calc(1rem + 3.125vw), 3rem);
+      transform: translateY(5rem);
+    }
+
+    &__image {
+      height: clamp(42rem, 78svh, 52rem);
+      transform: scale(1.01);
+    }
+  }
+}

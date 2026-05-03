@@ -11,26 +11,30 @@ import {
   viewChild,
 } from '@angular/core';
 import { Location } from '@angular/common';
-import { getLandingHeaderContent } from '../../data/landing-header.data';
+
 import { type AppLanguage } from '../../../../i18n/language.model';
 import { LanguageStore } from '../../../../i18n/language.store';
 import { LocalizedAnchorNavigationService } from '../../../../shared/navigation/localized-anchor-navigation.service';
+import { getLandingHeaderContent } from '../../data/landing-header.data';
 
 const HEADER_IDLE_REVEAL_DELAY_MS = 2000;
 const HEADER_TOP_REVEAL_SCROLL_Y_PX = 24;
 const HEADER_LANGUAGE_SWITCH_LOCK_MS = 260;
+const MOBILE_MENU_CLOSE_MS = 260;
 
 @Component({
-  selector: 'app-desktop-header',
+  selector: 'app-mobile-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  templateUrl: './desktop-header.component.html',
-  styleUrl: './desktop-header.component.scss',
+  templateUrl: './mobile-header.component.html',
+  styleUrl: './mobile-header.component.scss',
 })
-export class DesktopHeaderComponent implements OnDestroy {
+export class MobileHeaderComponent implements OnDestroy {
   readonly header = viewChild.required<ElementRef<HTMLElement>>('header');
   readonly isHidden = signal(false);
   readonly isLanguageSwitching = signal(false);
+  readonly isMobileMenuOpen = signal(false);
+  readonly isMobileMenuClosing = signal(false);
 
   private readonly languageStore = inject(LanguageStore);
   private readonly location = inject(Location);
@@ -41,6 +45,7 @@ export class DesktopHeaderComponent implements OnDestroy {
   readonly activeLanguage = this.languageStore.language;
   private cleanupCallbacks: Array<() => void> = [];
   private idleRevealTimer: ReturnType<typeof setTimeout> | null = null;
+  private mobileMenuCloseTimer: ReturnType<typeof setTimeout> | null = null;
   private hasInitializedLanguage = false;
   private suppressInteractionsUntil = 0;
 
@@ -71,6 +76,7 @@ export class DesktopHeaderComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.clearIdleRevealTimer();
+    this.clearMobileMenuCloseTimer();
     this.cleanupEventListeners();
   }
 
@@ -90,10 +96,38 @@ export class DesktopHeaderComponent implements OnDestroy {
     this.location.replaceState(`${nextPath}${fragment}`);
   }
 
+  toggleMobileMenu(): void {
+    this.clearMobileMenuCloseTimer();
+    this.isMobileMenuClosing.set(false);
+    this.isMobileMenuOpen.update((isOpen) => !isOpen);
+    this.revealHeader();
+  }
+
+  closeMobileMenu(): void {
+    if (!this.isMobileMenuOpen()) {
+      return;
+    }
+
+    this.isMobileMenuOpen.set(false);
+    this.isMobileMenuClosing.set(true);
+
+    this.clearMobileMenuCloseTimer();
+    this.mobileMenuCloseTimer = window.setTimeout(() => {
+      this.isMobileMenuClosing.set(false);
+      this.mobileMenuCloseTimer = null;
+    }, MOBILE_MENU_CLOSE_MS);
+  }
+
+  navigateFromMobileMenu(event: MouseEvent, fragmentHref: string): void {
+    this.closeMobileMenu();
+    this.anchorNavigation.handleClick(event, fragmentHref);
+  }
+
   private initEventListeners(): void {
     this.cleanupCallbacks = [
       this.bindWindowEvent('scroll', () => this.handleScroll(), { passive: true }),
       this.bindWindowEvent('mousemove', (event) => this.handleMouseMove(event), { passive: true }),
+      this.bindWindowEvent('keydown', (event) => this.handleKeydown(event)),
     ];
   }
 
@@ -107,6 +141,11 @@ export class DesktopHeaderComponent implements OnDestroy {
   }
 
   private handleScroll(): void {
+    if (this.isMobileMenuOpen()) {
+      this.revealHeader();
+      return;
+    }
+
     if (this.isInteractionLocked()) {
       return;
     }
@@ -119,6 +158,12 @@ export class DesktopHeaderComponent implements OnDestroy {
 
     this.hideHeader();
     this.scheduleIdleReveal();
+  }
+
+  private handleKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.closeMobileMenu();
+    }
   }
 
   private handleMouseMove(event: MouseEvent): void {
@@ -149,6 +194,12 @@ export class DesktopHeaderComponent implements OnDestroy {
     if (this.idleRevealTimer === null) return;
     clearTimeout(this.idleRevealTimer);
     this.idleRevealTimer = null;
+  }
+
+  private clearMobileMenuCloseTimer(): void {
+    if (this.mobileMenuCloseTimer === null) return;
+    clearTimeout(this.mobileMenuCloseTimer);
+    this.mobileMenuCloseTimer = null;
   }
 
   private hideHeader(): void {

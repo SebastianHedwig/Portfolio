@@ -1,10 +1,10 @@
-import { type FooterContent } from './desktop-footer.data';
+import { type LandingFooterContent } from './landing-footer.data';
 
-export const FOOTER_CONTENT_DE: FooterContent = {
+export const LANDING_FOOTER_CONTENT_EN: LandingFooterContent = {
   brand: {
-    ariaLabel: 'Zur Hero-Stage springen',
+    ariaLabel: 'Jump to hero stage',
     logoSrc: 'assets/icons/logo/sh-monogram-128.png',
-    logoAlt: 'Logo von Sebastian Hedwig',
+    logoAlt: 'Sebastian Hedwig logo',
     firstName: 'Sebastian',
     surnameInitial: 'H',
     surnameTail: 'edwig',
@@ -14,7 +14,7 @@ export const FOOTER_CONTENT_DE: FooterContent = {
     copyrightText: 'Sebastian Hedwig 2026',
     location: 'Flörsheim am Main - Hessen, Germany',
   },
-  imprintLabel: 'Impressum',
+  imprintLabel: 'Imprint',
   imprintPath: 'impressum',
   icons: [
     {

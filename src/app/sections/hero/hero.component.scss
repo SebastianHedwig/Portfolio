@@ -14,11 +14,11 @@
 
   &__statement-band {
     position: absolute;
-    left: clamp(32rem, 44vw, 51rem);
-    bottom: max(clamp(6.75rem, 13vh, 9.5rem), calc(100svh - 71rem));
+    left: clamp(-4rem, 8vw, 18rem);
+    right: clamp(2rem, 4vw, 6rem);
+    bottom: clamp(1.5rem, 2.4vh, 4rem);
     z-index: 3;
-    width: min(70rem, 58vw);
-    overflow: hidden;
+    width: auto;
     pointer-events: none;
     opacity: 0.5;
     transform: rotate(-4deg);
@@ -127,6 +127,21 @@
   }
 }
 
+@media (max-height: 1090px) {
+  .hero__statement-band {
+    bottom: max(clamp(10.25rem, 22vh, 12.5rem), calc(100svh - 71rem));
+  }
+}
+
+@media (min-width: 1921px) {
+  .hero__statement-band {
+    left: 2rem;
+    right: clamp(2rem, 4vw, 8rem);
+    bottom: clamp(10rem, 10vh, 12.5rem);
+    width: min(70rem, 95vw);
+  }
+}
+
 @media (max-width: 1023px) {
   .hero__statement-band {
     display: none;
@@ -140,8 +155,8 @@
 
     &__statement-band {
       display: block;
-      left: clamp(27rem, 43vw, 36rem);
-      bottom: clamp(7.6rem, 14svh, 10.25rem);
+      left: clamp(-8rem, 6vw, 16rem);
+      bottom: clamp(6rem, 12svh, 10.25rem);
       width: min(42rem, 50vw);
     }
 
@@ -155,6 +170,34 @@
       flex-basis: min(23rem, 29%);
       padding-block-start: clamp(4.8rem, 11vh, 6.5rem);
       padding-block-end: clamp(1rem, 3vh, 2rem);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  .hero {
+    gap: clamp(1.6rem, 4vw, 2.75rem);
+    padding-block: clamp(0.6rem, 1.4svh, 1rem);
+
+    &__statement-band {
+      display: block;
+      left: clamp(-5rem, 4vw, 4rem);
+      right: clamp(1rem, 2.5vw, 1.5rem);
+      bottom: 0;
+      width: auto;
+      opacity: 0.42;
+    }
+
+    &__visual {
+      flex-basis: 66%;
+      min-height: clamp(34rem, 76svh, 48rem);
+      padding-top: clamp(2.4rem, 5.2svh, 3.6rem);
+    }
+
+    app-hero-description {
+      flex-basis: min(22rem, 31%);
+      padding-block-start: clamp(11.25rem, 21svh, 13.75rem);
+      padding-block-end: clamp(1rem, 3svh, 2rem);
     }
   }
 }

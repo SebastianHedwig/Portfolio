@@ -28,6 +28,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TABLET_LANDSCAPE_QUERY =
   '(min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px)';
+const TABLET_PORTRAIT_QUERY =
+  '(min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px)';
 const PROJECTS_SCROLL_START = 'top bottom+=46%';
 const PROJECTS_SCROLL_START_TABLET_LANDSCAPE = 'top bottom+=24%';
 
@@ -87,6 +89,14 @@ export class ProjectsComponent implements OnDestroy {
   }
 
   private initAnimation(): void {
+    if (this.isTabletPortrait()) {
+      this.animationContext?.revert();
+      this.animationContext = null;
+      this.projectsTimeline = null;
+      this.initProjectEntryReveals();
+      return;
+    }
+
     const elements = this.getAnimationElements();
     if (!elements) return;
 
@@ -146,6 +156,10 @@ export class ProjectsComponent implements OnDestroy {
     }
 
     return PROJECTS_SCROLL_START;
+  }
+
+  private isTabletPortrait(): boolean {
+    return window.matchMedia(TABLET_PORTRAIT_QUERY).matches;
   }
 
   private addProjectsEnter(timeline: gsap.core.Timeline, firstPanel: HTMLElement): void {

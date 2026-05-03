@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core'
+import { toSignal } from '@angular/core/rxjs-interop'
 import {
   AbstractControl,
   FormControl,
@@ -77,7 +78,10 @@ export class ContactStageFormComponent {
       validators: [Validators.requiredTrue],
     }),
   })
-  readonly messageLength = computed(() => this.form.controls.message.value.length)
+  readonly messageValue = toSignal(this.form.controls.message.valueChanges, {
+    initialValue: this.form.controls.message.value,
+  })
+  readonly messageLength = computed(() => this.messageValue().length)
 
   submit(): void {
     if (this.form.invalid) {

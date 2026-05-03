@@ -56,6 +56,41 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  .projects-stage {
+    max-width: 100%;
+    min-width: 0;
+    padding-block: clamp(5rem, 8svh, 7rem) clamp(6rem, 9svh, 8rem);
+
+    &__scroll-space {
+      height: auto;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    &__anchor {
+      top: 0;
+    }
+
+    &__sticky {
+      position: static;
+      display: block;
+      height: auto;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    &__viewport {
+      display: grid;
+      gap: clamp(18rem, 26svh, 24rem);
+      height: auto;
+      max-width: 100%;
+      min-width: 0;
+      overflow: visible;
+    }
+  }
+}
+
 @media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
   .projects-stage {
     padding-block: clamp(4.5rem, 9vh, 7rem) clamp(6rem, 10vh, 8rem);

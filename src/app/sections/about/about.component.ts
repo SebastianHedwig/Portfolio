@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initScrollReveals } from '../../shared/animations/scroll-reveal';
+import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
 import { scheduleScrollTriggerRefresh } from '../../shared/animations/scroll-trigger-refresh';
 import { LanguageStore } from '../../i18n/language.store';
 
@@ -27,6 +29,40 @@ interface AboutAnimationElements {
 }
 
 const ABOUT_BASE_VIEWPORT_HEIGHT = 1080;
+const TABLET_PORTRAIT_QUERY =
+  '(min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px)';
+const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: '.about-stage__text-zone--lead',
+    start: 'top 110%',
+    end: 'top 68%',
+  },
+  {
+    selector: 'app-about-image',
+    start: 'top 96%',
+    end: 'top 60%',
+  },
+  {
+    selector: '.about-stage__text-zone--secondary',
+    start: 'top 110%',
+    end: 'top 68%',
+  },
+  {
+    selector: '.about-stage__context-block--left',
+    start: 'top 110%',
+    end: 'top 68%',
+  },
+  {
+    selector: '.about-stage__context-block--right',
+    start: 'top 108%',
+    end: 'top 66%',
+  },
+  {
+    selector: '.about-stage__context-block--center',
+    start: 'top 108%',
+    end: 'top 66%',
+  },
+] as const;
 
 @Component({
   selector: 'app-about',
@@ -65,6 +101,16 @@ export class AboutComponent implements OnDestroy {
   private initAnimation(): void {
     const elements = this.getAnimationElements();
 
+    if (this.isTabletPortrait()) {
+      this.animationContext?.revert();
+      this.animationContext = gsap.context(
+        () => this.buildTabletPortraitAnimation(elements),
+        this.host.nativeElement,
+      );
+      scheduleScrollTriggerRefresh();
+      return;
+    }
+
     this.animationContext?.revert();
     this.animationContext = gsap.context(
       () => this.buildAnimation(elements),
@@ -85,6 +131,13 @@ export class AboutComponent implements OnDestroy {
   private buildAnimation(elements: AboutAnimationElements): void {
     this.setInitialChapterState(elements);
     this.buildTimeline(elements);
+  }
+
+  private buildTabletPortraitAnimation(elements: AboutAnimationElements): void {
+    gsap.set([elements.introChapter, elements.contextChapter], {
+      clearProps: 'transform,opacity,visibility',
+    });
+    initScrollReveals(this.host.nativeElement, ABOUT_TABLET_PORTRAIT_REVEALS);
   }
 
   private setInitialChapterState(elements: AboutAnimationElements): void {
@@ -177,5 +230,9 @@ export class AboutComponent implements OnDestroy {
 
   private roundToTenth(value: number): number {
     return Math.round(value * 10) / 10;
+  }
+
+  private isTabletPortrait(): boolean {
+    return window.matchMedia(TABLET_PORTRAIT_QUERY).matches;
   }
 }

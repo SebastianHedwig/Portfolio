@@ -90,3 +90,44 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  :host {
+    &.tech-stage__stack--core,
+    &.tech-stage__stack--main,
+    &.tech-stage__stack--extended {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+      --tech-stage-group-label-left: 50%;
+      --tech-stage-group-label-right: auto;
+      --tech-stage-group-label-width: max-content;
+    }
+
+    &.tech-stage__stack--extended {
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: clamp(2.4rem, 5svh, 3.5rem) clamp(2.5rem, 6vw, 4.5rem);
+      padding-block: clamp(5rem, 10svh, 8rem);
+    }
+
+    .tech-stage__group-label {
+      text-align: center;
+      transform: translateX(-50%) translateY(var(--tech-stage-group-label-shift, 0));
+
+      &--is-visible {
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .tech-stage__item--extended {
+      flex: 0 0 22%;
+      display: flex;
+      justify-content: center;
+      --tech-stack-extended-shift-x: 0rem;
+      --tech-stack-extended-shift-y: 0rem;
+    }
+  }
+}

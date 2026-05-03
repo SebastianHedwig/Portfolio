@@ -18,3 +18,32 @@
     padding-block: clamp(6.5rem, 12vh, 9rem);
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  .tech-stage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: clamp(5rem, 9svh, 7rem) clamp(2.5rem, 6vw, 4rem);
+    padding-block: 0;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  app-tech-stack-text-block.tech-stage__intro,
+  app-tech-stack-stack-group {
+    flex: 0 0 100%;
+  }
+
+  app-tech-stack-learning-item {
+    flex: 0 0 calc((100% - clamp(2.5rem, 6vw, 4rem)) / 2);
+    display: flex;
+    justify-content: center;
+  }
+
+  app-tech-stack-text-block.tech-stage__focus {
+    flex: 0 0 calc((100% - clamp(2.5rem, 6vw, 4rem)) / 2);
+    display: flex;
+    justify-content: center;
+  }
+}

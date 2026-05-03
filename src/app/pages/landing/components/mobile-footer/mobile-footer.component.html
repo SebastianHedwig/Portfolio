@@ -1,0 +1,94 @@
+<footer class="section__inner stage-shell stage-shell--compact mobile-footer">
+  <div class="mobile-footer__body">
+    <a
+      class="mobile-footer__column mobile-footer__column--brand mobile-footer__brand-link"
+      [href]="anchorNavigation.buildHref('#hero')"
+      [attr.aria-label]="footer().brand.ariaLabel"
+      (click)="anchorNavigation.handleClick($event, '#hero')"
+    >
+      <div class="mobile-footer__brand-row">
+        <img
+          class="mobile-footer__logo"
+          [src]="footer().brand.logoSrc"
+          [alt]="footer().brand.logoAlt"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <p class="mobile-footer__name">
+          <span>{{ footer().brand.firstName }}</span>
+          <span>
+            <span class="mobile-footer__name-accent">{{ footer().brand.surnameInitial }}</span>{{ footer().brand.surnameTail }}
+          </span>
+        </p>
+      </div>
+
+      <p class="mobile-footer__role">
+        {{ footer().brand.role }}
+      </p>
+    </a>
+
+    <div class="mobile-footer__column mobile-footer__column--meta">
+      <p class="mobile-footer__meta-line mobile-footer__meta-line--copyright">
+        <span class="mobile-footer__copyright-symbol">©</span>
+        <span>{{ footer().meta.copyrightText }}</span>
+      </p>
+      <p class="mobile-footer__meta-line">{{ footer().meta.location }}</p>
+    </div>
+
+    <div class="mobile-footer__column mobile-footer__column--links">
+      <div class="mobile-footer__icon-row">
+        @for (icon of footer().icons; track icon.src) {
+          @if (icon.href) {
+            <a
+              class="mobile-footer__icon-item interactive-icon-hover"
+              [href]="icon.href"
+              [attr.aria-label]="icon.alt"
+              [attr.target]="icon.href.startsWith('http') ? '_blank' : null"
+              [attr.rel]="icon.href.startsWith('http') ? 'noopener noreferrer' : null"
+            >
+              <span class="mobile-footer__icon-label interactive-icon-hover__label" aria-hidden="true">
+                @for (letter of icon.letters; track $index) {
+                  <span class="mobile-footer__icon-label-letter interactive-icon-hover__letter">{{ letter }}</span>
+                }
+              </span>
+
+              <img
+                class="mobile-footer__icon interactive-icon-hover__icon"
+                [src]="icon.src"
+                [alt]="icon.alt"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          } @else {
+            <div class="mobile-footer__icon-item interactive-icon-hover">
+              <span class="mobile-footer__icon-label interactive-icon-hover__label" aria-hidden="true">
+                @for (letter of icon.letters; track $index) {
+                  <span class="mobile-footer__icon-label-letter interactive-icon-hover__letter">{{ letter }}</span>
+                }
+              </span>
+
+              <img
+                class="mobile-footer__icon interactive-icon-hover__icon"
+                [src]="icon.src"
+                [alt]="icon.alt"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          }
+        }
+      </div>
+
+      <a
+        class="mobile-footer__imprint-link"
+        [href]="imprintHref()"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="mobile-footer__imprint-text">{{ footer().imprintLabel }}</span>
+      </a>
+    </div>
+  </div>
+</footer>

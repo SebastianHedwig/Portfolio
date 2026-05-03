@@ -46,7 +46,7 @@
         }
       }
 
-      &:is(.tech-stage__item--core, .tech-stage__item--main, .tech-stage__item--extended:nth-child(4)) {
+      &:is(.tech-stage__item--core, .tech-stage__item--main, .tech-stage__item--extended) {
         .tech-stage__label {
           top: calc(100% + 0.3rem);
           bottom: auto;
@@ -56,6 +56,10 @@
       &:hover {
         .tech-stage__icon--git {
           opacity: 1;
+        }
+
+        .tech-stage__icon--threejs {
+          transform: translateY(-0.28rem) scale(1.16);
         }
       }
     }
@@ -150,6 +154,10 @@
         height: clamp(2rem, 3.2vw, 2.65rem);
         opacity: 0.78;
       }
+
+      &--threejs {
+        transform: scale(1.16);
+      }
     }
 
     &__label {
@@ -206,5 +214,18 @@
 
   100% {
     transform: translateX(var(--tech-stack-offset-x)) translateY(0);
+  }
+}
+
+@media (max-width: 1023px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+  .tech-stage__stack {
+    .tech-stage__label {
+      opacity: 1;
+
+      &-letter {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   }
 }

@@ -30,4 +30,8 @@ export class ProjectsStageContentComponent {
   titleRemainder(): string {
     return this.title().slice(1);
   }
+
+  isLongIndex(): boolean {
+    return this.index().length > 16;
+  }
 }

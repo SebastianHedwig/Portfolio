@@ -1,6 +1,6 @@
-import { type DesktopHeaderContent } from './desktop-header.data';
+import { type LandingHeaderContent } from './landing-header.data';
 
-export const DESKTOP_HEADER_CONTENT_DE: DesktopHeaderContent = {
+export const LANDING_HEADER_CONTENT_DE: LandingHeaderContent = {
   brand: {
     ariaLabel: 'Zur Hero-Stage springen',
     firstName: 'Sebastian',

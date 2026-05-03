@@ -1,6 +1,6 @@
-import { type DesktopHeaderContent } from './desktop-header.data';
+import { type LandingHeaderContent } from './landing-header.data';
 
-export const DESKTOP_HEADER_CONTENT_EN: DesktopHeaderContent = {
+export const LANDING_HEADER_CONTENT_EN: LandingHeaderContent = {
   brand: {
     ariaLabel: 'Jump to hero stage',
     firstName: 'Sebastian',
