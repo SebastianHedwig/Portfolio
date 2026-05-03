@@ -101,7 +101,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   .project-moment {
     &__visual-shell::before {
       inset: 0;
@@ -111,7 +111,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+@media (max-width: 1368px) and (orientation: landscape) {
   .project-moment {
     &__visual-shell {
       min-height: 0;

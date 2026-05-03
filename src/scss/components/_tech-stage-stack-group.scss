@@ -217,7 +217,7 @@
   }
 }
 
-@media (max-width: 1023px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1023px), (max-width: 1024px) and (orientation: portrait) {
   .tech-stage__stack {
     .tech-stage__label {
       opacity: 1;

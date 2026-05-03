@@ -32,13 +32,13 @@
   z-index: 0;
 }
 
-@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+@media (max-width: 1368px) and (orientation: landscape) {
   .section--tech-stack {
     margin-top: clamp(-18rem, -28svh, -10rem);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   .landing-page {
     gap: clamp(5.5rem, 9svh, 8rem);
   }

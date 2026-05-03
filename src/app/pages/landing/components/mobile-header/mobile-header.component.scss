@@ -356,13 +356,13 @@
   }
 }
 
-@media (max-width: 1023px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1023px), (max-width: 1024px) and (orientation: portrait) {
   :host {
     display: block;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
   .mobile-header {
     &__inner {
       padding-inline: clamp(1.25rem, 4vw, 2.25rem);

@@ -148,7 +148,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+@media (max-width: 1368px) and (orientation: landscape) {
   .hero {
     gap: clamp(1.4rem, 3vw, 2.5rem);
     padding-block: clamp(0.45rem, 1.4vh, 0.9rem);
@@ -174,17 +174,17 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   .hero {
     gap: clamp(1.6rem, 4vw, 2.75rem);
     padding-block: clamp(0.6rem, 1.4svh, 1rem);
 
     &__statement-band {
       display: block;
-      left: clamp(-5rem, 4vw, 4rem);
+      left: clamp(-4rem, -1vw, 4rem);
       right: clamp(1rem, 2.5vw, 1.5rem);
       bottom: 0;
-      width: auto;
+      width: 100%;
       opacity: 0.42;
     }
 

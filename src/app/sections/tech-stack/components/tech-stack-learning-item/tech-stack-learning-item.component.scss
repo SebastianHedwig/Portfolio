@@ -20,9 +20,6 @@
     &__label {
       top: calc(100% + 0.8rem);
       font-size: 1rem;
-
-      &-letter {
-      }
     }
   }
 
@@ -73,7 +70,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   :host {
     position: static;
     align-self: center;
@@ -81,7 +78,7 @@
   }
 }
 
-@media (max-width: 1023px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1023px), (max-width: 1024px) and (orientation: portrait) {
   .tech-stage__learning-label {
     opacity: 0.85;
 

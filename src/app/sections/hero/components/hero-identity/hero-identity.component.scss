@@ -39,7 +39,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+@media (max-width: 1368px) and (orientation: landscape) {
   .hero-identity {
     transform: translateY(clamp(0.75rem, 2vh, 1.35rem));
 

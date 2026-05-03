@@ -193,13 +193,13 @@
   }
 }
 
-@media (max-width: 1023px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px) {
+@media (max-width: 1023px), (max-width: 1024px) and (orientation: portrait) {
   :host {
     display: none;
   }
 }
 
-@media (min-width: 1369px) and (max-height: 63.9375rem) {
+@media (min-width: 1369px) and (max-height: 1023px) {
   .desktop-header {
     &__inner {
       align-items: center;
@@ -225,7 +225,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px) {
+@media (max-width: 1368px) and (orientation: landscape) {
   :host {
     display: block;
   }
