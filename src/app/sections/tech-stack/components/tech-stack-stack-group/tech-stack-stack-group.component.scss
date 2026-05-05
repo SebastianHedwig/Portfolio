@@ -82,11 +82,11 @@
         clamp(7rem, 16vh, 13rem)
         clamp(2.5rem, 6vw, 5rem)
         clamp(7.5rem, 18vh, 13rem);
-      --tech-stage-group-label-right: 16%;
+      --tech-stage-group-label-right: 4%;
     }
 
     &.tech-stage__stack--extended.tech-stage__stack--lang-en {
-      --tech-stage-group-label-right: 8%;
+      --tech-stage-group-label-right: -8%;
     }
   }
 }

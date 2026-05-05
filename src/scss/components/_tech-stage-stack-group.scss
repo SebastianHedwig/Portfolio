@@ -91,29 +91,29 @@
     }
 
     &__item--extended:nth-child(1) {
-      --tech-stack-extended-shift-x: 2rem;
-      --tech-stack-extended-shift-y: 8rem;
+      --tech-stack-extended-shift-x: 0.25rem;
+      --tech-stack-extended-shift-y: 10.4rem;
       --tech-stack-extended-scale: 1.03;
       --tech-stack-extended-icon-opacity: 0.9;
     }
 
     &__item--extended:nth-child(2) {
-      --tech-stack-extended-shift-x: 1.15rem;
-      --tech-stack-extended-shift-y: 0.25rem;
+      --tech-stack-extended-shift-x: -0.15rem;
+      --tech-stack-extended-shift-y: -1.7rem;
       --tech-stack-extended-scale: 0.98;
       --tech-stack-extended-icon-opacity: 0.66;
     }
 
     &__item--extended:nth-child(3) {
-      --tech-stack-extended-shift-x: 3rem;
-      --tech-stack-extended-shift-y: 6rem;
+      --tech-stack-extended-shift-x: 0.2rem;
+      --tech-stack-extended-shift-y: 8.3rem;
       --tech-stack-extended-scale: 1.01;
       --tech-stack-extended-icon-opacity: 0.82;
     }
 
     &__item--extended:nth-child(4) {
-      --tech-stack-extended-shift-x: 0.85rem;
-      --tech-stack-extended-shift-y: -1.8rem;
+      --tech-stack-extended-shift-x: -0.2rem;
+      --tech-stack-extended-shift-y: -2.8rem;
       --tech-stack-extended-scale: 0.96;
       --tech-stack-extended-icon-opacity: 0.54;
 
@@ -123,24 +123,38 @@
     }
 
     &__item--extended:nth-child(5) {
-      --tech-stack-extended-shift-x: -1.35rem;
-      --tech-stack-extended-shift-y: 8rem;
+      --tech-stack-extended-shift-x: 0.15rem;
+      --tech-stack-extended-shift-y: 10.9rem;
       --tech-stack-extended-scale: 1.04;
       --tech-stack-extended-icon-opacity: 0.94;
     }
 
     &__item--extended:nth-child(6) {
-      --tech-stack-extended-shift-x: 1.05rem;
-      --tech-stack-extended-shift-y: -0.2rem;
+      --tech-stack-extended-shift-x: -0.25rem;
+      --tech-stack-extended-shift-y: -1.2rem;
       --tech-stack-extended-scale: 0.97;
       --tech-stack-extended-icon-opacity: 0.72;
     }
 
     &__item--extended:nth-child(7) {
-      --tech-stack-extended-shift-x: -1.25rem;
-      --tech-stack-extended-shift-y: 6.3rem;
+      --tech-stack-extended-shift-x: 0.1rem;
+      --tech-stack-extended-shift-y: 5.9rem;
+      --tech-stack-extended-scale: 0.96;
+      --tech-stack-extended-icon-opacity: 0.78;
+    }
+
+    &__item--extended:nth-child(8) {
+      --tech-stack-extended-shift-x: -0.15rem;
+      --tech-stack-extended-shift-y: 0.2rem;
       --tech-stack-extended-scale: 0.95;
       --tech-stack-extended-icon-opacity: 0.86;
+    }
+
+    &__item--extended:nth-child(9) {
+      --tech-stack-extended-shift-x: 0.2rem;
+      --tech-stack-extended-shift-y: 10.1rem;
+      --tech-stack-extended-scale: 0.94;
+      --tech-stack-extended-icon-opacity: 0.76;
     }
 
     &__icon {
@@ -215,6 +229,57 @@
 
   100% {
     transform: translateX(var(--tech-stack-offset-x)) translateY(0);
+  }
+}
+
+@media (max-width: 1368px) and (orientation: landscape) {
+  .tech-stage__stack {
+    .tech-stage {
+      &__item--extended:nth-child(1) {
+        --tech-stack-extended-shift-x: 0.1rem;
+        --tech-stack-extended-shift-y: 7.1rem;
+      }
+
+      &__item--extended:nth-child(2) {
+        --tech-stack-extended-shift-x: -0.1rem;
+        --tech-stack-extended-shift-y: 0.4rem;
+      }
+
+      &__item--extended:nth-child(3) {
+        --tech-stack-extended-shift-x: 0.05rem;
+        --tech-stack-extended-shift-y: 5.2rem;
+      }
+
+      &__item--extended:nth-child(4) {
+        --tech-stack-extended-shift-x: -0.15rem;
+        --tech-stack-extended-shift-y: -0.5rem;
+      }
+
+      &__item--extended:nth-child(5) {
+        --tech-stack-extended-shift-x: 0.05rem;
+        --tech-stack-extended-shift-y: 7.4rem;
+      }
+
+      &__item--extended:nth-child(6) {
+        --tech-stack-extended-shift-x: -0.1rem;
+        --tech-stack-extended-shift-y: 0.8rem;
+      }
+
+      &__item--extended:nth-child(7) {
+        --tech-stack-extended-shift-x: 0.05rem;
+        --tech-stack-extended-shift-y: 4.6rem;
+      }
+
+      &__item--extended:nth-child(8) {
+        --tech-stack-extended-shift-x: -0.05rem;
+        --tech-stack-extended-shift-y: 2.1rem;
+      }
+
+      &__item--extended:nth-child(9) {
+        --tech-stack-extended-shift-x: 0.1rem;
+        --tech-stack-extended-shift-y: 6.8rem;
+      }
+    }
   }
 }
 
