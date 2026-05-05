@@ -33,8 +33,13 @@ export interface ContactContent {
   cvLinkLabel: string;
   eyebrow: string;
   form: ContactFormContent;
+  submittingLabel: string;
   submitLabel: string;
   title: string;
+  toast: {
+    error: string;
+    success: string;
+  };
 }
 
 const CONTACT_CONTENT_BY_LANGUAGE: Record<AppLanguage, ContactContent> = {

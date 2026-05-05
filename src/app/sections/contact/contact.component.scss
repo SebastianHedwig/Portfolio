@@ -10,9 +10,9 @@
   --stage-min-height: 82svh;
   max-width: 1920px;
   justify-content: flex-start;
-  padding-block: clamp(2.5rem, 6.5vh, 4rem);
 
   &__body {
+    margin-inline: 10rem;
     justify-content: space-between;
     align-items: flex-start;
   }
@@ -36,9 +36,10 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .contact-stage {
     &__body {
+      margin-inline: unset;
       flex-direction: column;
       gap: clamp(10rem, 20vh, 16rem);
       justify-content: flex-start;

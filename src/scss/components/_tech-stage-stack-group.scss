@@ -140,6 +140,7 @@
       --tech-stack-extended-shift-x: -1.25rem;
       --tech-stack-extended-shift-y: 6.3rem;
       --tech-stack-extended-scale: 0.95;
+      --tech-stack-extended-icon-opacity: 0.86;
     }
 
     &__icon {
@@ -217,7 +218,7 @@
   }
 }
 
-@media (max-width: 1023px), (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait) {
   .tech-stage__stack {
     .tech-stage__label {
       opacity: 1;

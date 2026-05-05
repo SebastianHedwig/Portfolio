@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core'
+import { finalize } from 'rxjs'
+import { DOCUMENT } from '@angular/common'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  OnDestroy,
+  signal,
+} from '@angular/core'
 import { toSignal } from '@angular/core/rxjs-interop'
 import {
   AbstractControl,
@@ -11,11 +21,14 @@ import {
 
 import { PrimaryButtonComponent } from '../../../../shared/components/primary-button/primary-button.component'
 import { type ContactContent } from '../../contact.data'
+import { ContactPayload, ContactService } from '../../../../services/contact.service'
 
 const NAME_MAX_LENGTH = 50
 const SUBJECT_MAX_LENGTH = 100
 const MESSAGE_MIN_LENGTH = 10
 const MESSAGE_MAX_LENGTH = 800
+const TOAST_DURATION_MS = 2500
+const TOAST_EXIT_DURATION_MS = 260
 const BLOCKED_EMAIL_DOMAINS = new Set([
   'example.com',
   'example.net',
@@ -46,7 +59,14 @@ const BLOCKED_EMAIL_DOMAINS = new Set([
     class: 'stage-shell__column contact-stage__column contact-stage__form',
   },
 })
-export class ContactStageFormComponent {
+export class ContactStageFormComponent implements OnDestroy {
+  private readonly contactService = inject(ContactService)
+  private readonly document = inject(DOCUMENT)
+  private toastElement: HTMLDivElement | null = null
+  private toastTimeoutId: number | null = null
+  private toastRemoveTimeoutId: number | null = null
+
+  readonly isSubmitting = signal(false)
   readonly content = input.required<ContactContent>()
   readonly nameMaxLength = NAME_MAX_LENGTH
   readonly subjectMaxLength = SUBJECT_MAX_LENGTH
@@ -88,10 +108,103 @@ export class ContactStageFormComponent {
       this.form.markAllAsTouched()
       return
     }
+
+    this.isSubmitting.set(true)
+    this.hideToast()
+
+    const payload: ContactPayload = {
+      name: this.form.controls.name.value,
+      email: this.form.controls.email.value,
+      subject: this.form.controls.subject.value,
+      message: this.form.controls.message.value,
+      honeypot: '',
+    }
+
+    this.contactService.sendContact(payload).pipe(
+      finalize(() => {
+        this.isSubmitting.set(false)
+      })
+    ).subscribe({
+      next: () => {
+        this.form.reset()
+        this.showToast(this.content().toast.success, 'success')
+      },
+      error: () => {
+        this.showToast(this.content().toast.error, 'error')
+      },
+    })
   }
 
   showError(control: AbstractControl): boolean {
     return control.invalid && (control.touched || control.dirty)
+  }
+
+  ngOnDestroy(): void {
+    this.removeToast()
+  }
+
+  private showToast(message: string, type: 'success' | 'error'): void {
+    this.removeToast()
+    this.toastElement = this.document.createElement('div')
+    this.toastElement.className = `contact-stage-toast contact-stage-toast--${type}`
+    this.toastElement.role = 'status'
+    this.toastElement.ariaLive = 'polite'
+    this.toastElement.textContent = message
+    this.document.body.appendChild(this.toastElement)
+
+    requestAnimationFrame(() => {
+      this.toastElement?.classList.add('contact-stage-toast--visible')
+    })
+
+    this.toastTimeoutId = window.setTimeout(() => {
+      this.hideToast()
+    }, TOAST_DURATION_MS)
+  }
+
+  private hideToast(): void {
+    this.clearToastTimeout()
+    this.clearToastRemoveTimeout()
+
+    if (!this.toastElement) {
+      return
+    }
+
+    const toast = this.toastElement
+    toast.classList.remove('contact-stage-toast--visible')
+    this.toastRemoveTimeoutId = window.setTimeout(() => {
+      toast.remove()
+
+      if (this.toastElement === toast) {
+        this.toastElement = null
+      }
+
+      this.toastRemoveTimeoutId = null
+    }, TOAST_EXIT_DURATION_MS)
+  }
+
+  private clearToastTimeout(): void {
+    if (this.toastTimeoutId === null) {
+      return
+    }
+
+    window.clearTimeout(this.toastTimeoutId)
+    this.toastTimeoutId = null
+  }
+
+  private clearToastRemoveTimeout(): void {
+    if (this.toastRemoveTimeoutId === null) {
+      return
+    }
+
+    window.clearTimeout(this.toastRemoveTimeoutId)
+    this.toastRemoveTimeoutId = null
+  }
+
+  private removeToast(): void {
+    this.clearToastTimeout()
+    this.clearToastRemoveTimeout()
+    this.toastElement?.remove()
+    this.toastElement = null
   }
 }
 

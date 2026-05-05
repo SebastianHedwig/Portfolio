@@ -243,7 +243,15 @@ form {
     }
 
     &__submit {
-      margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * -0.35);
+      margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * 0.2);
+    }
+  }
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  .contact-stage {
+    &__submit {
+      margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * -0.2);
     }
   }
 }

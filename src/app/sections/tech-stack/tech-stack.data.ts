@@ -14,6 +14,10 @@ export interface TechStackContent {
   introBlock: TechStackTextBlockData;
   learningItem: TechStackItemData;
   mainGroup: TechStackGroupData;
+  plannedStack: {
+    items: TechStackItemData[];
+    title: string;
+  };
 }
 
 const TECH_STACK_CONTENT_BY_LANGUAGE: Record<AppLanguage, TechStackContent> = {

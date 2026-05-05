@@ -167,7 +167,7 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .projects-stage {
     &__header {
       @include mixins.stack;

@@ -1,15 +1,50 @@
-<div class="tech-stage__learning-icon">
+<button
+  class="tech-stage__learning-trigger"
+  type="button"
+  [attr.aria-expanded]="isPopupVisible()"
+  [attr.aria-controls]="popupId()"
+  [attr.aria-label]="item().alt"
+  (click)="togglePopup($event)"
+>
   <img
-    class="interactive-icon-hover__icon"
+    class="tech-stage__learning-icon interactive-icon-hover__icon"
     [src]="item().src"
     [alt]="item().alt"
     loading="lazy"
     decoding="async"
   />
-</div>
+</button>
 
 <span class="tech-stage__label tech-stage__learning-label interactive-icon-hover__label">
   @for (letter of item().letters; track $index) {
     <span class="tech-stage__label-letter interactive-icon-hover__letter">{{ letter }}</span>
   }
 </span>
+
+@if (isPopupRendered()) {
+  <div
+    class="tech-stage__learning-popup"
+    [class.tech-stage__learning-popup--is-visible]="isPopupVisible()"
+    [id]="popupId()"
+    role="dialog"
+    aria-modal="false"
+    [attr.aria-label]="plannedStack().title"
+  >
+    <p class="tech-stage__learning-popup-title">{{ plannedStack().title }}</p>
+
+    <div class="tech-stage__learning-popup-grid">
+      @for (plannedItem of plannedStack().items; track plannedItem.src) {
+        <div class="tech-stage__learning-popup-item">
+          <img
+            class="tech-stage__learning-popup-icon"
+            [src]="plannedItem.src"
+            [alt]="plannedItem.alt"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="tech-stage__learning-popup-label">{{ plannedItem.alt }}</span>
+        </div>
+      }
+    </div>
+  </div>
+}

@@ -15,6 +15,11 @@ export const CONTACT_CONTENT_EN: ContactContent = {
   consentMiddle: ' and agree to the processing',
   consentSuffix: 'of my data for contact purposes.',
   submitLabel: 'Send message',
+  submittingLabel: 'Sending...',
+  toast: {
+    success: 'Message sent successfully.',
+    error: 'Message could not be sent. Please try again later.',
+  },
   form: {
     name: {
       label: 'Name',

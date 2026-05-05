@@ -45,6 +45,14 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     'Still learning',
     'assets/icons/tech-stack/Continually Learning.svg',
   ),
+  plannedStack: {
+    title: 'Geplanter Stack',
+    items: [
+      createItem('Vue.js', 'assets/icons/tech-stack/Vue Js.svg'),
+      createItem('React', 'assets/icons/tech-stack/React.svg'),
+      createItem('Python', 'assets/icons/tech-stack/Python.svg'),
+    ],
+  },
   coreGroup: {
     variant: 'core',
     groupLabel: createLabel('Fundament'),

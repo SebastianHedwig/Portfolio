@@ -129,8 +129,8 @@
 
   <app-primary-button
     class="contact-stage__submit"
-    [label]="content().submitLabel"
+    [label]="isSubmitting() ? content().submittingLabel : content().submitLabel"
     type="submit"
-    [disabled]="form.invalid"
+    [disabled]="form.invalid || isSubmitting()"
   />
 </form>
