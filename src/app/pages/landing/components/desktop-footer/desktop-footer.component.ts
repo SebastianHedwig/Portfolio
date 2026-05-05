@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { LanguageStore } from '../../../../i18n/language.store';
 import { LocalizedAnchorNavigationService } from '../../../../shared/navigation/localized-anchor-navigation.service';
-import { getLandingFooterContent } from '../../data/landing-footer.data';
+import { getLandingFooterContent } from '../../data/footer/landing-footer.data';
 
 @Component({
   selector: 'app-desktop-footer',

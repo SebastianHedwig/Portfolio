@@ -1,4 +1,4 @@
-import { type AppLanguage } from '../../../i18n/language.model';
+import { type AppLanguage } from '../../../../i18n/language.model';
 import { LANDING_HEADER_CONTENT_DE } from './landing-header.data.de';
 import { LANDING_HEADER_CONTENT_EN } from './landing-header.data.en';
 

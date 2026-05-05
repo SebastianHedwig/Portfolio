@@ -11,7 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { Location } from '@angular/common';
-import { getLandingHeaderContent } from '../../data/landing-header.data';
+import { getLandingHeaderContent } from '../../data/header/landing-header.data';
 import { type AppLanguage } from '../../../../i18n/language.model';
 import { LanguageStore } from '../../../../i18n/language.store';
 import { LocalizedAnchorNavigationService } from '../../../../shared/navigation/localized-anchor-navigation.service';

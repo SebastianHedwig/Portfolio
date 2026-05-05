@@ -29,8 +29,7 @@ interface AboutAnimationElements {
 }
 
 const ABOUT_BASE_VIEWPORT_HEIGHT = 1080;
-const TABLET_PORTRAIT_QUERY =
-  '(min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (min-height: 900px)';
+const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
   {
     selector: '.about-stage__text-zone--lead',
@@ -80,6 +79,8 @@ export class AboutComponent implements OnDestroy {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly languageStore = inject(LanguageStore);
   private animationContext: gsap.Context | null = null;
+  private stackedStageMediaQuery: MediaQueryList | null = null;
+  private readonly handleStackedStageChange = (): void => this.initAnimation();
 
   readonly content = computed(() => getAboutContent(this.languageStore.language()));
   readonly portrait = computed(() => this.content().portrait);
@@ -90,18 +91,28 @@ export class AboutComponent implements OnDestroy {
   readonly contextRight = computed(() => this.content().contextRight);
 
   constructor() {
-    afterNextRender(() => this.initAnimation());
+    afterNextRender(() => {
+      this.registerStackedStageMediaQuery();
+      this.initAnimation();
+    });
   }
 
   ngOnDestroy(): void {
+    this.stackedStageMediaQuery?.removeEventListener('change', this.handleStackedStageChange);
+    this.stackedStageMediaQuery = null;
     this.animationContext?.revert();
     this.animationContext = null;
+  }
+
+  private registerStackedStageMediaQuery(): void {
+    this.stackedStageMediaQuery = window.matchMedia(STACKED_STAGE_QUERY);
+    this.stackedStageMediaQuery.addEventListener('change', this.handleStackedStageChange);
   }
 
   private initAnimation(): void {
     const elements = this.getAnimationElements();
 
-    if (this.isTabletPortrait()) {
+    if (this.isStackedStage()) {
       this.animationContext?.revert();
       this.animationContext = gsap.context(
         () => this.buildTabletPortraitAnimation(elements),
@@ -232,7 +243,7 @@ export class AboutComponent implements OnDestroy {
     return Math.round(value * 10) / 10;
   }
 
-  private isTabletPortrait(): boolean {
-    return window.matchMedia(TABLET_PORTRAIT_QUERY).matches;
+  private isStackedStage(): boolean {
+    return window.matchMedia(STACKED_STAGE_QUERY).matches;
   }
 }

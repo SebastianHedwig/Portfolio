@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
 import { type AppLanguage } from '../../../../i18n/language.model';
 import { LanguageStore } from '../../../../i18n/language.store';
 import { LocalizedAnchorNavigationService } from '../../../../shared/navigation/localized-anchor-navigation.service';
-import { getLandingHeaderContent } from '../../data/landing-header.data';
+import { getLandingHeaderContent } from '../../data/header/landing-header.data';
 
 const HEADER_IDLE_REVEAL_DELAY_MS = 2000;
 const HEADER_TOP_REVEAL_SCROLL_Y_PX = 24;
