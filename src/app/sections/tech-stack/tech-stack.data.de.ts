@@ -42,7 +42,7 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     ],
   },
   learningItem: createItem(
-    'Still learning',
+    'Nächste Schritte',
     'assets/icons/tech-stack/Continually Learning.svg',
   ),
   plannedStack: {

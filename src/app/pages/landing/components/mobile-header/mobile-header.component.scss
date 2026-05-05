@@ -82,11 +82,11 @@
     }
 
     .mobile-header__mobile-panel {
-      clip-path: inset(0 0 0 0);
       opacity: 1;
       pointer-events: auto;
+      transform: translateX(0);
       transition:
-        clip-path 320ms ease-out,
+        transform 320ms ease-out,
         opacity 180ms ease,
         visibility 0ms;
       visibility: visible;
@@ -230,14 +230,15 @@
       linear-gradient(180deg, rgba(0, 18, 30, 0.97), rgba(0, 10, 18, 0.96)),
       tokens.$color-background;
     box-shadow: -1.2rem 0 3.2rem rgba(0, 0, 0, 0.36);
-    clip-path: inset(0 0 0 100%);
     opacity: 0.8 !important;
     pointer-events: none;
+    transform: translateX(100%);
     transition:
-      clip-path 320ms ease-out,
+      transform 320ms ease-out,
       opacity 180ms ease,
       visibility 0ms linear 320ms;
     visibility: hidden;
+    will-change: transform, opacity;
   }
 
   &__mobile-nav {

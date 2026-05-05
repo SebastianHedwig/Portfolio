@@ -341,7 +341,7 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       grid-column: 12 / span 8;
       grid-row: 11 / span 2;
       width: min(100%, 30rem);
-      margin: clamp(2rem, 4svh, 3rem) 0 0;
+      margin: clamp(5rem, 9svh, 7rem) 0 0;
       text-align: left;
     }
   }
@@ -371,6 +371,13 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       &--6 {
         grid-column: 12;
       }
+    }
+
+    &__subtitle {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: min(100%, 22rem);
+      text-align: center;
     }
   }
 }

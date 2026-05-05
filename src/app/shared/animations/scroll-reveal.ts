@@ -19,6 +19,7 @@ interface ResolvedRevealTarget {
 }
 
 const BASE_VIEWPORT_HEIGHT = 1080;
+const STACKED_PORTRAIT_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 
 export function initScrollReveals(
   root: HTMLElement,
@@ -62,7 +63,9 @@ export function initScrollReveals(
     );
   });
 
-  scheduleScrollTriggerRefresh();
+  if (!isStackedPortraitViewport()) {
+    scheduleScrollTriggerRefresh();
+  }
 }
 
 function resolveRevealStart(
@@ -159,4 +162,8 @@ function roundToTenth(value: number): number {
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
+}
+
+function isStackedPortraitViewport(): boolean {
+  return window.matchMedia(STACKED_PORTRAIT_QUERY).matches;
 }
