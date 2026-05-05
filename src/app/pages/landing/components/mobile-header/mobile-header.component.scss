@@ -226,7 +226,6 @@
       clamp(5.5rem, 9svh, 7rem)
       clamp(1.5rem, 6vw, 2.5rem)
       clamp(2rem, 5svh, 3rem);
-    border-left: 1px solid rgba(tokens.$color-heading, 0.1);
     background:
       linear-gradient(180deg, rgba(0, 18, 30, 0.97), rgba(0, 10, 18, 0.96)),
       tokens.$color-background;

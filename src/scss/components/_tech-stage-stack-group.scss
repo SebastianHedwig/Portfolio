@@ -295,3 +295,16 @@
     }
   }
 }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .tech-stage__stack {
+    &--lang-de .tech-stage__group-label--extended {
+      white-space: normal;
+
+      .tech-stage__group-label-space {
+        display: block;
+        height: 0;
+      }
+    }
+  }
+}

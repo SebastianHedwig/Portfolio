@@ -17,7 +17,7 @@
   text-transform: uppercase;
   cursor: pointer;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
   transition:
     transform 220ms ease,
     border-color 220ms ease,

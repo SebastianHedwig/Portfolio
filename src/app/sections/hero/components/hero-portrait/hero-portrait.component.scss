@@ -93,3 +93,26 @@
     }
   }
 }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .hero-portrait {
+    align-items: center;
+    justify-content: center;
+
+    &__image-shell {
+      margin-inline: auto;
+      margin-left: 0;
+      transform: translateY(clamp(-0.4rem, -0.6svh, 0rem));
+
+      &::before {
+        inset: 18% 9% -4%;
+        filter: blur(3.6rem);
+        opacity: 0.46;
+      }
+    }
+
+    &__image {
+      transform: scale(1.02);
+    }
+  }
+}

@@ -84,6 +84,10 @@
     min-height: clamp(34rem, 70vh, 58rem);
   }
 
+  &__portrait-stage {
+    display: contents;
+  }
+
   app-hero-description {
     display: flex;
     position: relative;
@@ -198,6 +202,72 @@
       flex-basis: min(22rem, 31%);
       padding-block-start: clamp(11.25rem, 21svh, 13.75rem);
       padding-block-end: clamp(1rem, 3svh, 2rem);
+    }
+  }
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: auto;
+    height: auto;
+    padding-block: 0 clamp(1rem, 3svh, 1.5rem);
+    overflow-y: clip;
+
+    &__visual {
+      display: flex;
+      order: 1;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding-block:
+        clamp(4.5rem, 10svh, 5.75rem)
+        clamp(1rem, 3svh, 1.5rem);
+      transform: translateY(clamp(1.25rem, 4.5svh, 2.75rem));
+    }
+
+    &__statement-band {
+      position: absolute;
+      order: 3;
+      left: 50%;
+      right: auto;
+      bottom: clamp(5.5rem, 6svh, 6rem);
+      margin: 0;
+      opacity: 0.4;
+      transform: translateX(-50%) rotate(-3deg);
+    }
+
+    &__portrait-stage {
+      position: relative;
+      display: flex;
+      order: 2;
+      justify-content: center;
+      width: 100%;
+    }
+
+    app-hero-identity {
+      order: 1;
+      justify-content: center;
+      width: 100%;
+    }
+
+    app-hero-description {
+      order: 2;
+      width: 100%;
+      flex: 0 1 auto;
+      margin-block-start: clamp(4.75rem, 12svh, 7rem);
+      padding-block: 0;
+    }
+
+    app-hero-portrait {
+      width: 100%;
+      flex: 1 1 0;
+      min-height: 0;
     }
   }
 }

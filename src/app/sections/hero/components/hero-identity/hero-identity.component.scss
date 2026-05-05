@@ -53,3 +53,24 @@
     }
   }
 }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .hero-identity {
+    align-items: center;
+    align-self: center;
+    gap: 0.22rem;
+    width: 100%;
+    text-align: center;
+    transform: none;
+
+    &__name {
+      font-size: clamp(1.92rem, 9.25vw, 2.65rem);
+      line-height: 0.96;
+    }
+
+    &__tagline {
+      font-size: clamp(0.64rem, 3vw, 0.78rem);
+      letter-spacing: 0.14rem;
+    }
+  }
+}

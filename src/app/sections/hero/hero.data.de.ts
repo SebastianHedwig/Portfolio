@@ -25,6 +25,7 @@ export const HERO_CONTENT_DE: HeroContent = {
   },
   portrait: {
     src: 'assets/images/portraits/sebastian-portrait-1600.png',
+    mobileWebpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
     webpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
     width: 1600,
     height: 1067,

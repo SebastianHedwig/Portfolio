@@ -8,6 +8,7 @@
   &-stage {
     @include mixins.stack;
     width: 100%;
+    scroll-margin-top: clamp(5.5rem, 9vh, 7.5rem);
   }
 }
 
@@ -33,17 +34,31 @@
 }
 
 @media (max-width: 1368px) and (orientation: landscape) {
+  .landing-stage {
+    scroll-margin-top: clamp(4.25rem, 8vh, 5.75rem);
+  }
+
   .section--tech-stack {
     margin-top: clamp(-18rem, -28svh, -10rem);
   }
 }
 
 @media (max-width: 1024px) and (orientation: portrait) {
+  .landing-stage {
+    scroll-margin-top: clamp(5.25rem, 8svh, 6.5rem);
+  }
+
   .landing-page {
     gap: clamp(5.5rem, 9svh, 8rem);
   }
 
   .section--tech-stack {
     margin-top: clamp(-3.3rem, -4svh, -2.3rem);
+  }
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .landing-stage {
+    scroll-margin-top: clamp(4.5rem, 8svh, 5.5rem);
   }
 }

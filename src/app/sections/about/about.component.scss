@@ -22,6 +22,7 @@
     width: 1px;
     height: 1px;
     pointer-events: none;
+    scroll-margin-top: clamp(5.5rem, 9vh, 7.5rem);
   }
 
   &__sticky {
@@ -224,6 +225,11 @@
       min-width: 0;
     }
 
+    &__anchor {
+      top: 0;
+      scroll-margin-top: clamp(5.25rem, 8svh, 6.5rem);
+    }
+
     &__sticky {
       position: static;
       height: auto;
@@ -340,6 +346,11 @@
       height: 320svh;
     }
 
+    &__anchor {
+      top: clamp(7rem, 13vh, 10rem);
+      scroll-margin-top: clamp(4.25rem, 8vh, 5.75rem);
+    }
+
     &__sticky,
     &__viewport {
       height: 100svh;
@@ -423,6 +434,22 @@
   .about-stage {
     &__scene--intro {
       gap: 0;
+    }
+  }
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .about-stage {
+    &__anchor {
+      scroll-margin-top: clamp(4.5rem, 8svh, 5.5rem);
+    }
+
+    &__scene--intro {
+      margin: 0;
+    }
+
+    &__chapter {
+      padding-inline: 0;
     }
   }
 }

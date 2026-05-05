@@ -110,8 +110,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private exitTrigger(host: HTMLElement): Record<string, unknown> {
     return {
       trigger: host,
-      start: 'top -12%',
-      end: 'bottom 25%',
+      start: 'top -30%',
+      end: 'bottom 5%',
       scrub: 0.8,
       invalidateOnRefresh: true,
     };

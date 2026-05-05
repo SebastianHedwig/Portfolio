@@ -131,3 +131,9 @@
     }
   }
 }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  :host.tech-stage__stack--extended.tech-stage__stack--lang-de {
+    padding-block-start: clamp(8rem, 18svh, 10rem);
+  }
+}

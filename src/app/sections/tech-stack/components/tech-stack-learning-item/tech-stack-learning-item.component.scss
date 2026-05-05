@@ -192,3 +192,32 @@
     }
   }
 }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .tech-stage__learning-popup {
+    width: min(16.5rem, calc(100vw - 2rem));
+    padding: 0.9rem 0.85rem 0.85rem;
+  }
+
+  .tech-stage__learning-popup-title {
+    margin-bottom: 0.75rem;
+    font-size: clamp(0.86rem, 3.8vw, 1rem);
+  }
+
+  .tech-stage__learning-popup-grid {
+    gap: 0.65rem;
+  }
+
+  .tech-stage__learning-popup-item {
+    gap: 0.38rem;
+  }
+
+  .tech-stage__learning-popup-icon {
+    width: clamp(1.65rem, 7vw, 2rem);
+    height: clamp(1.65rem, 7vw, 2rem);
+  }
+
+  .tech-stage__learning-popup-label {
+    font-size: 0.68rem;
+  }
+}

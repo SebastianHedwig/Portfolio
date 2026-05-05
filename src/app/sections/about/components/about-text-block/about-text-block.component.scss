@@ -117,6 +117,24 @@
   }
 }
 
+@media (max-width: 760px) and (orientation: portrait) {
+  .about-stage {
+    &__context-copy {
+      text-align: left;
+    }
+  }
+
+  :host {
+    &.about-stage__context-block,
+    &.about-stage__text-zone--lead,
+    &.about-stage__text-zone--secondary {
+      .about-stage__support {
+        text-align: left;
+      }
+    }
+  }
+}
+
 @media (max-width: 1024px) and (orientation: portrait) {
   :host.about-stage__text-zone--secondary {
     .about-stage__statement--secondary {
@@ -196,6 +214,17 @@
       width: min(100%, 27rem);
       max-width: 27rem;
       text-align: left;
+    }
+  }
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  :host.about-stage__context-block--left {
+    .about-stage__statement--secondary {
+      > span:not(:last-child)::after,
+      > span::before {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
     }
   }
 }

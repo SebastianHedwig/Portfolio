@@ -9,8 +9,19 @@ import { type AppLanguage, DEFAULT_APP_LANGUAGE, isAppLanguage } from '../../i18
 const SITE_URL = 'https://sebastian-hedwig.de';
 const SITE_NAME = 'Sebastian Hedwig';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/portraits/sebastian-portrait-1600.webp`;
-const HERO_IMAGE_PRELOAD_HREF = '/assets/images/portraits/sebastian-portrait-1600.webp';
-const HERO_IMAGE_PRELOAD_SELECTOR = 'link[data-seo-hero-image-preload="true"]';
+const HERO_IMAGE_PRELOADS = [
+  {
+    href: '/assets/images/portraits/sebastian-portrait-1600.webp',
+    media: '(max-width: 760px) and (orientation: portrait)',
+    variant: 'mobile',
+  },
+  {
+    href: '/assets/images/portraits/sebastian-portrait-1600.webp',
+    media: '(min-width: 481px), (orientation: landscape)',
+    variant: 'default',
+  },
+] as const;
+const HERO_IMAGE_PRELOAD_SELECTOR = 'link[data-seo-hero-image-preload]';
 const JSON_LD_ID = 'seo-jsonld';
 
 interface SeoPage {
@@ -112,17 +123,22 @@ export class SeoService {
       return;
     }
 
-    const link = this.readOrCreateHeroImagePreload();
-    link.setAttribute('href', HERO_IMAGE_PRELOAD_HREF);
-    link.setAttribute('as', 'image');
-    link.setAttribute('type', 'image/webp');
-    link.setAttribute('fetchpriority', 'high');
-    link.setAttribute('data-seo-hero-image-preload', 'true');
-    link.setAttribute('rel', 'preload');
+    HERO_IMAGE_PRELOADS.forEach((preload) => {
+      const link = this.readOrCreateHeroImagePreload(preload.variant);
+      link.setAttribute('href', preload.href);
+      link.setAttribute('as', 'image');
+      link.setAttribute('type', 'image/webp');
+      link.setAttribute('fetchpriority', 'high');
+      link.setAttribute('media', preload.media);
+      link.setAttribute('data-seo-hero-image-preload', preload.variant);
+      link.setAttribute('rel', 'preload');
+    });
   }
 
-  private readOrCreateHeroImagePreload(): HTMLLinkElement {
-    const existingLink = this.document.querySelector(HERO_IMAGE_PRELOAD_SELECTOR) as HTMLLinkElement | null;
+  private readOrCreateHeroImagePreload(variant: string): HTMLLinkElement {
+    const existingLink = this.document.querySelector(
+      `link[data-seo-hero-image-preload="${variant}"]`,
+    ) as HTMLLinkElement | null;
 
     if (existingLink) {
       return existingLink;
@@ -134,7 +150,7 @@ export class SeoService {
   }
 
   private removeHeroImagePreload(): void {
-    this.document.querySelector(HERO_IMAGE_PRELOAD_SELECTOR)?.remove();
+    this.document.querySelectorAll(HERO_IMAGE_PRELOAD_SELECTOR).forEach((link) => link.remove());
   }
 
   private updateJsonLd(language: AppLanguage): void {

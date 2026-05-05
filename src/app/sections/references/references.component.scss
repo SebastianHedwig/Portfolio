@@ -125,7 +125,10 @@
     &__quote--secondary {
       width: min(100%, 38rem);
       margin: 0;
-      animation-delay: 0s;
+    }
+
+    &__quote--secondary {
+      animation-delay: -1.8s;
     }
   }
 }
