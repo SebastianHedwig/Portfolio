@@ -140,3 +140,7 @@ Images, icons, and fonts are stored under `src/assets` and copied into the build
 - Add README-specific images under `src/assets/images/readme`.
 - Update `public/sitemap.xml` when public routes change.
 - Run `npm run build` before publishing changes.
+
+## Copyright
+
+© 2026 Sebastian Hedwig. All rights reserved.
