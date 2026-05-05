@@ -9,6 +9,7 @@ export const LANDING_HEADER_CONTENT_EN: LandingHeaderContent = {
     surnameInitial: 'H',
     surnameTail: 'edwig',
   },
+  closeNavigationAriaLabel: 'Close navigation',
   languageToggleAriaLabel: 'Switch language',
   languageToggleLabel: 'Language',
   navAriaLabel: 'Primary navigation',

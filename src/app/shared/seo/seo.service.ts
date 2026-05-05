@@ -8,7 +8,9 @@ import { type AppLanguage, DEFAULT_APP_LANGUAGE, isAppLanguage } from '../../i18
 
 const SITE_URL = 'https://sebastian-hedwig.de';
 const SITE_NAME = 'Sebastian Hedwig';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/images/portraits/sebastian-portrait-1600.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/images/portraits/sebastian-portrait-1600.webp`;
+const HERO_IMAGE_PRELOAD_HREF = '/assets/images/portraits/sebastian-portrait-1600.webp';
+const HERO_IMAGE_PRELOAD_SELECTOR = 'link[data-seo-hero-image-preload="true"]';
 const JSON_LD_ID = 'seo-jsonld';
 
 interface SeoPage {
@@ -49,6 +51,7 @@ export class SeoService {
     this.updateMetaTags(page, language, url);
     this.updateCanonical(url);
     this.updateAlternates(page.path);
+    this.updateHeroImagePreload(page.path);
     this.updateJsonLd(language);
   }
 
@@ -84,7 +87,7 @@ export class SeoService {
   }
 
   private readPathSegments(): string[] {
-    return this.router.url.split(/[?#]/, 1)[0].split('/');
+    return this.document.location.pathname.split('/');
   }
 
   private buildUrl(language: AppLanguage, path: string): string {
@@ -101,6 +104,37 @@ export class SeoService {
     this.addAlternate('de', this.buildUrl('de', path));
     this.addAlternate('en', this.buildUrl('en', path));
     this.addAlternate('x-default', this.buildUrl(DEFAULT_APP_LANGUAGE, path));
+  }
+
+  private updateHeroImagePreload(path: string): void {
+    if (path) {
+      this.removeHeroImagePreload();
+      return;
+    }
+
+    const link = this.readOrCreateHeroImagePreload();
+    link.setAttribute('href', HERO_IMAGE_PRELOAD_HREF);
+    link.setAttribute('as', 'image');
+    link.setAttribute('type', 'image/webp');
+    link.setAttribute('fetchpriority', 'high');
+    link.setAttribute('data-seo-hero-image-preload', 'true');
+    link.setAttribute('rel', 'preload');
+  }
+
+  private readOrCreateHeroImagePreload(): HTMLLinkElement {
+    const existingLink = this.document.querySelector(HERO_IMAGE_PRELOAD_SELECTOR) as HTMLLinkElement | null;
+
+    if (existingLink) {
+      return existingLink;
+    }
+
+    const link = this.document.createElement('link');
+    this.document.head.appendChild(link);
+    return link;
+  }
+
+  private removeHeroImagePreload(): void {
+    this.document.querySelector(HERO_IMAGE_PRELOAD_SELECTOR)?.remove();
   }
 
   private updateJsonLd(language: AppLanguage): void {
@@ -181,7 +215,7 @@ function createStructuredData(language: AppLanguage): object[] {
 const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
   de: {
     '': {
-      title: 'Moderne Web Experiences | Sebastian Hedwig',
+      title: 'Moderne Web Experiences, die überzeugen | Sebastian Hedwig',
       description: 'Portfolio von Sebastian Hedwig, Frontend Developer aus Flörsheim mit Fokus auf Angular, TypeScript, SCSS, Interaktion und Performance.',
       path: '',
       robots: 'index, follow',
@@ -201,7 +235,7 @@ const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
   },
   en: {
     '': {
-      title: 'Modern Web Experiences | Sebastian Hedwig',
+      title: 'Modern Web Experiences That Convince | Sebastian Hedwig',
       description: 'Portfolio of Sebastian Hedwig, frontend developer based in Flörsheim with a focus on Angular, TypeScript, SCSS, interaction, and performance.',
       path: '',
       robots: 'index, follow',

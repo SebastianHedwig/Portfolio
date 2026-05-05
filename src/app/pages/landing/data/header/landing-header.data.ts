@@ -18,6 +18,7 @@ export interface LandingHeaderBrand {
 
 export interface LandingHeaderContent {
   brand: LandingHeaderBrand;
+  closeNavigationAriaLabel: string;
   languageToggleAriaLabel: string;
   languageToggleLabel: string;
   navAriaLabel: string;

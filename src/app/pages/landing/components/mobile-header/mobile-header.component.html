@@ -16,6 +16,8 @@
       <img
         class="mobile-header__logo"
         [src]="brand().logoSrc"
+        width="128"
+        height="128"
         [alt]="brand().logoAlt"
         loading="eager"
         decoding="async"
@@ -47,7 +49,7 @@
     class="mobile-header__mobile-backdrop"
     type="button"
     tabindex="-1"
-    aria-hidden="true"
+    [attr.aria-label]="content().closeNavigationAriaLabel"
     (click)="closeMobileMenu()"
   ></button>
 

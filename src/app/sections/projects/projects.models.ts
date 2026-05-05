@@ -6,7 +6,9 @@ export interface ProjectStageDetailData {
 
 export interface ProjectStageVisualData {
   alt: string;
+  height?: number;
   src: string;
+  width?: number;
 }
 
 export interface ProjectStageItemData {

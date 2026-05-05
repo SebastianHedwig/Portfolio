@@ -17,5 +17,8 @@ export type HeroIdentityData = {
 
 export type HeroPortraitData = {
   alt: string;
+  height: number;
   src: string;
+  webpSrc: string;
+  width: number;
 };

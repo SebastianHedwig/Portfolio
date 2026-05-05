@@ -25,6 +25,9 @@ export const HERO_CONTENT_EN: HeroContent = {
   },
   portrait: {
     src: 'assets/images/portraits/sebastian-portrait-1600.png',
+    webpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
+    width: 1600,
+    height: 1067,
     alt: 'Portrait of Sebastian Hedwig',
   },
   statementParts: [

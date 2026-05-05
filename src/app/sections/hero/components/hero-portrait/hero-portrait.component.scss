@@ -29,6 +29,10 @@
       pointer-events: none;
       transform: scale(1.04, 1.12);
     }
+
+    picture {
+      display: block;
+    }
   }
 
   &__image {

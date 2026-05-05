@@ -1,12 +1,17 @@
 <div class="hero-portrait">
   <div class="hero-portrait__image-shell">
-    <img
-      class="hero-portrait__image"
-      [src]="content().src"
-      [alt]="content().alt"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    />
+    <picture>
+      <source [srcset]="content().webpSrc" type="image/webp" />
+      <img
+        class="hero-portrait__image"
+        [src]="content().src"
+        [width]="content().width"
+        [height]="content().height"
+        [alt]="content().alt"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
   </div>
 </div>

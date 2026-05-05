@@ -54,6 +54,8 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
       visual: {
         src: 'assets/images/projects/project-join-1500.png',
+        width: 1500,
+        height: 1001,
         alt: 'Join project preview',
       },
     },
@@ -88,6 +90,8 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
       visual: {
         src: 'assets/images/projects/project-panda-1500.png',
+        width: 1500,
+        height: 1000,
         alt: 'Panda Jungle Run project preview',
       },
     },
@@ -126,6 +130,8 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
       visual: {
         src: 'assets/images/projects/project-pokedex-1280.png',
+        width: 1280,
+        height: 792,
         alt: 'Pokédex project preview',
       },
     },
