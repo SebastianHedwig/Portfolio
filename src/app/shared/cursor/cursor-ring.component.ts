@@ -12,12 +12,23 @@ import {
 const INTERACTIVE_SELECTOR = [
   'a',
   'button',
-  'input',
-  'textarea',
   'select',
-  'label',
   '[role="button"]',
   '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+const TEXT_INPUT_SELECTOR = [
+  'textarea',
+  '[contenteditable=""]',
+  '[contenteditable="true"]',
+  'input:not([type])',
+  'input[type="email"]',
+  'input[type="number"]',
+  'input[type="password"]',
+  'input[type="search"]',
+  'input[type="tel"]',
+  'input[type="text"]',
+  'input[type="url"]',
 ].join(',');
 
 @Component({
@@ -62,13 +73,21 @@ export class CursorRingComponent implements AfterViewInit, OnDestroy {
   private readonly handlePointerMove = (event: PointerEvent): void => {
     if (event.pointerType !== 'mouse') return;
     const ring = this.ringRef.nativeElement;
-    ring.style.transform = this.createTransform(event);
+    const target = this.getEventTarget(event);
+
+    if (this.isTextInputTarget(target)) {
+      ring.classList.remove('cursor-ring--visible', 'cursor-ring--interactive');
+      return;
+    }
+
+    ring.style.transform = this.createTransform(event, target);
     ring.classList.add('cursor-ring--visible');
-    ring.classList.toggle('cursor-ring--interactive', this.isInteractive(event));
+    ring.classList.toggle('cursor-ring--interactive', this.isInteractiveTarget(target));
   };
 
   private readonly handlePointerDown = (event: PointerEvent): void => {
     if (event.pointerType !== 'mouse') return;
+    if (this.isTextInputTarget(this.getEventTarget(event))) return;
     const ring = this.ringRef.nativeElement;
     ring.classList.remove('cursor-ring--clicking');
     void ring.offsetWidth;
@@ -88,13 +107,24 @@ export class CursorRingComponent implements AfterViewInit, OnDestroy {
       && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
-  private createTransform(event: PointerEvent): string {
-    const scale = this.isInteractive(event) ? 1.42 : 1;
+  private createTransform(event: PointerEvent, target: Element | null): string {
+    const scale = this.isInteractiveTarget(target) ? 1.42 : 1;
     return `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%) scale(${scale})`;
   }
 
-  private isInteractive(event: PointerEvent): boolean {
-    return event.target instanceof Element
-      && Boolean(event.target.closest(INTERACTIVE_SELECTOR));
+  private getEventTarget(event: PointerEvent): Element | null {
+    return event.target instanceof Element ? event.target : null;
+  }
+
+  private isInteractiveTarget(target: Element | null): boolean {
+    if (!target) return false;
+    if (target.closest(INTERACTIVE_SELECTOR)) return true;
+
+    const label = target.closest('label');
+    return Boolean(label && !label.querySelector(TEXT_INPUT_SELECTOR));
+  }
+
+  private isTextInputTarget(target: Element | null): boolean {
+    return Boolean(target?.closest(TEXT_INPUT_SELECTOR));
   }
 }

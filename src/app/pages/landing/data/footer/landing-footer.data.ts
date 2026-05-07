@@ -25,6 +25,10 @@ export interface LandingFooterContent {
   meta: {
     copyrightText: string;
     location: string;
+    repository: {
+      href: string;
+      label: string;
+    };
   };
 }
 

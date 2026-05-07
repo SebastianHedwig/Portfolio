@@ -36,6 +36,14 @@
         <span>{{ footer().meta.copyrightText }}</span>
       </p>
       <p class="mobile-footer__meta-line">{{ footer().meta.location }}</p>
+      <a
+        class="mobile-footer__meta-link"
+        [href]="footer().meta.repository.href"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ footer().meta.repository.label }}
+      </a>
     </div>
 
     <div class="mobile-footer__column mobile-footer__column--links">

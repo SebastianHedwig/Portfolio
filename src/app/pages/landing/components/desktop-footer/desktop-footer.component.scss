@@ -90,6 +90,19 @@
     line-height: 1.45;
   }
 
+  &__meta-link {
+    color: rgba(tokens.$color-heading, 0.78);
+    font-family: tokens.$font-eyebrow;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color 180ms ease;
+
+    &:hover {
+      color: tokens.$color-accent;
+    }
+  }
+
   &__meta-line--copyright {
     display: inline-flex;
     align-items: center;
@@ -184,6 +197,7 @@
 
     &__role,
     &__meta-line,
+    &__meta-link,
     &__imprint-link {
       font-size: clamp(0.78rem, 1vw, 0.9rem);
     }

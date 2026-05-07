@@ -213,7 +213,7 @@ form {
   }
 
   &__submit {
-    align-self: flex-start;
+    align-self: flex-end;
     margin-top: calc(clamp(2.5rem, 4vw, 5rem) * -0.5);
   }
 }
