@@ -2,6 +2,11 @@
   <div class="hero-portrait__image-shell">
     <picture>
       <source
+        [srcset]="content().compactMobileWebpSrc"
+        media="(max-width: 375px) and (max-height: 730px) and (orientation: portrait)"
+        type="image/webp"
+      />
+      <source
         [srcset]="content().mobileWebpSrc"
         media="(max-width: 760px) and (orientation: portrait)"
         type="image/webp"

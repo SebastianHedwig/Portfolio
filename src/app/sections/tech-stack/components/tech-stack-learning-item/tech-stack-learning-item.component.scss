@@ -221,3 +221,32 @@
     font-size: 0.62rem;
   }
 }
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .tech-stage__learning-popup {
+    left: calc(50% + clamp(5.4rem, 24vw, 5.6rem));
+    transform: translate(-50%, calc(-5% + 0.75rem)) scale(0.94);
+
+    &::after {
+      left: clamp(1.2rem, 7vw, 1.75rem);
+    }
+
+    &--is-visible {
+      transform: translate(-50%, -5%) scale(1);
+    }
+  }
+}
+
+@media (max-width: 390px) and (orientation: portrait) {
+  :host {
+    justify-content: center;
+  }
+
+  .tech-stage__learning-popup {
+    left: 50%;
+
+    &::after {
+      left: 50%;
+    }
+  }
+}

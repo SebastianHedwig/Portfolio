@@ -36,3 +36,28 @@ h2 {
 p {
   color: tokens.$color-muted;
 }
+
+:where(
+  p,
+  li,
+  blockquote,
+  .contact-stage__consent-text,
+  .hero-description__text,
+  [class*='__copy'],
+  [class*='__context-copy'],
+  [class*='__description-value'],
+  [class*='__paragraph'],
+  [class*='__quote-text'],
+  [class*='__stack-value'],
+  [class*='__support']
+):not(
+  [class*='__headline'],
+  [class*='__title'],
+  [class*='__label'],
+  [class*='__eyebrow']
+) {
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  overflow-wrap: break-word;
+  word-break: normal;
+}

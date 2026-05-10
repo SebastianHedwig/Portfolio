@@ -39,6 +39,25 @@ a {
   text-decoration: none;
 }
 
+@media (pointer: coarse) {
+  a,
+  button,
+  [role='button'],
+  input,
+  textarea,
+  select,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button,
+  [role='button'],
+  summary {
+    user-select: none;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 0.8rem;
   height: 0.8rem;

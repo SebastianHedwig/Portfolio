@@ -11,8 +11,13 @@ const SITE_NAME = 'Sebastian Hedwig';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/portraits/sebastian-portrait-1600.webp`;
 const HERO_IMAGE_PRELOADS = [
   {
+    href: '/assets/images/portraits/sebastian-portrait-1200.webp',
+    media: '(max-width: 375px) and (max-height: 730px) and (orientation: portrait)',
+    variant: 'compact-mobile',
+  },
+  {
     href: '/assets/images/portraits/sebastian-portrait-1600.webp',
-    media: '(max-width: 760px) and (orientation: portrait)',
+    media: '(max-width: 760px) and (min-width: 376px) and (orientation: portrait), (max-width: 760px) and (min-height: 731px) and (orientation: portrait)',
     variant: 'mobile',
   },
   {

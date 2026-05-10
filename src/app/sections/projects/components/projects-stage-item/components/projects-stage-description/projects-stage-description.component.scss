@@ -69,6 +69,37 @@
   }
 }
 
+@media (max-width: 480px) and (orientation: portrait) {
+  :host {
+    width: min(100%, 21.5rem);
+  }
+
+  .project-moment {
+    &__description-label {
+      font-size: clamp(1.18rem, 6vw, 1.45rem);
+    }
+
+    &__description-value {
+      font-size: clamp(0.96rem, 4vw, 1.06rem);
+      line-height: 1.48;
+    }
+  }
+}
+
+@media (max-width: 390px) and (orientation: portrait) {
+  :host {
+    width: 100%;
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+
+  .project-moment {
+    &__description {
+      padding-block-end: 1rem;
+    }
+  }
+}
+
 @media (max-width: 1368px) and (orientation: landscape) {
   .project-moment {
     &__description-label {

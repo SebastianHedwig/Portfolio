@@ -61,6 +61,27 @@
   }
 }
 
+@media (max-width: 480px) and (orientation: portrait) {
+  .project-moment {
+    &__stack-icons {
+      gap: clamp(0.75rem, 3.4vw, 1rem);
+    }
+
+    &__stack-item {
+      gap: 0.5rem;
+    }
+
+    &__stack-icon {
+      width: clamp(2.65rem, 12vw, 3.05rem);
+      height: clamp(2.65rem, 12vw, 3.05rem);
+    }
+
+    &__stack-icon-label {
+      font-size: 0.74rem;
+    }
+  }
+}
+
 @media (max-width: 1368px) and (orientation: landscape) {
   .project-moment {
     &__stack-label {

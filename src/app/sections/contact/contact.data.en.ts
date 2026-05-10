@@ -1,6 +1,8 @@
 import { type ContactContent } from './contact.data';
 
 export const CONTACT_CONTENT_EN: ContactContent = {
+  language: 'en',
+
   eyebrow: 'Contact',
   title: 'Ready to build something?',
   copy: [

@@ -74,6 +74,14 @@
         max-width: 23rem;
       }
     }
+
+    &__copy-break--mobile {
+      display: none;
+    }
+
+    &__copy-line-break--mobile-hidden {
+      display: initial;
+    }
   }
 }
 
@@ -131,6 +139,38 @@
       align-self: center;
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+  :host.tech-stage__intro {
+    .tech-stage__copy-break--mobile {
+      display: initial;
+    }
+
+    .tech-stage__copy-line-break--mobile-hidden {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 390px) and (orientation: portrait) {
+  :host.tech-stage__focus {
+    width: min(100%, 14rem);
+    text-align: center;
+
+    .tech-stage__subheadline,
+    .tech-stage__copy {
+      margin-inline: auto;
+    }
+  }
+}
+
+@media (max-width: 360px) and (orientation: portrait) {
+  :host.tech-stage__intro {
+    .tech-stage__headline {
+      font-size: clamp(2.35rem, 11.5vw, 2.6rem);
     }
   }
 }

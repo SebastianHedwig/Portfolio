@@ -101,6 +101,20 @@
   }
 }
 
+@media (max-width: 390px) and (orientation: portrait) {
+  :host {
+    padding-inline: clamp(1.25rem, 5.5vw, 1.5rem);
+  }
+
+  .project-moment {
+    width: 100%;
+
+    &__scene {
+      gap: clamp(2.75rem, 6svh, 3.75rem);
+    }
+  }
+}
+
 @media (max-width: 1368px) and (orientation: landscape) and (max-height: 1024px) {
   .project-moment {
     width: 94%;

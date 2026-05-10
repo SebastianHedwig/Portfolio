@@ -13,7 +13,7 @@ export const HERO_CONTENT_EN: HeroContent = {
       'convince',
     ],
     text:
-      'Frontend development focused on interaction, experience, and performance. Carefully built with ANGULAR, TYPESCRIPT, and SCSS.',
+      'Frontend development focused on interaction, experience, and performance. Carefully built with ANGULAR, TYPESCRIPT and SCSS.',
     action: {
       href: '#contact',
       label: "Let's talk",
@@ -25,6 +25,7 @@ export const HERO_CONTENT_EN: HeroContent = {
   },
   portrait: {
     src: 'assets/images/portraits/sebastian-portrait-1600.png',
+    compactMobileWebpSrc: 'assets/images/portraits/sebastian-portrait-1200.webp',
     mobileWebpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
     webpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
     width: 1600,

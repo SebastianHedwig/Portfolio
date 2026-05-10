@@ -12,6 +12,11 @@ interface TitleSegment {
   text: string;
 }
 
+interface CopySegment {
+  breakAfter: boolean;
+  text: string;
+}
+
 @Component({
   selector: 'app-tech-stack-text-block',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,6 +40,29 @@ export class TechStackTextBlockComponent {
 
     this.appendSegments(line, matches, segments);
     return segments;
+  }
+
+  getCopySegments(line: string): readonly CopySegment[] {
+    const breakMarker = ' — ';
+    if (!this.isIntroBlock()) return [{ breakAfter: false, text: line }];
+
+    const breakIndex = line.indexOf(breakMarker);
+    if (breakIndex < 0) return [{ breakAfter: false, text: line }];
+
+    return [
+      {
+        breakAfter: true,
+        text: line.slice(0, breakIndex + breakMarker.length),
+      },
+      {
+        breakAfter: false,
+        text: line.slice(breakIndex + breakMarker.length),
+      },
+    ];
+  }
+
+  shouldHideCopyLineBreakOnMobile(line: string): boolean {
+    return this.isIntroBlock() && (line.endsWith('Tools,') || line.includes(' — '));
   }
 
   private isIntroBlock(): boolean {

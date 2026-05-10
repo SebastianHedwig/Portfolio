@@ -1,4 +1,5 @@
 @use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 .app-shell {
   position: relative;
@@ -9,5 +10,131 @@
     position: relative;
     z-index: 1;
     min-height: 100svh;
+  }
+
+  &__rotate-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(tokens.$color-accent-soft, 0.11), transparent 38%),
+      rgba(0, 13, 22, 0.96);
+    backdrop-filter: blur(0.35rem);
+  }
+
+  &__rotate-card {
+    display: grid;
+    justify-items: center;
+    gap: 1.15rem;
+    width: min(100%, 25rem);
+    padding: 1.55rem 1.6rem 1.45rem;
+    border: 1px solid rgba(tokens.$color-accent-soft, 0.28);
+    border-radius: 0.45rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      rgba(7, 14, 22, 0.92);
+    box-shadow:
+      0 1.5rem 4rem rgba(0, 0, 0, 0.36),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    text-align: center;
+  }
+
+  &__rotate-icon {
+    position: relative;
+    width: 5.4rem;
+    height: 4.4rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.18rem;
+      left: 50%;
+      width: 1.68rem;
+      height: 2.72rem;
+      border: 1px solid rgba(tokens.$color-accent-soft, 0.22);
+      border-radius: 0.32rem;
+      opacity: 0.36;
+      transform: translateX(-50%);
+    }
+
+  }
+
+  &__rotate-device {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 1.58rem;
+    height: 2.52rem;
+    border: 2px solid rgba(tokens.$color-heading, 0.9);
+    border-radius: 0.28rem;
+    box-shadow: 0 0 1.15rem rgba(tokens.$color-accent-soft, 0.16);
+    animation: rotate-overlay-device 2.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    transform: translate(-50%, -50%) rotate(90deg);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0.16rem;
+      left: 50%;
+      width: 0.24rem;
+      height: 0.24rem;
+      border-radius: 50%;
+      background: rgba(tokens.$color-heading, 0.7);
+      transform: translateX(-50%);
+    }
+  }
+
+  &__rotate-message {
+    margin: 0;
+    color: tokens.$color-heading;
+    font-family: tokens.$font-eyebrow;
+    font-size: clamp(1rem, 3.8vw, 1.3rem);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes rotate-overlay-device {
+  0%,
+  18% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.96);
+  }
+
+  52%,
+  76% {
+    opacity: 1;
+    box-shadow:
+      0 0 1.4rem rgba(tokens.$color-accent-soft, 0.3),
+      0 0 0 0.32rem rgba(tokens.$color-accent-soft, 0.08);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.96);
+  }
+}
+
+@media (orientation: landscape) and (max-width: 900px) and (max-height: 700px) {
+  .app-shell {
+    &__rotate-overlay {
+      display: flex;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell {
+    &__rotate-device {
+      animation: none;
+    }
   }
 }

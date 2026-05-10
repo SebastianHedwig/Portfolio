@@ -19,6 +19,7 @@ export type HeroPortraitData = {
   alt: string;
   height: number;
   mobileWebpSrc: string;
+  compactMobileWebpSrc: string;
   src: string;
   webpSrc: string;
   width: number;

@@ -49,3 +49,37 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 390px) and (orientation: portrait) {
+  .tech-stage {
+    app-tech-stack-text-block.tech-stage__intro {
+      order: 1;
+    }
+
+    app-tech-stack-stack-group.tech-stage__stack--core {
+      order: 2;
+    }
+
+    app-tech-stack-text-block.tech-stage__focus,
+    app-tech-stack-learning-item {
+      flex: 0 0 100%;
+    }
+
+    app-tech-stack-text-block.tech-stage__focus {
+      order: 3;
+    }
+
+    app-tech-stack-learning-item {
+      order: 4;
+      margin-block: 4rem;
+    }
+
+    app-tech-stack-stack-group.tech-stage__stack--main {
+      order: 5;
+    }
+
+    app-tech-stack-stack-group.tech-stage__stack--extended {
+      order: 6;
+    }
+  }
+}

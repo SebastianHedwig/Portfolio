@@ -26,9 +26,15 @@
 
 <p [class]="block().copyClass">
   @for (line of block().copyLines; track $index; let last = $last) {
-    <span>{{ line }}</span>
+    <span>
+      @for (segment of getCopySegments(line); track segment.text + segment.breakAfter) {
+        {{ segment.text }}@if (segment.breakAfter) {
+          <br class="tech-stage__copy-break--mobile">
+        }
+      }
+    </span>
     @if (!last) {
-      <br>
+      <br [class.tech-stage__copy-line-break--mobile-hidden]="shouldHideCopyLineBreakOnMobile(line)">
     }
   }
 </p>

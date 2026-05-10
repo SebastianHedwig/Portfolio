@@ -110,8 +110,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private exitTrigger(host: HTMLElement): Record<string, unknown> {
     return {
       trigger: host,
-      start: 'top -30%',
-      end: 'bottom 5%',
+      start: this.isMobilePortrait() ? 'top -90%' : 'top -30%',
+      end: this.isMobilePortrait() ? 'bottom -20%' : 'bottom 5%',
       scrub: 0.8,
       invalidateOnRefresh: true,
     };
@@ -131,5 +131,9 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   private prefersReducedMotion(): boolean {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  private isMobilePortrait(): boolean {
+    return window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
   }
 }

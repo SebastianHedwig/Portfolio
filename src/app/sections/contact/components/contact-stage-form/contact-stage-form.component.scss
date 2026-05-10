@@ -179,6 +179,10 @@ form {
     }
   }
 
+  &__consent-break--mobile-hidden {
+    display: initial;
+  }
+
   &__consent-input:focus-visible + .contact-stage__consent-box {
     border-color: rgba(tokens.$color-accent-soft, 0.48);
     box-shadow:
@@ -252,6 +256,14 @@ form {
   .contact-stage {
     &__submit {
       margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * -0.2);
+    }
+  }
+}
+
+@media (max-width: 390px) and (orientation: portrait) {
+  .contact-stage {
+    &__consent-break--mobile-hidden {
+      display: none;
     }
   }
 }

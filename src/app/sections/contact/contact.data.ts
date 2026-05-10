@@ -23,6 +23,7 @@ export interface ContactFormContent {
 }
 
 export interface ContactContent {
+  language: AppLanguage;
   consentHref: string;
   consentLinkLabel: string;
   consentMiddle: string;

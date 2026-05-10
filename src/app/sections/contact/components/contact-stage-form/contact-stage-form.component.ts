@@ -118,6 +118,7 @@ export class ContactStageFormComponent implements OnDestroy {
       subject: this.form.controls.subject.value,
       message: this.form.controls.message.value,
       honeypot: '',
+      language: this.content().language,
     }
 
     this.contactService.sendContact(payload).pipe(

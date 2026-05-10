@@ -32,6 +32,7 @@
     </a>
 
     <button
+      #mobileMenuButton
       class="mobile-header__menu-button"
       type="button"
       aria-label="Navigation"
@@ -54,6 +55,7 @@
   ></button>
 
   <div
+    #mobilePanel
     id="mobile-navigation-panel"
     class="mobile-header__mobile-panel"
     [attr.aria-hidden]="!isMobileMenuOpen()"

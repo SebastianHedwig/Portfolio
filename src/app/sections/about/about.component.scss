@@ -453,3 +453,24 @@
     }
   }
 }
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .about-stage {
+    &__scene--intro {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: clamp(1.6rem, 4.8svh, 2.4rem);
+    }
+
+    app-about-image {
+      grid-column: 1;
+      grid-row: 2;
+      justify-self: center;
+      width: clamp(8.75rem, 38vw, 10.5rem);
+    }
+
+    &__text-zone--secondary {
+      grid-row: 3;
+      margin-top: 0;
+    }
+  }
+}

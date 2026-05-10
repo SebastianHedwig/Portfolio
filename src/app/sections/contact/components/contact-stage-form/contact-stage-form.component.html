@@ -117,7 +117,7 @@
           rel="noopener noreferrer"
         >
           {{ content().consentLinkLabel }}
-        </a>{{ content().consentMiddle }}<br>{{ content().consentSuffix }}
+        </a>{{ content().consentMiddle }}<br class="contact-stage__consent-break--mobile-hidden">{{ content().consentSuffix }}
       </span>
     </label>
     @if (showError(form.controls.consent)) {

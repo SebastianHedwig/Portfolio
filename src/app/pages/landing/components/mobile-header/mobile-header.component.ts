@@ -31,6 +31,8 @@ const MOBILE_MENU_CLOSE_MS = 260;
 })
 export class MobileHeaderComponent implements OnDestroy {
   readonly header = viewChild.required<ElementRef<HTMLElement>>('header');
+  readonly mobileMenuButton = viewChild.required<ElementRef<HTMLButtonElement>>('mobileMenuButton');
+  readonly mobilePanel = viewChild.required<ElementRef<HTMLElement>>('mobilePanel');
   readonly isHidden = signal(false);
   readonly isLanguageSwitching = signal(false);
   readonly isMobileMenuOpen = signal(false);
@@ -108,6 +110,7 @@ export class MobileHeaderComponent implements OnDestroy {
       return;
     }
 
+    this.moveFocusOutOfMobilePanel();
     this.isMobileMenuOpen.set(false);
     this.isMobileMenuClosing.set(true);
 
@@ -209,6 +212,20 @@ export class MobileHeaderComponent implements OnDestroy {
   private revealHeader(): void {
     this.isHidden.set(false);
     this.idleRevealTimer = null;
+  }
+
+  private moveFocusOutOfMobilePanel(): void {
+    const activeElement = document.activeElement;
+    if (!(activeElement instanceof HTMLElement)) {
+      return;
+    }
+
+    const panel = this.mobilePanel().nativeElement;
+    if (!panel.contains(activeElement)) {
+      return;
+    }
+
+    this.mobileMenuButton().nativeElement.focus({ preventScroll: true });
   }
 
   private cleanupEventListeners(): void {

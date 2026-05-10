@@ -382,6 +382,57 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
   }
 }
 
+@media (max-width: 480px) and (orientation: portrait) {
+  .projects-stage {
+    &__header {
+      max-width: 22rem;
+    }
+
+    &__eyebrow,
+    &__title-line--1,
+    &__title-line--2,
+    &__title-line--3 {
+      grid-column: 8;
+    }
+
+    &__title-line--6 {
+      grid-column: 10;
+    }
+  }
+}
+
+@media (max-width: 360px) and (orientation: portrait) {
+  .projects-stage {
+    &__header {
+      width: min(100%, 18.75rem);
+      max-width: 18.75rem;
+      margin-inline: auto;
+      grid-template-columns: repeat(18, minmax(0, 1fr));
+    }
+
+    &__eyebrow,
+    &__title-line--1,
+    &__title-line--2,
+    &__title-line--3 {
+      grid-column: 5;
+    }
+
+    &__title-line {
+      &--4 {
+        grid-column: 1;
+      }
+
+      &--5 {
+        grid-column: 5;
+      }
+
+      &--6 {
+        grid-column: 7;
+      }
+    }
+  }
+}
+
 @media (max-width: 1368px) and (orientation: landscape) {
   .projects-stage {
     &__header {

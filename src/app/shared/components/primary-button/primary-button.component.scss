@@ -27,3 +27,12 @@
     pointer-events: none;
   }
 }
+
+@media (max-width: 390px) and (orientation: portrait) {
+  :host-context(.project-moment__action) .primary-button {
+    min-width: 8.45rem;
+    min-height: 2.55rem;
+    padding-inline: 1rem;
+    font-size: 0.78rem;
+  }
+}

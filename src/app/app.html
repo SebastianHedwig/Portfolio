@@ -5,4 +5,13 @@
   <div class="app-shell__content">
     <router-outlet></router-outlet>
   </div>
+
+  <aside class="app-shell__rotate-overlay" aria-live="polite">
+    <div class="app-shell__rotate-card">
+      <div class="app-shell__rotate-icon" aria-hidden="true">
+        <span class="app-shell__rotate-device"></span>
+      </div>
+      <p class="app-shell__rotate-message">{{ rotateDeviceMessage() }}</p>
+    </div>
+  </aside>
 </div>

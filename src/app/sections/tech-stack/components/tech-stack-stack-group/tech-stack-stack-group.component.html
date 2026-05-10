@@ -1,5 +1,8 @@
 @for (item of group().items; track item.src) {
-  <div [class]="itemClass()">
+  <div
+    [class]="itemClass()"
+    [class.tech-stage__item--material-design]="item.alt === 'Material Design'"
+  >
     <img
       [class]="iconClass()"
       [class.tech-stage__icon--git]="item.alt === 'Git'"
@@ -14,7 +17,10 @@
 
     <span [class]="labelClass()" aria-hidden="true">
       @for (letter of item.letters; track $index) {
-        <span class="tech-stage__label-letter">{{ letter }}</span>
+        <span
+          class="tech-stage__label-letter"
+          [class.tech-stage__label-space]="letter === ' '"
+        >{{ letter }}</span>
       }
     </span>
   </div>
