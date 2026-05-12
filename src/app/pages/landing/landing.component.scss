@@ -43,6 +43,12 @@
   }
 }
 
+@media (min-width: 1600px) and (min-height: 1000px) and (orientation: landscape) {
+  .landing-stage {
+    scroll-margin-top: clamp(8rem, 10vh, 10rem);
+  }
+}
+
 @media (max-width: 1024px) and (orientation: portrait) {
   .landing-stage {
     scroll-margin-top: clamp(5.25rem, 8svh, 6.5rem);

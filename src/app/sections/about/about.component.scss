@@ -430,6 +430,15 @@
   }
 }
 
+@media (min-width: 1600px) and (min-height: 1000px) and (orientation: landscape) {
+  .about-stage {
+    &__anchor {
+      top: clamp(22rem, 32vh, 30rem);
+      scroll-margin-top: clamp(8rem, 10vh, 10rem);
+    }
+  }
+}
+
 @media (max-width: 1024px) {
   .about-stage {
     &__scene--intro {

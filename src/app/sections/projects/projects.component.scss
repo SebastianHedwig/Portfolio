@@ -113,6 +113,15 @@
   }
 }
 
+@media (min-width: 1600px) and (min-height: 1000px) and (orientation: landscape) {
+  .projects-stage {
+    &__anchor {
+      top: clamp(12rem, 18vh, 18rem);
+      scroll-margin-top: clamp(8rem, 10vh, 10rem);
+    }
+  }
+}
+
 @media (max-width: 760px) and (orientation: portrait) {
   .projects-stage {
     &__anchor {

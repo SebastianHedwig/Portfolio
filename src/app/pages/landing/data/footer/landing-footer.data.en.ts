@@ -14,7 +14,7 @@ export const LANDING_FOOTER_CONTENT_EN: LandingFooterContent = {
     copyrightText: 'Sebastian Hedwig 2026',
     location: 'Flörsheim am Main - Hessen, Germany',
     repository: {
-      label: 'Zum Portfolio - Repositorie',
+      label: 'To the Portfolio - Repository',
       href: 'https://github.com/SebastianHedwig/Portfolio',
     },
   },
