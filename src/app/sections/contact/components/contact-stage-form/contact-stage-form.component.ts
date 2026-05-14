@@ -140,6 +140,10 @@ export class ContactStageFormComponent implements OnDestroy {
     return control.invalid && (control.touched || control.dirty)
   }
 
+  showValid(control: AbstractControl): boolean {
+    return control.valid && (control.touched || control.dirty)
+  }
+
   ngOnDestroy(): void {
     this.removeToast()
   }

@@ -1,6 +1,15 @@
 <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-  <label class="contact-stage__field" for="contact-name">
-    <span class="contact-stage__field-label">{{ content().form.name.label }}</span>
+  <label
+    class="contact-stage__field"
+    [class.contact-stage__field--valid]="showValid(form.controls.name)"
+    for="contact-name"
+  >
+    <span class="contact-stage__field-label">
+      {{ content().form.name.label }}
+      @if (showValid(form.controls.name)) {
+        <span class="contact-stage__field-valid-icon" aria-hidden="true"></span>
+      }
+    </span>
     <input
       id="contact-name"
       class="contact-stage__input"
@@ -22,8 +31,17 @@
     }
   </label>
 
-  <label class="contact-stage__field" for="contact-email">
-    <span class="contact-stage__field-label">{{ content().form.email.label }}</span>
+  <label
+    class="contact-stage__field"
+    [class.contact-stage__field--valid]="showValid(form.controls.email)"
+    for="contact-email"
+  >
+    <span class="contact-stage__field-label">
+      {{ content().form.email.label }}
+      @if (showValid(form.controls.email)) {
+        <span class="contact-stage__field-valid-icon" aria-hidden="true"></span>
+      }
+    </span>
     <input
       id="contact-email"
       class="contact-stage__input"
@@ -46,8 +64,17 @@
     }
   </label>
 
-  <label class="contact-stage__field" for="contact-subject">
-    <span class="contact-stage__field-label">{{ content().form.subject.label }}</span>
+  <label
+    class="contact-stage__field"
+    [class.contact-stage__field--valid]="showValid(form.controls.subject)"
+    for="contact-subject"
+  >
+    <span class="contact-stage__field-label">
+      {{ content().form.subject.label }}
+      @if (showValid(form.controls.subject)) {
+        <span class="contact-stage__field-valid-icon" aria-hidden="true"></span>
+      }
+    </span>
     <input
       id="contact-subject"
       class="contact-stage__input"
@@ -68,8 +95,17 @@
     }
   </label>
 
-  <label class="contact-stage__field contact-stage__field--message" for="contact-message">
-    <span class="contact-stage__field-label">{{ content().form.message.label }}</span>
+  <label
+    class="contact-stage__field contact-stage__field--message"
+    [class.contact-stage__field--valid]="showValid(form.controls.message)"
+    for="contact-message"
+  >
+    <span class="contact-stage__field-label">
+      {{ content().form.message.label }}
+      @if (showValid(form.controls.message)) {
+        <span class="contact-stage__field-valid-icon" aria-hidden="true"></span>
+      }
+    </span>
     <textarea
       id="contact-message"
       class="contact-stage__input contact-stage__input--textarea"

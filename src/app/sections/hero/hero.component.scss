@@ -23,6 +23,13 @@
     opacity: 0.5;
     transform: rotate(-4deg);
     transform-origin: left center;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.92) 12%,
+      rgba(0, 0, 0, 0.92) 88%,
+      transparent 100%
+    );
     mask-image: linear-gradient(
       90deg,
       transparent 0%,
@@ -223,7 +230,6 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      min-height: 100vh;
       min-height: 100svh;
       padding-block:
         clamp(4.5rem, 10svh, 5.75rem)

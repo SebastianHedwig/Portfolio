@@ -25,11 +25,46 @@ form {
   }
 
   &__field-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: max-content;
     color: rgba(tokens.$color-muted, 0.82);
     font-family: tokens.$font-eyebrow;
     font-size: 0.82rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+
+  &__field-valid-icon {
+    position: relative;
+    flex: 0 0 0.98rem;
+    width: 0.98rem;
+    height: 0.98rem;
+    border: 1px solid rgba(82, 214, 146, 0.64);
+    border-radius: 50%;
+    box-shadow: 0 0 0.55rem rgba(82, 214, 146, 0.12);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0.16rem;
+      left: 0.35rem;
+      width: 0.25rem;
+      height: 0.48rem;
+      border-right: 2px solid rgba(82, 214, 146, 0.95);
+      border-bottom: 2px solid rgba(82, 214, 146, 0.95);
+      transform: rotate(45deg);
+    }
+  }
+
+  &__field--valid {
+    border-bottom-color: rgba(82, 214, 146, 0.34);
+
+    .contact-stage__field-label {
+      color: rgba(82, 214, 146, 0.92);
+    }
   }
 
   &__input {
@@ -87,6 +122,14 @@ form {
 
     .contact-stage__field-label {
       color: rgba(tokens.$color-heading, 0.88);
+    }
+  }
+
+  &__field--valid:focus-within {
+    border-bottom-color: rgba(82, 214, 146, 0.42);
+
+    .contact-stage__field-label {
+      color: rgba(82, 214, 146, 0.92);
     }
   }
 
