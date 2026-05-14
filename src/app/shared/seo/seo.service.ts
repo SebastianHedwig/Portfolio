@@ -8,7 +8,10 @@ import { type AppLanguage, DEFAULT_APP_LANGUAGE, isAppLanguage } from '../../i18
 
 const SITE_URL = 'https://sebastian-hedwig.de';
 const SITE_NAME = 'Sebastian Hedwig';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/images/portraits/sebastian-portrait-1600.webp`;
+const SOCIAL_PREVIEW_IMAGES: Record<AppLanguage, string> = {
+  de: `${SITE_URL}/assets/images/readme/portfolio-hero-preview-de.png`,
+  en: `${SITE_URL}/assets/images/readme/portfolio-hero-preview-en.png`,
+};
 const HERO_IMAGE_PRELOADS = [
   {
     href: '/assets/images/portraits/sebastian-portrait-1200.webp',
@@ -72,18 +75,19 @@ export class SeoService {
   }
 
   private updateMetaTags(page: SeoPage, language: AppLanguage, url: string): void {
+    const image = SOCIAL_PREVIEW_IMAGES[language];
     this.setName('description', page.description);
     this.setName('robots', page.robots);
     this.setName('twitter:card', 'summary_large_image');
     this.setName('twitter:title', page.title);
     this.setName('twitter:description', page.description);
-    this.setName('twitter:image', DEFAULT_IMAGE);
+    this.setName('twitter:image', image);
     this.setProperty('og:type', 'website');
     this.setProperty('og:site_name', SITE_NAME);
     this.setProperty('og:title', page.title);
     this.setProperty('og:description', page.description);
     this.setProperty('og:url', url);
-    this.setProperty('og:image', DEFAULT_IMAGE);
+    this.setProperty('og:image', image);
     this.setProperty('og:locale', language === 'de' ? 'de_DE' : 'en_US');
   }
 
@@ -215,7 +219,7 @@ function createStructuredData(language: AppLanguage): object[] {
       name: 'Sebastian Hedwig',
       jobTitle: 'Frontend Developer',
       url: `${SITE_URL}/${language}`,
-      image: DEFAULT_IMAGE,
+      image: SOCIAL_PREVIEW_IMAGES[language],
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Flörsheim am Main',
