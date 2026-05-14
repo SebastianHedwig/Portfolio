@@ -26,9 +26,10 @@ The application is designed to communicate frontend work with an emphasis on int
 - Responsive desktop and mobile header/footer components
 - Interactive network-style viewport background
 - Scroll-based reveal animations
-- Project previews with dedicated images, descriptions, stack data, and GitHub links
+- Project previews with dedicated images, descriptions, stack data, GitHub links, and live demo links
 - Locally bundled fonts and static image assets
-- Contact service foundation for form handling
+- Contact form with validation feedback and submission handling through a VPS-hosted Contact API
+- Self-managed VPS deployment with custom backend services for CV delivery, contact API handling, and mailing workflows
 
 ## Tech Stack
 
@@ -51,6 +52,14 @@ The application is designed to communicate frontend work with an emphasis on int
 | `/en/impressum` | English imprint page |
 | `/de/datenschutz` | German privacy page |
 | `/en/datenschutz` | English privacy page |
+
+## Featured Projects
+
+| Project | Repository | Live demo |
+| --- | --- | --- |
+| Join | [GitHub](https://github.com/SebastianHedwig/Project_Join) | [join.sebastian-hedwig.de](https://join.sebastian-hedwig.de) |
+| Panda - Jungle Run | [GitHub](https://github.com/SebastianHedwig/Panda_Jungle_Run) | [panda.sebastian-hedwig.de](https://panda.sebastian-hedwig.de) |
+| Pokedex | [GitHub](https://github.com/SebastianHedwig/Pokedex_Page) | [pokedex.sebastian-hedwig.de](https://pokedex.sebastian-hedwig.de) |
 
 ## Project Structure
 
@@ -105,6 +114,18 @@ npm run build
 
 Build artifacts are written to the `dist/` directory.
 
+## Deployment and Backend
+
+The portfolio is deployed and hosted on a self-managed VPS. In addition to serving the Angular application, the VPS provides the custom backend layer used by the project, including a Contact API for form submissions.
+
+Backend-managed responsibilities include:
+
+- Serving and managing the downloadable CV file at `https://sebastian-hedwig.de/assets/cv-sebastian-hedwig.pdf`
+- Processing contact form submissions through the VPS-hosted Contact API
+- Handling mailing and message delivery workflows
+
+This keeps the public frontend focused on presentation and interaction while operational concerns such as contact submission and mail handling are managed through the VPS backend.
+
 ## Tests
 
 Run the test suite with:
@@ -140,6 +161,7 @@ Images, icons, and fonts are stored under `src/assets` and copied into the build
 - Add README-specific images under `src/assets/images/readme`.
 - Update `public/sitemap.xml` when public routes change.
 - Run `npm run build` before publishing changes.
+- Keep VPS deployment, downloadable CV delivery, Contact API handling, and mail workflows in sync with frontend changes.
 
 ## Copyright
 

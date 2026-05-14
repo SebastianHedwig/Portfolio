@@ -10,7 +10,7 @@ export const CONTACT_CONTENT_DE: ContactContent = {
     'Ich lege großen Wert auf saubere, durchdachte Lösungen, entwickle mich kontinuierlich weiter und bin offen für neue Herausforderungen und Zusammenarbeit.',
   ],
   cvLinkLabel: 'Lebenslauf ansehen (PDF)',
-  cvHref: 'https://ceqznaimpbtixlgvypcy.supabase.co/storage/v1/object/public/cv/Lebenslauf_Hedwig_Sebastian.pdf',
+  cvHref: 'https://sebastian-hedwig.de/assets/cv-sebastian-hedwig.pdf',
   consentPrefix: 'Ich habe die ',
   consentLinkLabel: 'Datenschutzerklärung',
   consentHref: 'datenschutz',
@@ -34,7 +34,7 @@ export const CONTACT_CONTENT_DE: ContactContent = {
       placeholder: 'name@beispiel.de',
       requiredError: 'Bitte gib deine E-Mail-Adresse ein.',
       blockedDomainError: 'Bitte nutze keine Test- oder Wegwerfadresse.',
-      emailError: 'Bitte gib eine gueltige E-Mail-Adresse ein.',
+      emailError: 'Bitte gib eine gültige E-Mail-Adresse ein.',
     },
     subject: {
       label: 'Betreff',
@@ -50,6 +50,6 @@ export const CONTACT_CONTENT_DE: ContactContent = {
       maxlengthError: 'Die Nachricht darf maximal 800 Zeichen lang sein.',
       counterSuffix: 'Zeichen',
     },
-    consentError: 'Bitte bestaetige den Datenschutzhinweis.',
+    consentError: 'Bitte bestätige den Datenschutzhinweis.',
   },
 } as const;

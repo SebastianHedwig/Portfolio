@@ -10,7 +10,7 @@ export const CONTACT_CONTENT_EN: ContactContent = {
     'I care about clean, thoughtful solutions, keep developing continuously, and stay open to new challenges and collaboration.',
   ],
   cvLinkLabel: 'View resume (PDF)',
-  cvHref: 'https://ceqznaimpbtixlgvypcy.supabase.co/storage/v1/object/public/cv/Lebenslauf_Hedwig_Sebastian.pdf',
+  cvHref: 'https://sebastian-hedwig.de/assets/cv-sebastian-hedwig.pdf',
   consentPrefix: 'I have read the ',
   consentLinkLabel: 'privacy policy',
   consentHref: 'datenschutz',

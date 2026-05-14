@@ -25,6 +25,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       title: 'Join',
       actions: {
         githubHref: 'https://github.com/SebastianHedwig/Project_Join',
+        liveHref: 'https://join.sebastian-hedwig.de',
       },
       description: {
         label: 'Description',
@@ -65,6 +66,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       title: 'Panda - Jungle Run',
       actions: {
         githubHref: 'https://github.com/SebastianHedwig/Panda_Jungle_Run',
+        liveHref: 'https://panda.sebastian-hedwig.de',
       },
       description: {
         label: 'Description',
@@ -101,6 +103,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       title: 'Pokédex',
       actions: {
         githubHref: 'https://github.com/SebastianHedwig/Pokedex_Page',
+        liveHref: 'https://pokedex.sebastian-hedwig.de',
       },
       description: {
         label: 'Description',
