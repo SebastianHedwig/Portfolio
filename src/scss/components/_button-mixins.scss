@@ -53,11 +53,13 @@
     opacity: 0.9;
   }
 
-  &:hover {
-    transform: translateY(-0.08rem);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-0.08rem);
 
-    &::before {
-      transform: translateX(145%) skewX(-18deg);
+      &::before {
+        transform: translateX(145%) skewX(-18deg);
+      }
     }
   }
 
@@ -96,15 +98,17 @@
 }
 
 @mixin button-content-swap($label-selector, $arrow-selector) {
-  &:hover {
-    #{$label-selector} {
-      opacity: 0;
-      transform: translateX(-0.45rem);
-    }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      #{$label-selector} {
+        opacity: 0;
+        transform: translateX(-0.45rem);
+      }
 
-    #{$arrow-selector} {
-      opacity: 1;
-      transform: translateX(0);
+      #{$arrow-selector} {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
   }
 }
@@ -120,11 +124,13 @@
     0 0 1.35rem rgba(53, 199, 255, 0.08);
   color: tokens.$color-heading;
 
-  &:hover {
-    border-color: rgba(tokens.$color-accent, 0.42);
-    box-shadow:
-      0 1rem 2rem rgba(0, 0, 0, 0.24),
-      0 0 1.65rem rgba(53, 199, 255, 0.14);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: rgba(tokens.$color-accent, 0.42);
+      box-shadow:
+        0 1rem 2rem rgba(0, 0, 0, 0.24),
+        0 0 1.65rem rgba(53, 199, 255, 0.14);
+    }
   }
 
   &:active {
@@ -147,19 +153,21 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   color: rgba(tokens.$color-heading, 0.82);
 
-  &:hover {
-    border-color: rgba(tokens.$color-accent-soft, 0.32);
-    background:
-      radial-gradient(circle at 18% 22%, rgba(140, 184, 230, 0.12), transparent 36%),
-      radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.055), transparent 44%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.016)),
-      rgba(7, 13, 18, 0.48);
-    color: rgba(tokens.$color-heading, 0.95);
-    box-shadow:
-      0 0.95rem 1.85rem rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(140, 184, 230, 0.06),
-      0 0 1.2rem rgba(140, 184, 230, 0.065),
-      inset 0 1px 0 rgba(255, 255, 255, 0.065);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: rgba(tokens.$color-accent-soft, 0.32);
+      background:
+        radial-gradient(circle at 18% 22%, rgba(140, 184, 230, 0.12), transparent 36%),
+        radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.055), transparent 44%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.016)),
+        rgba(7, 13, 18, 0.48);
+      color: rgba(tokens.$color-heading, 0.95);
+      box-shadow:
+        0 0.95rem 1.85rem rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(140, 184, 230, 0.06),
+        0 0 1.2rem rgba(140, 184, 230, 0.065),
+        inset 0 1px 0 rgba(255, 255, 255, 0.065);
+    }
   }
 
   &:active {

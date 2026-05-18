@@ -262,8 +262,10 @@
     text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
     transition: color 180ms ease;
 
-    &:hover {
-      color: tokens.$color-accent;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
+      }
     }
   }
 
@@ -322,9 +324,14 @@
     cursor: pointer;
     transition: background-color 180ms ease, color 180ms ease;
 
-    &:hover,
     &--active {
       color: tokens.$color-heading;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-heading;
+      }
     }
   }
 

@@ -147,8 +147,10 @@
     cursor: pointer;
     transition: background-color 180ms ease, color 180ms ease;
 
-    &:hover {
-      color: tokens.$color-heading;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-heading;
+      }
     }
 
     &--active {
@@ -167,12 +169,14 @@
     text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
     transition: color 180ms ease, opacity 180ms ease;
 
-    &:hover {
-      color: tokens.$color-accent;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
 
-      .desktop-header__link-text {
-        text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
-        transform: translateY(-0.05rem);
+        .desktop-header__link-text {
+          text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
+          transform: translateY(-0.05rem);
+        }
       }
     }
   }

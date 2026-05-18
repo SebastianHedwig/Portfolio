@@ -216,9 +216,14 @@ form {
     color: tokens.$color-heading;
     transition: color 180ms ease;
 
-    &:hover,
     &:focus-visible {
       color: tokens.$color-accent;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
+      }
     }
   }
 
@@ -255,8 +260,10 @@ form {
     }
   }
 
-  &__consent:hover .contact-stage__consent-box {
-    border-color: rgba(255, 255, 255, 0.34);
+  @media (hover: hover) and (pointer: fine) {
+    &__consent:hover .contact-stage__consent-box {
+      border-color: rgba(255, 255, 255, 0.34);
+    }
   }
 
   &__submit {

@@ -48,13 +48,15 @@
       transform: translateX(0.5rem) rotate(180deg);
     }
 
-    &:hover {
-      .secondary-button__label {
-        transform: translateX(0.45rem);
-      }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        .secondary-button__label {
+          transform: translateX(0.45rem);
+        }
 
-      .secondary-button__arrow {
-        transform: translateX(0) rotate(180deg);
+        .secondary-button__arrow {
+          transform: translateX(0) rotate(180deg);
+        }
       }
     }
   }

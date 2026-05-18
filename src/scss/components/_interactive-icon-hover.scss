@@ -15,21 +15,23 @@
     transform 180ms ease,
     opacity 180ms ease;
 
-  &:hover {
-    #{$label-selector} {
-      opacity: 1;
-    }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      #{$label-selector} {
+        opacity: 1;
+      }
 
-    #{$icon-selector} {
-      opacity: 1;
-      filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
-        hue-rotate(160deg) brightness(101%) contrast(102%);
-      transform: translateY($translate-y);
-    }
+      #{$icon-selector} {
+        opacity: 1;
+        filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+          hue-rotate(160deg) brightness(101%) contrast(102%);
+        transform: translateY($translate-y);
+      }
 
-    #{$letter-selector} {
-      opacity: 1;
-      transform: translateY(0);
+      #{$letter-selector} {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 }

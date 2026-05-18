@@ -53,13 +53,15 @@
         }
       }
 
-      &:hover {
-        .tech-stage__icon--git {
-          opacity: 1;
-        }
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          .tech-stage__icon--git {
+            opacity: 1;
+          }
 
-        .tech-stage__icon--threejs {
-          transform: translateY(-0.28rem) scale(1.16);
+          .tech-stage__icon--threejs {
+            transform: translateY(-0.28rem) scale(1.16);
+          }
         }
       }
     }

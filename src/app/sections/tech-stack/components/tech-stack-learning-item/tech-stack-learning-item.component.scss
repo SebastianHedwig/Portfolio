@@ -42,11 +42,13 @@
       transform 180ms ease;
   }
 
-  &:hover {
-    .tech-stage__learning-trigger img {
-      filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
-        hue-rotate(160deg) brightness(101%) contrast(102%);
-      transform: translateY(-0.2rem) scale(1.15);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      .tech-stage__learning-trigger img {
+        filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+          hue-rotate(160deg) brightness(101%) contrast(102%);
+        transform: translateY(-0.2rem) scale(1.15);
+      }
     }
   }
 }

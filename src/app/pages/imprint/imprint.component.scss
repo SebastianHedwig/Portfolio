@@ -33,9 +33,11 @@
     text-transform: uppercase;
     transition: color 180ms ease, transform 180ms ease;
 
-    &:hover {
-      color: tokens.$color-accent;
-      transform: translateX(0.12rem);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
+        transform: translateX(0.12rem);
+      }
     }
   }
 
@@ -128,8 +130,10 @@
     color: tokens.$color-accent;
     text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

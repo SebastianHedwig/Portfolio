@@ -51,10 +51,16 @@
       color 180ms ease,
       opacity 180ms ease;
 
-    &:hover,
     &:focus-visible {
       color: tokens.$color-accent;
       opacity: 1;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
+        opacity: 1;
+      }
     }
   }
 }
