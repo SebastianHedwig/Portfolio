@@ -30,42 +30,82 @@ export function initScrollReveals(
 
   if (targets.length === 0) return;
 
-  targets.forEach(({ target, config }) => {
-    const triggerSelector = config?.trigger ?? target.dataset['scrollRevealTrigger'];
-    const cachedTrigger =
-      triggerSelector === undefined
-        ? null
-        : (triggerCache.has(triggerSelector)
-            ? triggerCache.get(triggerSelector)
-            : triggerCache
-                .set(triggerSelector, root.querySelector<HTMLElement>(triggerSelector))
-                .get(triggerSelector)) ?? null;
-    const trigger = cachedTrigger ?? target;
-
-    gsap.fromTo(
-      target,
-      {
-        autoAlpha: 0,
-        y: 42,
-      },
-      {
-        autoAlpha: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger,
-          start: () => resolveRevealStart(target, config),
-          end: () => resolveRevealEnd(target, config),
-          invalidateOnRefresh: true,
-          scrub: 0.8,
-        },
-        y: 0,
-      },
-    );
-  });
+  targets.forEach((target) => initRevealTarget(root, target, triggerCache));
 
   if (!isStackedPortraitViewport()) {
     scheduleScrollTriggerRefresh();
   }
+}
+
+function initRevealTarget(
+  root: HTMLElement,
+  targetConfig: ResolvedRevealTarget,
+  triggerCache: Map<string, HTMLElement | null>,
+): void {
+  const { target, config } = targetConfig;
+  const trigger = resolveTrigger(root, target, config, triggerCache);
+  createRevealTween(target, trigger, config);
+}
+
+function resolveTrigger(
+  root: HTMLElement,
+  target: HTMLElement,
+  config: ScrollRevealConfig | undefined,
+  triggerCache: Map<string, HTMLElement | null>,
+): HTMLElement {
+  const selector = config?.trigger ?? target.dataset['scrollRevealTrigger'];
+  if (selector === undefined) return target;
+  return readCachedTrigger(root, selector, triggerCache) ?? target;
+}
+
+function readCachedTrigger(
+  root: HTMLElement,
+  selector: string,
+  triggerCache: Map<string, HTMLElement | null>,
+): HTMLElement | null {
+  if (!triggerCache.has(selector)) {
+    triggerCache.set(selector, root.querySelector<HTMLElement>(selector));
+  }
+  return triggerCache.get(selector) ?? null;
+}
+
+function createRevealTween(
+  target: HTMLElement,
+  trigger: HTMLElement,
+  config?: ScrollRevealConfig,
+): void {
+  gsap.fromTo(target, getRevealFromVars(), getRevealToVars(target, trigger, config));
+}
+
+function getRevealFromVars(): gsap.TweenVars {
+  return { autoAlpha: 0, y: 42 };
+}
+
+function getRevealToVars(
+  target: HTMLElement,
+  trigger: HTMLElement,
+  config?: ScrollRevealConfig,
+): gsap.TweenVars {
+  return {
+    autoAlpha: 1,
+    ease: 'none',
+    scrollTrigger: createRevealTrigger(target, trigger, config),
+    y: 0,
+  };
+}
+
+function createRevealTrigger(
+  target: HTMLElement,
+  trigger: HTMLElement,
+  config?: ScrollRevealConfig,
+): ScrollTrigger.Vars {
+  return {
+    trigger,
+    start: () => resolveRevealStart(target, config),
+    end: () => resolveRevealEnd(target, config),
+    invalidateOnRefresh: true,
+    scrub: 0.8,
+  };
 }
 
 function resolveRevealStart(
@@ -109,20 +149,20 @@ function getRevealRange(
   const profile = getRevealProfile(target, profileOverride);
   const heightProgress = getViewportHeightProgress();
 
-  if (profile === 'tech-intro') {
-    return {
-      start: scaleViewportStop(152),
-      end: scaleViewportStop(81),
-    };
-  }
+  if (profile === 'tech-intro') return getTechIntroRevealRange();
+  if (profile === 'tech') return getTechRevealRange();
+  return getDefaultRevealRange(heightProgress);
+}
 
-  if (profile === 'tech') {
-    return {
-      start: scaleViewportStop(146),
-      end: scaleViewportStop(90),
-    };
-  }
+function getTechIntroRevealRange(): RevealRange {
+  return { start: scaleViewportStop(152), end: scaleViewportStop(81) };
+}
 
+function getTechRevealRange(): RevealRange {
+  return { start: scaleViewportStop(146), end: scaleViewportStop(90) };
+}
+
+function getDefaultRevealRange(heightProgress: number): RevealRange {
   return {
     start: interpolate(100, 92, heightProgress),
     end: interpolate(58, 52, heightProgress),

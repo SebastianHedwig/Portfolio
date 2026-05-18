@@ -49,6 +49,14 @@ export class TechStackTextBlockComponent {
     const breakIndex = line.indexOf(breakMarker);
     if (breakIndex < 0) return [{ breakAfter: false, text: line }];
 
+    return this.createCopySegments(line, breakMarker, breakIndex);
+  }
+
+  private createCopySegments(
+    line: string,
+    breakMarker: string,
+    breakIndex: number,
+  ): readonly CopySegment[] {
     return [
       {
         breakAfter: true,

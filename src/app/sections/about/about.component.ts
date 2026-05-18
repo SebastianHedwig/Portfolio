@@ -30,6 +30,7 @@ interface AboutAnimationElements {
 
 const ABOUT_BASE_VIEWPORT_HEIGHT = 1080;
 const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
+const LARGE_DESKTOP_STAGE_QUERY = '(min-width: 1600px) and (orientation: landscape)';
 const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
   {
     selector: '.about-stage__text-zone--lead',
@@ -113,15 +114,23 @@ export class AboutComponent implements OnDestroy {
     const elements = this.getAnimationElements();
 
     if (this.isStackedStage()) {
-      this.animationContext?.revert();
-      this.animationContext = gsap.context(
-        () => this.buildTabletPortraitAnimation(elements),
-        this.host.nativeElement,
-      );
-      scheduleScrollTriggerRefresh();
+      this.initTabletPortraitAnimation(elements);
       return;
     }
 
+    this.initDesktopAnimation(elements);
+  }
+
+  private initTabletPortraitAnimation(elements: AboutAnimationElements): void {
+    this.animationContext?.revert();
+    this.animationContext = gsap.context(
+      () => this.buildTabletPortraitAnimation(elements),
+      this.host.nativeElement,
+    );
+    scheduleScrollTriggerRefresh();
+  }
+
+  private initDesktopAnimation(elements: AboutAnimationElements): void {
     this.animationContext?.revert();
     this.animationContext = gsap.context(
       () => this.buildAnimation(elements),
@@ -152,8 +161,10 @@ export class AboutComponent implements OnDestroy {
   }
 
   private setInitialChapterState(elements: AboutAnimationElements): void {
-    gsap.set(elements.introChapter, { xPercent: -132, scale: 0.92, autoAlpha: 0.08 });
-    gsap.set(elements.contextChapter, { xPercent: -132, scale: 0.6, autoAlpha: 0.08 });
+    const enterOffset = this.getChapterEnterOffsetPercent();
+
+    gsap.set(elements.introChapter, { xPercent: -enterOffset, scale: 0.92, autoAlpha: 0.08 });
+    gsap.set(elements.contextChapter, { xPercent: -enterOffset, scale: 0.6, autoAlpha: 0.08 });
   }
 
   private buildTimeline(elements: AboutAnimationElements): void {
@@ -201,7 +212,7 @@ export class AboutComponent implements OnDestroy {
     introChapter: HTMLElement,
   ): void {
     timeline.to(introChapter, {
-      xPercent: 124,
+      xPercent: this.getIntroExitOffsetPercent(),
       scale: 0.6,
       autoAlpha: 0.08,
       duration: 0.54,
@@ -222,11 +233,28 @@ export class AboutComponent implements OnDestroy {
 
   private addAboutExit(timeline: gsap.core.Timeline, contextChapter: HTMLElement): void {
     timeline.addLabel('about-exit').to(contextChapter, {
-      xPercent: 112,
+      xPercent: this.getAboutExitOffsetPercent(),
       scale: 0.6,
       autoAlpha: 0.04,
       duration: 0.48,
     });
+  }
+
+
+  private getChapterEnterOffsetPercent(): number {
+    return this.isLargeDesktopStage() ? 96 : 132;
+  }
+
+  private getIntroExitOffsetPercent(): number {
+    return this.isLargeDesktopStage() ? 98 : 124;
+  }
+
+  private getAboutExitOffsetPercent(): number {
+    return this.isLargeDesktopStage() ? 96 : 112;
+  }
+
+  private isLargeDesktopStage(): boolean {
+    return window.matchMedia(LARGE_DESKTOP_STAGE_QUERY).matches;
   }
 
   private getEntryStart(): string {

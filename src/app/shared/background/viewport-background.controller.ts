@@ -15,6 +15,15 @@ export class ViewportBackgroundController {
   private animationFrameId = 0
   private lastFrameTime = 0
   private lastFrameGateTime = 0
+  private readonly animate = (now: number): void => {
+    if (!this.shouldRenderFrame(now)) {
+      this.requestNextFrame()
+      return
+    }
+
+    this.renderFrame(now)
+    this.requestNextFrame()
+  }
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.renderer = new WebGLRenderer({
@@ -31,32 +40,8 @@ export class ViewportBackgroundController {
   start(): void {
     this.stop()
     this.resize()
-    const now = performance.now()
-    this.lastFrameTime = now
-    this.lastFrameGateTime = now
-
-    const loop = (now: number) => {
-      const elapsedSinceLastGate = now - this.lastFrameGateTime
-
-      if (elapsedSinceLastGate < BACKGROUND_FRAME_INTERVAL_MS) {
-        this.animationFrameId = window.requestAnimationFrame(loop)
-        return
-      }
-
-      const deltaMs = now - this.lastFrameTime
-      this.lastFrameTime = now
-      this.lastFrameGateTime = now
-        - (elapsedSinceLastGate % BACKGROUND_FRAME_INTERVAL_MS)
-
-      for (const layer of this.currentLayers) {
-        layer.update(deltaMs, now)
-      }
-
-      this.renderer.render(this.scene, this.camera)
-      this.animationFrameId = window.requestAnimationFrame(loop)
-    }
-
-    this.animationFrameId = window.requestAnimationFrame(loop)
+    this.resetFrameTiming()
+    this.requestNextFrame()
   }
 
   resize(): void {
@@ -64,6 +49,41 @@ export class ViewportBackgroundController {
 
     this.renderer.setPixelRatio(viewport.dpr)
     this.renderer.setSize(viewport.width, viewport.height, false)
+    this.configureCamera(viewport)
+    this.replaceLayers(viewport)
+    this.resetFrameTiming()
+    this.renderer.render(this.scene, this.camera)
+  }
+
+  private shouldRenderFrame(now: number): boolean {
+    return now - this.lastFrameGateTime >= BACKGROUND_FRAME_INTERVAL_MS
+  }
+
+  private renderFrame(now: number): void {
+    const deltaMs = now - this.lastFrameTime
+    this.lastFrameTime = now
+    this.updateFrameGateTime(now)
+    this.updateLayers(deltaMs, now)
+    this.renderer.render(this.scene, this.camera)
+  }
+
+  private updateFrameGateTime(now: number): void {
+    const elapsedSinceLastGate = now - this.lastFrameGateTime
+    this.lastFrameGateTime = now
+      - (elapsedSinceLastGate % BACKGROUND_FRAME_INTERVAL_MS)
+  }
+
+  private updateLayers(deltaMs: number, now: number): void {
+    for (const layer of this.currentLayers) {
+      layer.update(deltaMs, now)
+    }
+  }
+
+  private requestNextFrame(): void {
+    this.animationFrameId = window.requestAnimationFrame(this.animate)
+  }
+
+  private configureCamera(viewport: BackgroundViewport): void {
     this.camera.left = viewport.width / -2
     this.camera.right = viewport.width / 2
     this.camera.top = viewport.height / 2
@@ -72,12 +92,12 @@ export class ViewportBackgroundController {
     this.camera.far = 10
     this.camera.position.z = 1
     this.camera.updateProjectionMatrix()
+  }
 
-    this.replaceLayers(viewport)
+  private resetFrameTiming(): void {
     const now = performance.now()
     this.lastFrameTime = now
     this.lastFrameGateTime = now
-    this.renderer.render(this.scene, this.camera)
   }
 
   stop(): void {

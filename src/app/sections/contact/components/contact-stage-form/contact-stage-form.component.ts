@@ -111,8 +111,20 @@ export class ContactStageFormComponent implements OnDestroy {
 
     this.isSubmitting.set(true)
     this.hideToast()
+    this.sendForm()
+  }
 
-    const payload: ContactPayload = {
+  private sendForm(): void {
+    this.contactService.sendContact(this.createPayload()).pipe(
+      finalize(() => this.isSubmitting.set(false))
+    ).subscribe({
+      next: () => this.handleSubmitSuccess(),
+      error: () => this.showToast(this.content().toast.error, 'error'),
+    })
+  }
+
+  private createPayload(): ContactPayload {
+    return {
       name: this.form.controls.name.value,
       email: this.form.controls.email.value,
       subject: this.form.controls.subject.value,
@@ -120,20 +132,11 @@ export class ContactStageFormComponent implements OnDestroy {
       honeypot: '',
       language: this.content().language,
     }
+  }
 
-    this.contactService.sendContact(payload).pipe(
-      finalize(() => {
-        this.isSubmitting.set(false)
-      })
-    ).subscribe({
-      next: () => {
-        this.form.reset()
-        this.showToast(this.content().toast.success, 'success')
-      },
-      error: () => {
-        this.showToast(this.content().toast.error, 'error')
-      },
-    })
+  private handleSubmitSuccess(): void {
+    this.form.reset()
+    this.showToast(this.content().toast.success, 'success')
   }
 
   showError(control: AbstractControl): boolean {
@@ -150,41 +153,52 @@ export class ContactStageFormComponent implements OnDestroy {
 
   private showToast(message: string, type: 'success' | 'error'): void {
     this.removeToast()
-    this.toastElement = this.document.createElement('div')
-    this.toastElement.className = `contact-stage-toast contact-stage-toast--${type}`
-    this.toastElement.role = 'status'
-    this.toastElement.ariaLive = 'polite'
-    this.toastElement.textContent = message
+    this.toastElement = this.createToastElement(message, type)
     this.document.body.appendChild(this.toastElement)
+    requestAnimationFrame(() => this.showToastElement())
+    this.toastTimeoutId = window.setTimeout(() => this.hideToast(), TOAST_DURATION_MS)
+  }
 
-    requestAnimationFrame(() => {
-      this.toastElement?.classList.add('contact-stage-toast--visible')
-    })
+  private createToastElement(
+    message: string,
+    type: 'success' | 'error',
+  ): HTMLDivElement {
+    const toast = this.document.createElement('div')
+    toast.className = `contact-stage-toast contact-stage-toast--${type}`
+    toast.role = 'status'
+    toast.ariaLive = 'polite'
+    toast.textContent = message
+    return toast
+  }
 
-    this.toastTimeoutId = window.setTimeout(() => {
-      this.hideToast()
-    }, TOAST_DURATION_MS)
+  private showToastElement(): void {
+    this.toastElement?.classList.add('contact-stage-toast--visible')
   }
 
   private hideToast(): void {
     this.clearToastTimeout()
     this.clearToastRemoveTimeout()
 
-    if (!this.toastElement) {
-      return
-    }
+    if (!this.toastElement) return
 
     const toast = this.toastElement
     toast.classList.remove('contact-stage-toast--visible')
-    this.toastRemoveTimeoutId = window.setTimeout(() => {
-      toast.remove()
+    this.scheduleToastRemoval(toast)
+  }
 
-      if (this.toastElement === toast) {
-        this.toastElement = null
-      }
+  private scheduleToastRemoval(toast: HTMLDivElement): void {
+    this.toastRemoveTimeoutId = window.setTimeout(
+      () => this.removeHiddenToast(toast),
+      TOAST_EXIT_DURATION_MS,
+    )
+  }
 
-      this.toastRemoveTimeoutId = null
-    }, TOAST_EXIT_DURATION_MS)
+  private removeHiddenToast(toast: HTMLDivElement): void {
+    toast.remove()
+    if (this.toastElement === toast) {
+      this.toastElement = null
+    }
+    this.toastRemoveTimeoutId = null
   }
 
   private clearToastTimeout(): void {
@@ -220,62 +234,59 @@ function requiredTrimmed(control: AbstractControl<string>): ValidationErrors | n
 function ianaEmailValidator(control: AbstractControl<string>): ValidationErrors | null {
   const value = control.value.trim()
 
-  if (!value) {
-    return null
-  }
+  if (!value) return null
 
   const parts = value.split('@')
+  if (parts.length !== 2) return { email: true }
 
-  if (parts.length !== 2) {
-    return { email: true }
-  }
-
-  const [localPart, domain] = parts
-
-  if (!localPart || localPart.length > 64 || domain.length > 253) {
-    return { email: true }
-  }
-
-  if (!/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(localPart)) {
-    return { email: true }
-  }
-
-  const labels = domain.split('.')
-
-  if (labels.length < 2) {
-    return { email: true }
-  }
-
-  if (
-    labels.some((label) =>
-      label.length === 0
-      || label.length > 63
-      || !/^[A-Za-z0-9-]+$/.test(label)
-      || label.startsWith('-')
-      || label.endsWith('-'),
-    )
-  ) {
-    return { email: true }
-  }
-
-  if (!/^[A-Za-z]{2,63}$/.test(labels[labels.length - 1])) {
-    return { email: true }
-  }
-
-  const normalizedDomain = domain.toLowerCase()
-
-  if (
-    BLOCKED_EMAIL_DOMAINS.has(normalizedDomain)
-    || normalizedDomain.endsWith('.invalid')
-    || normalizedDomain.endsWith('.example')
-    || normalizedDomain.startsWith('test.')
-    || normalizedDomain.startsWith('fake.')
-    || normalizedDomain.includes('tempmail')
-    || normalizedDomain.includes('mailinator')
-    || normalizedDomain.includes('guerrillamail')
-  ) {
-    return { blockedDomain: true }
-  }
-
+  const [localPart, domain] = parts as [string, string]
+  if (hasInvalidEmailParts(localPart, domain)) return { email: true }
+  if (hasBlockedEmailDomain(domain)) return { blockedDomain: true }
   return null
+}
+
+function hasInvalidEmailParts(localPart: string, domain: string): boolean {
+  return hasInvalidLocalPart(localPart) || hasInvalidDomain(domain)
+}
+
+function hasInvalidLocalPart(localPart: string): boolean {
+  return !localPart
+    || localPart.length > 64
+    || !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(localPart)
+}
+
+function hasInvalidDomain(domain: string): boolean {
+  const labels = domain.split('.')
+  return domain.length > 253
+    || labels.length < 2
+    || labels.some((label) => hasInvalidDomainLabel(label))
+    || !/^[A-Za-z]{2,63}$/.test(labels[labels.length - 1])
+}
+
+function hasInvalidDomainLabel(label: string): boolean {
+  return label.length === 0
+    || label.length > 63
+    || !/^[A-Za-z0-9-]+$/.test(label)
+    || label.startsWith('-')
+    || label.endsWith('-')
+}
+
+function hasBlockedEmailDomain(domain: string): boolean {
+  const normalizedDomain = domain.toLowerCase()
+  return BLOCKED_EMAIL_DOMAINS.has(normalizedDomain)
+    || isReservedDomain(normalizedDomain)
+    || isTemporaryMailDomain(normalizedDomain)
+}
+
+function isReservedDomain(domain: string): boolean {
+  return domain.endsWith('.invalid')
+    || domain.endsWith('.example')
+    || domain.startsWith('test.')
+    || domain.startsWith('fake.')
+}
+
+function isTemporaryMailDomain(domain: string): boolean {
+  return domain.includes('tempmail')
+    || domain.includes('mailinator')
+    || domain.includes('guerrillamail')
 }

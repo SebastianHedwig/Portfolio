@@ -46,6 +46,10 @@ export class DesktopHeaderComponent implements OnDestroy {
 
   constructor() {
     afterNextRender(() => this.initEventListeners());
+    this.initLanguageSwitchEffect();
+  }
+
+  private initLanguageSwitchEffect(): void {
     effect((onCleanup) => {
       this.activeLanguage();
 
@@ -54,19 +58,24 @@ export class DesktopHeaderComponent implements OnDestroy {
         return;
       }
 
-      this.clearIdleRevealTimer();
-      this.isLanguageSwitching.set(true);
-      this.suppressInteractionsUntil = performance.now() + HEADER_LANGUAGE_SWITCH_LOCK_MS;
-
-      const unlockTimer = window.setTimeout(() => {
-        this.isLanguageSwitching.set(false);
-      }, HEADER_LANGUAGE_SWITCH_LOCK_MS);
-
-      onCleanup(() => {
-        clearTimeout(unlockTimer);
-        this.isLanguageSwitching.set(false);
-      });
+      const unlockTimer = this.lockLanguageSwitchInteractions();
+      onCleanup(() => this.cleanupLanguageSwitchTimer(unlockTimer));
     });
+  }
+
+  private lockLanguageSwitchInteractions(): number {
+    this.clearIdleRevealTimer();
+    this.isLanguageSwitching.set(true);
+    this.suppressInteractionsUntil = performance.now() + HEADER_LANGUAGE_SWITCH_LOCK_MS;
+    return window.setTimeout(
+      () => this.isLanguageSwitching.set(false),
+      HEADER_LANGUAGE_SWITCH_LOCK_MS,
+    );
+  }
+
+  private cleanupLanguageSwitchTimer(unlockTimer: number): void {
+    clearTimeout(unlockTimer);
+    this.isLanguageSwitching.set(false);
   }
 
   ngOnDestroy(): void {
@@ -80,14 +89,16 @@ export class DesktopHeaderComponent implements OnDestroy {
     }
 
     this.languageStore.setLanguage(nextLanguage);
+    this.location.replaceState(this.createLanguagePath(nextLanguage));
+  }
 
+  private createLanguagePath(nextLanguage: AppLanguage): string {
     const nextPath = this.languageStore.switchLanguageInPath(
       window.location.pathname,
       nextLanguage,
     );
     const fragment = window.location.hash;
-
-    this.location.replaceState(`${nextPath}${fragment}`);
+    return `${nextPath}${fragment}`;
   }
 
   private initEventListeners(): void {

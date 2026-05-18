@@ -56,18 +56,21 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
   }
 
   private async createController(): Promise<void> {
-    const { ViewportBackgroundController } = await import(
-      './viewport-background.controller'
-    )
+    const Controller = await this.loadController()
 
     if (this.isDestroyed) {
       return
     }
 
-    this.controller = new ViewportBackgroundController(
-      this.canvasRef.nativeElement,
-    )
+    this.controller = new Controller(this.canvasRef.nativeElement)
     this.controller.start()
     window.addEventListener('resize', this.handleResize, { passive: true })
+  }
+
+  private async loadController(): Promise<typeof ViewportBackgroundController> {
+    const { ViewportBackgroundController } = await import(
+      './viewport-background.controller'
+    )
+    return ViewportBackgroundController
   }
 }

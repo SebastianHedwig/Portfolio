@@ -31,6 +31,13 @@ const TABLET_LANDSCAPE_QUERY =
 const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 const PROJECTS_SCROLL_START = 'top bottom+=46%';
 const PROJECTS_SCROLL_START_TABLET_LANDSCAPE = 'top bottom+=24%';
+const PROJECTS_STAGE_ITEM_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: 'app-projects-stage-item',
+    start: 'top 104%',
+    end: 'top 58%',
+  },
+] as const;
 
 interface ProjectsAnimationElements {
   projectPanels: HTMLElement[];
@@ -61,28 +68,38 @@ export class ProjectsComponent implements OnDestroy {
   readonly projects = computed<readonly ProjectStageItemData[]>(() => this.content().items);
 
   constructor() {
-    afterNextRender(() => {
-      this.registerStackedStageMediaQuery();
-      this.initAnimation();
-    });
+    afterNextRender(() => this.initAfterRender());
+    this.initLanguageRefreshEffect();
+  }
+
+  private initAfterRender(): void {
+    this.registerStackedStageMediaQuery();
+    this.initAnimation();
+  }
+
+  private initLanguageRefreshEffect(): void {
     effect((onCleanup) => {
       this.languageStore.language();
+      this.handleLanguageRefresh(onCleanup);
+    });
+  }
 
-      if (!this.hasInitializedLanguage) {
-        this.hasInitializedLanguage = true;
-        return;
-      }
+  private handleLanguageRefresh(onCleanup: (cleanupFn: () => void) => void): void {
+    if (!this.hasInitializedLanguage) {
+      this.hasInitializedLanguage = true;
+      return;
+    }
 
-      const preservedProgress = this.getActiveProjectsProgress();
-      if (preservedProgress === null) {
-        return;
-      }
+    const progress = this.getActiveProjectsProgress();
+    if (progress === null) return;
 
-      const refreshFrameId = requestAnimationFrame(() => {
-        scheduleScrollTriggerRefresh(() => this.restoreProjectsProgress(preservedProgress));
-      });
+    const refreshFrameId = this.scheduleProgressRestore(progress);
+    onCleanup(() => cancelAnimationFrame(refreshFrameId));
+  }
 
-      onCleanup(() => cancelAnimationFrame(refreshFrameId));
+  private scheduleProgressRestore(progress: number): number {
+    return requestAnimationFrame(() => {
+      scheduleScrollTriggerRefresh(() => this.restoreProjectsProgress(progress));
     });
   }
 
@@ -101,18 +118,25 @@ export class ProjectsComponent implements OnDestroy {
 
   private initAnimation(): void {
     if (this.isStackedStage()) {
-      this.animationContext?.revert();
-      this.projectsTimeline = null;
-      this.animationContext = gsap.context(
-        () => this.initProjectEntryReveals(),
-        this.host.nativeElement,
-      );
+      this.initStackedAnimation();
       return;
     }
 
     const elements = this.getAnimationElements();
     if (!elements) return;
+    this.initDesktopAnimation(elements);
+  }
 
+  private initStackedAnimation(): void {
+    this.animationContext?.revert();
+    this.projectsTimeline = null;
+    this.animationContext = gsap.context(
+      () => this.initStackedProjectReveals(),
+      this.host.nativeElement,
+    );
+  }
+
+  private initDesktopAnimation(elements: ProjectsAnimationElements): void {
     this.animationContext?.revert();
     this.animationContext = gsap.context(
       () => this.buildAnimation(elements),
@@ -252,6 +276,11 @@ export class ProjectsComponent implements OnDestroy {
       this.host.nativeElement,
       PROJECTS_STAGE_ENTRY_REVEALS as readonly ScrollRevealConfig[],
     );
+  }
+
+  private initStackedProjectReveals(): void {
+    this.initProjectEntryReveals();
+    initScrollReveals(this.host.nativeElement, PROJECTS_STAGE_ITEM_REVEALS);
   }
 
   private getActiveProjectsProgress(): number | null {

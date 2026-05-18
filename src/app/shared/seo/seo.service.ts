@@ -78,10 +78,23 @@ export class SeoService {
     const image = SOCIAL_PREVIEW_IMAGES[language];
     this.setName('description', page.description);
     this.setName('robots', page.robots);
+    this.updateTwitterTags(page, image);
+    this.updateOpenGraphTags(page, language, url, image);
+  }
+
+  private updateTwitterTags(page: SeoPage, image: string): void {
     this.setName('twitter:card', 'summary_large_image');
     this.setName('twitter:title', page.title);
     this.setName('twitter:description', page.description);
     this.setName('twitter:image', image);
+  }
+
+  private updateOpenGraphTags(
+    page: SeoPage,
+    language: AppLanguage,
+    url: string,
+    image: string,
+  ): void {
     this.setProperty('og:type', 'website');
     this.setProperty('og:site_name', SITE_NAME);
     this.setProperty('og:title', page.title);
@@ -133,15 +146,21 @@ export class SeoService {
     }
 
     HERO_IMAGE_PRELOADS.forEach((preload) => {
-      const link = this.readOrCreateHeroImagePreload(preload.variant);
-      link.setAttribute('href', preload.href);
-      link.setAttribute('as', 'image');
-      link.setAttribute('type', 'image/webp');
-      link.setAttribute('fetchpriority', 'high');
-      link.setAttribute('media', preload.media);
-      link.setAttribute('data-seo-hero-image-preload', preload.variant);
-      link.setAttribute('rel', 'preload');
+      this.updateHeroImagePreloadLink(preload);
     });
+  }
+
+  private updateHeroImagePreloadLink(
+    preload: (typeof HERO_IMAGE_PRELOADS)[number],
+  ): void {
+    const link = this.readOrCreateHeroImagePreload(preload.variant);
+    link.setAttribute('href', preload.href);
+    link.setAttribute('as', 'image');
+    link.setAttribute('type', 'image/webp');
+    link.setAttribute('fetchpriority', 'high');
+    link.setAttribute('media', preload.media);
+    link.setAttribute('data-seo-hero-image-preload', preload.variant);
+    link.setAttribute('rel', 'preload');
   }
 
   private readOrCreateHeroImagePreload(variant: string): HTMLLinkElement {
@@ -212,29 +231,38 @@ export class SeoService {
 }
 
 function createStructuredData(language: AppLanguage): object[] {
-  return [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Sebastian Hedwig',
-      jobTitle: 'Frontend Developer',
-      url: `${SITE_URL}/${language}`,
-      image: SOCIAL_PREVIEW_IMAGES[language],
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Flörsheim am Main',
-        addressRegion: 'Hessen',
-        addressCountry: 'DE',
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: SITE_NAME,
-      url: SITE_URL,
-      inLanguage: language,
-    },
-  ];
+  return [createPersonData(language), createWebsiteData(language)];
+}
+
+function createPersonData(language: AppLanguage): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Sebastian Hedwig',
+    jobTitle: 'Frontend Developer',
+    url: `${SITE_URL}/${language}`,
+    image: SOCIAL_PREVIEW_IMAGES[language],
+    address: createPostalAddress(),
+  };
+}
+
+function createPostalAddress(): object {
+  return {
+    '@type': 'PostalAddress',
+    addressLocality: 'Flörsheim am Main',
+    addressRegion: 'Hessen',
+    addressCountry: 'DE',
+  };
+}
+
+function createWebsiteData(language: AppLanguage): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: language,
+  };
 }
 
 const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {

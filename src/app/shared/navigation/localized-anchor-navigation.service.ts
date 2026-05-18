@@ -23,19 +23,9 @@ export class LocalizedAnchorNavigationService {
 
   async navigate(fragmentHref: string): Promise<void> {
     const fragment = this.normalizeFragment(fragmentHref);
-    const landingPath = this.normalizePath(
-      this.languageStore.buildLocalizedPath(this.languageStore.language()),
-    );
-    const currentPath = this.normalizePath(window.location.pathname);
 
-    if (currentPath !== landingPath) {
-      await this.router.navigateByUrl(
-        this.languageStore.buildLocalizedPath(
-          this.languageStore.language(),
-          '',
-          fragment,
-        ),
-      );
+    if (!this.isOnLandingPath()) {
+      await this.router.navigateByUrl(this.buildLandingFragmentPath(fragment));
       this.scrollToFragment(fragment, false);
       return;
     }
@@ -44,35 +34,66 @@ export class LocalizedAnchorNavigationService {
   }
 
   private scrollToFragment(fragment: string, pushHistory: boolean): void {
-    const updateHistory = () => {
-      const nextUrl = `${this.normalizePath(window.location.pathname)}#${fragment}`;
+    this.tryScrollToFragment(fragment, pushHistory, 3);
+  }
 
-      if (pushHistory) {
-        window.history.pushState(null, '', nextUrl);
-        return;
-      }
+  private tryScrollToFragment(
+    fragment: string,
+    pushHistory: boolean,
+    attemptsRemaining: number,
+  ): void {
+    const target = document.getElementById(fragment);
 
-      window.history.replaceState(null, '', nextUrl);
-    };
+    if (target) return this.scrollTargetIntoView(target, fragment, pushHistory);
+    if (attemptsRemaining <= 0) return this.updateHistory(fragment, pushHistory);
 
-    const tryScroll = (attemptsRemaining: number): void => {
-      const target = document.getElementById(fragment);
+    this.retryScrollToFragment(fragment, pushHistory, attemptsRemaining);
+  }
 
-      if (target) {
-        target.scrollIntoView({ block: 'start', behavior: 'auto' });
-        updateHistory();
-        return;
-      }
+  private scrollTargetIntoView(
+    target: HTMLElement,
+    fragment: string,
+    pushHistory: boolean,
+  ): void {
+    target.scrollIntoView({ block: 'start', behavior: 'auto' });
+    this.updateHistory(fragment, pushHistory);
+  }
 
-      if (attemptsRemaining <= 0) {
-        updateHistory();
-        return;
-      }
+  private retryScrollToFragment(
+    fragment: string,
+    pushHistory: boolean,
+    attemptsRemaining: number,
+  ): void {
+    requestAnimationFrame(() =>
+      this.tryScrollToFragment(fragment, pushHistory, attemptsRemaining - 1),
+    );
+  }
 
-      requestAnimationFrame(() => tryScroll(attemptsRemaining - 1));
-    };
+  private updateHistory(fragment: string, pushHistory: boolean): void {
+    const nextUrl = `${this.normalizePath(window.location.pathname)}#${fragment}`;
+    if (pushHistory) {
+      window.history.pushState(null, '', nextUrl);
+      return;
+    }
+    window.history.replaceState(null, '', nextUrl);
+  }
 
-    tryScroll(3);
+  private isOnLandingPath(): boolean {
+    return this.normalizePath(window.location.pathname) === this.getLandingPath();
+  }
+
+  private getLandingPath(): string {
+    return this.normalizePath(
+      this.languageStore.buildLocalizedPath(this.languageStore.language()),
+    );
+  }
+
+  private buildLandingFragmentPath(fragment: string): string {
+    return this.languageStore.buildLocalizedPath(
+      this.languageStore.language(),
+      '',
+      fragment,
+    );
   }
 
   private normalizeFragment(fragmentHref: string): string {

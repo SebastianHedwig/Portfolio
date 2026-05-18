@@ -53,6 +53,10 @@ export class MobileHeaderComponent implements OnDestroy {
 
   constructor() {
     afterNextRender(() => this.initEventListeners());
+    this.initLanguageSwitchEffect();
+  }
+
+  private initLanguageSwitchEffect(): void {
     effect((onCleanup) => {
       this.activeLanguage();
 
@@ -61,19 +65,24 @@ export class MobileHeaderComponent implements OnDestroy {
         return;
       }
 
-      this.clearIdleRevealTimer();
-      this.isLanguageSwitching.set(true);
-      this.suppressInteractionsUntil = performance.now() + HEADER_LANGUAGE_SWITCH_LOCK_MS;
-
-      const unlockTimer = window.setTimeout(() => {
-        this.isLanguageSwitching.set(false);
-      }, HEADER_LANGUAGE_SWITCH_LOCK_MS);
-
-      onCleanup(() => {
-        clearTimeout(unlockTimer);
-        this.isLanguageSwitching.set(false);
-      });
+      const unlockTimer = this.lockLanguageSwitchInteractions();
+      onCleanup(() => this.cleanupLanguageSwitchTimer(unlockTimer));
     });
+  }
+
+  private lockLanguageSwitchInteractions(): number {
+    this.clearIdleRevealTimer();
+    this.isLanguageSwitching.set(true);
+    this.suppressInteractionsUntil = performance.now() + HEADER_LANGUAGE_SWITCH_LOCK_MS;
+    return window.setTimeout(
+      () => this.isLanguageSwitching.set(false),
+      HEADER_LANGUAGE_SWITCH_LOCK_MS,
+    );
+  }
+
+  private cleanupLanguageSwitchTimer(unlockTimer: number): void {
+    clearTimeout(unlockTimer);
+    this.isLanguageSwitching.set(false);
   }
 
   ngOnDestroy(): void {
@@ -88,14 +97,16 @@ export class MobileHeaderComponent implements OnDestroy {
     }
 
     this.languageStore.setLanguage(nextLanguage);
+    this.location.replaceState(this.createLanguagePath(nextLanguage));
+  }
 
+  private createLanguagePath(nextLanguage: AppLanguage): string {
     const nextPath = this.languageStore.switchLanguageInPath(
       window.location.pathname,
       nextLanguage,
     );
     const fragment = window.location.hash;
-
-    this.location.replaceState(`${nextPath}${fragment}`);
+    return `${nextPath}${fragment}`;
   }
 
   toggleMobileMenu(): void {
@@ -111,14 +122,22 @@ export class MobileHeaderComponent implements OnDestroy {
     }
 
     this.moveFocusOutOfMobilePanel();
+    this.startMobileMenuClose();
+    this.clearMobileMenuCloseTimer();
+    this.mobileMenuCloseTimer = window.setTimeout(
+      () => this.finishMobileMenuClose(),
+      MOBILE_MENU_CLOSE_MS,
+    );
+  }
+
+  private startMobileMenuClose(): void {
     this.isMobileMenuOpen.set(false);
     this.isMobileMenuClosing.set(true);
+  }
 
-    this.clearMobileMenuCloseTimer();
-    this.mobileMenuCloseTimer = window.setTimeout(() => {
-      this.isMobileMenuClosing.set(false);
-      this.mobileMenuCloseTimer = null;
-    }, MOBILE_MENU_CLOSE_MS);
+  private finishMobileMenuClose(): void {
+    this.isMobileMenuClosing.set(false);
+    this.mobileMenuCloseTimer = null;
   }
 
   navigateFromMobileMenu(event: MouseEvent, fragmentHref: string): void {
@@ -149,18 +168,19 @@ export class MobileHeaderComponent implements OnDestroy {
       return;
     }
 
-    if (this.isInteractionLocked()) {
-      return;
-    }
+    this.updateHeaderVisibilityFromScroll();
+  }
 
-    if (this.isAtHeroTop()) {
-      this.clearIdleRevealTimer();
-      this.revealHeader();
-      return;
-    }
-
+  private updateHeaderVisibilityFromScroll(): void {
+    if (this.isInteractionLocked()) return;
+    if (this.isAtHeroTop()) return this.revealHeaderAtTop();
     this.hideHeader();
     this.scheduleIdleReveal();
+  }
+
+  private revealHeaderAtTop(): void {
+    this.clearIdleRevealTimer();
+    this.revealHeader();
   }
 
   private handleKeydown(event: KeyboardEvent): void {

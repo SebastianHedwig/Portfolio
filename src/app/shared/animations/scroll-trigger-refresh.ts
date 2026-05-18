@@ -11,19 +11,25 @@ export function scheduleScrollTriggerRefresh(onComplete?: () => void): void {
     pendingRefreshCallbacks.push(onComplete);
   }
 
-  if (
-    pendingOuterRefreshId !== null
-    || pendingInnerRefreshId !== null
-    || pendingTimeoutRefreshId !== null
-    || pendingIdleRefreshId !== null
-  ) return;
+  if (hasPendingRefresh()) return;
 
   pendingOuterRefreshId = requestAnimationFrame(() => {
     pendingOuterRefreshId = null;
-    pendingInnerRefreshId = requestAnimationFrame(() => {
-      pendingInnerRefreshId = null;
-      scheduleDeferredRefresh();
-    });
+    scheduleInnerRefreshFrame();
+  });
+}
+
+function hasPendingRefresh(): boolean {
+  return pendingOuterRefreshId !== null
+    || pendingInnerRefreshId !== null
+    || pendingTimeoutRefreshId !== null
+    || pendingIdleRefreshId !== null;
+}
+
+function scheduleInnerRefreshFrame(): void {
+  pendingInnerRefreshId = requestAnimationFrame(() => {
+    pendingInnerRefreshId = null;
+    scheduleDeferredRefresh();
   });
 }
 
