@@ -22,6 +22,8 @@ export interface LandingFooterContent {
   icons: readonly LandingFooterIcon[];
   imprintLabel: string;
   imprintPath: string;
+  privacyLabel: string;
+  privacyPath: string;
   meta: {
     copyrightText: string;
     location: string;

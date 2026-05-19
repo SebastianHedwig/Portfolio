@@ -58,3 +58,11 @@
     </div>
   </div>
 </main>
+
+<section class="legal-page__footer section section--legal" aria-label="Footer">
+  @if (isMobileLayout()) {
+    <app-mobile-footer></app-mobile-footer>
+  } @else {
+    <app-desktop-footer></app-desktop-footer>
+  }
+</section>

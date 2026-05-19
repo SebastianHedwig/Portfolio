@@ -20,6 +20,8 @@ export const LANDING_FOOTER_CONTENT_DE: LandingFooterContent = {
   },
   imprintLabel: 'Impressum',
   imprintPath: 'impressum',
+  privacyLabel: 'Datenschutz',
+  privacyPath: 'datenschutz',
   icons: [
     {
       alt: 'Mail',

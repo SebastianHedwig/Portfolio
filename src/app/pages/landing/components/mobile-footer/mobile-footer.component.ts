@@ -22,4 +22,10 @@ export class MobileFooterComponent {
       this.footer().imprintPath,
     ),
   );
+  readonly privacyHref = computed(() =>
+    this.languageStore.buildLocalizedPath(
+      this.languageStore.language(),
+      this.footer().privacyPath,
+    ),
+  );
 }
