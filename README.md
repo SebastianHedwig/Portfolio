@@ -2,6 +2,8 @@
 
 Personal portfolio website for Sebastian Hedwig, Frontend Developer. The site presents profile information, tech stack, selected projects, references, and contact options in a bilingual Angular application.
 
+Live site: [sebastian-hedwig.de](https://sebastian-hedwig.de)
+
 ![Portfolio Hero Preview](src/assets/images/readme/portfolio-hero-preview-en.png)
 
 ## Overview
@@ -16,7 +18,7 @@ The application is designed to communicate frontend work with an emphasis on int
 - Language switching for German and English through localized routes
 - Animated, interactive interface built with GSAP and Three.js
 - Responsive SCSS architecture with shared tokens, mixins, and component styles
-- SEO-minded foundation with sitemap, robots file, imprint, and privacy pages
+- SEO setup with route-specific metadata, canonical URLs, hreflang alternates, structured data, sitemap, robots file, imprint, and privacy pages
 
 ## Features
 
@@ -30,6 +32,10 @@ The application is designed to communicate frontend work with an emphasis on int
 - Locally bundled fonts and static image assets
 - Contact form with validation feedback and submission handling through a VPS-hosted Contact API
 - Self-managed VPS deployment with custom backend services for CV delivery, contact API handling, and mailing workflows
+- Route-aware SEO metadata for German and English pages
+- Open Graph and Twitter Card previews with localized preview images
+- JSON-LD structured data for the person profile and website
+- Canonical URLs, alternate language links, and hero image preloads managed by the Angular SEO service
 
 ## Tech Stack
 
@@ -52,6 +58,24 @@ The application is designed to communicate frontend work with an emphasis on int
 | `/en/impressum` | English imprint page |
 | `/de/datenschutz` | German privacy page |
 | `/en/datenschutz` | English privacy page |
+
+## SEO
+
+SEO is handled through a dedicated Angular service in `src/app/shared/seo/seo.service.ts`. The service updates page metadata after navigation and language changes, so each public route receives the correct language-specific title, description, canonical URL, robots directive, and social preview data.
+
+The SEO setup includes:
+
+- Localized page titles and descriptions for the German and English landing, imprint, and privacy routes
+- Canonical links for every language-specific route
+- `hreflang` alternate links for `de`, `en`, and `x-default`
+- Open Graph metadata for link previews, including localized preview images
+- Twitter Card metadata using `summary_large_image`
+- JSON-LD structured data for `Person` and `WebSite`
+- Responsive hero image preloads for the landing page
+- `public/sitemap.xml` with alternate language references
+- `public/robots.txt` pointing crawlers to the sitemap
+
+When public routes, route names, preview images, or indexed page copy change, update the SEO metadata in `SeoService` and keep `public/sitemap.xml` in sync.
 
 ## Featured Projects
 
@@ -85,8 +109,12 @@ public/             Favicon, robots.txt, and sitemap.xml
 | `npm start` | Starts the Angular development server and opens the app |
 | `npm run build` | Creates a production build |
 | `npm run watch` | Builds continuously in development mode |
-| `npm test` | Runs Angular tests |
 | `npm run ng` | Runs the Angular CLI through npm |
+
+## Prerequisites
+
+- Node.js with a version supported by Angular 21
+- npm 11.12.0 or compatible
 
 ## Local Development
 
@@ -126,14 +154,6 @@ Backend-managed responsibilities include:
 
 This keeps the public frontend focused on presentation and interaction while operational concerns such as contact submission and mail handling are managed through the VPS backend.
 
-## Tests
-
-Run the test suite with:
-
-```bash
-npm test
-```
-
 ## Content
 
 Most visible copy is stored as structured data in the corresponding `*.data.de.ts` and `*.data.en.ts` files. This keeps both language versions easy to maintain without changing component logic.
@@ -159,7 +179,8 @@ Images, icons, and fonts are stored under `src/assets` and copied into the build
 - Keep German and English data files in sync when adding or changing visible copy.
 - Add new project screenshots under `src/assets/images/projects`.
 - Add README-specific images under `src/assets/images/readme`.
-- Update `public/sitemap.xml` when public routes change.
+- Update `src/app/shared/seo/seo.service.ts` when public route metadata, preview images, canonical behavior, or indexed page descriptions change.
+- Update `public/sitemap.xml` when public routes or language alternates change.
 - Run `npm run build` before publishing changes.
 - Keep VPS deployment, downloadable CV delivery, Contact API handling, and mail workflows in sync with frontend changes.
 
