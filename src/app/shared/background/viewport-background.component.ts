@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  PLATFORM_ID,
   NgZone,
   OnDestroy,
   ViewChild,
   inject,
 } from '@angular/core'
+import { isPlatformBrowser } from '@angular/common'
 
 import type { ViewportBackgroundController } from './viewport-background.controller'
 
@@ -27,6 +29,7 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
   private readonly canvasRef!: ElementRef<HTMLCanvasElement>
 
   private readonly ngZone = inject(NgZone)
+  private readonly platformId = inject(PLATFORM_ID)
   private controller: ViewportBackgroundController | null = null
   private initFrameId = 0
   private isDestroyed = false
@@ -35,6 +38,10 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser()) {
+      return
+    }
+
     this.isDestroyed = false
     this.ngZone.runOutsideAngular(() => {
       this.initFrameId = window.requestAnimationFrame(() => {
@@ -46,6 +53,10 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.isDestroyed = true
+    if (!this.isBrowser()) {
+      return
+    }
+
     if (this.initFrameId) {
       window.cancelAnimationFrame(this.initFrameId)
       this.initFrameId = 0
@@ -53,6 +64,10 @@ export class ViewportBackgroundComponent implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.handleResize)
     this.controller?.destroy()
     this.controller = null
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId)
   }
 
   private async createController(): Promise<void> {

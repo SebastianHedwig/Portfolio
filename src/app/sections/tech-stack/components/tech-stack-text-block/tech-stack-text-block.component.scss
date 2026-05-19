@@ -75,6 +75,10 @@
       }
     }
 
+    &__copy--mobile-copy {
+      display: none;
+    }
+
     &__copy-break--mobile {
       display: none;
     }
@@ -139,6 +143,18 @@
       align-self: center;
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 512px) and (orientation: portrait) {
+  :host.tech-stage__focus {
+    .tech-stage__copy--desktop-copy {
+      display: none;
+    }
+
+    .tech-stage__copy--mobile-copy {
+      display: block;
     }
   }
 }

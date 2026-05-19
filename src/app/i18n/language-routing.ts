@@ -2,38 +2,15 @@ import { inject } from '@angular/core';
 import {
   type ActivatedRouteSnapshot,
   type CanActivateChildFn,
-  type Route,
-  type UrlSegment,
-  type UrlSegmentGroup,
+  type CanMatchFn,
   Router,
 } from '@angular/router';
 
 import { LanguageStore } from './language.store';
 import { isAppLanguage, type AppLanguage } from './language.model';
 
-export function languageMatcher(
-  segments: UrlSegment[],
-  _group: UrlSegmentGroup,
-  _route: Route,
-):
-  | {
-      consumed: UrlSegment[];
-      posParams: { lang: UrlSegment };
-    }
-  | null {
-  const [langSegment] = segments;
-
-  if (!langSegment || !isAppLanguage(langSegment.path)) {
-    return null;
-  }
-
-  return {
-    consumed: [langSegment],
-    posParams: {
-      lang: langSegment,
-    },
-  };
-}
+export const validLanguageMatchGuard: CanMatchFn = (_route, segments) =>
+  isAppLanguage(segments[0]?.path);
 
 export const syncLanguageFromRouteGuard: CanActivateChildFn = (
   childRoute: ActivatedRouteSnapshot,

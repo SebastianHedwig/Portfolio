@@ -5,7 +5,8 @@
   $label-selector,
   $icon-selector,
   $letter-selector,
-  $translate-y: -0.28rem
+  $translate-y: -0.28rem,
+  $change-icon-color: true
 ) {
   position: relative;
   display: flex;
@@ -23,8 +24,12 @@
 
       #{$icon-selector} {
         opacity: 1;
-        filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
-          hue-rotate(160deg) brightness(101%) contrast(102%);
+
+        @if $change-icon-color {
+          filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+            hue-rotate(160deg) brightness(101%) contrast(102%);
+        }
+
         transform: translateY($translate-y);
       }
 

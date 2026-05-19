@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { PreferredLanguageRedirectComponent } from './i18n/preferred-language-redirect.component';
-import { languageMatcher, syncLanguageFromRouteGuard } from './i18n/language-routing';
+import { syncLanguageFromRouteGuard, validLanguageMatchGuard } from './i18n/language-routing';
 
 export const routes: Routes = [
   {
@@ -10,7 +10,8 @@ export const routes: Routes = [
     component: PreferredLanguageRedirectComponent,
   },
   {
-    matcher: languageMatcher,
+    path: ':lang',
+    canMatch: [validLanguageMatchGuard],
     canActivateChild: [syncLanguageFromRouteGuard],
     children: [
       {

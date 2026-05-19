@@ -12,8 +12,16 @@
   </p>
 }
 
-<p [class]="block().copyClass">
+<p [class]="block().copyClass" [class.about-stage__support--desktop-copy]="hasMobileCopy()">
   @for (segment of copySegments(); track segment.text + $index) {
     <span [class.about-stage__copy-accent]="segment.accent">{{ segment.text }}</span>
   }
 </p>
+
+@if (hasMobileCopy()) {
+  <p [class]="block().copyClass + ' about-stage__support--mobile-copy'">
+    @for (segment of mobileCopySegments(); track segment.text + $index) {
+      <span [class.about-stage__copy-accent]="segment.accent">{{ segment.text }}</span>
+    }
+  </p>
+}

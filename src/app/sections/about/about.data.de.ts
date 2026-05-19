@@ -32,6 +32,8 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleTag: 'p',
     copy:
       'Manchmal geht es leichter, \nmanchmal kostet es Kraft und Zeit.\n\nEntscheidend ist, dranzubleiben.\nEr ist es wert, gegangen zu werden.',
+    mobileCopy:
+      'Manchmal geht es leichter, manchmal kostet es Kraft und Zeit.\n\nEntscheidend ist, dranzubleiben. Er ist es wert, gegangen zu werden.',
     copyClass: 'about-stage__support',
   },
   contextLeft: {

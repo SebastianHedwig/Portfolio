@@ -40,6 +40,9 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
       'führt zu besseren Ergebnissen',
       'als komplexe Setups ohne Richtung.',
     ],
+    mobileCopyLines: [
+      'Ein durchdachter, reduzierter Stack führt zu besseren Ergebnissen als komplexe Setups ohne Richtung.',
+    ],
   },
   learningItem: createItem(
     'Nächste Schritte',

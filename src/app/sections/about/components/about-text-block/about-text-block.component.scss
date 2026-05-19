@@ -35,6 +35,10 @@
     color: tokens.$color-accent-soft;
   }
 
+  &__support--mobile-copy {
+    display: none;
+  }
+
   &__context-title {
     color: tokens.$color-heading;
     font-size: clamp(1.65rem, 2.5vw, 2.25rem);
@@ -121,6 +125,18 @@
   .about-stage {
     &__context-copy {
       text-align: left;
+    }
+  }
+
+  :host.about-stage__text-zone--lead,
+  :host.about-stage__text-zone--secondary {
+    .about-stage__support--desktop-copy {
+      display: none;
+    }
+
+    .about-stage__support--mobile-copy {
+      display: block;
+      white-space: pre-line;
     }
   }
 

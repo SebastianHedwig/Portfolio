@@ -5,9 +5,11 @@ import {
   ElementRef,
   NgZone,
   OnDestroy,
+  PLATFORM_ID,
   ViewChild,
   inject,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 const INTERACTIVE_SELECTOR = [
   'a',
@@ -43,16 +45,19 @@ export class CursorRingComponent implements AfterViewInit, OnDestroy {
   private readonly ringRef!: ElementRef<HTMLElement>;
 
   private readonly ngZone = inject(NgZone);
+  private readonly platformId = inject(PLATFORM_ID);
   private clickTimer = 0;
   private isEnabled = false;
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser()) return;
     this.isEnabled = this.canUseCursorRing();
     if (!this.isEnabled) return;
     this.ngZone.runOutsideAngular(() => this.bindEvents());
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser()) return;
     if (!this.isEnabled) return;
     this.unbindEvents();
     window.clearTimeout(this.clickTimer);
@@ -105,6 +110,10 @@ export class CursorRingComponent implements AfterViewInit, OnDestroy {
   private canUseCursorRing(): boolean {
     return window.matchMedia('(pointer: fine)').matches
       && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 
   private createTransform(event: PointerEvent, target: Element | null): string {

@@ -8,6 +8,10 @@ import { type AppLanguage, DEFAULT_APP_LANGUAGE, isAppLanguage } from '../../i18
 
 const SITE_URL = 'https://sebastian-hedwig.de';
 const SITE_NAME = 'Sebastian Hedwig';
+const PERSON_PROFILES = [
+  'https://github.com/SebastianHedwig',
+  'https://www.xing.com/profile/Sebastian_Hedwig038158',
+] as const;
 const SOCIAL_PREVIEW_IMAGES: Record<AppLanguage, string> = {
   de: `${SITE_URL}/assets/images/readme/portfolio-hero-preview-de.png`,
   en: `${SITE_URL}/assets/images/readme/portfolio-hero-preview-en.png`,
@@ -242,6 +246,7 @@ function createPersonData(language: AppLanguage): object {
     jobTitle: 'Frontend Developer',
     url: `${SITE_URL}/${language}`,
     image: SOCIAL_PREVIEW_IMAGES[language],
+    sameAs: PERSON_PROFILES,
     address: createPostalAddress(),
   };
 }

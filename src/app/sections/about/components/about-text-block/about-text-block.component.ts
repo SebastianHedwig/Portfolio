@@ -16,7 +16,11 @@ export class AboutTextBlockComponent {
   readonly block = input.required<AboutTextBlockData>();
   readonly containerClass = computed(() => this.block().containerClass);
   readonly titleLines = computed(() => this.block().title.split('\n'));
-  readonly copySegments = computed(() => this.getCopySegments());
+  readonly copySegments = computed(() => this.getCopySegments(this.block().copy));
+  readonly hasMobileCopy = computed(() => Boolean(this.block().mobileCopy));
+  readonly mobileCopySegments = computed(() =>
+    this.getCopySegments(this.block().mobileCopy ?? this.block().copy),
+  );
   private readonly accentPattern = /(Erlebnisse|sind das Ergebnis|experiences|they are the result)/gi;
   private readonly accentSegments = new Set([
     'erlebnisse',
@@ -25,9 +29,7 @@ export class AboutTextBlockComponent {
     'they are the result',
   ]);
 
-  private getCopySegments(): Array<{ accent: boolean; text: string }> {
-    const copy = this.block().copy;
-
+  private getCopySegments(copy: string): Array<{ accent: boolean; text: string }> {
     if (!this.containerClass().includes('about-stage__context-block--left')) {
       return [{ accent: false, text: copy }];
     }

@@ -23,6 +23,8 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleTag: 'h2',
     copy:
       'To me, there are no problems — \nOnly paths toward a solution.\n\nI keep going — \nUntil an idea becomes something that truly works and convinces.',
+    mobileCopy:
+      'To me, there are no problems —\nonly paths toward a solution.\n\nI keep going —\nuntil an idea becomes something that truly works and convinces.',
     copyClass: 'about-stage__support',
   },
   introSecondary: {
@@ -32,6 +34,8 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleTag: 'p',
     copy:
       'Sometimes it moves easily, \nsometimes it takes strength and time.\n\nWhat matters is staying with it.\nIt is worth walking.',
+    mobileCopy:
+      'Sometimes it moves easily, sometimes it takes strength and time.\n\nWhat matters is staying with it. It is worth walking.',
     copyClass: 'about-stage__support',
   },
   contextLeft: {

@@ -4,9 +4,11 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  PLATFORM_ID,
   computed,
   inject,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { HeroDescriptionComponent } from './components/hero-description/hero-description.component';
 import { HeroIdentityComponent } from './components/hero-identity/hero-identity.component';
@@ -29,6 +31,7 @@ import { getHeroContent } from './hero.data';
 export class HeroComponent implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly languageStore = inject(LanguageStore);
+  private readonly platformId = inject(PLATFORM_ID);
   private animationContext: { revert: () => void } | null = null;
   private isDestroyed = false;
 
@@ -40,6 +43,10 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   readonly statementRepeats = Array.from({ length: 4 }, (_, index) => index);
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser()) {
+      return;
+    }
+
     this.isDestroyed = false;
 
     if (this.prefersReducedMotion()) {
@@ -135,5 +142,9 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   private isMobilePortrait(): boolean {
     return window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 }

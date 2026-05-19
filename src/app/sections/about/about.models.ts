@@ -1,6 +1,7 @@
 export type AboutTextBlockData = {
   containerClass: string;
   copy: string;
+  mobileCopy?: string;
   copyClass: string;
   title: string;
   titleClass: string;

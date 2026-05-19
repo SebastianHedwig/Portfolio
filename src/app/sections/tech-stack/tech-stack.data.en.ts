@@ -40,6 +40,9 @@ export const TECH_STACK_CONTENT_EN: TechStackContent = {
       'leads to better results',
       'than complex setups without direction.',
     ],
+    mobileCopyLines: [
+      'A thoughtful, reduced stack leads to better results than complex setups without direction.',
+    ],
   },
   learningItem: createItem(
     'Still learning',
