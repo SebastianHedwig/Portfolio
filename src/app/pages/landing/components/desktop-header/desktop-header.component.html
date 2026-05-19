@@ -38,6 +38,9 @@
             (click)="anchorNavigation.handleClick($event, item.href)"
           >
             <span class="desktop-header__link-text">{{ item.label }}</span>
+            @if (item.badge) {
+              <span class="desktop-header__link-badge" [class.desktop-header__link-badge--de]="activeLanguage() === 'de'">{{ item.badge }}</span>
+            }
           </a>
         }
       </nav>

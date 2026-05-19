@@ -21,6 +21,8 @@ import { getTechStackContent } from './tech-stack.data';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) and (orientation: portrait)';
+
 const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
   {
     selector: '.tech-stage__intro',
@@ -51,6 +53,39 @@ const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
     selector: '.tech-stage__stack--extended',
     start: 'top 132%',
     end: 'top 80%',
+  },
+] as const;
+
+const TECH_STACK_COMPACT_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: '.tech-stage__intro',
+    start: 'top 148%',
+    end: 'top 82%',
+  },
+  {
+    selector: '.tech-stage__stack--core',
+    start: 'top 158%',
+    end: 'top 104%',
+  },
+  {
+    selector: '.tech-stage__learning',
+    start: 'top 184%',
+    end: 'top 130%',
+  },
+  {
+    selector: '.tech-stage__focus',
+    start: 'top 188%',
+    end: 'top 132%',
+  },
+  {
+    selector: '.tech-stage__stack--main',
+    start: 'top 184%',
+    end: 'top 128%',
+  },
+  {
+    selector: '.tech-stage__stack--extended',
+    start: 'top 178%',
+    end: 'top 122%',
   },
 ] as const;
 
@@ -98,10 +133,12 @@ export class TechStackComponent implements OnDestroy {
   }
 
   private buildAnimation(stage: HTMLElement): void {
+    const revealConfigs = this.getRevealConfigs();
+
     this.setInitialStageState(stage);
     this.createStageEntrance(stage);
-    initScrollReveals(stage, TECH_STACK_REVEALS);
-    this.initScrollLabels(stage);
+    initScrollReveals(stage, revealConfigs);
+    this.initScrollLabels(stage, revealConfigs);
   }
 
   private setInitialStageState(stage: HTMLElement): void {
@@ -121,32 +158,41 @@ export class TechStackComponent implements OnDestroy {
     }).to(stage, { yPercent: 0, autoAlpha: 1, duration: 1 });
   }
 
-  private initScrollLabels(stage: HTMLElement): void {
-    this.createGroupLabelTriggers(this.getStackGroups(stage));
-    this.createLearningLabelTrigger(stage);
+  private initScrollLabels(stage: HTMLElement, revealConfigs: readonly ScrollRevealConfig[]): void {
+    this.createGroupLabelTriggers(this.getStackGroups(stage), revealConfigs);
+    this.createLearningLabelTrigger(stage, revealConfigs);
   }
 
   private getStackGroups(stage: HTMLElement): HTMLElement[] {
     return Array.from(stage.querySelectorAll<HTMLElement>('app-tech-stack-stack-group'));
   }
 
-  private createGroupLabelTriggers(groups: readonly HTMLElement[]): void {
-    groups.forEach((group) => this.createGroupLabelTrigger(group));
+  private createGroupLabelTriggers(
+    groups: readonly HTMLElement[],
+    revealConfigs: readonly ScrollRevealConfig[],
+  ): void {
+    groups.forEach((group) => this.createGroupLabelTrigger(group, revealConfigs));
   }
 
-  private createGroupLabelTrigger(group: HTMLElement): void {
+  private createGroupLabelTrigger(
+    group: HTMLElement,
+    revealConfigs: readonly ScrollRevealConfig[],
+  ): void {
     const label = group.querySelector<HTMLElement>('.tech-stage__group-label');
     if (!label) return;
 
     this.createVisibilityTrigger(
       group,
       label,
-      this.getRevealStart(group),
+      this.getRevealStart(group, revealConfigs),
       'tech-stage__group-label--is-visible',
     );
   }
 
-  private createLearningLabelTrigger(stage: HTMLElement): void {
+  private createLearningLabelTrigger(
+    stage: HTMLElement,
+    revealConfigs: readonly ScrollRevealConfig[],
+  ): void {
     const learning = stage.querySelector<HTMLElement>('app-tech-stack-learning-item');
     const learningLabel = learning?.querySelector<HTMLElement>('.tech-stage__learning-label');
     if (!learning || !learningLabel) return;
@@ -154,13 +200,22 @@ export class TechStackComponent implements OnDestroy {
     this.createVisibilityTrigger(
       learning,
       learningLabel,
-      this.getRevealStart(learning),
+      this.getRevealStart(learning, revealConfigs),
       'tech-stage__label--is-visible',
     );
   }
 
-  private getRevealStart(element: HTMLElement): string {
-    return TECH_STACK_REVEALS.find((config) => element.matches(config.selector))?.start ?? 'top 88%';
+  private getRevealConfigs(): readonly ScrollRevealConfig[] {
+    return window.matchMedia(COMPACT_STACKED_STAGE_QUERY).matches
+      ? TECH_STACK_COMPACT_REVEALS
+      : TECH_STACK_REVEALS;
+  }
+
+  private getRevealStart(
+    element: HTMLElement,
+    revealConfigs: readonly ScrollRevealConfig[],
+  ): string {
+    return revealConfigs.find((config) => element.matches(config.selector))?.start ?? 'top 88%';
   }
 
   private createVisibilityTrigger(

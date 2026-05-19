@@ -161,8 +161,7 @@
     font-weight: 600;
     line-height: 0.96;
     opacity: 0.95;
-    white-space: nowrap;
-  }
+    white-space: nowrap;  }
 
   &__name-accent {
     color: tokens.$color-accent;
@@ -219,13 +218,15 @@
 
   &__mobile-panel {
     position: fixed;
-    top: 5rem;
+    top: clamp(4.5rem, 7svh, 4.65rem);
     right: 0;
     z-index: 40;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 50svh;
+    width: clamp(13.5rem, 43vw, 16rem);
+    box-sizing: border-box;
+    height: clamp(23rem, 57svh, 28rem);
     padding:
       clamp(2rem, 5svh, 3rem)
       clamp(1.5rem, 6vw, 2.5rem);
@@ -254,11 +255,12 @@
   }
 
   &__mobile-link {
+    position: relative;
     color: rgba(tokens.$color-heading, 0.8);
     font-family: tokens.$font-eyebrow;
     font-size: clamp(1.05rem, 3.4vw, 1.35rem);
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.055em;
     text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
     transition: color 180ms ease;
 
@@ -270,8 +272,41 @@
   }
 
   &__link-text {
+    position: relative;
     display: inline-block;
     transition: transform 220ms ease;
+  }
+
+  &__link-badge {
+    position: absolute;
+    top: -1rem;
+    right: -0.58rem;
+    display: inline-flex;
+    padding: 0.18rem 0.36rem 0.2rem;
+    border: 1px solid rgba(tokens.$color-accent-soft, 0.36);
+    border-radius: 0.2rem;
+    background:
+      linear-gradient(135deg, rgba(tokens.$color-accent, 0.18), transparent 46%),
+      rgba(8, 18, 26, 0.88);
+    box-shadow:
+      0 0.35rem 0.75rem rgba(0, 0, 0, 0.24),
+      0 0 0.65rem rgba(tokens.$color-accent, 0.1);
+    color: rgba(tokens.$color-heading, 0.88);
+    font-size: 0.52rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-shadow: none;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    white-space: nowrap;
+
+    &--de {
+      right: -2.5rem;
+      padding-inline: 0.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.015em;
+      transform: rotate(-3deg);
+    }
   }
 
   &__language-toggle {

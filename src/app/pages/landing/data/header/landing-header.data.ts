@@ -3,6 +3,7 @@ import { LANDING_HEADER_CONTENT_DE } from './landing-header.data.de';
 import { LANDING_HEADER_CONTENT_EN } from './landing-header.data.en';
 
 export interface LandingHeaderNavItem {
+  badge?: string;
   href: string;
   label: string;
 }

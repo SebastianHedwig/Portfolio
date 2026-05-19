@@ -17,9 +17,11 @@ app-about,
 app-about-text-block,
 app-tech-stack,
 app-projects,
+app-case-studies,
 app-references,
 app-contact,
-app-desktop-footer {
+app-desktop-footer,
+app-mobile-footer {
   display: block;
   width: 100%;
 }
@@ -42,5 +44,12 @@ app-root {
   &__inner {
     display: flex;
     @include mixins.page-width;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  html,
+  body {
+    overflow-x: clip;
   }
 }

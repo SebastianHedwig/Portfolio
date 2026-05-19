@@ -69,6 +69,9 @@
           (click)="navigateFromMobileMenu($event, item.href)"
         >
           <span class="mobile-header__link-text">{{ item.label }}</span>
+          @if (item.badge) {
+            <span class="mobile-header__link-badge" [class.mobile-header__link-badge--de]="activeLanguage() === 'de'">{{ item.badge }}</span>
+          }
         </a>
       }
     </nav>

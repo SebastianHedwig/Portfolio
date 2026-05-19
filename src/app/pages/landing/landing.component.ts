@@ -11,6 +11,7 @@ import { DesktopFooterComponent } from './components/desktop-footer/desktop-foot
 import { MobileHeaderComponent } from './components/mobile-header/mobile-header.component';
 import { MobileFooterComponent } from './components/mobile-footer/mobile-footer.component';
 import { AboutComponent } from '../../sections/about/about.component';
+import { CaseStudiesComponent } from '../../sections/case-studies/case-studies.component';
 import { ContactComponent } from '../../sections/contact/contact.component';
 import { HeroComponent } from '../../sections/hero/hero.component';
 import { ProjectsComponent } from '../../sections/projects/projects.component';
@@ -30,6 +31,7 @@ const MOBILE_LAYOUT_QUERY = '(max-width: 1024px) and (orientation: portrait)';
     AboutComponent,
     TechStackComponent,
     ProjectsComponent,
+    CaseStudiesComponent,
     ReferencesComponent,
     ContactComponent,
     DesktopFooterComponent,

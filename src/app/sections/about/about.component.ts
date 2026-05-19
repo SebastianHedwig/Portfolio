@@ -30,6 +30,7 @@ interface AboutAnimationElements {
 
 const ABOUT_BASE_VIEWPORT_HEIGHT = 1080;
 const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
+const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) and (orientation: portrait)';
 const LARGE_DESKTOP_STAGE_QUERY = '(min-width: 1600px) and (orientation: landscape)';
 const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
   {
@@ -61,6 +62,39 @@ const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
     selector: '.about-stage__context-block--center',
     start: 'top 108%',
     end: 'top 66%',
+  },
+] as const;
+
+const ABOUT_COMPACT_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: '.about-stage__text-zone--lead',
+    start: 'top 98%',
+    end: 'top 56%',
+  },
+  {
+    selector: 'app-about-image',
+    start: 'top 90%',
+    end: 'top 52%',
+  },
+  {
+    selector: '.about-stage__text-zone--secondary',
+    start: 'top 98%',
+    end: 'top 56%',
+  },
+  {
+    selector: '.about-stage__context-block--left',
+    start: 'top 98%',
+    end: 'top 56%',
+  },
+  {
+    selector: '.about-stage__context-block--right',
+    start: 'top 96%',
+    end: 'top 54%',
+  },
+  {
+    selector: '.about-stage__context-block--center',
+    start: 'top 96%',
+    end: 'top 54%',
   },
 ] as const;
 
@@ -157,9 +191,14 @@ export class AboutComponent implements OnDestroy {
     gsap.set([elements.introChapter, elements.contextChapter], {
       clearProps: 'transform,opacity,visibility',
     });
-    initScrollReveals(this.host.nativeElement, ABOUT_TABLET_PORTRAIT_REVEALS);
+    initScrollReveals(this.host.nativeElement, this.getTabletPortraitReveals());
   }
 
+  private getTabletPortraitReveals(): readonly ScrollRevealConfig[] {
+    return this.isCompactStackedStage()
+      ? ABOUT_COMPACT_PORTRAIT_REVEALS
+      : ABOUT_TABLET_PORTRAIT_REVEALS;
+  }
   private setInitialChapterState(elements: AboutAnimationElements): void {
     const enterOffset = this.getChapterEnterOffsetPercent();
 
@@ -241,6 +280,9 @@ export class AboutComponent implements OnDestroy {
   }
 
 
+  private isCompactStackedStage(): boolean {
+    return window.matchMedia(COMPACT_STACKED_STAGE_QUERY).matches;
+  }
   private getChapterEnterOffsetPercent(): number {
     return this.isLargeDesktopStage() ? 96 : 132;
   }

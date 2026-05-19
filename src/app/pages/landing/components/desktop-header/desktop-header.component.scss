@@ -85,6 +85,14 @@
     line-height: 0.96;
     opacity: 0.95;
     white-space: nowrap;
+
+    &--de {
+      right: -0.96rem;
+      padding-inline: 0.46rem;
+      font-size: 0.54rem;
+      letter-spacing: 0.015em;
+      transform: rotate(-3deg);
+    }
   }
 
   &__name-accent {
@@ -94,7 +102,7 @@
   &__nav {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 1.6rem);
+    gap: clamp(0.85rem, 1.6vw, 1.35rem);
     padding-top: 0.15rem;
   }
 
@@ -143,7 +151,7 @@
     color: rgba(tokens.$color-heading, 0.66);
     font-family: tokens.$font-eyebrow;
     font-size: 0.78rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.055em;
     cursor: pointer;
     transition: background-color 180ms ease, color 180ms ease;
 
@@ -159,6 +167,7 @@
   }
 
   &__link {
+    position: relative;
     display: inline-block;
     padding-block: 0.18rem;
     margin-block: -0.18rem;
@@ -182,8 +191,33 @@
   }
 
   &__link-text {
+    position: relative;
     display: inline-block;
     transition: transform 220ms ease;
+  }
+
+  &__link-badge {
+    position: absolute;
+    top: -0.96rem;
+    right: -0.48rem;
+    display: inline-flex;
+    padding: 0.16rem 0.34rem 0.18rem;
+    border: 1px solid rgba(tokens.$color-accent-soft, 0.36);
+    border-radius: 0.18rem;
+    background:
+      linear-gradient(135deg, rgba(tokens.$color-accent, 0.18), transparent 46%),
+      rgba(8, 18, 26, 0.86);
+    box-shadow:
+      0 0.35rem 0.75rem rgba(0, 0, 0, 0.24),
+      0 0 0.65rem rgba(tokens.$color-accent, 0.1);
+    color: rgba(tokens.$color-heading, 0.86);
+    font-size: 0.46rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-shadow: none;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    white-space: nowrap;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -251,12 +285,26 @@
 
     &__nav,
     &__controls {
-      gap: clamp(0.65rem, 1.55vw, 1rem);
+      gap: clamp(0.52rem, 1.15vw, 0.82rem);
     }
 
     &__link {
-      font-size: clamp(0.78rem, 1.08vw, 0.92rem);
-      letter-spacing: 0.06em;
+    position: relative;
+      font-size: clamp(0.74rem, 0.98vw, 0.88rem);
+      letter-spacing: 0.055em;
+    }
+
+    &__link-badge {
+      top: -0.8rem;
+      right: -0.52rem;
+      font-size: 0.36rem;
+
+      &--de {
+        right: -0.82rem;
+        font-size: 0.46rem;
+        letter-spacing: 0.01em;
+        transform: rotate(-3deg);
+      }
     }
 
     &__language-option {

@@ -29,6 +29,7 @@ gsap.registerPlugin(ScrollTrigger);
 const TABLET_LANDSCAPE_QUERY =
   '(min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) and (min-height: 768px) and (max-height: 1024px)';
 const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
+const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) and (orientation: portrait)';
 const PROJECTS_SCROLL_START = 'top bottom+=46%';
 const PROJECTS_SCROLL_START_TABLET_LANDSCAPE = 'top bottom+=24%';
 const PROJECTS_STAGE_ITEM_REVEALS: readonly ScrollRevealConfig[] = [
@@ -36,6 +37,14 @@ const PROJECTS_STAGE_ITEM_REVEALS: readonly ScrollRevealConfig[] = [
     selector: 'app-projects-stage-item',
     start: 'top 104%',
     end: 'top 58%',
+  },
+] as const;
+
+const PROJECTS_STAGE_ITEM_COMPACT_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: 'app-projects-stage-item',
+    start: 'top 96%',
+    end: 'top 52%',
   },
 ] as const;
 
@@ -280,9 +289,18 @@ export class ProjectsComponent implements OnDestroy {
 
   private initStackedProjectReveals(): void {
     this.initProjectEntryReveals();
-    initScrollReveals(this.host.nativeElement, PROJECTS_STAGE_ITEM_REVEALS);
+    initScrollReveals(this.host.nativeElement, this.getStackedProjectItemReveals());
   }
 
+  private getStackedProjectItemReveals(): readonly ScrollRevealConfig[] {
+    return this.isCompactStackedStage()
+      ? PROJECTS_STAGE_ITEM_COMPACT_REVEALS
+      : PROJECTS_STAGE_ITEM_REVEALS;
+  }
+
+  private isCompactStackedStage(): boolean {
+    return window.matchMedia(COMPACT_STACKED_STAGE_QUERY).matches;
+  }
   private getActiveProjectsProgress(): number | null {
     const progress = this.projectsTimeline?.scrollTrigger?.progress;
 
