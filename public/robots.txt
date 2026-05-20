@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+Disallow: /de/impressum
+Disallow: /en/impressum
+Disallow: /de/datenschutz
+Disallow: /en/datenschutz
+
 Sitemap: https://sebastian-hedwig.de/sitemap.xml

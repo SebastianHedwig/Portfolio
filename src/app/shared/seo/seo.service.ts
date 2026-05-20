@@ -282,13 +282,13 @@ const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
       title: 'Impressum | Sebastian Hedwig',
       description: 'Impressum und Anbieterangaben von Sebastian Hedwig.',
       path: 'impressum',
-      robots: 'index, follow',
+      robots: 'noindex, follow',
     },
     datenschutz: {
       title: 'Datenschutzerklärung | Sebastian Hedwig',
       description: 'Datenschutzhinweise für das Portfolio von Sebastian Hedwig.',
       path: 'datenschutz',
-      robots: 'index, follow',
+      robots: 'noindex, follow',
     },
   },
   en: {
@@ -302,13 +302,13 @@ const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
       title: 'Imprint | Sebastian Hedwig',
       description: 'Imprint and provider information for Sebastian Hedwig.',
       path: 'impressum',
-      robots: 'index, follow',
+      robots: 'noindex, follow',
     },
     datenschutz: {
       title: 'Privacy Policy | Sebastian Hedwig',
       description: 'Privacy information for the portfolio of Sebastian Hedwig.',
       path: 'datenschutz',
-      robots: 'index, follow',
+      robots: 'noindex, follow',
     },
   },
 };
