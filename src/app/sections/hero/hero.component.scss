@@ -177,6 +177,7 @@
     &__statement-band {
       display: block;
       left: clamp(-8rem, 6vw, 16rem);
+      top: auto;
       bottom: clamp(6rem, 12svh, 10.25rem);
       width: min(42rem, 50vw);
     }

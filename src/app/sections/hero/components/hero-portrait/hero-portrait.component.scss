@@ -79,6 +79,7 @@
   .hero-portrait {
     &__image-shell {
       margin-left: clamp(-19rem, -15vw, -10.5rem);
+      top: auto;
       transform: translateY(-0.35rem);
     }
 

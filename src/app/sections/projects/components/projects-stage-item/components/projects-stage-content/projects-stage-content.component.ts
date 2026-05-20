@@ -11,6 +11,9 @@ import { type ProjectStageItemData } from '../../../../projects.models';
   imports: [PrimaryButtonComponent, SecondaryButtonComponent],
   templateUrl: './projects-stage-content.component.html',
   styleUrl: './projects-stage-content.component.scss',
+  host: {
+    '[class.project-moment__content--pokedex]': 'isPokedexTitle()',
+  },
 })
 export class ProjectsStageContentComponent {
   readonly index = input.required<string>();
@@ -21,6 +24,10 @@ export class ProjectsStageContentComponent {
 
   isJoinTitle(): boolean {
     return this.title().toLowerCase() === 'join';
+  }
+
+  isPokedexTitle(): boolean {
+    return this.title().toLowerCase() === 'pokédex';
   }
 
   titleInitial(): string {

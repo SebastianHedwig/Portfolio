@@ -296,6 +296,10 @@ form {
       line-height: 1.62;
     }
 
+    &__consent-break--mobile-hidden {
+      display: none;
+    }
+
     &__submit {
       margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * 0.2);
     }
@@ -310,6 +314,13 @@ form {
 
     &__submit {
       margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * -0.2);
+    }
+  }
+}
+@media (max-width: 390px) and (orientation: portrait) {
+  .contact-stage {
+    &__submit {
+      margin-top: 2.35rem;
     }
   }
 }

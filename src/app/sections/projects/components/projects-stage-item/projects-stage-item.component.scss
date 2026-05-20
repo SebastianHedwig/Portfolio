@@ -53,6 +53,16 @@
   }
 }
 
+@media (min-width: 1369px) and (max-height: 1024px) {
+  .project-moment {
+    &__scene {
+      app-projects-stage-stack {
+        grid-row: 16 / span 3;
+      }
+    }
+  }
+}
+
 @media (max-width: 1024px) {
   .project-moment {
     height: auto;
@@ -72,6 +82,7 @@
     }
   }
 }
+
 
 @media (max-width: 1024px) and (orientation: portrait) {
   :host {

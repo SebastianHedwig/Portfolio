@@ -171,29 +171,15 @@
       > span {
         display: inline-flex;
         align-items: baseline;
-        font-size: 0;
       }
 
       > span:not(:last-child)::after {
         content: '—';
         margin-left: 0.45rem;
-        font-size: clamp(2.8rem, 4.7vw, 5.4rem);
       }
 
-      > span:nth-child(1)::before {
-        content: 'Ruhig';
-      }
-
-      > span:nth-child(2)::before {
-        content: 'Klar';
-      }
-
-      > span:nth-child(3)::before {
-        content: 'Direkt';
-      }
-
-      > span::before {
-        font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+      .about-stage__title-punctuation {
+        display: none;
       }
     }
 
@@ -207,14 +193,7 @@
     align-items: flex-start;
 
     .about-stage__context-title {
-      font-size: 0;
       text-align: left;
-
-      &::before {
-        content: 'Aus Flörsheim.\A Mit Haltung im Detail.';
-        font-size: clamp(1.65rem, 2.5vw, 2.25rem);
-        white-space: pre-line;
-      }
     }
 
     .about-stage__context-copy {
@@ -237,8 +216,8 @@
 @media (max-width: 760px) and (orientation: portrait) {
   :host.about-stage__context-block--left {
     .about-stage__statement--secondary {
-      > span:not(:last-child)::after,
-      > span::before {
+      > span,
+      > span:not(:last-child)::after {
         font-size: clamp(2rem, 8vw, 2.5rem);
       }
     }
@@ -296,8 +275,8 @@
         margin-left: 0.32rem;
       }
 
-      > span:not(:last-child)::after,
-      > span::before {
+      > span,
+      > span:not(:last-child)::after {
         font-size: clamp(1.7rem, 8vw, 1.9rem);
       }
     }

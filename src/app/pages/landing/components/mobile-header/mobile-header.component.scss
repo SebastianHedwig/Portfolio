@@ -234,7 +234,7 @@
       linear-gradient(180deg, rgba(0, 18, 30, 0.97), rgba(0, 10, 18, 0.96)),
       tokens.$color-background;
     box-shadow: -1.2rem 0 3.2rem rgba(0, 0, 0, 0.36);
-    opacity: 0.8 !important;
+    opacity: 0.95 !important;
     pointer-events: none;
     transform: translateX(100%);
     transition:
@@ -338,7 +338,7 @@
   }
 
   &__mobile-language-toggle {
-    justify-content: center;
+    justify-content: space-around;
     margin-top: auto;
     transform: translateX(1.5rem);
     transition: transform 320ms ease-out;

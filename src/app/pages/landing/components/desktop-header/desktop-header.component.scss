@@ -257,6 +257,10 @@
       padding-top: 0;
     }
 
+    &__link-badge {
+      top: -0.64rem;
+    }
+
     &__language-option {
       padding: 0.3rem 0.68rem 0.34rem;
     }
@@ -295,7 +299,7 @@
     }
 
     &__link-badge {
-      top: -0.8rem;
+      top: -0.62rem;
       right: -0.52rem;
       font-size: 0.36rem;
 

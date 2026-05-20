@@ -123,6 +123,20 @@
   }
 }
 
+@media (min-width: 1369px) and (max-height: 1024px) {
+  .project-moment {
+    &__action {
+      padding-top: 2.35rem;
+    }
+  }
+
+  :host.project-moment__content--pokedex {
+    .project-moment__action {
+      padding-top: 5rem;
+    }
+  }
+}
+
 @media (max-width: 1024px) {
   :host {
     width: min(100%, 28rem);
@@ -134,6 +148,7 @@
     }
   }
 }
+
 
 @media (max-width: 1024px) and (orientation: portrait) {
   :host {

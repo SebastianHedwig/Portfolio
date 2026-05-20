@@ -1,13 +1,13 @@
 @if (block().titleTag === 'h2') {
   <h2 id="about-title" [class]="block().titleClass">
-    @for (line of titleLines(); track line + $index) {
-      <span>{{ line }}</span>
+    @for (line of titleLines(); track line.text + line.punctuation + $index) {
+      <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
     }
   </h2>
 } @else {
   <p [class]="block().titleClass">
-    @for (line of titleLines(); track line + $index) {
-      <span>{{ line }}</span>
+    @for (line of titleLines(); track line.text + line.punctuation + $index) {
+      <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
     }
   </p>
 }

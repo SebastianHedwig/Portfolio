@@ -15,12 +15,22 @@ import { type AboutTextBlockData } from '../../about.models';
 export class AboutTextBlockComponent {
   readonly block = input.required<AboutTextBlockData>();
   readonly containerClass = computed(() => this.block().containerClass);
-  readonly titleLines = computed(() => this.block().title.split('\n'));
+  readonly titleLines = computed(() =>
+    this.block().title.split('\n').map((line) => this.getTitleLineParts(line)),
+  );
   readonly copySegments = computed(() => this.getCopySegments(this.block().copy));
   readonly hasMobileCopy = computed(() => Boolean(this.block().mobileCopy));
   readonly mobileCopySegments = computed(() =>
     this.getCopySegments(this.block().mobileCopy ?? this.block().copy),
   );
+  private getTitleLineParts(line: string): { punctuation: string; text: string } {
+    const match = line.match(/^(.*?)([.!?])$/);
+
+    return match
+      ? { text: match[1], punctuation: match[2] }
+      : { text: line, punctuation: '' };
+  }
+
   private readonly accentPattern = /(Erlebnisse|sind das Ergebnis|experiences|they are the result)/gi;
   private readonly accentSegments = new Set([
     'erlebnisse',

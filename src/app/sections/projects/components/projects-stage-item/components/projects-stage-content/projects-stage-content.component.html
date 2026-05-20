@@ -20,12 +20,12 @@
 
     <div class="project-moment__action">
       <app-primary-button
-        label="Github"
-        [href]="actions()?.githubHref ?? null"
-      ></app-primary-button>
-      <app-secondary-button
         label="Live Test"
         [href]="actions()?.liveHref ?? null"
+      ></app-primary-button>
+      <app-secondary-button
+        label="Github"
+        [href]="actions()?.githubHref ?? null"
       ></app-secondary-button>
     </div>
   </div>
