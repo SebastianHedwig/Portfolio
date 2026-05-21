@@ -42,7 +42,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
     copy:
-      'Klare digitale Erlebnisse entstehen nicht zufällig — Sie sind das Ergebnis von Haltung, Fokus und sauberer Umsetzung.',
+      'Klare digitale Erlebnisse entstehen nicht zufällig. Sie sind das Ergebnis von Haltung, Fokus und sauberer Umsetzung.',
     copyClass: 'about-stage__support',
   },
   contextCenter: {

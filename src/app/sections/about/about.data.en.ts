@@ -44,7 +44,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
     copy:
-      'Clear digital experiences do not happen by accident — they are the result of conviction, focus, and precise execution.',
+      'Clear digital experiences do not happen by accident. They are the result of conviction, focus, and precise execution.',
     copyClass: 'about-stage__support',
   },
   contextCenter: {

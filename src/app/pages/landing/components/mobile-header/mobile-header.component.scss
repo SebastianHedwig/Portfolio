@@ -226,7 +226,9 @@
     justify-content: flex-start;
     width: clamp(13.5rem, 43vw, 16rem);
     box-sizing: border-box;
-    height: clamp(23rem, 57svh, 28rem);
+    height: auto;
+    min-height: clamp(23rem, 58svh, 26rem);
+    max-height: calc(100svh - clamp(5.5rem, 9svh, 7rem));
     padding:
       clamp(2rem, 5svh, 3rem)
       clamp(1.5rem, 6vw, 2.5rem);
@@ -339,7 +341,7 @@
 
   &__mobile-language-toggle {
     justify-content: space-around;
-    margin-top: auto;
+    margin-top: clamp(1.4rem, 3svh, 2.5rem);
     transform: translateX(1.5rem);
     transition: transform 320ms ease-out;
   }

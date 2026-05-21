@@ -338,6 +338,15 @@
   }
 }
 
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+  .about-stage {
+    &__text-zone--lead,
+    &__text-zone--secondary {
+      width: min(100%, 20rem);
+    }
+  }
+}
+
 @media (max-width: 1368px) and (orientation: landscape) {
   .about-stage {
     padding-block: clamp(7rem, 14vh, 10rem) clamp(6rem, 10vh, 8rem);

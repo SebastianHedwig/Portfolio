@@ -145,10 +145,19 @@
 }
 
 
+@media (min-width: 1025px) and (max-width: 1920px) and (min-height: 1091px) and (orientation: landscape) {
+  .hero__statement-band {
+    left: 2rem;
+    right: clamp(2rem, 4vw, 8rem);
+    bottom: clamp(10rem, 10vh, 12.5rem);
+    width: min(70rem, 95vw);
+  }
+}
+
 @media (min-width: 1025px) and (max-height: 1080px) and (orientation: landscape) {
   .hero {
     &__statement-band {
-      top: clamp(56rem, calc(91.4vh + 2.3rem), 64rem);
+      top: clamp(48rem, calc(91.4vh + 2.3rem + 16vw - 307.2px), 64rem);
       bottom: auto;
     }
   }
@@ -160,6 +169,15 @@
     right: clamp(2rem, 4vw, 8rem);
     bottom: clamp(10rem, 10vh, 12.5rem);
     width: min(70rem, 95vw);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1368px) and (orientation: portrait) {
+  .hero__statement-band {
+    left: clamp(-7rem, -4vw, -3rem);
+    right: clamp(4rem, 6vw, 6rem);
+    bottom: clamp(10rem, 10svh, 12.5rem);
+    width: min(70rem, 96vw);
   }
 }
 
@@ -195,7 +213,6 @@
     }
   }
 }
-
 @media (max-width: 1024px) and (orientation: portrait) {
   .hero {
     gap: clamp(1.6rem, 4vw, 2.75rem);
@@ -294,3 +311,4 @@
     }
   }
 }
+
