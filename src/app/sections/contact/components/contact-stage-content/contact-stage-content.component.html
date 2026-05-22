@@ -3,7 +3,10 @@
 
 <div class="contact-stage__copy">
   @for (paragraph of content().copy; track $index) {
-    <p class="contact-stage__paragraph">{{ paragraph }}</p>
+    <p
+      class="contact-stage__paragraph"
+      [class.contact-stage__paragraph--mobile-inline]="$index === 0"
+    >{{ paragraph }}</p>
   }
 </div>
 

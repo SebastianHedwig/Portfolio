@@ -12,7 +12,6 @@ export type TechStackTextBlockData = {
   containerClass: string;
   copyClass: string;
   copyLines: string[];
-  mobileCopyLines?: string[];
   eyebrow?: string;
   titleClass: string;
   titleLines: string[];

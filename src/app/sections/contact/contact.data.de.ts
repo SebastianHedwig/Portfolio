@@ -6,7 +6,7 @@ export const CONTACT_CONTENT_DE: ContactContent = {
   eyebrow: 'Kontakt',
   title: 'Bereit, etwas umzusetzen?',
   copy: [
-    'Wenn du eine Idee hast oder etwas aufbauen möchtest —\nLass uns sprechen.',
+    'Wenn du eine Idee hast oder etwas aufbauen möchtest; \nLass uns sprechen.',
     'Ich lege großen Wert auf saubere, durchdachte Lösungen, entwickle mich kontinuierlich weiter und bin offen für neue Herausforderungen und Zusammenarbeit.',
   ],
   cvLinkLabel: 'Lebenslauf ansehen (PDF)',

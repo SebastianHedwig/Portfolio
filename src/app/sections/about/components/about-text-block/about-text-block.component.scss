@@ -173,13 +173,8 @@
         align-items: baseline;
       }
 
-      > span:not(:last-child)::after {
-        content: '—';
-        margin-left: 0.45rem;
-      }
-
-      .about-stage__title-punctuation {
-        display: none;
+      > span:not(:last-child) {
+        margin-right: 0.45rem;
       }
     }
 
@@ -216,8 +211,7 @@
 @media (max-width: 760px) and (orientation: portrait) {
   :host.about-stage__context-block--left {
     .about-stage__statement--secondary {
-      > span,
-      > span:not(:last-child)::after {
+      > span {
         font-size: clamp(2rem, 8vw, 2.5rem);
       }
     }
@@ -258,25 +252,16 @@
   }
 }
 
-@media (max-width: 390px) and (orientation: portrait) {
-  :host.about-stage__context-block--left {
-    .about-stage__statement--secondary > span:not(:last-child)::after {
-      content: '-';
-    }
-  }
-}
-
 @media (max-width: 360px) and (orientation: portrait) {
   :host.about-stage__context-block--left {
     .about-stage__statement--secondary {
       gap: 0.32rem;
 
-      > span:not(:last-child)::after {
-        margin-left: 0.32rem;
+      > span:not(:last-child) {
+        margin-right: 0.32rem;
       }
 
-      > span,
-      > span:not(:last-child)::after {
+      > span {
         font-size: clamp(1.7rem, 8vw, 1.9rem);
       }
     }

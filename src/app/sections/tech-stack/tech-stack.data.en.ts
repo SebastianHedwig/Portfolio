@@ -19,13 +19,13 @@ export const TECH_STACK_CONTENT_EN: TechStackContent = {
     titleClass: 'tech-stage__headline',
     titleLines: [
       'Technology is a tool.',
-      "Its value depends on how it's a applied.",
+      "Its value depends on how it's applied.",
     ],
     titleTag: 'h2',
     copyClass: 'tech-stage__copy',
     copyLines: [
       'I do not work with as many tools as possible,',
-      'but with the right ones — intentionally chosen',
+      'but with the right ones. Intentionally chosen',
       'and deliberately applied.',
     ],
   },
@@ -36,11 +36,6 @@ export const TECH_STACK_CONTENT_EN: TechStackContent = {
     titleTag: 'h3',
     copyClass: 'tech-stage__copy tech-stage__copy--compact',
     copyLines: [
-      'A thoughtful, reduced stack',
-      'leads to better results',
-      'than complex setups without direction.',
-    ],
-    mobileCopyLines: [
       'A thoughtful, reduced stack leads to better results than complex setups without direction.',
     ],
   },

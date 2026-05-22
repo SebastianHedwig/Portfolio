@@ -24,7 +24,7 @@
   </h3>
 }
 
-<p [class]="block().copyClass" [class.tech-stage__copy--desktop-copy]="hasMobileCopyLines()">
+<p [class]="block().copyClass">
   @for (line of block().copyLines; track $index; let last = $last) {
     <span>
       @for (segment of getCopySegments(line); track segment.text + segment.breakAfter) {
@@ -38,14 +38,3 @@
     }
   }
 </p>
-
-@if (hasMobileCopyLines()) {
-  <p [class]="block().copyClass + ' tech-stage__copy--mobile-copy'">
-    @for (line of block().mobileCopyLines; track $index; let last = $last) {
-      <span>{{ line }}</span>
-      @if (!last) {
-        <br>
-      }
-    }
-  </p>
-}

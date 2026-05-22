@@ -14,9 +14,9 @@
   }
 
   &.tech-stage__focus {
-    width: min(28rem, 100%);
+    width: min(20rem, 100%);
     margin-left: auto;
-    margin-right: 0;
+    margin-right: 8rem;
   }
 
   .tech-stage {
@@ -75,10 +75,6 @@
       }
     }
 
-    &__copy--mobile-copy {
-      display: none;
-    }
-
     &__copy-break--mobile {
       display: none;
     }
@@ -103,8 +99,8 @@
     }
 
     &.tech-stage__focus {
-      width: min(24rem, 100%);
-      margin-right: 0;
+      width: min(20rem, 100%);
+      margin-right: 4rem;
     }
 
     .tech-stage {
@@ -143,18 +139,6 @@
       align-self: center;
       margin-left: 0;
       margin-right: 0;
-    }
-  }
-}
-
-@media (max-width: 512px) and (orientation: portrait) {
-  :host.tech-stage__focus {
-    .tech-stage__copy--desktop-copy {
-      display: none;
-    }
-
-    .tech-stage__copy--mobile-copy {
-      display: block;
     }
   }
 }

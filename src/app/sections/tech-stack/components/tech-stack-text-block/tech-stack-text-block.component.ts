@@ -30,7 +30,6 @@ interface CopySegment {
 export class TechStackTextBlockComponent {
   readonly block = input.required<TechStackTextBlockData>();
   readonly containerClass = computed(() => this.block().containerClass);
-  readonly hasMobileCopyLines = computed(() => Boolean(this.block().mobileCopyLines?.length));
   private readonly accentWordPattern = /(Werkzeug|Nutzen|tool|value)/gi;
 
   getTitleSegments(line: string): readonly TitleSegment[] {

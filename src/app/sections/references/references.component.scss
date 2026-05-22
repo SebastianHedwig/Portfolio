@@ -82,6 +82,7 @@
     color: tokens.$color-heading;
     font-size: clamp(1.05rem, 1.35vw, 1.22rem);
     line-height: 1.72;
+    text-align: justify;
   }
 
   &__quote-author {

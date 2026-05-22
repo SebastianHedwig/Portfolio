@@ -25,7 +25,7 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     copyClass: 'tech-stage__copy',
     copyLines: [
       'Ich arbeite nicht mit möglichst vielen Tools,',
-      'sondern mit den richtigen — sinnvoll gewählt',
+      'sondern mit den richtigen. Sinnvoll gewählt',
       'und bewusst eingesetzt.',
     ],
   },
@@ -36,11 +36,6 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     titleTag: 'h3',
     copyClass: 'tech-stage__copy tech-stage__copy--compact',
     copyLines: [
-      'Ein durchdachter, reduzierter Stack',
-      'führt zu besseren Ergebnissen',
-      'als komplexe Setups ohne Richtung.',
-    ],
-    mobileCopyLines: [
       'Ein durchdachter, reduzierter Stack führt zu besseren Ergebnissen als komplexe Setups ohne Richtung.',
     ],
   },

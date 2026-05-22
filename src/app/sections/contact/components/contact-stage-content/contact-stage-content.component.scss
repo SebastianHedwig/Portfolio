@@ -65,6 +65,14 @@
   }
 }
 
+@media (max-width: 510px) {
+  .contact-stage {
+    &__paragraph--mobile-inline {
+      white-space: normal;
+    }
+  }
+}
+
 @media (max-width: 1368px) and (orientation: landscape) {
   :host {
     gap: clamp(1rem, 2vh, 1.45rem);

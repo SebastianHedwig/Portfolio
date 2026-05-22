@@ -22,9 +22,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__statement',
     titleTag: 'h2',
     copy:
-      'To me, there are no problems — \nOnly paths toward a solution.\n\nI keep going — \nUntil an idea becomes something that truly works and convinces.',
-    mobileCopy:
-      'To me, there are no problems —\nonly paths toward a solution.\n\nI keep going —\nuntil an idea becomes something that truly works and convinces.',
+      'To me, there are no problems! \nOnly paths toward a solution.\n\nI keep going. \nUntil an idea becomes something that truly works and convinces.',
     copyClass: 'about-stage__support',
   },
   introSecondary: {

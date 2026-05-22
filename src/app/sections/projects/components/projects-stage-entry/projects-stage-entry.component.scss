@@ -419,7 +419,7 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
 
     &__title-line {
       &--4 {
-        grid-column: 1;
+        grid-column: 3;
       }
 
       &--5 {
@@ -428,6 +428,12 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
 
       &--6 {
         grid-column: 7;
+      }
+
+      &--7,
+      &--8,
+      &--9 {
+        grid-column: 4;
       }
     }
   }
