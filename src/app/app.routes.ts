@@ -35,6 +35,13 @@ export const routes: Routes = [
             (module) => module.PrivacyComponent,
           ),
       },
+      {
+        path: 'fallstudien',
+        loadComponent: () =>
+          import('./pages/case-studies/case-studies.component').then(
+            (module) => module.CaseStudiesPageComponent,
+          ),
+      },
     ],
   },
   {

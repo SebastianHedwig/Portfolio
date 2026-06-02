@@ -311,65 +311,13 @@
     }
   }
 
-  &__language-toggle {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.18rem;
-    padding: 0.2rem;
-    border: 1px solid rgba(tokens.$color-heading, 0.12);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0.2rem auto 0.2rem 0.2rem;
-      width: calc(50% - 0.3rem);
-      border-radius: 999px;
-      background: rgba(tokens.$color-accent, 0.18);
-      box-shadow: 0 0 1.1rem rgba(53, 199, 255, 0.12);
-      transform: translateX(0);
-      transition: transform 220ms ease;
-    }
-
-    &--en::before {
-      transform: translateX(calc(100% + 0.22rem));
-    }
-  }
-
   &__mobile-language-toggle {
+    --language-toggle-justify-content: space-around;
+    --language-toggle-option-letter-spacing: 0.08em;
     justify-content: space-around;
     margin-top: clamp(1.4rem, 3svh, 2.5rem);
     transform: translateX(1.5rem);
     transition: transform 320ms ease-out;
-  }
-
-  &__language-option {
-    position: relative;
-    z-index: 1;
-    min-width: 3rem;
-    padding: 0.36rem 0.82rem 0.42rem;
-    border: 0;
-    border-radius: 999px;
-    background: transparent;
-    color: rgba(tokens.$color-heading, 0.66);
-    font-family: tokens.$font-eyebrow;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: background-color 180ms ease, color 180ms ease;
-
-    &--active {
-      color: tokens.$color-heading;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        color: tokens.$color-heading;
-      }
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -377,9 +325,6 @@
       transition: none;
     }
 
-    &__language-option {
-      transition: background-color 180ms ease, color 180ms ease;
-    }
   }
 }
 

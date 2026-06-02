@@ -1,0 +1,27 @@
+<div
+  class="language-toggle"
+  [class.language-toggle--en]="activeLanguage() === 'en'"
+  [attr.aria-label]="ariaLabel()"
+  [title]="titleLabel()"
+>
+  <button
+    class="language-toggle__option"
+    [class.language-toggle__option--active]="activeLanguage() === 'de'"
+    type="button"
+    aria-label="Deutsch"
+    [attr.aria-pressed]="activeLanguage() === 'de'"
+    (click)="switchLanguage('de')"
+  >
+    DE
+  </button>
+  <button
+    class="language-toggle__option"
+    [class.language-toggle__option--active]="activeLanguage() === 'en'"
+    type="button"
+    aria-label="English"
+    [attr.aria-pressed]="activeLanguage() === 'en'"
+    (click)="switchLanguage('en')"
+  >
+    EN
+  </button>
+</div>

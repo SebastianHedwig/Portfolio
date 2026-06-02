@@ -1,0 +1,219 @@
+<main class="legal-page case-study-page section">
+  <div class="section__inner stage-shell legal-page__shell">
+    <header class="stage-shell__header legal-page__header">
+      <div class="case-study-page__header-actions">
+        <app-secondary-button
+          class="case-study-page__close-button"
+          [label]="content().closeLabel"
+          size="compact"
+          direction="left"
+          (clicked)="closePage()"
+        />
+        <app-language-toggle class="case-study-page__language-toggle" />
+      </div>
+      <p class="stage-shell__eyebrow legal-page__eyebrow">{{ content().eyebrow }}</p>
+      <h1 class="stage-shell__title case-study-page__title">{{ content().title }}</h1>
+      <p class="stage-shell__lead legal-page__lead">
+        {{ content().lead }}
+      </p>
+    </header>
+
+    <div class="legal-page__content">
+      <section class="side-page__panel case-study-page__meta-panel" aria-label="Projektmetadaten">
+        <div class="case-study-page__meta-layout">
+          <div class="case-study-page__meta-details">
+            <dl class="case-study-page__meta-list">
+              @for (item of content().meta; track $index) {
+                <div class="case-study-page__meta-row">
+                  <dt class="case-study-page__meta-label">{{ item.label }}</dt>
+                  <dd class="case-study-page__meta-value">
+                    @if (item.href) {
+                      <a
+                        class="case-study-page__meta-link"
+                        [href]="item.href"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span class="case-study-page__meta-link-text">{{ item.value }}</span>
+                      </a>
+                    } @else {
+                      {{ item.value }}
+                    }
+                  </dd>
+                </div>
+              }
+            </dl>
+          </div>
+          <div class="case-study-page__meta-preview">
+            <figure class="case-study-page__preview">
+              <img
+                class="case-study-page__preview-image"
+                [src]="content().preview.src"
+                [alt]="content().preview.alt"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="side-page__panel case-study-page__facts-panel" aria-labelledby="case-study-facts-title">
+        <h2 id="case-study-facts-title" class="legal-page__section-title">
+          {{ content().factsTitle }}
+        </h2>
+        <ul class="case-study-page__facts-list">
+          @for (fact of content().facts; track $index) {
+            <li class="case-study-page__fact">{{ fact }}</li>
+          }
+        </ul>
+      </section>
+
+      <div class="case-study-page__body">
+        <nav class="side-page__panel case-study-page__nav" aria-label="Case-Study-Bereiche">
+          <p class="case-study-page__nav-title">Navigation</p>
+          <div class="case-study-page__nav-list">
+            @for (section of content().sections; track $index; let sectionIndex = $index) {
+              <button
+                class="case-study-page__nav-link"
+                type="button"
+                [attr.aria-controls]="sectionId(sectionIndex)"
+                (click)="openSection(sectionIndex)"
+              >
+                <span class="case-study-page__nav-link-text">{{ sectionNumber(sectionIndex) }} {{ section.title }}</span>
+              </button>
+            }
+          </div>
+        </nav>
+
+        <div class="case-study-page__sections">
+          @for (section of content().sections; track $index; let sectionIndex = $index) {
+            <section
+              class="side-page__panel case-study-page__accordion"
+              [id]="sectionId(sectionIndex)"
+              [class.case-study-page__accordion--open]="isSectionOpen(sectionIndex)"
+            >
+              <button
+                class="case-study-page__accordion-trigger"
+                type="button"
+                [attr.aria-expanded]="isSectionOpen(sectionIndex)"
+                [attr.aria-controls]="sectionId(sectionIndex) + '-content'"
+                (click)="toggleSection(sectionIndex)"
+              >
+                <span class="legal-page__section-title case-study-page__accordion-title">
+                  {{ sectionNumber(sectionIndex) }} {{ section.title }}
+                </span>
+                <span class="case-study-page__accordion-icon" aria-hidden="true"></span>
+              </button>
+
+              @if (isSectionOpen(sectionIndex)) {
+                <div class="case-study-page__accordion-content" [id]="sectionId(sectionIndex) + '-content'">
+                  @for (paragraph of section.paragraphs; track $index) {
+                    <p class="legal-page__paragraph">{{ paragraph }}</p>
+                  }
+                  @for (block of section.blocks ?? []; track $index) {
+                    @switch (block.type) {
+                      @case ('heading') {
+                        @if (block.level === 3) {
+                          <h3 class="legal-page__subsection-title">
+                            {{ subsectionNumber(sectionIndex, section.blocks, $index) }} {{ block.text }}
+                          </h3>
+                        } @else {
+                          <h4 class="legal-page__detail-title">
+                            {{ subsectionNumber(sectionIndex, section.blocks, $index) }} {{ block.text }}
+                          </h4>
+                        }
+                      }
+                      @case ('paragraph') {
+                        <p
+                          class="legal-page__paragraph"
+                          [class.case-study-page__closing-quote]="block.text.includes('Don’t overthink')"
+                        >
+                          {{ block.text }}
+                        </p>
+                        @if (shouldShowWireframe(section.title, block.text)) {
+                          <figure class="case-study-page__study-media">
+                            <button
+                              class="case-study-page__study-media-button"
+                              type="button"
+                              [attr.aria-label]="content().media.wireframe.openLabel"
+                              (click)="openMediaDialog(content().media.wireframe)"
+                            >
+                              <img
+                                class="case-study-page__study-media-image"
+                                [src]="content().media.wireframe.src"
+                                [alt]="content().media.wireframe.alt"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </button>
+                          </figure>
+                        }
+                        @if (shouldShowDesignIdea(section.title, block.text)) {
+                          <figure class="case-study-page__study-media">
+                            <button
+                              class="case-study-page__study-media-button"
+                              type="button"
+                              [attr.aria-label]="content().media.designIdea.openLabel"
+                              (click)="openMediaDialog(content().media.designIdea)"
+                            >
+                              <img
+                                class="case-study-page__study-media-image"
+                                [src]="content().media.designIdea.src"
+                                [alt]="content().media.designIdea.alt"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </button>
+                          </figure>
+                        }
+                      }
+                      @case ('list') {
+                        <ul class="legal-page__list">
+                          @for (item of block.items; track $index) {
+                            <li>{{ item }}</li>
+                          }
+                        </ul>
+                      }
+                      @case ('source') {
+                        <p class="legal-page__paragraph">
+                          {{ block.label }}
+                          <a class="legal-page__link" [href]="block.href" target="_blank" rel="noopener noreferrer">
+                            {{ block.text }}
+                          </a>
+                        </p>
+                      }
+                    }
+                  }
+                </div>
+              }
+            </section>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="legal-page__footer section section--legal" aria-label="Footer">
+  @if (isMobileLayout()) {
+    <app-mobile-footer></app-mobile-footer>
+  } @else {
+    <app-desktop-footer></app-desktop-footer>
+  }
+</section>
+
+@if (activeMedia(); as media) {
+  <div class="case-study-page__media-backdrop" (click)="closeMediaDialog()">
+    <div
+      class="case-study-page__media-dialog"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="media.dialogLabel"
+      (click)="$event.stopPropagation()"
+    >
+      <img class="case-study-page__media-dialog-image" [src]="media.src" [alt]="media.alt" />
+    </div>
+  </div>
+}

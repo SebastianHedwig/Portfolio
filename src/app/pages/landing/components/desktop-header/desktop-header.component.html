@@ -45,33 +45,10 @@
         }
       </nav>
 
-      <div
-        class="desktop-header__language-toggle"
-        [class.desktop-header__language-toggle--en]="activeLanguage() === 'en'"
-        [attr.aria-label]="content().languageToggleAriaLabel"
-        [title]="content().languageToggleLabel"
-      >
-        <button
-          class="desktop-header__language-option"
-          [class.desktop-header__language-option--active]="activeLanguage() === 'de'"
-          type="button"
-          aria-label="Deutsch"
-          [attr.aria-pressed]="activeLanguage() === 'de'"
-          (click)="switchLanguage('de')"
-        >
-          DE
-        </button>
-        <button
-          class="desktop-header__language-option"
-          [class.desktop-header__language-option--active]="activeLanguage() === 'en'"
-          type="button"
-          aria-label="English"
-          [attr.aria-pressed]="activeLanguage() === 'en'"
-          (click)="switchLanguage('en')"
-        >
-          EN
-        </button>
-      </div>
+      <app-language-toggle
+        [ariaLabel]="content().languageToggleAriaLabel"
+        [titleLabel]="content().languageToggleLabel"
+      />
     </div>
   </div>
 </header>

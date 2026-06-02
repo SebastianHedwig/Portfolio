@@ -60,7 +60,23 @@
       &:hover {
         color: tokens.$color-accent;
         opacity: 1;
+
+        .contact-stage__cv-link-text {
+          text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
+          transform: translateY(-0.05rem);
+        }
       }
+    }
+  }
+
+  &__cv-link-text {
+    display: inline-block;
+    transition: transform 220ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__cv-link-text {
+      transition: none;
     }
   }
 }

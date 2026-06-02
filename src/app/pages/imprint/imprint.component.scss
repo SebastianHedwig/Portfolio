@@ -73,20 +73,6 @@
     text-align: left;
   }
 
-  &__panel {
-    @include mixins.stack(1rem);
-    align-items: flex-start;
-    padding: clamp(1.3rem, 2vw, 1.8rem);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-      rgba(7, 18, 28, 0.5);
-    border: 1px solid rgba(tokens.$color-accent, 0.14);
-    border-radius: 1.25rem;
-    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.24);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
   &__section-title {
     margin: 0;
     color: tokens.$color-heading;
@@ -135,6 +121,22 @@
         text-decoration: underline;
       }
     }
+  }
+}
+
+.side-page {
+  &__panel {
+    @include mixins.stack(1rem);
+    align-items: flex-start;
+    padding: clamp(1.3rem, 2vw, 1.8rem);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(7, 18, 28, 0.5);
+    border: 1px solid rgba(tokens.$color-accent, 0.14);
+    border-radius: 1.25rem;
+    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.24);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
 }
 

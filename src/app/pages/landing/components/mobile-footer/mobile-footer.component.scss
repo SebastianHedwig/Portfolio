@@ -113,8 +113,18 @@
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         color: tokens.$color-accent;
+
+        .mobile-footer__meta-link-text {
+          text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
+          transform: translateY(-0.05rem);
+        }
       }
     }
+  }
+
+  &__meta-link-text {
+    display: inline-block;
+    transition: transform 220ms ease;
   }
 
   &__meta-line--copyright {
@@ -204,6 +214,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    &__meta-link-text,
     &__imprint-text {
       transition: none;
     }

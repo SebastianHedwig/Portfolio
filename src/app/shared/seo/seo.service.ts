@@ -290,6 +290,12 @@ const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
       path: 'datenschutz',
       robots: 'noindex, follow',
     },
+    fallstudien: {
+      title: 'Case Study Portfolio | Sebastian Hedwig',
+      description: 'Fallstudie zur Konzeption, Gestaltung und technischen Umsetzung des Portfolios von Sebastian Hedwig.',
+      path: 'fallstudien',
+      robots: 'index, follow',
+    },
   },
   en: {
     '': {
@@ -309,6 +315,12 @@ const PAGE_META: Record<AppLanguage, Record<string, SeoPage>> = {
       description: 'Privacy information for the portfolio of Sebastian Hedwig.',
       path: 'datenschutz',
       robots: 'noindex, follow',
+    },
+    fallstudien: {
+      title: 'Portfolio Case Study | Sebastian Hedwig',
+      description: 'German-language case study about the concept, design, and technical implementation of Sebastian Hedwig’s portfolio.',
+      path: 'fallstudien',
+      robots: 'index, follow',
     },
   },
 };

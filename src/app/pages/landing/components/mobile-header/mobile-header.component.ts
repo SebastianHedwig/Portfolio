@@ -10,10 +10,9 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { Location } from '@angular/common';
 
-import { type AppLanguage } from '../../../../i18n/language.model';
 import { LanguageStore } from '../../../../i18n/language.store';
+import { LanguageToggleComponent } from '../../../../shared/components/language-toggle/language-toggle.component';
 import { LocalizedAnchorNavigationService } from '../../../../shared/navigation/localized-anchor-navigation.service';
 import { getLandingHeaderContent } from '../../data/header/landing-header.data';
 
@@ -26,6 +25,7 @@ const MOBILE_MENU_CLOSE_MS = 260;
   selector: 'app-mobile-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [LanguageToggleComponent],
   templateUrl: './mobile-header.component.html',
   styleUrl: './mobile-header.component.scss',
 })
@@ -39,7 +39,6 @@ export class MobileHeaderComponent implements OnDestroy {
   readonly isMobileMenuClosing = signal(false);
 
   private readonly languageStore = inject(LanguageStore);
-  private readonly location = inject(Location);
   readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
   readonly content = computed(() => getLandingHeaderContent(this.languageStore.language()));
   readonly brand = computed(() => this.content().brand);
@@ -89,24 +88,6 @@ export class MobileHeaderComponent implements OnDestroy {
     this.clearIdleRevealTimer();
     this.clearMobileMenuCloseTimer();
     this.cleanupEventListeners();
-  }
-
-  switchLanguage(nextLanguage: AppLanguage): void {
-    if (nextLanguage === this.activeLanguage()) {
-      return;
-    }
-
-    this.languageStore.setLanguage(nextLanguage);
-    this.location.replaceState(this.createLanguagePath(nextLanguage));
-  }
-
-  private createLanguagePath(nextLanguage: AppLanguage): string {
-    const nextPath = this.languageStore.switchLanguageInPath(
-      window.location.pathname,
-      nextLanguage,
-    );
-    const fragment = window.location.hash;
-    return `${nextPath}${fragment}`;
   }
 
   toggleMobileMenu(): void {

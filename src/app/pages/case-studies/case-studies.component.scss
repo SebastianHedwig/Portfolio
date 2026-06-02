@@ -1,0 +1,282 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.legal-page {
+  min-height: 100svh;
+
+  &__shell {
+    --stage-min-height: 100svh;
+    justify-content: flex-start;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    padding-block: clamp(6rem, 10vh, 8rem) clamp(4rem, 7vh, 6rem);
+  }
+
+  &__header {
+    position: relative;
+    gap: 1.15rem;
+    width: min(100%, 96rem);
+    max-width: min(100%, 96rem);
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  &__eyebrow {
+    margin: 0;
+    text-shadow:
+      0.08rem 0.08rem 0 rgba(0, 0, 0, 0.48),
+      0.2rem 0.2rem 0.18rem rgba(0, 0, 0, 0.34);
+  }
+
+  &__lead {
+    margin: 0;
+    color: rgba(tokens.$color-heading, 0.78);
+  }
+
+  &__content {
+    @include mixins.stack(clamp(1rem, 2vw, 1.4rem));
+    width: min(100%, 96rem);
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  &__section-title {
+    margin: 0;
+    color: tokens.$color-heading;
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    letter-spacing: 0.01em;
+  }
+
+  &__paragraph {
+    margin: 0;
+    width: 100%;
+    color: rgba(tokens.$color-heading, 0.76);
+    line-height: 1.72;
+    text-align: justify;
+    hyphens: auto;
+    white-space: pre-line;
+  }
+
+  &__subsection-title {
+    margin: 0.35rem 0 0;
+    width: 100%;
+    color: rgba(tokens.$color-heading, 0.9);
+    line-height: 1.35;
+    font-size: clamp(1rem, 1.35vw, 1.15rem);
+  }
+
+}
+
+.side-page {
+  &__panel {
+    @include mixins.stack(1rem);
+    align-items: flex-start;
+    padding: clamp(1.3rem, 2vw, 1.8rem);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(7, 18, 28, 0.5);
+    border: 1px solid rgba(tokens.$color-accent, 0.14);
+    border-radius: 1.25rem;
+    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.24);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.case-study-page {
+  &__title {
+    max-width: 10ch;
+    text-shadow:
+      0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
+      0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
+      0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+  }
+
+  &__header-actions {
+    position: absolute;
+    right: clamp(1rem, 2vw, 2rem);
+    bottom: clamp(0.35rem, 1vw, 0.9rem);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  &__language-toggle {
+    --language-toggle-min-width: 8.2rem;
+    --language-toggle-min-height: 2.55rem;
+    --language-toggle-option-flex: 1 1 0;
+    --language-toggle-option-min-width: 0;
+    --language-toggle-option-min-height: calc(2.55rem - 0.4rem);
+    --language-toggle-option-padding: 0 0.82rem;
+  }
+
+  &__body {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.4rem);
+    align-items: start;
+  }
+
+  &__nav {
+    position: sticky;
+    top: clamp(1rem, 2vw, 1.5rem);
+    flex: 0 0 clamp(14rem, 19vw, 18rem);
+    gap: 0.95rem;
+    padding-block: clamp(1.1rem, 1.7vw, 1.4rem);
+  }
+
+  &__nav-title {
+    margin: 0;
+    color: tokens.$color-heading;
+    font-family: tokens.$font-eyebrow;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__nav-list,
+  &__sections,
+  &__accordion-content {
+    @include mixins.stack;
+  }
+
+  &__nav-list {
+    gap: 0.42rem;
+  }
+
+  &__sections {
+    flex: 1 1 auto;
+    gap: clamp(1rem, 2vw, 1.4rem);
+    min-width: 0;
+  }
+
+  &__nav-link {
+    width: 100%;
+    border: 0;
+    padding: 0.32rem 0;
+    background: transparent;
+    color: rgba(tokens.$color-heading, 0.76);
+    font: inherit;
+    font-family: tokens.$font-eyebrow;
+    font-size: 0.86rem;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
+      }
+    }
+  }
+
+  &__nav-link-text {
+    display: inline-block;
+  }
+
+  &__accordion {
+    gap: 0;
+    scroll-margin-top: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  &__accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  &__accordion-title {
+    flex: 1 1 auto;
+  }
+
+  &__accordion-icon {
+    position: relative;
+    flex: 0 0 1.7rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    border: 1px solid rgba(tokens.$color-accent, 0.2);
+    border-radius: 50%;
+    background: rgba(tokens.$color-accent, 0.07);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0.62rem;
+      height: 1px;
+      background: rgba(tokens.$color-heading, 0.88);
+      transform: translate(-50%, -50%);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &__accordion-trigger:hover &__accordion-icon {
+    border-color: rgba(tokens.$color-accent, 0.38);
+    background: rgba(tokens.$color-accent, 0.11);
+  }
+
+  &__accordion--open &__accordion-icon {
+    transform: rotate(180deg);
+
+    &::before,
+    &::after {
+      background: tokens.$color-accent;
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+
+  &__accordion-content {
+    gap: 1rem;
+    padding-block-start: 1.15rem;
+  }
+
+  @media (max-width: tokens.$breakpoint-desktop) {
+    &__header-actions {
+      position: static;
+      align-self: flex-start;
+      align-items: flex-start;
+      margin-block-end: clamp(0.35rem, 1vw, 0.8rem);
+    }
+  }
+
+  @media (max-width: 42rem) {
+    &__body {
+      flex-direction: column;
+    }
+
+    &__nav {
+      position: static;
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: tokens.$breakpoint-desktop) {
+  .legal-page {
+    &__shell {
+      padding-block-start: 5.5rem;
+    }
+  }
+}

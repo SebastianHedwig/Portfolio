@@ -1,0 +1,210 @@
+@use 'abstracts/mixins';
+@use 'abstracts/tokens';
+
+.case-study-page {
+  &__meta-panel {
+    min-height: clamp(15rem, 20vw, 19rem);
+    padding-block: clamp(1.6rem, 2.6vw, 2.2rem);
+  }
+
+  &__meta-layout {
+    display: flex;
+    gap: clamp(1.2rem, 3vw, 3rem);
+    align-items: center;
+    width: 100%;
+  }
+
+  &__meta-details,
+  &__meta-preview {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  &__meta-details {
+    flex: 1 1 46%;
+  }
+
+  &__meta-preview {
+    flex: 1 1 54%;
+    justify-content: center;
+  }
+
+  &__meta-list {
+    @include mixins.stack(clamp(1.8rem, 2.6vw, 2.25rem));
+    width: 100%;
+    margin: 0;
+  }
+
+  &__preview {
+    margin: 0;
+    width: min(100%, clamp(36rem, 43vw, 44rem));
+    border-radius: 1.25rem;
+  }
+
+  &__preview-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  &__meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(2.2rem, 4vw, 4.25rem);
+  }
+
+  &__meta-label,
+  &__meta-value {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__meta-label {
+    flex: 0 0 clamp(11.2rem, 31%, 15rem);
+    color: rgba(tokens.$color-heading, 0.56);
+    font-family: tokens.$font-eyebrow;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__meta-value {
+    flex: 1 1 auto;
+    color: rgba(tokens.$color-heading, 0.86);
+    font-weight: 500;
+  }
+
+  &__meta-link {
+    display: inline-block;
+    color: rgba(tokens.$color-heading, 0.78);
+    text-decoration: none;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: tokens.$color-accent;
+      }
+    }
+  }
+
+  &__meta-link-text {
+    display: inline-block;
+  }
+
+  &__facts-panel {
+    gap: 1.1rem;
+  }
+
+  &__facts-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__fact {
+    padding: 0.55rem 0.8rem;
+    color: rgba(tokens.$color-heading, 0.82);
+    font-family: tokens.$font-eyebrow;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    background: rgba(tokens.$color-accent, 0.08);
+    border: 1px solid rgba(tokens.$color-accent, 0.16);
+    border-radius: 0.5rem;
+  }
+
+  &__closing-quote {
+    align-self: stretch;
+    margin-block-start: clamp(1.2rem, 3vw, 2rem);
+    max-width: none;
+    color: rgba(tokens.$color-heading, 0.9);
+    font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-align: center;
+    hyphens: none;
+  }
+
+  &__study-media {
+    margin: 1rem auto;
+    width: fit-content;
+  }
+
+  &__study-media-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid rgba(tokens.$color-accent, 0.16);
+    border-radius: 1.25rem;
+    cursor: zoom-in;
+  }
+
+  &__study-media-image {
+    display: block;
+    width: 100%;
+    max-height: 22rem;
+    border-radius: 1.25rem;
+    object-fit: contain;
+  }
+
+  &__media-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background: rgba(0, 8, 13, 0.82);
+  }
+
+  &__media-dialog {
+    width: min(100%, 58rem);
+    border: 1px solid rgba(tokens.$color-accent, 0.2);
+    border-radius: 1.25rem;
+    background: rgba(7, 18, 28, 0.92);
+  }
+
+  &__media-dialog-image {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    border-radius: inherit;
+  }
+
+  @media (max-width: 42rem) {
+    &__meta-layout {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__meta-details,
+    &__meta-preview {
+      flex-basis: auto;
+      width: 100%;
+    }
+
+    &__meta-panel {
+      min-height: 0;
+    }
+
+    &__meta-row {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    &__meta-label,
+    &__meta-value {
+      flex-basis: auto;
+    }
+
+    &__meta-row:not(:last-child) {
+      margin-block-end: 0.7rem;
+    }
+  }
+}

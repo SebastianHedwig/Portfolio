@@ -10,10 +10,9 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { Location } from '@angular/common';
 import { getLandingHeaderContent } from '../../data/header/landing-header.data';
-import { type AppLanguage } from '../../../../i18n/language.model';
 import { LanguageStore } from '../../../../i18n/language.store';
+import { LanguageToggleComponent } from '../../../../shared/components/language-toggle/language-toggle.component';
 import { LocalizedAnchorNavigationService } from '../../../../shared/navigation/localized-anchor-navigation.service';
 
 const HEADER_IDLE_REVEAL_DELAY_MS = 2000;
@@ -24,6 +23,7 @@ const HEADER_LANGUAGE_SWITCH_LOCK_MS = 260;
   selector: 'app-desktop-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [LanguageToggleComponent],
   templateUrl: './desktop-header.component.html',
   styleUrl: './desktop-header.component.scss',
 })
@@ -33,7 +33,6 @@ export class DesktopHeaderComponent implements OnDestroy {
   readonly isLanguageSwitching = signal(false);
 
   private readonly languageStore = inject(LanguageStore);
-  private readonly location = inject(Location);
   readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
   readonly content = computed(() => getLandingHeaderContent(this.languageStore.language()));
   readonly brand = computed(() => this.content().brand);
@@ -81,24 +80,6 @@ export class DesktopHeaderComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.clearIdleRevealTimer();
     this.cleanupEventListeners();
-  }
-
-  switchLanguage(nextLanguage: AppLanguage): void {
-    if (nextLanguage === this.activeLanguage()) {
-      return;
-    }
-
-    this.languageStore.setLanguage(nextLanguage);
-    this.location.replaceState(this.createLanguagePath(nextLanguage));
-  }
-
-  private createLanguagePath(nextLanguage: AppLanguage): string {
-    const nextPath = this.languageStore.switchLanguageInPath(
-      window.location.pathname,
-      nextLanguage,
-    );
-    const fragment = window.location.hash;
-    return `${nextPath}${fragment}`;
   }
 
   private initEventListeners(): void {

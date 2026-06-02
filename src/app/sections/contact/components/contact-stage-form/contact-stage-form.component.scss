@@ -223,8 +223,18 @@ form {
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         color: tokens.$color-accent;
+
+        .contact-stage__consent-link-text {
+          text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
+          transform: translateY(-0.05rem);
+        }
       }
     }
+  }
+
+  &__consent-link-text {
+    display: inline-block;
+    transition: transform 220ms ease;
   }
 
   &__consent-break--mobile-hidden {
@@ -263,6 +273,12 @@ form {
   @media (hover: hover) and (pointer: fine) {
     &__consent:hover .contact-stage__consent-box {
       border-color: rgba(255, 255, 255, 0.34);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__consent-link-text {
+      transition: none;
     }
   }
 

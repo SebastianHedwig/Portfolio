@@ -19,7 +19,7 @@
 
     <div class="legal-page__content">
       @for (section of content().sections; track $index) {
-        <section class="legal-page__panel">
+        <section class="side-page__panel">
           <h2 class="legal-page__section-title">{{ section.title }}</h2>
           @for (paragraph of section.paragraphs; track $index) {
             <p class="legal-page__paragraph">{{ paragraph }}</p>
