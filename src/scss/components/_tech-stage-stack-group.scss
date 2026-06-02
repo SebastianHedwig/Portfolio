@@ -37,6 +37,7 @@
         --tech-stack-extended-scale: 1;
         --tech-stack-extended-shift-x: 0rem;
         --tech-stack-extended-shift-y: 0rem;
+        animation: tech-stack-extended-float 6s ease-in-out infinite var(--tech-stack-float-delay);
         transform:
           translateX(var(--tech-stack-extended-shift-x))
           translateY(var(--tech-stack-extended-shift-y))
@@ -101,6 +102,7 @@
     }
 
     &__item--extended:nth-child(2) {
+      --tech-stack-float-delay: -3s;
       --tech-stack-extended-shift-x: -0.15rem;
       --tech-stack-extended-shift-y: -1.7rem;
       --tech-stack-extended-scale: 0.98;
@@ -108,6 +110,7 @@
     }
 
     &__item--extended:nth-child(3) {
+      --tech-stack-float-delay: -1.5s;
       --tech-stack-extended-shift-x: 0.2rem;
       --tech-stack-extended-shift-y: 8.3rem;
       --tech-stack-extended-scale: 1.01;
@@ -126,6 +129,7 @@
     }
 
     &__item--extended:nth-child(5) {
+      --tech-stack-float-delay: -3s;
       --tech-stack-extended-shift-x: 0.15rem;
       --tech-stack-extended-shift-y: 10.9rem;
       --tech-stack-extended-scale: 1.04;
@@ -133,6 +137,7 @@
     }
 
     &__item--extended:nth-child(6) {
+      --tech-stack-float-delay: -1.5s;
       --tech-stack-extended-shift-x: -0.25rem;
       --tech-stack-extended-shift-y: -1.2rem;
       --tech-stack-extended-scale: 0.97;
@@ -147,6 +152,7 @@
     }
 
     &__item--extended:nth-child(8) {
+      --tech-stack-float-delay: -3s;
       --tech-stack-extended-shift-x: -0.15rem;
       --tech-stack-extended-shift-y: 0.2rem;
       --tech-stack-extended-scale: 0.95;
@@ -154,6 +160,7 @@
     }
 
     &__item--extended:nth-child(9) {
+      --tech-stack-float-delay: -1.5s;
       --tech-stack-extended-shift-x: 0.2rem;
       --tech-stack-extended-shift-y: 10.1rem;
       --tech-stack-extended-scale: 0.94;
@@ -232,6 +239,29 @@
 
   100% {
     transform: translateX(var(--tech-stack-offset-x)) translateY(0);
+  }
+}
+
+@keyframes tech-stack-extended-float {
+  0% {
+    transform:
+      translateX(var(--tech-stack-extended-shift-x))
+      translateY(var(--tech-stack-extended-shift-y))
+      scale(var(--tech-stack-extended-scale));
+  }
+
+  50% {
+    transform:
+      translateX(var(--tech-stack-extended-shift-x))
+      translateY(calc(var(--tech-stack-extended-shift-y) - 0.45rem))
+      scale(var(--tech-stack-extended-scale));
+  }
+
+  100% {
+    transform:
+      translateX(var(--tech-stack-extended-shift-x))
+      translateY(var(--tech-stack-extended-shift-y))
+      scale(var(--tech-stack-extended-scale));
   }
 }
 

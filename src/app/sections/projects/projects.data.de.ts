@@ -2,7 +2,7 @@ import { type ProjectsContent } from './projects.data';
 
 export const PROJECTS_CONTENT_DE: ProjectsContent = {
   entry: {
-    eyebrow: 'Selected Work',
+    eyebrow: 'Projekte',
     titleLines: [
       'Projekte',
       'die zeigen ',

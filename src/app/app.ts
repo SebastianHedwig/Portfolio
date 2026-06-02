@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterOutlet } from '@angular/router';
 import { LanguageStore } from './i18n/language.store';
 import { ViewportBackgroundComponent } from './shared/background/viewport-background.component';
-import { CursorRingComponent } from './shared/cursor/cursor-ring.component';
 import { SeoService } from './shared/seo/seo.service';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterOutlet, ViewportBackgroundComponent, CursorRingComponent],
+  imports: [RouterOutlet, ViewportBackgroundComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

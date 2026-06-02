@@ -17,7 +17,7 @@ export const LANDING_HEADER_CONTENT_EN: LandingHeaderContent = {
     { href: '#about-intro', label: 'About' },
     { href: '#tech-stack', label: 'Tech Stack' },
     { href: '#projects-first', label: 'Projects' },
-    { href: '#case-studies', label: 'Case Studies', badge: 'Soon' },
+    { href: '#case-studies', label: 'Case Studies' },
     { href: '#references', label: 'References' },
     { href: '#contact', label: 'Contact' },
   ],

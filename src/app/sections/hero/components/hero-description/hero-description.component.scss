@@ -7,11 +7,7 @@
 
   &__eyebrow {
     margin: 0;
-    font-family: tokens.$font-eyebrow;
-    color: tokens.$color-accent;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    line-height: 1;
+    @include mixins.stage-eyebrow;
   }
 
   &__headline {
@@ -27,9 +23,9 @@
     span {
       display: block;
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
   }
 
@@ -66,10 +62,6 @@
   .hero-description {
     gap: clamp(0.74rem, 1.55vh, 1.15rem);
 
-    &__eyebrow {
-      font-size: clamp(1.02rem, calc(1.72vh + 0.01rem), 1.2rem);
-    }
-
     &__headline {
       font-size: clamp(4.85rem, calc(7.43vh + 0.49rem), 5.5rem);
       gap: clamp(0.12rem, 0.27vh, 0.2rem);
@@ -89,10 +81,6 @@
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero-description {
     gap: clamp(0.7rem, 1.7vh, 1rem);
-
-    &__eyebrow {
-      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
-    }
 
     &__headline {
       font-size: clamp(2.6rem, 4.45vw, 3.75rem);
@@ -126,10 +114,6 @@
     gap: clamp(0.38rem, 1.05svh, 0.68rem);
     max-width: 100%;
     text-align: center;
-
-    &__eyebrow {
-      font-size: clamp(0.74rem, 3.3vw, 0.88rem);
-    }
 
     &__headline {
       align-items: center;

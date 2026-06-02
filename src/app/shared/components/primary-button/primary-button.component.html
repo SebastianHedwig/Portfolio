@@ -10,7 +10,11 @@
     (click)="handleLinkClick($event)"
   >
     <span class="primary-button__label">{{ label() }}</span>
-    <span class="primary-button__arrow" aria-hidden="true"></span>
+    <span
+      class="primary-button__hover-content"
+      [class.primary-button__hover-content--label]="hoverLabel()"
+      aria-hidden="true"
+    >{{ hoverLabel() }}</span>
   </a>
 } @else {
   <button
@@ -20,6 +24,10 @@
     [disabled]="disabled()"
   >
     <span class="primary-button__label">{{ label() }}</span>
-    <span class="primary-button__arrow" aria-hidden="true"></span>
+    <span
+      class="primary-button__hover-content"
+      [class.primary-button__hover-content--label]="hoverLabel()"
+      aria-hidden="true"
+    >{{ hoverLabel() }}</span>
   </button>
 }

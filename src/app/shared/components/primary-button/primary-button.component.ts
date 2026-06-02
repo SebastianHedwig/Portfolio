@@ -12,6 +12,7 @@ export class PrimaryButtonComponent {
   private readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
 
   readonly href = input<string | null>(null);
+  readonly hoverLabel = input<string | null>(null);
   readonly label = input.required<string>();
   readonly type = input<'button' | 'submit' | 'reset'>('button');
   readonly disabled = input(false);

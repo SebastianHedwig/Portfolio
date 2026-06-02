@@ -13,7 +13,11 @@
             loading="lazy"
             decoding="async"
           >
-          <p class="project-moment__stack-icon-label">{{ icon.alt }}</p>
+          <span class="project-moment__stack-icon-label" aria-hidden="true">
+            @for (letter of icon.alt.split(''); track $index) {
+              <span class="project-moment__stack-icon-label-letter">{{ letter }}</span>
+            }
+          </span>
         </div>
       }
     </div>

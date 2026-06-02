@@ -13,9 +13,16 @@ const PERSON_PROFILES = [
   'https://www.xing.com/profile/Sebastian_Hedwig038158',
 ] as const;
 const SOCIAL_PREVIEW_IMAGES: Record<AppLanguage, string> = {
-  de: `${SITE_URL}/assets/images/readme/portfolio-hero-preview-de.png`,
-  en: `${SITE_URL}/assets/images/readme/portfolio-hero-preview-en.png`,
+  de: `${SITE_URL}/assets/images/social/portfolio-social-preview-de.jpg`,
+  en: `${SITE_URL}/assets/images/social/portfolio-social-preview-en.jpg`,
 };
+const SOCIAL_PREVIEW_IMAGE_ALT: Record<AppLanguage, string> = {
+  de: 'Portfolio-Vorschau von Sebastian Hedwig',
+  en: 'Portfolio preview of Sebastian Hedwig',
+};
+const SOCIAL_PREVIEW_IMAGE_WIDTH = '1200';
+const SOCIAL_PREVIEW_IMAGE_HEIGHT = '630';
+const SOCIAL_PREVIEW_IMAGE_TYPE = 'image/jpeg';
 const HERO_IMAGE_PRELOADS = [
   {
     href: '/assets/images/portraits/sebastian-portrait-1200.webp',
@@ -80,17 +87,19 @@ export class SeoService {
 
   private updateMetaTags(page: SeoPage, language: AppLanguage, url: string): void {
     const image = SOCIAL_PREVIEW_IMAGES[language];
+    const imageAlt = SOCIAL_PREVIEW_IMAGE_ALT[language];
     this.setName('description', page.description);
     this.setName('robots', page.robots);
-    this.updateTwitterTags(page, image);
-    this.updateOpenGraphTags(page, language, url, image);
+    this.updateTwitterTags(page, image, imageAlt);
+    this.updateOpenGraphTags(page, language, url, image, imageAlt);
   }
 
-  private updateTwitterTags(page: SeoPage, image: string): void {
+  private updateTwitterTags(page: SeoPage, image: string, imageAlt: string): void {
     this.setName('twitter:card', 'summary_large_image');
     this.setName('twitter:title', page.title);
     this.setName('twitter:description', page.description);
     this.setName('twitter:image', image);
+    this.setName('twitter:image:alt', imageAlt);
   }
 
   private updateOpenGraphTags(
@@ -98,6 +107,7 @@ export class SeoService {
     language: AppLanguage,
     url: string,
     image: string,
+    imageAlt: string,
   ): void {
     this.setProperty('og:type', 'website');
     this.setProperty('og:site_name', SITE_NAME);
@@ -105,6 +115,11 @@ export class SeoService {
     this.setProperty('og:description', page.description);
     this.setProperty('og:url', url);
     this.setProperty('og:image', image);
+    this.setProperty('og:image:secure_url', image);
+    this.setProperty('og:image:type', SOCIAL_PREVIEW_IMAGE_TYPE);
+    this.setProperty('og:image:width', SOCIAL_PREVIEW_IMAGE_WIDTH);
+    this.setProperty('og:image:height', SOCIAL_PREVIEW_IMAGE_HEIGHT);
+    this.setProperty('og:image:alt', imageAlt);
     this.setProperty('og:locale', language === 'de' ? 'de_DE' : 'en_US');
   }
 

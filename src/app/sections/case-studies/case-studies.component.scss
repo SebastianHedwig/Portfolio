@@ -1,3 +1,4 @@
+@use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
 .case-studies-stage {
@@ -5,25 +6,19 @@
   gap: clamp(2.75rem, 6vh, 5rem);
 
   &__header {
-    margin-inline: 10rem;
+    margin-inline: 5rem;
   }
 
   &__eyebrow {
-    color: tokens.$color-muted;
-    font-family: tokens.$font-eyebrow;
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: normal;
-    line-height: 1;
-    text-transform: none;
+    @include mixins.stage-eyebrow;
   }
 
   &__title {
     max-width: 13ch;
     text-shadow:
-      0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-      0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-      0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+      0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+      0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+      0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
   }
 
   &__body {
@@ -99,10 +94,6 @@
   .case-studies-stage {
     min-height: 62svh;
     gap: clamp(2rem, 4vw, 3.5rem);
-
-    &__eyebrow {
-      font-size: clamp(0.9rem, 1.3vw, 1rem);
-    }
 
     &__body {
       min-height: clamp(8rem, 18vh, 12rem);

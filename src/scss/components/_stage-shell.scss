@@ -18,8 +18,7 @@
   }
 
   &__eyebrow {
-    font-family: tokens.$font-eyebrow;
-    @include mixins.caps-label(0.8rem, tokens.$color-accent);
+    @include mixins.stage-eyebrow;
   }
 
   &__title {

@@ -439,7 +439,6 @@
   }
 }
 
-
 @media (min-width: 1025px) and (max-height: 1080px) and (orientation: landscape) {
   .about-stage {
     &__scene--intro {
@@ -449,7 +448,7 @@
 
     app-about-image {
       --about-image-size: min(clamp(15rem, 23vw, 26rem), clamp(15rem, 37vh, 24rem));
-      transform: translateY(clamp(1.5rem, 4vh, 3rem));
+      --about-image-offset-y: clamp(1.5rem, 4vh, 3rem);
     }
   }
 }
@@ -471,10 +470,18 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   .about-stage {
     &__scene--intro {
       gap: 0;
+    }
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .about-stage {
+    &__scene--intro {
+      gap: clamp(1.5rem, 3vw, 2rem);
     }
   }
 }

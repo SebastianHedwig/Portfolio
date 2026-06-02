@@ -29,7 +29,7 @@ form {
     align-items: center;
     gap: 0.45rem;
     width: max-content;
-    color: rgba(tokens.$color-muted, 0.82);
+    color: rgba(tokens.$color-accent, 0.9);
     font-family: tokens.$font-eyebrow;
     font-size: 0.82rem;
     letter-spacing: 0.08em;
@@ -201,6 +201,7 @@ form {
       transform: rotate(45deg) scale(0.88);
       transform-origin: center;
       transition:
+        border-color 180ms ease,
         opacity 160ms ease,
         transform 160ms ease;
     }
@@ -249,22 +250,24 @@ form {
   }
 
   &__consent-input:checked + .contact-stage__consent-box {
-    border-color: rgba(tokens.$color-accent-soft, 0.56);
-    background: rgba(tokens.$color-accent-soft, 0.12);
+    border-color: rgba(82, 214, 146, 0.64);
+    background: rgba(82, 214, 146, 0.14);
     box-shadow:
       inset 0 0 0 0.04rem rgba(255, 255, 255, 0.04),
-      0 0 0.9rem rgba(53, 199, 255, 0.08);
+      0 0 0.9rem rgba(82, 214, 146, 0.12);
 
     &::before {
       background: linear-gradient(
         180deg,
-        rgba(53, 199, 255, 0.11) 0%,
+        rgba(82, 214, 146, 0.16) 0%,
         rgba(255, 255, 255, 0.02) 100%
       );
       opacity: 0.9;
     }
 
     &::after {
+      border-right-color: rgba(82, 214, 146, 0.95);
+      border-bottom-color: rgba(82, 214, 146, 0.95);
       opacity: 1;
       transform: rotate(45deg) scale(1);
     }
@@ -273,7 +276,15 @@ form {
   @media (hover: hover) and (pointer: fine) {
     &__consent:hover .contact-stage__consent-box {
       border-color: rgba(255, 255, 255, 0.34);
+
+      &::after {
+        border-right-color: rgba(tokens.$color-heading, 0.92);
+        border-bottom-color: rgba(tokens.$color-heading, 0.92);
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+      }
     }
+
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -285,6 +296,14 @@ form {
   &__submit {
     align-self: flex-end;
     margin-top: calc(clamp(2.5rem, 4vw, 5rem) * -0.5);
+  }
+}
+
+@media (max-width: 1670px) {
+  .contact-stage {
+    &__consent-break--mobile-hidden {
+      display: none;
+    }
   }
 }
 
@@ -312,10 +331,6 @@ form {
       line-height: 1.62;
     }
 
-    &__consent-break--mobile-hidden {
-      display: none;
-    }
-
     &__submit {
       margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * 0.2);
     }
@@ -324,10 +339,6 @@ form {
 
 @media (max-width: 1024px) and (orientation: portrait) {
   .contact-stage {
-    &__consent-break--mobile-hidden {
-      display: none;
-    }
-
     &__submit {
       margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * -0.2);
     }

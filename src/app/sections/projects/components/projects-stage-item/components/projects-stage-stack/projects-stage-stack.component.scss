@@ -1,5 +1,6 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
+@use 'components/interactive-icon-hover';
 
 :host {
   @include mixins.project-moment-meta-host;
@@ -36,6 +37,12 @@
   &__stack-item {
     @include mixins.stack(0.7rem);
     align-items: center;
+    @include interactive-icon-hover.interactive-icon-hover-host(
+      '.project-moment__stack-icon-label',
+      '.project-moment__stack-icon',
+      '.project-moment__stack-icon-label-letter',
+      $change-icon-color: false,
+    );
   }
 
   &__stack-icon {
@@ -43,21 +50,18 @@
     width: clamp(3.4rem, 5.3vw, 4.6rem);
     height: clamp(3.4rem, 5.3vw, 4.6rem);
     object-fit: contain;
-    opacity: 1;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
-      hue-rotate(257deg) brightness(107%) contrast(101%);
+    @include interactive-icon-hover.interactive-icon-hover-icon;
   }
 
   &__stack-icon-label {
+    top: calc(100% + 0.3rem);
+    bottom: auto;
     margin: 0;
-    color: tokens.$color-text;
-    font-family: tokens.$font-eyebrow;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    line-height: 1;
-    text-transform: uppercase;
-    white-space: nowrap;
+    @include interactive-icon-hover.interactive-icon-hover-label(0.9rem);
+  }
+
+  &__stack-icon-label-letter {
+    @include interactive-icon-hover.interactive-icon-hover-letter;
   }
 }
 
@@ -79,6 +83,14 @@
     &__stack-icon-label {
       font-size: 0.74rem;
     }
+  }
+}
+
+@media (max-width: 390px) and (orientation: portrait) {
+  :host {
+    width: 100%;
+    max-width: 20rem;
+    margin-inline: auto;
   }
 }
 

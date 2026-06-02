@@ -279,38 +279,6 @@
     transition: transform 220ms ease;
   }
 
-  &__link-badge {
-    position: absolute;
-    top: -1rem;
-    right: -0.58rem;
-    display: inline-flex;
-    padding: 0.18rem 0.36rem 0.2rem;
-    border: 1px solid rgba(tokens.$color-accent-soft, 0.36);
-    border-radius: 0.2rem;
-    background:
-      linear-gradient(135deg, rgba(tokens.$color-accent, 0.18), transparent 46%),
-      rgba(8, 18, 26, 0.88);
-    box-shadow:
-      0 0.35rem 0.75rem rgba(0, 0, 0, 0.24),
-      0 0 0.65rem rgba(tokens.$color-accent, 0.1);
-    color: rgba(tokens.$color-heading, 0.88);
-    font-size: 0.52rem;
-    line-height: 1;
-    letter-spacing: 0.08em;
-    text-shadow: none;
-    text-transform: uppercase;
-    transform: rotate(-5deg);
-    white-space: nowrap;
-
-    &--de {
-      right: -2.5rem;
-      padding-inline: 0.5rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.015em;
-      transform: rotate(-3deg);
-    }
-  }
-
   &__mobile-language-toggle {
     --language-toggle-justify-content: space-around;
     --language-toggle-option-letter-spacing: 0.08em;

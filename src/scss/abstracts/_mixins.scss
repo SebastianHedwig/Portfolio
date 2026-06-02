@@ -47,6 +47,15 @@
   text-transform: uppercase;
 }
 
+@mixin stage-eyebrow {
+  color: tokens.$color-accent;
+  font-family: tokens.$font-eyebrow;
+  font-size: clamp(0.88rem, 1.3vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 @mixin page-width {
   width: 100%;
   max-width: tokens.$site-max-width;

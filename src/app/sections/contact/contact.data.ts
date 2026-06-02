@@ -31,6 +31,7 @@ export interface ContactContent {
   consentSuffix: string;
   copy: readonly string[];
   cvHref: string;
+  cvHoverLabel: string;
   cvLinkLabel: string;
   eyebrow: string;
   form: ContactFormContent;

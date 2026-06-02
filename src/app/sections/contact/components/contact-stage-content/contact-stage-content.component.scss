@@ -11,21 +11,15 @@
 .contact-stage {
   &__eyebrow {
     margin: 0;
-    color: tokens.$color-muted;
-    font-family: tokens.$font-eyebrow;
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: normal;
-    line-height: 1;
-    text-transform: none;
+    @include mixins.stage-eyebrow;
   }
 
   &__title {
     max-width: 11ch;
     text-shadow:
-      0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-      0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-      0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+      0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+      0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+      0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
   }
 
   &__copy {
@@ -42,42 +36,9 @@
   }
 
   &__cv-link {
+    display: inline-flex;
     width: fit-content;
-    color: rgba(tokens.$color-muted, 0.78);
-    font-size: 0.94rem;
-    line-height: 1.5;
     margin-block-start: 4rem;
-    transition:
-      color 180ms ease,
-      opacity 180ms ease;
-
-    &:focus-visible {
-      color: tokens.$color-accent;
-      opacity: 1;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        color: tokens.$color-accent;
-        opacity: 1;
-
-        .contact-stage__cv-link-text {
-          text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
-          transform: translateY(-0.05rem);
-        }
-      }
-    }
-  }
-
-  &__cv-link-text {
-    display: inline-block;
-    transition: transform 220ms ease;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    &__cv-link-text {
-      transition: none;
-    }
   }
 }
 
@@ -95,10 +56,6 @@
   }
 
   .contact-stage {
-    &__eyebrow {
-      font-size: clamp(0.9rem, 1.3vw, 1rem);
-    }
-
     &__copy {
       max-width: 28rem;
       gap: clamp(0.7rem, 1.5vh, 1rem);
@@ -111,7 +68,6 @@
 
     &__cv-link {
       margin-block-start: clamp(2rem, 5vh, 3rem);
-      font-size: 0.86rem;
     }
   }
 }

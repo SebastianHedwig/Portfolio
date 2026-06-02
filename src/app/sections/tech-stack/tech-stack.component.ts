@@ -31,28 +31,28 @@ const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
   },
   {
     selector: '.tech-stage__stack--core',
-    start: 'top 144%',
-    end: 'top 88%',
+    start: 'top 160%',
+    end: 'top 104%',
   },
   {
     selector: '.tech-stage__learning',
-    start: 'top 146%',
-    end: 'top 90%',
+    start: 'top 162%',
+    end: 'top 106%',
   },
   {
     selector: '.tech-stage__focus',
-    start: 'top 146%',
-    end: 'top 92%',
+    start: 'top 162%',
+    end: 'top 108%',
   },
   {
     selector: '.tech-stage__stack--main',
-    start: 'top 140%',
-    end: 'top 86%',
+    start: 'top 156%',
+    end: 'top 102%',
   },
   {
     selector: '.tech-stage__stack--extended',
-    start: 'top 132%',
-    end: 'top 80%',
+    start: 'top 148%',
+    end: 'top 96%',
   },
 ] as const;
 
@@ -64,28 +64,28 @@ const TECH_STACK_COMPACT_REVEALS: readonly ScrollRevealConfig[] = [
   },
   {
     selector: '.tech-stage__stack--core',
-    start: 'top 158%',
-    end: 'top 104%',
+    start: 'top 174%',
+    end: 'top 120%',
   },
   {
     selector: '.tech-stage__learning',
-    start: 'top 184%',
-    end: 'top 130%',
+    start: 'top 200%',
+    end: 'top 146%',
   },
   {
     selector: '.tech-stage__focus',
-    start: 'top 188%',
-    end: 'top 132%',
+    start: 'top 204%',
+    end: 'top 148%',
   },
   {
     selector: '.tech-stage__stack--main',
-    start: 'top 184%',
-    end: 'top 128%',
+    start: 'top 200%',
+    end: 'top 144%',
   },
   {
     selector: '.tech-stage__stack--extended',
-    start: 'top 178%',
-    end: 'top 122%',
+    start: 'top 194%',
+    end: 'top 138%',
   },
 ] as const;
 

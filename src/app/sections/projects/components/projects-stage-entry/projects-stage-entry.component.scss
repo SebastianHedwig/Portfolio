@@ -31,13 +31,7 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
     grid-column: 14 / span 4;
     grid-row: 1;
     margin: 0;
-    color: tokens.$color-muted;
-    font-family: tokens.$font-eyebrow;
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: normal;
-    line-height: 1;
-    text-transform: none;
+    @include mixins.stage-eyebrow;
   }
 
   &__title {
@@ -58,18 +52,18 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       grid-column: 14;
       grid-row: 2;
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
 
     &--2 {
       grid-column: 14;
       grid-row: 3;
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
 
     &--3 {
@@ -77,9 +71,9 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       grid-row: 4;
       margin-bottom: $projects-stage-row-gap-large;
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
 
     &--4 {
@@ -117,9 +111,9 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       grid-row: 8;
       margin-top: $projects-stage-row-gap-large;
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
 
     &--8 {
@@ -127,9 +121,9 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       grid-row: 9;
       margin-top: clamp(-0.2rem, -0.2vh, 0rem);
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
 
     &--9 {
@@ -137,9 +131,9 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
       grid-row: 10;
       margin-top: clamp(-0.45rem, -0.5vh, -0.2rem);
       text-shadow:
-        0.18rem 0.18rem 0 rgba(0, 0, 0, 0.56),
-        0.42rem 0.42rem 0 rgba(0, 0, 0, 0.46),
-        0.7rem 0.7rem 0.34rem rgba(0, 0, 0, 0.34);
+        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     }
   }
 
@@ -455,7 +449,6 @@ $projects-stage-row-gap-xlarge: clamp(12rem, 20vh, 20rem);
     &__eyebrow {
       grid-column: 14 / span 4;
       grid-row: 1;
-      font-size: clamp(0.9rem, 1.3vw, 1rem);
     }
 
     &__title {

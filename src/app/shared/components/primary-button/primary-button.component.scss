@@ -9,16 +9,25 @@
   @include button-mixins.button-primary;
   @include button-mixins.button-content-swap(
     '.primary-button__label',
-    '.primary-button__arrow'
+    '.primary-button__hover-content'
   );
 
   &__label {
     @include button-mixins.button-label;
   }
 
-  &__arrow {
+  &__hover-content {
     @include button-mixins.button-arrow;
     color: rgba(53, 199, 255, 0.62);
+
+    &--label {
+      width: auto;
+      height: auto;
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.9);
+      mask: none;
+      -webkit-mask: none;
+    }
   }
 
   &--disabled {

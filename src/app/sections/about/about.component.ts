@@ -279,10 +279,10 @@ export class AboutComponent implements OnDestroy {
     });
   }
 
-
   private isCompactStackedStage(): boolean {
     return window.matchMedia(COMPACT_STACKED_STAGE_QUERY).matches;
   }
+
   private getChapterEnterOffsetPercent(): number {
     return this.isLargeDesktopStage() ? 96 : 132;
   }

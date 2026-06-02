@@ -142,30 +142,6 @@
     transition: transform 220ms ease;
   }
 
-  &__link-badge {
-    position: absolute;
-    top: -0.96rem;
-    right: -0.48rem;
-    display: inline-flex;
-    padding: 0.16rem 0.34rem 0.18rem;
-    border: 1px solid rgba(tokens.$color-accent-soft, 0.36);
-    border-radius: 0.18rem;
-    background:
-      linear-gradient(135deg, rgba(tokens.$color-accent, 0.18), transparent 46%),
-      rgba(8, 18, 26, 0.86);
-    box-shadow:
-      0 0.35rem 0.75rem rgba(0, 0, 0, 0.24),
-      0 0 0.65rem rgba(tokens.$color-accent, 0.1);
-    color: rgba(tokens.$color-heading, 0.86);
-    font-size: 0.46rem;
-    line-height: 1;
-    letter-spacing: 0.08em;
-    text-shadow: none;
-    text-transform: uppercase;
-    transform: rotate(-5deg);
-    white-space: nowrap;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     &__link-text {
       transition: none;
@@ -197,10 +173,6 @@
 
     &__nav {
       padding-top: 0;
-    }
-
-    &__link-badge {
-      top: -0.64rem;
     }
 
     app-language-toggle {
@@ -238,19 +210,6 @@
     position: relative;
       font-size: clamp(0.74rem, 0.98vw, 0.88rem);
       letter-spacing: 0.055em;
-    }
-
-    &__link-badge {
-      top: -0.62rem;
-      right: -0.52rem;
-      font-size: 0.36rem;
-
-      &--de {
-        right: -0.82rem;
-        font-size: 0.46rem;
-        letter-spacing: 0.01em;
-        transform: rotate(-3deg);
-      }
     }
 
     app-language-toggle {
