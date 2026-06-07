@@ -141,6 +141,15 @@
     align-items: center;
     min-width: 0;
     color: inherit;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(tokens.$color-accent, 0.9);
+      outline-offset: 0.35rem;
+    }
   }
 
   &__logo {
@@ -187,6 +196,15 @@
       0 0 1.35rem rgba(53, 199, 255, 0.16),
       0 0 0 0.18rem rgba(140, 184, 230, 0.035);
     cursor: pointer;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(tokens.$color-accent, 0.9);
+      outline-offset: 0.25rem;
+    }
   }
 
   &__menu-line {
@@ -265,6 +283,15 @@
     letter-spacing: 0.055em;
     text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
     transition: color 180ms ease;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(tokens.$color-accent, 0.9);
+      outline-offset: 0.35rem;
+    }
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {

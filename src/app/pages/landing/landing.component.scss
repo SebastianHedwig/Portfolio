@@ -9,6 +9,10 @@
     @include mixins.stack;
     width: 100%;
     scroll-margin-top: clamp(1.75rem, 3.5vh, 3rem);
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 

@@ -18,54 +18,74 @@ export class LocalizedAnchorNavigationService {
 
   handleClick(event: MouseEvent, fragmentHref: string): void {
     event.preventDefault();
-    void this.navigate(fragmentHref);
+    const shouldFocusTarget = event.detail === 0;
+
+    if (!shouldFocusTarget && event.currentTarget instanceof HTMLElement) {
+      event.currentTarget.blur();
+    }
+
+    void this.navigate(fragmentHref, shouldFocusTarget);
   }
 
-  async navigate(fragmentHref: string): Promise<void> {
+  async navigate(fragmentHref: string, shouldFocusTarget = false): Promise<void> {
     const fragment = this.normalizeFragment(fragmentHref);
 
     if (!this.isOnLandingPath()) {
       await this.router.navigateByUrl(this.buildLandingFragmentPath(fragment));
-      this.scrollToFragment(fragment, false);
+      this.scrollToFragment(fragment, false, shouldFocusTarget);
       return;
     }
 
-    this.scrollToFragment(fragment, true);
+    this.scrollToFragment(fragment, true, shouldFocusTarget);
   }
 
-  private scrollToFragment(fragment: string, pushHistory: boolean): void {
-    this.tryScrollToFragment(fragment, pushHistory, 3);
+  private scrollToFragment(
+    fragment: string,
+    pushHistory: boolean,
+    shouldFocusTarget: boolean,
+  ): void {
+    this.tryScrollToFragment(fragment, pushHistory, shouldFocusTarget, 3);
   }
 
   private tryScrollToFragment(
     fragment: string,
     pushHistory: boolean,
+    shouldFocusTarget: boolean,
     attemptsRemaining: number,
   ): void {
     const target = document.getElementById(fragment);
 
-    if (target) return this.scrollTargetIntoView(target, fragment, pushHistory);
+    if (target) {
+      return this.scrollTargetIntoView(target, fragment, pushHistory, shouldFocusTarget);
+    }
+
     if (attemptsRemaining <= 0) return this.updateHistory(fragment, pushHistory);
 
-    this.retryScrollToFragment(fragment, pushHistory, attemptsRemaining);
+    this.retryScrollToFragment(fragment, pushHistory, shouldFocusTarget, attemptsRemaining);
   }
 
   private scrollTargetIntoView(
     target: HTMLElement,
     fragment: string,
     pushHistory: boolean,
+    shouldFocusTarget: boolean,
   ): void {
     target.scrollIntoView({ block: 'start', behavior: 'auto' });
     this.updateHistory(fragment, pushHistory);
+
+    if (shouldFocusTarget) {
+      target.focus({ preventScroll: true });
+    }
   }
 
   private retryScrollToFragment(
     fragment: string,
     pushHistory: boolean,
+    shouldFocusTarget: boolean,
     attemptsRemaining: number,
   ): void {
     requestAnimationFrame(() =>
-      this.tryScrollToFragment(fragment, pushHistory, attemptsRemaining - 1),
+      this.tryScrollToFragment(fragment, pushHistory, shouldFocusTarget, attemptsRemaining - 1),
     );
   }
 

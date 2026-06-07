@@ -97,12 +97,15 @@ export class MobileHeaderComponent implements OnDestroy {
     this.revealHeader();
   }
 
-  closeMobileMenu(): void {
+  closeMobileMenu(restoreMenuButtonFocus = true): void {
     if (!this.isMobileMenuOpen()) {
       return;
     }
 
-    this.moveFocusOutOfMobilePanel();
+    if (restoreMenuButtonFocus) {
+      this.moveFocusOutOfMobilePanel();
+    }
+
     this.startMobileMenuClose();
     this.clearMobileMenuCloseTimer();
     this.mobileMenuCloseTimer = window.setTimeout(
@@ -122,7 +125,7 @@ export class MobileHeaderComponent implements OnDestroy {
   }
 
   navigateFromMobileMenu(event: MouseEvent, fragmentHref: string): void {
-    this.closeMobileMenu();
+    this.closeMobileMenu(false);
     this.anchorNavigation.handleClick(event, fragmentHref);
   }
 
