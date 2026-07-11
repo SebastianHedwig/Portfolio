@@ -8,13 +8,14 @@ Live site: [sebastian-hedwig.de](https://sebastian-hedwig.de)
 
 ## Overview
 
-This portfolio is built as a focused single-page experience with additional legal pages. The landing page combines a visual hero stage, animated background elements, structured content sections, localized copy, project showcases, and a contact area.
+This portfolio is built as a focused single-page experience with additional legal pages and a dedicated portfolio case study. The landing page combines a visual hero stage, animated background elements, structured content sections, localized copy, project showcases, a technical insights preview, references, and a contact area.
 
 The application is designed to communicate frontend work with an emphasis on interaction, performance, maintainable structure, and polished UI execution.
 
 ## Focus
 
 - Modern landing page structure with hero, about, tech stack, projects, references, and contact sections
+- Dedicated insights / deep dives area with a portfolio case study preview
 - Language switching for German and English through localized routes
 - Animated, interactive interface built with GSAP and Three.js
 - Responsive SCSS architecture with shared tokens, mixins, and component styles
@@ -29,6 +30,11 @@ The application is designed to communicate frontend work with an emphasis on int
 - Interactive network-style viewport background
 - Scroll-based reveal animations
 - Project previews with dedicated images, descriptions, stack data, GitHub links, and live demo links
+- Case study preview with localized CTA, GitHub link, optimized WebP preview images, and Angular route transition
+- Dedicated portfolio case study page with metadata, quick facts, accordion sections, sticky navigation, image dialog, localized content, and a close action back to the landing page insights section
+- Shared primary and secondary button components with consistent hover behavior across project moments, CV actions, and case study previews
+- Shared language toggle component used across desktop header, mobile header, and the case study page
+- Reload-safe anchor navigation that prevents stale URL hashes from forcing unwanted scroll positions after refresh
 - Locally bundled fonts and static image assets
 - Contact form with validation feedback and submission handling through a VPS-hosted Contact API
 - Self-managed VPS deployment with custom backend services for CV delivery, contact API handling, and mailing workflows
@@ -58,6 +64,8 @@ The application is designed to communicate frontend work with an emphasis on int
 | `/en/impressum` | English imprint page |
 | `/de/datenschutz` | German privacy page |
 | `/en/datenschutz` | English privacy page |
+| `/de/fallstudien` | German portfolio case study page |
+| `/en/fallstudien` | English portfolio case study page |
 
 ## SEO
 
@@ -65,7 +73,7 @@ SEO is handled through a dedicated Angular service in `src/app/shared/seo/seo.se
 
 The SEO setup includes:
 
-- Localized page titles and descriptions for the German and English landing, imprint, and privacy routes
+- Localized page titles and descriptions for the German and English landing, imprint, privacy, and case study routes
 - Canonical links for every language-specific route
 - `hreflang` alternate links for `de`, `en`, and `x-default`
 - Open Graph metadata for link previews, including localized preview images
@@ -74,6 +82,7 @@ The SEO setup includes:
 - Responsive hero image preloads for the landing page
 - `public/sitemap.xml` with alternate language references
 - `public/robots.txt` pointing crawlers to the sitemap
+- Early reload handling in `src/index.html` to prevent stale hash fragments from forcing incorrect scroll positions after refresh
 
 When public routes, route names, preview images, or indexed page copy change, update the SEO metadata in `SeoService` and keep `public/sitemap.xml` in sync.
 
@@ -90,13 +99,14 @@ When public routes, route names, preview images, or indexed page copy change, up
 ```text
 src/
   app/
-    pages/          Pages such as landing page, imprint, and privacy
+    pages/          Pages such as landing page, imprint, privacy, and case studies
     sections/       Portfolio sections used on the landing page
     shared/         Shared components, animations, navigation, and SEO
+    services/       App-level services such as contact submission handling
     i18n/           Language model, routing, and language state
   assets/
     icons/          Logo, button, footer, and tech stack icons
-    images/         Portrait, about, project, and README images
+    images/         Portrait, about, project, case study, social preview, and README images
     fonts/          Locally bundled fonts
   scss/             Global SCSS base, tokens, mixins, and component styles
 public/             Favicon, robots.txt, and sitemap.xml
@@ -164,6 +174,8 @@ Typical content entry points:
 - About section copy: `src/app/sections/about/about.data.*.ts`
 - Tech stack data: `src/app/sections/tech-stack/tech-stack.data.*.ts`
 - Project data: `src/app/sections/projects/projects.data.*.ts`
+- Landing case study preview data: `src/app/sections/case-studies/case-studies.data.*.ts`
+- Portfolio case study page data: `src/app/pages/case-studies/case-studies.data.*.ts`
 - References data: `src/app/sections/references/references.data.*.ts`
 - Contact copy: `src/app/sections/contact/contact.data.*.ts`
 - Footer copy: `src/app/pages/landing/data/footer/landing-footer.data.*.ts`
@@ -174,11 +186,16 @@ Global styling lives in `src/scss`, split into abstracts, base styles, and reusa
 
 Images, icons, and fonts are stored under `src/assets` and copied into the build output through the Angular asset configuration. Public files such as `robots.txt`, `sitemap.xml`, and the favicon live in `public`.
 
+Case study assets are stored under `src/assets/images/case-studies`. Social preview images are stored under `src/assets/images/social`, while README preview images remain under `src/assets/images/readme`.
+
 ## Maintenance Notes
 
 - Keep German and English data files in sync when adding or changing visible copy.
 - Add new project screenshots under `src/assets/images/projects`.
+- Add or replace case study preview and process images under `src/assets/images/case-studies`.
+- Keep the landing case study preview data and the dedicated case study page data in sync when changing the portfolio study.
 - Add README-specific images under `src/assets/images/readme`.
+- Update social preview images under `src/assets/images/social` when Open Graph or WhatsApp preview visuals change.
 - Update `src/app/shared/seo/seo.service.ts` when public route metadata, preview images, canonical behavior, or indexed page descriptions change.
 - Update `public/sitemap.xml` when public routes or language alternates change.
 - Run `npm run build` before publishing changes.
