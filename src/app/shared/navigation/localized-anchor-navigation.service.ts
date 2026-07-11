@@ -32,7 +32,7 @@ export class LocalizedAnchorNavigationService {
 
     if (!this.isOnLandingPath()) {
       await this.router.navigateByUrl(this.buildLandingFragmentPath(fragment));
-      this.scrollToFragment(fragment, false, shouldFocusTarget);
+      this.scrollToFragment(fragment, false, shouldFocusTarget, true);
       return;
     }
 
@@ -43,8 +43,20 @@ export class LocalizedAnchorNavigationService {
     fragment: string,
     pushHistory: boolean,
     shouldFocusTarget: boolean,
+    stabilizeAfterRouteChange = false,
   ): void {
-    this.tryScrollToFragment(fragment, pushHistory, shouldFocusTarget, 3);
+    this.tryScrollToFragment(fragment, pushHistory, shouldFocusTarget, 10);
+
+    if (!stabilizeAfterRouteChange) return;
+
+    window.setTimeout(
+      () => this.tryScrollToFragment(fragment, false, shouldFocusTarget, 1),
+      120,
+    );
+    window.setTimeout(
+      () => this.tryScrollToFragment(fragment, false, shouldFocusTarget, 1),
+      320,
+    );
   }
 
   private tryScrollToFragment(

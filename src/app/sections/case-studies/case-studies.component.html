@@ -11,9 +11,48 @@
     </h2>
   </header>
 
-  <div class="case-studies-stage__body" aria-label="{{ content().badge }}">
-    <span class="case-studies-stage__badge">
-      {{ content().badge }}
-    </span>
+  <div class="case-studies-stage__body">
+    <article class="case-studies-stage__preview">
+      <div class="case-studies-stage__preview-copy">
+        <p class="case-studies-stage__preview-label">
+          {{ content().preview.label }}
+        </p>
+        <h3 class="case-studies-stage__preview-title">
+          {{ content().preview.title }}
+        </h3>
+        <p class="case-studies-stage__preview-description">
+          {{ content().preview.description }}
+        </p>
+
+        <ul class="case-studies-stage__chips" [attr.aria-label]="content().preview.chipsLabel">
+          @for (chip of content().preview.chips; track chip) {
+            <li class="case-studies-stage__chip">{{ chip }}</li>
+          }
+        </ul>
+
+        <div class="case-studies-stage__actions">
+          <app-primary-button
+            class="case-studies-stage__cta"
+            [label]="content().preview.cta"
+            [hoverLabel]="content().preview.ctaHover"
+            [href]="content().preview.studyHref"
+          ></app-primary-button>
+          <app-secondary-button
+            class="case-studies-stage__github"
+            [label]="content().preview.githubLabel"
+            [href]="content().preview.githubHref"
+          ></app-secondary-button>
+        </div>
+      </div>
+
+      <figure class="case-studies-stage__preview-media">
+        <img
+          class="case-studies-stage__preview-image"
+          [src]="content().preview.image"
+          [alt]="content().preview.alt"
+          loading="lazy"
+        />
+      </figure>
+    </article>
   </div>
 </div>

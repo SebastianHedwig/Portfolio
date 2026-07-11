@@ -130,6 +130,22 @@
     hyphens: none;
   }
 
+  &__quote-intro {
+    margin-block-start: clamp(2rem, 4vw, 3.4rem);
+    text-align: center;
+    hyphens: none;
+  }
+
+  &__quote-attribution {
+    margin-block-start: -0.25rem;
+    color: rgba(tokens.$color-heading, 0.76);
+    font-size: clamp(0.92rem, 1.25vw, 1.05rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-align: center;
+    hyphens: none;
+  }
+
   &__study-media {
     margin: 1rem auto;
     width: fit-content;

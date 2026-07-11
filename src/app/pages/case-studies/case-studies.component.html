@@ -128,7 +128,9 @@
                       @case ('paragraph') {
                         <p
                           class="legal-page__paragraph"
-                          [class.case-study-page__closing-quote]="block.text.includes('Don’t overthink')"
+                          [class.case-study-page__quote-intro]="isQuoteIntro(block.text)"
+                          [class.case-study-page__closing-quote]="isClosingQuote(block.text)"
+                          [class.case-study-page__quote-attribution]="isQuoteAttribution(block.text)"
                         >
                           {{ block.text }}
                         </p>

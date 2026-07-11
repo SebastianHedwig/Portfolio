@@ -115,6 +115,7 @@ export class SeoService {
     this.setProperty('og:description', page.description);
     this.setProperty('og:url', url);
     this.setProperty('og:image', image);
+    this.setProperty('og:image:url', image);
     this.setProperty('og:image:secure_url', image);
     this.setProperty('og:image:type', SOCIAL_PREVIEW_IMAGE_TYPE);
     this.setProperty('og:image:width', SOCIAL_PREVIEW_IMAGE_WIDTH);
@@ -143,7 +144,7 @@ export class SeoService {
   }
 
   private buildUrl(language: AppLanguage, path: string): string {
-    return `${SITE_URL}/${language}${path ? `/${path}` : ''}`;
+    return path ? `${SITE_URL}/${language}/${path}` : `${SITE_URL}/${language}/`;
   }
 
   private updateCanonical(url: string): void {
@@ -259,7 +260,7 @@ function createPersonData(language: AppLanguage): object {
     '@type': 'Person',
     name: 'Sebastian Hedwig',
     jobTitle: 'Frontend Developer',
-    url: `${SITE_URL}/${language}`,
+    url: `${SITE_URL}/${language}/`,
     image: SOCIAL_PREVIEW_IMAGES[language],
     sameAs: PERSON_PROFILES,
     address: createPostalAddress(),

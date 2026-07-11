@@ -12,6 +12,7 @@ import {
 import { LanguageStore } from '../../i18n/language.store';
 import { LanguageToggleComponent } from '../../shared/components/language-toggle/language-toggle.component';
 import { SecondaryButtonComponent } from '../../shared/components/secondary-button/secondary-button.component';
+import { LocalizedAnchorNavigationService } from '../../shared/navigation/localized-anchor-navigation.service';
 import { DesktopFooterComponent } from '../landing/components/desktop-footer/desktop-footer.component';
 import { MobileFooterComponent } from '../landing/components/mobile-footer/mobile-footer.component';
 import { type CaseStudyMediaItem, getCaseStudyPageContent } from './case-studies.data';
@@ -32,6 +33,7 @@ const MOBILE_LAYOUT_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 })
 export class CaseStudiesPageComponent implements OnDestroy {
   private readonly languageStore = inject(LanguageStore);
+  private readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
 
   readonly content = computed(() => getCaseStudyPageContent(this.languageStore.language()));
   readonly openSections = signal<ReadonlySet<number>>(new Set([0]));
@@ -54,13 +56,7 @@ export class CaseStudiesPageComponent implements OnDestroy {
   }
 
   closePage(): void {
-    window.close();
-
-    window.setTimeout(() => {
-      window.location.href = this.languageStore.buildLocalizedPath(
-        this.languageStore.language(),
-      );
-    }, 120);
+    void this.anchorNavigation.navigate('#case-studies');
   }
 
   sectionId(index: number): string {
@@ -132,6 +128,22 @@ export class CaseStudiesPageComponent implements OnDestroy {
       text.includes('Skizze') ||
       text.includes('sketch')
     );
+  }
+
+  isQuoteIntro(text: string): boolean {
+    return text.startsWith('Oder wie Mark Twain') || text.startsWith('Or as Mark Twain');
+  }
+
+  isClosingQuote(text: string): boolean {
+    return (
+      text.includes('Don’t overthink') ||
+      text.includes('Geheimnis des Vorwärtskommens') ||
+      text.includes('secret of getting ahead')
+    );
+  }
+
+  isQuoteAttribution(text: string): boolean {
+    return text.startsWith('Mark Twain');
   }
 
   @HostListener('document:keydown.escape')

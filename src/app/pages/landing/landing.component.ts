@@ -94,7 +94,14 @@ export class LandingComponent implements OnDestroy {
     this.disableBrowserScrollRestoration();
     this.initMobileLayoutQuery();
 
-    const didHandleInitialFragment = this.scrollToInitialFragment();
+    const shouldResetReloadPosition = this.isReloadNavigation();
+    if (shouldResetReloadPosition) {
+      this.clearCurrentHash();
+    }
+
+    const didHandleInitialFragment = shouldResetReloadPosition
+      ? false
+      : this.scrollToInitialFragment();
     if (!didHandleInitialFragment) {
       this.resetInitialScrollPosition();
     }
@@ -141,14 +148,9 @@ export class LandingComponent implements OnDestroy {
   }
 
   private forceScrollToTop(): void {
-    const hero = document.getElementById('hero');
-    const top = hero
-      ? hero.getBoundingClientRect().top + window.scrollY
-      : 0;
-
-    window.scrollTo({ top, left: 0, behavior: 'auto' });
-    document.documentElement.scrollTop = top;
-    document.body.scrollTop = top;
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
   private initMobileLayoutQuery(): void {
@@ -184,14 +186,28 @@ export class LandingComponent implements OnDestroy {
       return true;
     }
 
-    window.requestAnimationFrame(() => {
+    this.scrollToInitialFragmentTarget(fragment);
+
+    return true;
+  }
+
+  private scrollToInitialFragmentTarget(fragment: string): void {
+    const scrollToTarget = () => {
       document.getElementById(fragment)?.scrollIntoView({
         block: 'start',
         behavior: 'auto',
       });
+    };
+
+    window.requestAnimationFrame(() => {
+      scrollToTarget();
+      window.requestAnimationFrame(scrollToTarget);
     });
 
-    return true;
+    this.resetScrollTimeouts.push(
+      window.setTimeout(scrollToTarget, 120),
+      window.setTimeout(scrollToTarget, 320),
+    );
   }
 
   private initActiveSectionHashSync(syncImmediately: boolean): void {
@@ -254,5 +270,19 @@ export class LandingComponent implements OnDestroy {
   private hasNonHeroHash(): boolean {
     const fragment = window.location.hash.replace(/^#/, '');
     return Boolean(fragment && fragment !== 'hero');
+  }
+
+  private isReloadNavigation(): boolean {
+    const navigationEntry = performance
+      .getEntriesByType('navigation')
+      .at(0) as PerformanceNavigationTiming | undefined;
+
+    return navigationEntry?.type === 'reload';
+  }
+
+  private clearCurrentHash(): void {
+    if (!window.location.hash) return;
+
+    window.history.replaceState(null, '', this.getCurrentPath());
   }
 }

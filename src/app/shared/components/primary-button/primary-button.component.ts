@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalizedAnchorNavigationService } from '../../navigation/localized-anchor-navigation.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { LocalizedAnchorNavigationService } from '../../navigation/localized-anc
 })
 export class PrimaryButtonComponent {
   private readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
+  private readonly router = inject(Router);
 
   readonly href = input<string | null>(null);
   readonly hoverLabel = input<string | null>(null);
@@ -34,15 +36,31 @@ export class PrimaryButtonComponent {
       return;
     }
 
-    if (!targetHref || !this.isAnchorHref(targetHref)) {
+    if (!targetHref || !this.isPlainPrimaryClick(event)) {
       return;
     }
 
-    this.anchorNavigation.handleClick(event, targetHref);
+    if (this.isAnchorHref(targetHref)) {
+      this.anchorNavigation.handleClick(event, targetHref);
+      return;
+    }
+
+    if (this.isInternalPathHref(targetHref)) {
+      event.preventDefault();
+      void this.router.navigateByUrl(targetHref);
+    }
   }
 
   private isAnchorHref(targetHref: string): boolean {
     return targetHref.startsWith('#');
+  }
+
+  private isInternalPathHref(targetHref: string): boolean {
+    return targetHref.startsWith('/');
+  }
+
+  private isPlainPrimaryClick(event: MouseEvent): boolean {
+    return event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
   }
 
   isExternalHref(targetHref: string): boolean {

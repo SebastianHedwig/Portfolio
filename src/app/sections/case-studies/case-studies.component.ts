@@ -12,6 +12,8 @@ import { gsap } from 'gsap';
 import { LanguageStore } from '../../i18n/language.store';
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
+import { PrimaryButtonComponent } from '../../shared/components/primary-button/primary-button.component';
+import { SecondaryButtonComponent } from '../../shared/components/secondary-button/secondary-button.component';
 import { getCaseStudiesContent } from './case-studies.data';
 
 const CASE_STUDIES_REVEALS: readonly ScrollRevealConfig[] = [
@@ -21,7 +23,7 @@ const CASE_STUDIES_REVEALS: readonly ScrollRevealConfig[] = [
     end: 'top 62%',
   },
   {
-    selector: '.case-studies-stage__badge',
+    selector: '.case-studies-stage__preview',
     start: 'top 98%',
     end: 'top 58%',
   },
@@ -31,6 +33,7 @@ const CASE_STUDIES_REVEALS: readonly ScrollRevealConfig[] = [
   selector: 'app-case-studies',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [PrimaryButtonComponent, SecondaryButtonComponent],
   templateUrl: './case-studies.component.html',
   styleUrl: './case-studies.component.scss',
 })

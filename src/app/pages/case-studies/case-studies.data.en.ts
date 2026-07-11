@@ -29,7 +29,7 @@ For the portfolio, I defined both design and technical requirements. The goal wa
 
 A responsive interface with clear information hierarchy and intuitive navigation was especially important. Content should be easy to scan and accessible on desktop, tablet, and mobile devices.
 
-The technical implementation also needed to remain maintainable and flexible over time. For that reason, the application was built in a modular way, so new content, features, or adjustments can be integrated later without unnecessary friction.
+The technical implementation needed to remain maintainable and flexible over time. For that reason, the application was built in a modular way, so new content, features, or adjustments can be integrated later without unnecessary friction.
 
 Visually, I wanted to combine a modern aesthetic with interactive elements and smooth animations without making the page feel overloaded. Animations should not be purely decorative, but should actively support navigation and add more energy to the website.
 
@@ -41,13 +41,13 @@ At the beginning of the project, there was no single website or specific portfol
 
 Horizontal marquees with text information inside Hero sections were especially interesting to me. This form of presentation makes it possible to show information in a compact but dynamic way. That led to the idea of integrating an animated marquee to make important information visible without overloading the interface.
 
-Modern motion design also had a strong influence on the project. Experiments and inspiration around GSAP, Three.js, and interactive websites created the desire to bring stronger visual dynamics into the portfolio, especially through animated backgrounds and interactive elements.
+Modern motion design had a strong influence on the project as well. Experiments and inspiration around GSAP, Three.js, and interactive websites created the desire to bring stronger visual dynamics into the portfolio, especially through animated backgrounds and interactive elements.
 
 The idea for the network animation came from the wish to give the portfolio more depth and individuality. After seeing similar visual concepts, I wanted to find out how such an effect could be integrated into a modern website in a performant and harmonious way.
 
-The color direction was also intentional from the beginning. Blue as my personal favorite color and my general preference for dark-mode interfaces influenced the design early on. Targeted cyan accents were added to highlight certain areas and give the interface more contrast and energy.
+The color direction was intentional from the beginning. Blue as my personal favorite color and my general preference for dark-mode interfaces influenced the design early on. Targeted cyan accents were added to highlight certain areas and give the interface more contrast and energy.
 
-I also wanted to consciously break away from classic portfolio structures. The idea of presenting individual areas horizontally or through scroll-controlled staging came from modern layout concepts I had seen on other websites. This approach was meant to give the page more individuality and make the perception of each section more varied.
+I wanted to consciously break away from classic portfolio structures. The idea of presenting individual areas horizontally or through scroll-controlled staging came from modern layout concepts I had seen on other websites. This approach was meant to give the page more individuality and make the perception of each section more varied.
 
 Ultimately, the portfolio came from many different impressions, inspirations, and individual concepts from various websites and portfolios. Instead of following one template, I combined different ideas, animations, layout approaches, and design concepts into my own visual and technical interpretation.
 
@@ -61,9 +61,11 @@ Initial visual experiments focused on the Hero section. The combination of dark 
 
 Based on these design foundations, a dark color world with targeted cyan accents emerged to combine technical aesthetics, contrast, and spatial depth. The palette was developed mainly through visual experimentation with transparency, opacity values, and different blue tones until the balance between technical impact and calm atmosphere felt right.
 
-Typography was also developed through testing. After trying different Google Font combinations, I chose Space Grotesk and Sora. Space Grotesk is mainly used for navigation and smaller supporting information, while Sora serves as the primary font for larger text areas. The decisive factor was the combination of technical modernity and readability.
+Typography was developed through testing. After trying different Google Font combinations, I chose Space Grotesk and Sora. Space Grotesk is mainly used for navigation and smaller supporting information, while Sora serves as the primary font for larger text areas. The decisive factor was the combination of technical modernity and readability.
 
-Another design focus was asymmetrical layout structures and intentionally placed spacing. Not every element follows the exact same axis or a fully symmetrical structure. The goal was to give the page more movement and individuality without making it feel chaotic.
+Another design approach initially involved working with asymmetric layout structures and deliberately offset elements. The idea was to give the site more dynamism and individuality while moving away from a strictly classic portfolio structure.
+
+During the process, however, I discarded this approach based on feedback from a web designer. For external visitors, it was not immediately clear what purpose the asymmetry was meant to serve. Instead of improving readability and orientation, it sometimes created more confusion. As a result, I realigned the layouts around clearer positioning, more understandable axes, and a calmer visual structure.
 
 A large amount of development work went into the responsive behavior of the application. Many challenges only appeared during implementation, especially around GSAP ScrollTrigger, reveal animations, and dynamic backgrounds. Different screen sizes required repeated adjustments to animation start and end points as well as navigation anchors.
 
@@ -71,11 +73,11 @@ Scaling larger visual elements, such as the Hero image or more complex grid stru
 
 For the mobile view, I deliberately decided to avoid more complex scroll-controlled areas. While they add visual dynamics on larger screens, clearer and more intuitive guidance was more important on mobile devices. Content is therefore presented in a classic vertical flow on smaller screens.
 
-The animated Network Background was also developed iteratively. The goal was not to create a dominant or hectic effect, but a calm, technical, spatial atmosphere that supports the content rather than competing with it.
+Likewise, the animated Network Background was developed iteratively. The goal was not to create a dominant or hectic effect, but a calm, technical, spatial atmosphere that supports the content rather than competing with it.
 
 The network clusters were intended to feel like floating structures in space and give the website additional depth without distracting from the actual content. To achieve this, I experimented extensively with transparency, movement intensity, and the number of animated elements.
 
-During the design process, I also developed the idea of highlighting individual terms inside larger text blocks to emphasize key statements visually. Examples such as “Moderne Experiences überzeugen” or “Werkzeug nutzen” are not only visual accents, but also summarize content and add another layer of meaning.
+During the design process, I developed the idea of highlighting individual terms inside larger text blocks to emphasize key statements visually. Examples such as “Moderne Experiences überzeugen” or “Werkzeug nutzen” are not only visual accents, but also summarize content and add another layer of meaning.
 
 Looking back, this part strongly reflects my background in marketing and business administration, because many of these decisions were consciously shaped by perception, impact, and user guidance.
 
@@ -87,7 +89,7 @@ For the frontend, I chose Angular together with TypeScript and SCSS. Angular off
 
 The application is based on a modular component structure where reusable shared components are combined with section-specific components. Common elements such as navigation, buttons, or recurring UI structures were abstracted, while individual sections were built more specifically to match their visual and functional requirements.
 
-The application was also structured so that larger functions and technically intensive areas are only loaded when they are actually needed. Lazy loading, dynamic imports, and targeted splitting of JavaScript areas into smaller chunks helped reduce the initial load and improve overall performance.
+The application was structured so that larger functions and technically intensive areas are only loaded when they are actually needed. Lazy loading, dynamic imports, and targeted splitting of JavaScript areas into smaller chunks helped reduce the initial load and improve overall performance.
 
 Animation-heavy and rendering-intensive areas were integrated in a way that avoids unnecessary initialization and uses resources more efficiently.
 
@@ -117,9 +119,9 @@ Within this system, TypeScript mainly handles movement logic, configuration, and
 
 ## SEO & Internationalization
 
-SEO and internationalization played an important role early in development. The application was equipped with canonical tags, hreflang configuration, structured data, a language-specific sitemap, and robots.txt to support discoverability and clean search engine indexing.
+In addition, SEO and internationalization played an important role early in development. The application was equipped with canonical tags, hreflang configuration, structured data, a language-specific sitemap, and robots.txt to support discoverability and clean search engine indexing.
 
-I also created a dedicated Angular SEO service to centrally manage meta tags, page titles, canonical URLs, robots directives, social preview data, and structured data. This makes content easier to maintain and adapt for different languages and page contexts.
+I created a dedicated Angular SEO service to centrally manage meta tags, page titles, canonical URLs, robots directives, social preview data, and structured data. This makes content easier to maintain and adapt for different languages and page contexts.
 
 ## Security
 
@@ -133,7 +135,7 @@ My goal was to build the application not only in a functional and visually moder
 
 For running the application, I set up my own VPS infrastructure on Linux. Deployment, process management, and routing are handled through PM2 and NGINX.
 
-I also configured SSL certificates, DNS settings, subdomains, permissions, and server structures to run the application in a stable and production-oriented way.
+I configured SSL certificates, DNS settings, subdomains, permissions, and server structures to run the application in a stable and production-oriented way.
 
 It was important to me not only to develop a visually modern portfolio, but a technically complete web application that considers frontend, animation, infrastructure, SEO, security, and deployment as one connected system.
 
@@ -177,7 +179,7 @@ Although SEO was not originally one of the main focus areas, it became an import
 
 Looking back, the project became much larger and more technical than initially planned. What started as a modern frontend portfolio gradually developed into a complete web application where design, animation, architecture, infrastructure, and user experience are closely connected.
 
-I am especially satisfied with the final overall impression of the application. The combination of typography, animation, asymmetrical layouts, and the animated background creates exactly the technical and visual atmosphere I wanted to achieve.
+I am especially satisfied with the final overall impression of the application. The combination of typography, animation, clear layout direction, and the animated background creates exactly the technical and visual atmosphere I wanted to achieve.
 
 Technically, many things developed the way I had imagined. The modular component structure, the separation between reusable shared components and section-specific areas, and the independent GSAP and Three.js architecture helped keep the application maintainable and extensible despite its complexity.
 
@@ -204,6 +206,12 @@ The project once again showed me that perfection rarely exists at the beginning 
 In the end, one thought remains especially true for me in IT:
 
 » “Don’t overthink anything, just begin!” «
+
+Or as Mark Twain put it:
+
+“The secret of getting ahead is getting started.”
+
+Mark Twain - American writer and social critic
 
 # Additional Notes
 

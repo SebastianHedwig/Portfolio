@@ -5,6 +5,23 @@
   <title>Moderne Web Experiences, die überzeugen | Sebastian Hedwig</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      try {
+        const navigation = performance.getEntriesByType('navigation')[0];
+
+        if (navigation?.type === 'reload' && window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'manual';
+        }
+      } catch {
+        // Keep initial rendering unaffected if a browser blocks navigation APIs.
+      }
+    })();
+  </script>
   <meta name="google" content="notranslate">
   <meta
     name="description"
@@ -12,10 +29,10 @@
   >
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#000d16">
-  <link rel="canonical" href="https://sebastian-hedwig.de/de">
-  <link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de" data-seo-alternate="true">
-  <link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en" data-seo-alternate="true">
-  <link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de" data-seo-alternate="true">
+  <link rel="canonical" href="https://sebastian-hedwig.de/de/">
+  <link rel="alternate" hreflang="de" href="https://sebastian-hedwig.de/de/" data-seo-alternate="true">
+  <link rel="alternate" hreflang="en" href="https://sebastian-hedwig.de/en/" data-seo-alternate="true">
+  <link rel="alternate" hreflang="x-default" href="https://sebastian-hedwig.de/de/" data-seo-alternate="true">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sebastian Hedwig">
   <meta property="og:title" content="Moderne Web Experiences, die überzeugen | Sebastian Hedwig">
@@ -23,8 +40,9 @@
     property="og:description"
     content="Portfolio von Sebastian Hedwig, Frontend Developer aus Flörsheim mit Fokus auf Angular, TypeScript, SCSS, Interaktion und Performance."
   >
-  <meta property="og:url" content="https://sebastian-hedwig.de/de">
+  <meta property="og:url" content="https://sebastian-hedwig.de/de/">
   <meta property="og:image" content="https://sebastian-hedwig.de/assets/images/social/portfolio-social-preview-de.jpg">
+  <meta property="og:image:url" content="https://sebastian-hedwig.de/assets/images/social/portfolio-social-preview-de.jpg">
   <meta property="og:image:secure_url" content="https://sebastian-hedwig.de/assets/images/social/portfolio-social-preview-de.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
@@ -50,7 +68,7 @@
         "@type": "Person",
         "name": "Sebastian Hedwig",
         "jobTitle": "Frontend Developer",
-        "url": "https://sebastian-hedwig.de/de",
+        "url": "https://sebastian-hedwig.de/de/",
         "image": "https://sebastian-hedwig.de/assets/images/social/portfolio-social-preview-de.jpg",
         "address": {
           "@type": "PostalAddress",
