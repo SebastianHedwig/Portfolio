@@ -1,27 +1,49 @@
-<button
-  class="tech-stage__learning-trigger"
-  type="button"
-  [attr.aria-expanded]="isPopupVisible()"
-  [attr.aria-controls]="popupId()"
-  [attr.aria-label]="item().alt"
-  (click)="togglePopup($event)"
->
-  <img
-    class="tech-stage__learning-icon interactive-icon-hover__icon"
-    [src]="item().src"
-    width="60"
-    height="60"
-    [alt]="item().alt"
-    loading="lazy"
-    decoding="async"
-  />
-</button>
+<div class="tech-stage__learning-control">
+  <button
+    class="tech-stage__learning-trigger"
+    type="button"
+    [attr.aria-expanded]="isPopupVisible()"
+    [attr.aria-controls]="popupId()"
+    [attr.aria-label]="item().alt"
+    (click)="togglePopup($event)"
+    (mouseenter)="showTooltip($event)"
+    (mousemove)="moveTooltip($event)"
+    (mouseleave)="hideTooltip()"
+  >
+    <img
+      class="tech-stage__learning-icon interactive-icon-hover__icon"
+      [src]="item().src"
+      width="60"
+      height="60"
+      [alt]="item().alt"
+      loading="lazy"
+      decoding="async"
+    />
+    <span
+      class="tech-stage__learning-touch-hint"
+      [class.tech-stage__learning-touch-hint--is-hidden]="isPopupRendered()"
+      aria-hidden="true"
+    >+</span>
+  </button>
 
-<span class="tech-stage__label tech-stage__learning-label interactive-icon-hover__label">
-  @for (letter of item().letters; track $index) {
-    <span class="tech-stage__label-letter interactive-icon-hover__letter">{{ letter }}</span>
-  }
-</span>
+  <span class="tech-stage__label tech-stage__learning-label interactive-icon-hover__label">
+    @for (letter of item().letters; track $index) {
+      <span
+        class="tech-stage__label-letter interactive-icon-hover__letter"
+        [class.tech-stage__label-space]="letter === ' '"
+      >{{ letter }}</span>
+    }
+  </span>
+</div>
+
+@if (isTooltipVisible()) {
+  <span
+    class="tech-stage__learning-cursor-label"
+    [style.left.px]="tooltipPosition().x"
+    [style.top.px]="tooltipPosition().y"
+    aria-hidden="true"
+  >{{ tooltipLabel() }}</span>
+}
 
 @if (isPopupRendered()) {
   <div

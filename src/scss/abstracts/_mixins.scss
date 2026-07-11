@@ -39,7 +39,7 @@
 @mixin caps-label(
   $size,
   $color: tokens.$color-muted,
-  $spacing: 0.18em
+  $spacing: 0.22em
 ) {
   color: $color;
   font-size: $size;

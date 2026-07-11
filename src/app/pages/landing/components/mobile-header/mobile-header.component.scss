@@ -90,6 +90,7 @@
         opacity 180ms ease,
         visibility 0ms;
       visibility: visible;
+      border-radius: 0 0 0 1rem;
     }
 
     .mobile-header__mobile-nav,
@@ -235,8 +236,8 @@
   }
 
   &__mobile-panel {
-    position: fixed;
-    top: clamp(4.5rem, 7svh, 4.65rem);
+    position: absolute;
+    top: 100%;
     right: 0;
     z-index: 40;
     display: flex;
@@ -246,7 +247,7 @@
     box-sizing: border-box;
     height: auto;
     min-height: clamp(23rem, 58svh, 26rem);
-    max-height: calc(100svh - clamp(5.5rem, 9svh, 7rem));
+    max-height: calc(100svh - 100%);
     padding:
       clamp(2rem, 5svh, 3rem)
       clamp(1.5rem, 6vw, 2.5rem);

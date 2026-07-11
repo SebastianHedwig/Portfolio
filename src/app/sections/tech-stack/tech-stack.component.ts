@@ -26,32 +26,32 @@ const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) 
 const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
   {
     selector: '.tech-stage__intro',
-    start: 'top 148%',
+    start: 'top 168%',
     end: 'top 82%',
   },
   {
     selector: '.tech-stage__stack--core',
-    start: 'top 160%',
+    start: 'top 188%',
     end: 'top 104%',
   },
   {
     selector: '.tech-stage__learning',
-    start: 'top 162%',
+    start: 'top 190%',
     end: 'top 106%',
   },
   {
     selector: '.tech-stage__focus',
-    start: 'top 162%',
+    start: 'top 190%',
     end: 'top 108%',
   },
   {
     selector: '.tech-stage__stack--main',
-    start: 'top 156%',
+    start: 'top 184%',
     end: 'top 102%',
   },
   {
     selector: '.tech-stage__stack--extended',
-    start: 'top 148%',
+    start: 'top 176%',
     end: 'top 96%',
   },
 ] as const;
@@ -59,32 +59,32 @@ const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
 const TECH_STACK_COMPACT_REVEALS: readonly ScrollRevealConfig[] = [
   {
     selector: '.tech-stage__intro',
-    start: 'top 148%',
+    start: 'top 168%',
     end: 'top 82%',
   },
   {
     selector: '.tech-stage__stack--core',
-    start: 'top 174%',
+    start: 'top 206%',
     end: 'top 120%',
   },
   {
     selector: '.tech-stage__learning',
-    start: 'top 200%',
+    start: 'top 230%',
     end: 'top 146%',
   },
   {
     selector: '.tech-stage__focus',
-    start: 'top 204%',
+    start: 'top 234%',
     end: 'top 148%',
   },
   {
     selector: '.tech-stage__stack--main',
-    start: 'top 200%',
+    start: 'top 230%',
     end: 'top 144%',
   },
   {
     selector: '.tech-stage__stack--extended',
-    start: 'top 194%',
+    start: 'top 224%',
     end: 'top 138%',
   },
 ] as const;

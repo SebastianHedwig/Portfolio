@@ -117,8 +117,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private exitTrigger(host: HTMLElement): Record<string, unknown> {
     return {
       trigger: host,
-      start: this.isMobilePortrait() ? 'top -115%' : 'top -30%',
-      end: this.isMobilePortrait() ? 'bottom -20%' : 'bottom 5%',
+      start: this.isMobilePortrait() ? 'top -135%' : 'top -30%',
+      end: this.isMobilePortrait() ? 'bottom -35%' : 'bottom 5%',
       scrub: 0.8,
       invalidateOnRefresh: true,
     };

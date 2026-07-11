@@ -19,7 +19,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
   introLead: {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
     title: 'One goal.\nOne path.',
-    titleClass: 'about-stage__statement',
+    titleClass: 'about-stage__statement about-stage__statement--intro-en',
     titleTag: 'h2',
     copy:
       'To me, there are no problems! \nOnly paths toward a solution.\n\nI keep going. \nUntil an idea becomes something that truly works and convinces.',
@@ -31,18 +31,31 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
     copy:
-      'Sometimes it moves easily, \nsometimes it takes strength and time.\n\nWhat matters is staying with it.\nIt is worth walking.',
+      'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to keep going, adjust the perspective and improve solutions step by step.',
     mobileCopy:
-      'Sometimes it moves easily, sometimes it takes strength and time.\n\nWhat matters is staying with it. It is worth walking.',
+      'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to keep going, adjust the perspective and improve solutions step by step.',
     copyClass: 'about-stage__support',
   },
   contextLeft: {
     containerClass: 'about-stage__context-block about-stage__context-block--left',
-    title: 'Calm.\nClear.\nDirect.',
+    title: 'Focused.\nClear.\nDirect.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
+    valueStatements: [
+      { lead: 'Focused', detail: 'in execution.' },
+      { lead: 'Clear', detail: 'in structure.' },
+      { lead: 'Direct', detail: 'in communication.' },
+    ],
+    copy: '',
+    copyClass: 'about-stage__support',
+  },
+  contextBottomHead: {
+    containerClass: 'about-stage__context-bottom-head',
+    title: '',
+    titleClass: '',
+    titleTag: 'p',
     copy:
-      'Clear digital experiences do not happen by accident. They are the result of conviction, focus, and precise execution.',
+      'Clear digital experiences do not happen by accident.\nThey are the result of focus, care, and precise execution.',
     copyClass: 'about-stage__support',
   },
   contextCenter: {
@@ -56,11 +69,11 @@ export const ABOUT_CONTENT_EN: AboutContent = {
   },
   contextRight: {
     containerClass: 'about-stage__context-block about-stage__context-block--right',
-    title: 'From Flörsheim. Intentional down to the details.',
+    title: 'From Flörsheim.\n With intent in every detail.',
     titleClass: 'about-stage__context-title',
     titleTag: 'p',
     copy:
-      'I work in a structured, calm way and with a clear sense of what a project actually needs.',
+      'I work in a structured, calm way and with a clear focus on what matters. This creates digital experiences that are clearly guided, reliable in use, and convincing in the details.',
     copyClass: 'about-stage__context-copy',
   },
 } as const;

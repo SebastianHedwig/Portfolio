@@ -6,7 +6,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
     titleLines: [
       'Projekte',
       'die zeigen ',
-      'wie aus :',
+      'wie aus',
       'Struktur',
       'Haltung',
       'Präzision',
@@ -15,12 +15,12 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
       'entstehen.',
     ],
     lead:
-      'Kein Katalog. Kein Raster. Nur drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.',
+      'Kein Katalog. Kein Raster.\nNur drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.',
   },
   viewportAriaLabel: 'Projektsequenz',
   items: [
     {
-      index: 'Struktur, damit es läuft.',
+      statement: 'Struktur, damit es läuft.',
       eyebrow: 'KanBan Board',
       title: 'Join',
       actions: {
@@ -61,7 +61,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
       },
     },
     {
-      index: 'Ein gutes Spielgefühl',
+      statement: 'Ein gutes Spielgefühl',
       eyebrow: '2d - Platformer',
       title: 'Panda - Jungle Run',
       actions: {
@@ -98,7 +98,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
       },
     },
     {
-      index: 'Alle Pokémon im Überblick',
+      statement: 'Alle Pokémon im Überblick',
       eyebrow: 'API - basierte Anwendung',
       title: 'Pokédex',
       actions: {

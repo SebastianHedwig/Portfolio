@@ -4,6 +4,7 @@ import { ABOUT_CONTENT_EN } from './about.data.en';
 import { type AboutImageData, type AboutTextBlockData } from './about.models';
 
 export interface AboutContent {
+  contextBottomHead: AboutTextBlockData;
   contextCenter: AboutTextBlockData;
   contextLeft: AboutTextBlockData;
   contextRight: AboutTextBlockData;

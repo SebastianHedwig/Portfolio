@@ -6,6 +6,12 @@ export type AboutTextBlockData = {
   title: string;
   titleClass: string;
   titleTag: 'h2' | 'p';
+  valueStatements?: AboutValueStatementData[];
+};
+
+export type AboutValueStatementData = {
+  detail: string;
+  lead: string;
 };
 
 export type AboutImageData = {

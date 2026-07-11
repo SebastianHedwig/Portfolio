@@ -31,18 +31,31 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
     copy:
-      'Manchmal geht es leichter, \nmanchmal kostet es Kraft und Zeit.\n\nEntscheidend ist, dranzubleiben.\nEr ist es wert, gegangen zu werden.',
+      'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, dranzubleiben, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
     mobileCopy:
-      'Manchmal geht es leichter, manchmal kostet es Kraft und Zeit.\n\nEntscheidend ist, dranzubleiben. Er ist es wert, gegangen zu werden.',
+      'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, dranzubleiben, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
     copyClass: 'about-stage__support',
   },
   contextLeft: {
     containerClass: 'about-stage__context-block about-stage__context-block--left',
-    title: 'Ruhig.\nKlar.\nDirekt.',
+    title: 'Fokussiert.\nKlar.\nDirekt.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
+    valueStatements: [
+      { lead: 'Fokussiert', detail: 'in der Umsetzung.' },
+      { lead: 'Klar', detail: 'in der Struktur.' },
+      { lead: 'Direkt', detail: 'in der Kommunikation.' },
+    ],
+    copy: '',
+    copyClass: 'about-stage__support',
+  },
+  contextBottomHead: {
+    containerClass: 'about-stage__context-bottom-head',
+    title: '',
+    titleClass: '',
+    titleTag: 'p',
     copy:
-      'Klare digitale Erlebnisse entstehen nicht zufällig. Sie sind das Ergebnis von Haltung, Fokus und sauberer Umsetzung.',
+      'Klare digitale Erlebnisse entstehen nicht zufällig.\nSie sind das Ergebnis von Fokus, Sorgfalt und sauberer Umsetzung.',
     copyClass: 'about-stage__support',
   },
   contextCenter: {
@@ -56,11 +69,11 @@ export const ABOUT_CONTENT_DE: AboutContent = {
   },
   contextRight: {
     containerClass: 'about-stage__context-block about-stage__context-block--right',
-    title: 'Aus Flörsheim. Mit Haltung im Detail.',
+    title: 'Aus Flörsheim.\n Mit Anspruch im Detail.',
     titleClass: 'about-stage__context-title',
     titleTag: 'p',
     copy:
-      'Ich arbeite strukturiert, ruhig und mit einem klaren Blick auf das, was ein Projekt wirklich braucht.',
+      'Ich arbeite strukturiert, ruhig und mit Blick für das Wesentliche. So entstehen digitale Erlebnisse, die klar geführt sind, sauber funktionieren und im Detail überzeugen.',
     copyClass: 'about-stage__context-copy',
   },
 } as const;

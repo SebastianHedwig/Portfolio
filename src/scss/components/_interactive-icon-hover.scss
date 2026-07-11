@@ -39,6 +39,17 @@
       }
     }
   }
+
+  @media (hover: none), (pointer: coarse) {
+    #{$label-selector},
+    #{$letter-selector} {
+      opacity: 1;
+    }
+
+    #{$letter-selector} {
+      transform: translateY(0);
+    }
+  }
 }
 
 @mixin interactive-icon-hover-icon {

@@ -1,25 +1,36 @@
 <article class="project-moment">
   <div class="project-moment__scene">
-    <app-projects-stage-content
-      [index]="project().index"
-      [eyebrow]="project().eyebrow"
-      [title]="project().title"
-      [actions]="project().actions"
-      [ambientClass]="contentAmbientClass()"
-    ></app-projects-stage-content>
+    <p
+      class="project-moment__statement"
+      [class.project-moment__statement--long]="project().statement.length > 16"
+    >
+      {{ project().statement }}
+    </p>
 
-    <app-projects-stage-visual
-      [visual]="project().visual"
-      [ambientClass]="visualAmbientClass()"
-    ></app-projects-stage-visual>
+    <div class="project-moment__top-row">
+      <app-projects-stage-content
+        [statement]="project().statement"
+        [eyebrow]="project().eyebrow"
+        [title]="project().title"
+        [actions]="project().actions"
+        [ambientClass]="contentAmbientClass()"
+      ></app-projects-stage-content>
 
-    <app-projects-stage-description
-      [description]="project().description"
-      [ambientClass]="descriptionAmbientClass()"
-    ></app-projects-stage-description>
+      <app-projects-stage-visual
+        [visual]="project().visual"
+        [ambientClass]="visualAmbientClass()"
+      ></app-projects-stage-visual>
+    </div>
 
-    <app-projects-stage-stack
-      [stack]="project().stack"
-    ></app-projects-stage-stack>
+    <div class="project-moment__bottom-row">
+      <app-projects-stage-description
+        [description]="project().description"
+        [ambientClass]="descriptionAmbientClass()"
+      ></app-projects-stage-description>
+
+      <app-projects-stage-stack
+        [stack]="project().stack"
+      ></app-projects-stage-stack>
+    </div>
   </div>
 </article>

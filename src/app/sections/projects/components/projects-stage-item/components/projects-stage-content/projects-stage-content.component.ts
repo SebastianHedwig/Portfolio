@@ -16,7 +16,7 @@ import { type ProjectStageItemData } from '../../../../projects.models';
   },
 })
 export class ProjectsStageContentComponent {
-  readonly index = input.required<string>();
+  readonly statement = input.required<string>();
   readonly eyebrow = input.required<string>();
   readonly title = input.required<string>();
   readonly actions = input<ProjectStageItemData['actions']>();
@@ -39,6 +39,6 @@ export class ProjectsStageContentComponent {
   }
 
   isLongIndex(): boolean {
-    return this.index().length > 16;
+    return this.statement().length > 16;
   }
 }

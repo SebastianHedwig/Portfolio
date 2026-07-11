@@ -20,7 +20,7 @@
     width: 1px;
     height: 1px;
     pointer-events: none;
-    scroll-margin-top: clamp(5.5rem, 9vh, 7.5rem);
+    scroll-margin-top: clamp(7rem, 12vh, 10rem);
   }
 
   &__sticky {
@@ -83,7 +83,8 @@
     }
 
     &__viewport {
-      display: grid;
+      display: flex;
+      flex-direction: column;
       gap: clamp(18rem, 26svh, 24rem);
       height: auto;
       max-width: 100%;
@@ -103,7 +104,7 @@
 
     &__anchor {
       top: 10.3svh;
-      scroll-margin-top: clamp(4.25rem, 8vh, 5.75rem);
+      scroll-margin-top: clamp(5.75rem, 10vh, 7.5rem);
     }
 
     &__sticky,
@@ -117,7 +118,7 @@
   .projects-stage {
     &__anchor {
       top: clamp(12rem, 18vh, 18rem);
-      scroll-margin-top: clamp(8rem, 10vh, 10rem);
+      scroll-margin-top: clamp(9.5rem, 12vh, 12rem);
     }
   }
 }
@@ -133,7 +134,7 @@
   .projects-stage {
     &__anchor {
       top: clamp(5.5rem, 10svh, 7rem);
-      scroll-margin-top: clamp(3.25rem, 5.5vh, 4.5rem);
+      scroll-margin-top: clamp(4.75rem, 7.5vh, 6rem);
     }
   }
 }

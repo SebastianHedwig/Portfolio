@@ -24,9 +24,8 @@ export const TECH_STACK_CONTENT_EN: TechStackContent = {
     titleTag: 'h2',
     copyClass: 'tech-stage__copy',
     copyLines: [
-      'I do not work with as many tools as possible,',
-      'but with the right ones. Intentionally chosen',
-      'and deliberately applied.',
+      'I do not work with as many tools as possible, but with the right ones.',
+      'Intentionally chosen and deliberately applied.',
     ],
   },
   focusBlock: {
@@ -40,7 +39,7 @@ export const TECH_STACK_CONTENT_EN: TechStackContent = {
     ],
   },
   learningItem: createItem(
-    'Still learning',
+    'Personal advancement',
     'assets/icons/tech-stack/Continually Learning.svg',
   ),
   plannedStack: {

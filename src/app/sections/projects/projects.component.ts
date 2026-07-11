@@ -171,7 +171,7 @@ export class ProjectsComponent implements OnDestroy {
   }
 
   private setInitialPanelState(projectPanels: HTMLElement[]): void {
-    gsap.set(projectPanels, { xPercent: 110, scale: 0.6, autoAlpha: 0.08 });
+    gsap.set(projectPanels, { xPercent: 83, scale: 0.6, autoAlpha: 0.08 });
   }
 
   private buildTimeline(elements: ProjectsAnimationElements): void {
@@ -250,7 +250,7 @@ export class ProjectsComponent implements OnDestroy {
     duration: number,
   ): void {
     timeline.to(panel, {
-      xPercent: -112,
+      xPercent: -84,
       scale: 0.6,
       autoAlpha: 0.08,
       duration,
@@ -273,7 +273,7 @@ export class ProjectsComponent implements OnDestroy {
 
   private addProjectsExit(timeline: gsap.core.Timeline, panel: HTMLElement): void {
     timeline.addLabel('projects-exit').to(panel, {
-      xPercent: -112,
+      xPercent: -84,
       scale: 0.6,
       autoAlpha: 0.04,
       duration: 1.02,

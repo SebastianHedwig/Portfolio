@@ -6,7 +6,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
     titleLines: [
       'Projects',
       'that show ',
-      'how :',
+      'how',
       'structure',
       'clarity',
       'precision',
@@ -15,12 +15,12 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       'outcomes.',
     ],
     lead:
-      'Not a catalog. Not a grid. Just three focused moments, each revealing a different part of how I work.',
+      'Not a catalog. Not a grid.\nJust three focused moments, each revealing a different part of how I work.',
   },
   viewportAriaLabel: 'Project sequence',
   items: [
     {
-      index: 'Structure, so that it works.',
+      statement: 'Structure, so that it works.',
       eyebrow: 'Kanban board',
       title: 'Join',
       actions: {
@@ -61,7 +61,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
     },
     {
-      index: 'A Game With Real Flow',
+      statement: 'A Game With Real Flow',
       eyebrow: '2D platformer',
       title: 'Panda - Jungle Run',
       actions: {
@@ -98,7 +98,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
     },
     {
-      index: 'Pokémon. Easy to explore.',
+      statement: 'Pokémon. Easy to explore.',
       eyebrow: 'API-based application',
       title: 'Pokédex',
       actions: {

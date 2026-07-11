@@ -54,6 +54,11 @@ const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
     end: 'top 68%',
   },
   {
+    selector: '.about-stage__context-bottom-head',
+    start: 'top 108%',
+    end: 'top 66%',
+  },
+  {
     selector: '.about-stage__context-block--right',
     start: 'top 108%',
     end: 'top 66%',
@@ -85,6 +90,11 @@ const ABOUT_COMPACT_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
     selector: '.about-stage__context-block--left',
     start: 'top 98%',
     end: 'top 56%',
+  },
+  {
+    selector: '.about-stage__context-bottom-head',
+    start: 'top 96%',
+    end: 'top 54%',
   },
   {
     selector: '.about-stage__context-block--right',
@@ -121,6 +131,7 @@ export class AboutComponent implements OnDestroy {
   readonly portrait = computed(() => this.content().portrait);
   readonly introLead = computed(() => this.content().introLead);
   readonly introSecondary = computed(() => this.content().introSecondary);
+  readonly contextBottomHead = computed(() => this.content().contextBottomHead);
   readonly contextLeft = computed(() => this.content().contextLeft);
   readonly contextCenter = computed(() => this.content().contextCenter);
   readonly contextRight = computed(() => this.content().contextRight);
@@ -284,15 +295,15 @@ export class AboutComponent implements OnDestroy {
   }
 
   private getChapterEnterOffsetPercent(): number {
-    return this.isLargeDesktopStage() ? 96 : 132;
+    return this.isLargeDesktopStage() ? 72 : 99;
   }
 
   private getIntroExitOffsetPercent(): number {
-    return this.isLargeDesktopStage() ? 98 : 124;
+    return this.isLargeDesktopStage() ? 74 : 93;
   }
 
   private getAboutExitOffsetPercent(): number {
-    return this.isLargeDesktopStage() ? 96 : 112;
+    return this.isLargeDesktopStage() ? 72 : 84;
   }
 
   private isLargeDesktopStage(): boolean {

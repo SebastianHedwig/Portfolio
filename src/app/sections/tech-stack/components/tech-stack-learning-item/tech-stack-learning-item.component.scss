@@ -1,33 +1,81 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
-:host {
+@mixin learning-touch-hint-visible {
   position: absolute;
-  top: 47%;
-  left: 12%;
+  top: -0.34rem;
+  right: -0.34rem;
+  display: grid;
+  place-items: center;
+  width: clamp(1.16rem, 3.4vw, 1.38rem);
+  height: clamp(1.16rem, 3.4vw, 1.38rem);
+  border: 1px solid rgba(tokens.$color-accent, 0.92);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.045)),
+    rgba(8, 18, 28, 0.96);
+  box-shadow:
+    0 0 0.95rem rgba(tokens.$color-accent, 0.36),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 0 0.75rem rgba(tokens.$color-accent-soft, 0.12);
+  color: tokens.$color-heading;
+  font-family: tokens.$font-eyebrow;
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+:host {
+  position: relative;
   width: max-content;
   z-index: 1;
   opacity: 0.64;
   pointer-events: auto;
 
   .tech-stage {
+    &__learning-control {
+      @include mixins.stack(clamp(0.55rem, 1.4vh, 0.8rem));
+      align-items: center;
+      width: max-content;
+    }
+
     &__learning-trigger {
+      --tech-stack-offset-x: 0rem;
+      position: relative;
       display: block;
       border: 0;
       padding: 0;
       background: transparent;
       cursor: pointer;
+      animation: tech-stack-float 6s ease-in-out infinite;
     }
 
     &__learning-icon {
-      animation: learning-float 6s ease-in-out infinite;
-      transform: scale(1.1) rotate(-2.8deg) translateY(0);
       transform-origin: center;
     }
 
+    &__learning-touch-hint {
+      @include learning-touch-hint-visible;
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+
+      &--is-hidden {
+        opacity: 0;
+        transform: scale(0.72);
+      }
+    }
+
     &__label {
-      top: calc(100% + 0.8rem);
+      position: static;
+      left: auto;
+      transform: none;
       font-size: 1rem;
+      text-align: center;
     }
   }
 
@@ -43,12 +91,27 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      .tech-stage__learning-trigger img {
-        filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
-          hue-rotate(160deg) brightness(101%) contrast(102%);
-        transform: translateY(-0.2rem) scale(1.15);
-      }
+    .tech-stage__learning-touch-hint {
+      opacity: 0;
+      transform: scale(0.76);
+    }
+
+    .tech-stage__learning-trigger:hover img,
+    .tech-stage__learning-trigger:focus-visible img {
+      filter: brightness(0) saturate(100%) invert(77%) sepia(59%) saturate(2402%)
+        hue-rotate(160deg) brightness(101%) contrast(102%);
+    }
+
+    .tech-stage__learning-trigger:hover .tech-stage__learning-touch-hint,
+    .tech-stage__learning-trigger:focus-visible .tech-stage__learning-touch-hint {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .tech-stage__learning-trigger:hover .tech-stage__learning-touch-hint--is-hidden,
+    .tech-stage__learning-trigger:focus-visible .tech-stage__learning-touch-hint--is-hidden {
+      opacity: 0;
+      transform: scale(0.72);
     }
   }
 }
@@ -136,33 +199,48 @@
 }
 
 .tech-stage__learning-label {
+  .tech-stage__label-letter {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   &.tech-stage__label--is-visible {
     opacity: 0.85;
   }
-
-  &.tech-stage__label--is-visible .tech-stage__label-letter {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
-@keyframes learning-float {
-  0% {
-    transform: scale(1.1) rotate(-2.8deg) translateY(0);
-  }
+.tech-stage__learning-cursor-label {
+  position: absolute;
+  z-index: 30;
+  padding: 0.36rem 0.62rem;
+  border: 1px solid rgba(tokens.$color-accent-soft, 0.34);
+  border-radius: 0.35rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(11, 15, 22, 0.92);
+  box-shadow:
+    0 0.7rem 1.6rem rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.045);
+  color: tokens.$color-heading;
+  font-family: tokens.$font-eyebrow;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translate3d(0, 0, 0);
+  white-space: nowrap;
+}
 
-  50% {
-    transform: scale(1.1) rotate(5.6deg) translateY(-0.45rem);
-  }
-
-  100% {
-    transform: scale(1.1) rotate(-2.8deg) translateY(0);
+@media (hover: none), (pointer: coarse) {
+  .tech-stage__learning-cursor-label {
+    display: none;
   }
 }
 
 @media (max-width: 1024px) and (orientation: portrait) {
   :host {
-    position: static;
     align-self: center;
     margin-right: 0;
   }
@@ -225,6 +303,20 @@
 }
 
 @media (max-width: 480px) and (orientation: portrait) {
+  .tech-stage__learning-label {
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1.15;
+    white-space: normal;
+
+    .tech-stage__label-space {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
   .tech-stage__learning-popup {
     left: calc(50% + clamp(5.4rem, 24vw, 5.6rem));
     transform: translate(-50%, calc(-5% + 0.75rem)) scale(0.94);

@@ -1,10 +1,29 @@
-@if (block().titleTag === 'h2') {
+@if (hasValueStatements()) {
+  <div class="about-stage__value-statements" [attr.aria-label]="block().title">
+    @for (statement of valueStatementRows(); track statement.lead + $index) {
+      <p class="about-stage__value-statement" [style.--about-row-index]="$index">
+        <span class="about-stage__value-lead">{{ statement.lead }}</span>
+        <span class="about-stage__value-detail" aria-hidden="true">
+          @for (letter of statement.detailLetters; track letter + $index) {
+            <span
+              class="about-stage__value-letter"
+              [class.about-stage__value-letter--space]="letter === ' '"
+              [style.--about-letter-count]="statement.detailLength"
+              [style.--about-letter-index]="$index"
+            >{{ letter }}</span>
+          }
+        </span>
+        <span class="about-stage__sr-only">{{ statement.lead }} {{ statement.detail }}</span>
+      </p>
+    }
+  </div>
+} @else if (hasTitle() && block().titleTag === 'h2') {
   <h2 id="about-title" [class]="block().titleClass">
     @for (line of titleLines(); track line.text + line.punctuation + $index) {
       <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
     }
   </h2>
-} @else {
+} @else if (hasTitle()) {
   <p [class]="block().titleClass">
     @for (line of titleLines(); track line.text + line.punctuation + $index) {
       <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
@@ -12,11 +31,13 @@
   </p>
 }
 
-<p [class]="block().copyClass" [class.about-stage__support--desktop-copy]="hasMobileCopy()">
-  @for (segment of copySegments(); track segment.text + $index) {
-    <span [class.about-stage__copy-accent]="segment.accent">{{ segment.text }}</span>
-  }
-</p>
+@if (hasCopy()) {
+  <p [class]="block().copyClass" [class.about-stage__support--desktop-copy]="hasMobileCopy()">
+    @for (segment of copySegments(); track segment.text + $index) {
+      <span [class.about-stage__copy-accent]="segment.accent">{{ segment.text }}</span>
+    }
+  </p>
+}
 
 @if (hasMobileCopy()) {
   <p [class]="block().copyClass + ' about-stage__support--mobile-copy'">

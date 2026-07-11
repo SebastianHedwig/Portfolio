@@ -1,20 +1,59 @@
 <header
   class="stage-shell__header projects-stage__header"
 >
-  <p class="stage-shell__eyebrow projects-stage__eyebrow">
-    {{ content().eyebrow }}
-  </p>
-  <h2 id="projects-title" class="stage-shell__title projects-stage__title">
-    @for (line of lines(); track line.className) {
-      <span
-        [class]="line.className"
-        [class.projects-stage__title-line--accent]="line.accent"
-      >
-        {{ line.text }}
-      </span>
-    }
-  </h2>
-  <p class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle">
-    {{ content().lead }}
-  </p>
+  <div class="projects-stage__layout">
+    <div class="projects-stage__intro">
+      <p class="stage-shell__eyebrow projects-stage__eyebrow">
+        {{ content().eyebrow }}
+      </p>
+
+      <h2 id="projects-title" class="stage-shell__title projects-stage__title">
+        @for (line of introLines(); track line.className) {
+          <span
+            [class]="line.className"
+            [class.projects-stage__title-line--accent]="line.accent"
+          >
+            {{ line.text }}
+          </span>
+        }
+      </h2>
+    </div>
+
+    <div class="projects-stage__keyword-track">
+      @for (line of keywordLines(); track line.className) {
+        <span
+          [class]="line.className"
+          [class.projects-stage__title-line--accent]="line.accent"
+        >
+          <span class="projects-stage__keyword-text">
+            <span class="projects-stage__keyword-word">
+              {{ line.text }}
+            </span>
+            <span class="projects-stage__keyword-line" aria-hidden="true"></span>
+          </span>
+        </span>
+      }
+    </div>
+
+    <div class="projects-stage__result">
+      <p class="projects-stage__result-title">
+        @for (line of resultLines(); track line.className) {
+          <span
+            [class]="line.className"
+            [class.projects-stage__title-line--accent]="line.accent"
+          >
+            {{ line.text }}
+          </span>
+        }
+      </p>
+
+      <p class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle">
+        @for (line of leadLines(); track line) {
+          <span class="projects-stage__subtitle-line">
+            {{ line }}
+          </span>
+        }
+      </p>
+    </div>
+  </div>
 </header>

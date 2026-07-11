@@ -31,13 +31,21 @@
                 [block]="contextLeft()"
               ></app-about-text-block>
 
-              <app-about-text-block
-                [block]="contextCenter()"
-              ></app-about-text-block>
+              <div class="about-stage__context-bottom">
+                <app-about-text-block
+                  [block]="contextBottomHead()"
+                ></app-about-text-block>
 
-              <app-about-text-block
-                [block]="contextRight()"
-              ></app-about-text-block>
+                <div class="about-stage__context-bottom-row">
+                  <app-about-text-block
+                    [block]="contextRight()"
+                  ></app-about-text-block>
+
+                  <app-about-text-block
+                    [block]="contextCenter()"
+                  ></app-about-text-block>
+                </div>
+              </div>
             </div>
           </div>
         </div>
