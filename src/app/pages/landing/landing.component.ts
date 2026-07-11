@@ -115,7 +115,7 @@ export class LandingComponent implements OnDestroy {
 
   private resetInitialScrollPosition(): void {
     const scrollToTop = () => {
-      if (window.location.hash) return;
+      if (this.hasNonHeroHash()) return;
 
       this.forceScrollToTop();
     };
@@ -177,6 +177,12 @@ export class LandingComponent implements OnDestroy {
   private scrollToInitialFragment(): boolean {
     const fragment = window.location.hash.replace(/^#/, '');
     if (!fragment) return false;
+
+    if (fragment === 'hero') {
+      this.forceScrollToTop();
+      window.history.replaceState(null, '', this.getCurrentPath());
+      return true;
+    }
 
     window.requestAnimationFrame(() => {
       document.getElementById(fragment)?.scrollIntoView({
@@ -243,5 +249,10 @@ export class LandingComponent implements OnDestroy {
 
   private getCurrentPath(): string {
     return window.location.pathname.replace(/\/+$/, '') || '/';
+  }
+
+  private hasNonHeroHash(): boolean {
+    const fragment = window.location.hash.replace(/^#/, '');
+    return Boolean(fragment && fragment !== 'hero');
   }
 }

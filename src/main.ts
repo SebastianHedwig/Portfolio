@@ -15,7 +15,7 @@ function resetInitialScrollPosition(): void {
   }
 
   const scrollToTop = () => {
-    if (window.location.hash) return;
+    if (hasNonHeroHash()) return;
 
     forceScrollToHeroStart();
   };
@@ -35,4 +35,9 @@ function forceScrollToHeroStart(): void {
   window.scrollTo({ top, left: 0, behavior: 'auto' });
   document.documentElement.scrollTop = top;
   document.body.scrollTop = top;
+}
+
+function hasNonHeroHash(): boolean {
+  const fragment = window.location.hash.replace(/^#/, '');
+  return Boolean(fragment && fragment !== 'hero');
 }

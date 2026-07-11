@@ -70,6 +70,10 @@ export class LocalizedAnchorNavigationService {
     pushHistory: boolean,
     shouldFocusTarget: boolean,
   ): void {
+    if (fragment === 'hero') {
+      return this.scrollToLandingStart(target, pushHistory, shouldFocusTarget);
+    }
+
     target.scrollIntoView({ block: 'start', behavior: 'auto' });
     this.updateHistory(fragment, pushHistory);
 
@@ -90,7 +94,11 @@ export class LocalizedAnchorNavigationService {
   }
 
   private updateHistory(fragment: string, pushHistory: boolean): void {
-    const nextUrl = `${this.normalizePath(window.location.pathname)}#${fragment}`;
+    const normalizedPath = this.normalizePath(window.location.pathname);
+    const nextUrl = fragment === 'hero'
+      ? normalizedPath
+      : `${normalizedPath}#${fragment}`;
+
     if (pushHistory) {
       window.history.pushState(null, '', nextUrl);
       return;
@@ -126,5 +134,20 @@ export class LocalizedAnchorNavigationService {
     }
 
     return path.replace(/\/+$/, '');
+  }
+
+  private scrollToLandingStart(
+    target: HTMLElement,
+    pushHistory: boolean,
+    shouldFocusTarget: boolean,
+  ): void {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    this.updateHistory('hero', pushHistory);
+
+    if (shouldFocusTarget) {
+      target.focus({ preventScroll: true });
+    }
   }
 }
