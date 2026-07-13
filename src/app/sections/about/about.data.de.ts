@@ -18,11 +18,25 @@ export const ABOUT_CONTENT_DE: AboutContent = {
   viewportAriaLabel: 'Über-mich-Sequenz',
   introLead: {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
-    title: 'Ein Ziel.\nEin Weg.',
-    titleClass: 'about-stage__statement',
+    title: 'Mein Anspruch',
+    titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h2',
     copy:
       'Für mich gibt es keine Probleme! \nNur Wege zur Lösung.\n\nIch bleibe dran. \nBis aus einer Idee etwas entsteht, das wirklich funktioniert und überzeugt.',
+    copyClass: 'about-stage__support',
+  },
+  introVision: {
+    containerClass: 'about-stage__text-zone about-stage__text-zone--vision',
+    eyebrow: 'Über mich',
+    eyebrowClass: 'about-stage__eyebrow',
+    title: 'Meine Vision.',
+    titleClass: 'about-stage__statement',
+    titleTag: 'h2',
+    subtitle: 'Der Blick nach vorn.',
+    subtitleClass: 'about-stage__statement about-stage__statement--secondary',
+    subtitleTag: 'p',
+    copy:
+      'Mein Bestreben ist es, mich kontinuierlich weiterzuentwickeln und moderne Webanwendungen ganzheitlich zu verstehen. Im Frontend möchte ich mein Wissen über Angular hinaus gezielt durch Technologien wie React, Vue.js und Flutter erweitern.\n\nGleichzeitig möchte ich meine Backend-Kompetenzen mit Python ausbauen und mein Verständnis für APIs, Containerisierung und Entwicklungsprozesse mithilfe von Docker und Postman weiter vertiefen. Mein Ziel ist es, Anwendungen nicht nur zu entwickeln, sondern ihre Architektur und technischen Zusammenhänge umfassend zu verstehen.',
     copyClass: 'about-stage__support',
   },
   introSecondary: {

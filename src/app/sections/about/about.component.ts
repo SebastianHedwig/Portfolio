@@ -34,6 +34,11 @@ const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) 
 const LARGE_DESKTOP_STAGE_QUERY = '(min-width: 1600px) and (orientation: landscape)';
 const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
   {
+    selector: '.about-stage__text-zone--vision',
+    start: 'top 110%',
+    end: 'top 68%',
+  },
+  {
     selector: '.about-stage__text-zone--lead',
     start: 'top 110%',
     end: 'top 68%',
@@ -71,6 +76,11 @@ const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
 ] as const;
 
 const ABOUT_COMPACT_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
+  {
+    selector: '.about-stage__text-zone--vision',
+    start: 'top 98%',
+    end: 'top 56%',
+  },
   {
     selector: '.about-stage__text-zone--lead',
     start: 'top 98%',
@@ -130,6 +140,7 @@ export class AboutComponent implements OnDestroy {
   readonly content = computed(() => getAboutContent(this.languageStore.language()));
   readonly portrait = computed(() => this.content().portrait);
   readonly introLead = computed(() => this.content().introLead);
+  readonly introVision = computed(() => this.content().introVision);
   readonly introSecondary = computed(() => this.content().introSecondary);
   readonly contextBottomHead = computed(() => this.content().contextBottomHead);
   readonly contextLeft = computed(() => this.content().contextLeft);

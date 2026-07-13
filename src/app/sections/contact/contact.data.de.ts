@@ -12,6 +12,10 @@ export const CONTACT_CONTENT_DE: ContactContent = {
   cvLinkLabel: 'Lebenslauf (PDF)',
   cvHoverLabel: 'Anzeigen',
   cvHref: 'https://sebastian-hedwig.de/assets/cv-sebastian-hedwig.pdf',
+  roles: {
+    label: 'Angestrebte Positionen:',
+    items: ['Frontend Developer', 'Associate Product Manager'],
+  },
   consentPrefix: 'Ich habe die ',
   consentLinkLabel: 'Datenschutzerklärung',
   consentHref: 'datenschutz',

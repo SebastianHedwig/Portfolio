@@ -22,6 +22,11 @@ export interface ContactFormContent {
   subject: ContactFieldContent;
 }
 
+export interface ContactRolesContent {
+  items: readonly string[];
+  label: string;
+}
+
 export interface ContactContent {
   language: AppLanguage;
   consentHref: string;
@@ -35,6 +40,7 @@ export interface ContactContent {
   cvLinkLabel: string;
   eyebrow: string;
   form: ContactFormContent;
+  roles: ContactRolesContent;
   submittingLabel: string;
   submitLabel: string;
   title: string;

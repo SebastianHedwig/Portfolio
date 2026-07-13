@@ -10,14 +10,20 @@
         >
           <div class="about-stage__scene about-stage__scene--intro">
             <app-about-text-block
-              [block]="introSecondary()"
+              [block]="introVision()"
             ></app-about-text-block>
 
             <app-about-image [image]="portrait()"></app-about-image>
 
-            <app-about-text-block
-              [block]="introLead()"
-            ></app-about-text-block>
+            <div class="about-stage__intro-copy-column">
+              <app-about-text-block
+                [block]="introLead()"
+              ></app-about-text-block>
+
+              <app-about-text-block
+                [block]="introSecondary()"
+              ></app-about-text-block>
+            </div>
           </div>
         </div>
 

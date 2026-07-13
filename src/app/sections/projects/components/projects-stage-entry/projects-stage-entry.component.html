@@ -48,7 +48,7 @@
       </p>
 
       <p class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle">
-        @for (line of leadLines(); track line) {
+        @for (line of leadLines(); track $index) {
           <span class="projects-stage__subtitle-line">
             {{ line }}
           </span>

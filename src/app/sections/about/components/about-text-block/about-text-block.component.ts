@@ -16,10 +16,15 @@ export class AboutTextBlockComponent {
   readonly block = input.required<AboutTextBlockData>();
   readonly containerClass = computed(() => this.block().containerClass);
   readonly hasCopy = computed(() => this.block().copy.length > 0);
+  readonly hasEyebrow = computed(() => Boolean(this.block().eyebrow?.length));
   readonly hasTitle = computed(() => this.block().title.length > 0);
+  readonly hasSubtitle = computed(() => Boolean(this.block().subtitle?.length));
   readonly hasValueStatements = computed(() => Boolean(this.block().valueStatements?.length));
   readonly titleLines = computed(() =>
     this.block().title.split('\n').map((line) => this.getTitleLineParts(line)),
+  );
+  readonly subtitleLines = computed(() =>
+    (this.block().subtitle ?? '').split('\n').map((line) => this.getTitleLineParts(line)),
   );
   readonly valueStatementRows = computed(() =>
     (this.block().valueStatements ?? []).map((statement) => ({

@@ -16,3 +16,12 @@
   [label]="content().cvLinkLabel"
   [hoverLabel]="content().cvHoverLabel"
 />
+
+<div class="contact-stage__roles">
+  <p class="contact-stage__roles-label">{{ content().roles.label }}</p>
+  <ul class="contact-stage__roles-list">
+    @for (role of content().roles.items; track role) {
+      <li class="contact-stage__roles-item">{{ role }}</li>
+    }
+  </ul>
+</div>

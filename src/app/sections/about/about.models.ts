@@ -3,9 +3,14 @@ export type AboutTextBlockData = {
   copy: string;
   mobileCopy?: string;
   copyClass: string;
+  eyebrow?: string;
+  eyebrowClass?: string;
   title: string;
   titleClass: string;
   titleTag: 'h2' | 'p';
+  subtitle?: string;
+  subtitleClass?: string;
+  subtitleTag?: 'h2' | 'p';
   valueStatements?: AboutValueStatementData[];
 };
 

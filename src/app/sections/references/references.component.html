@@ -10,11 +10,32 @@
     @for (quote of quotes(); track $index) {
       <div
         class="references-stage__quote"
+        [class.references-stage__quote--is-expanded]="isQuoteExpanded($index)"
         [class.references-stage__quote--primary]="quote.variant === 'primary'"
         [class.references-stage__quote--secondary]="quote.variant === 'secondary'"
       >
-        @for (paragraph of quote.paragraphs; track $index) {
-          <p class="references-stage__quote-text">{{ paragraph }}</p>
+        <p class="references-stage__quote-text">{{ quote.paragraphs[0] }}</p>
+        @if (hasHiddenParagraphs(quote)) {
+          <div
+            class="references-stage__quote-extra"
+            [attr.aria-hidden]="!isQuoteExpanded($index)"
+          >
+            <div class="references-stage__quote-extra-inner">
+              @for (paragraph of extraParagraphs(quote); track $index) {
+                <p class="references-stage__quote-text">{{ paragraph }}</p>
+              }
+            </div>
+          </div>
+        }
+        @if (hasHiddenParagraphs(quote)) {
+          <button
+            type="button"
+            class="references-stage__quote-toggle"
+            [attr.aria-expanded]="isQuoteExpanded($index)"
+            (click)="toggleQuote($index)"
+          >
+            {{ quoteToggleLabel($index) }}
+          </button>
         }
         <p class="references-stage__quote-author">{{ quote.author }}</p>
       </div>

@@ -11,6 +11,8 @@ export interface ReferenceQuote {
 export interface ReferencesContent {
   eyebrow: string;
   quotes: readonly ReferenceQuote[];
+  showLessLabel: string;
+  showMoreLabel: string;
   title: string;
 }
 

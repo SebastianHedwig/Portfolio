@@ -6,13 +6,14 @@ import {
   afterNextRender,
   computed,
   inject,
+  signal,
 } from '@angular/core';
 import { gsap } from 'gsap';
 
 import { initScrollReveals } from '../../shared/animations/scroll-reveal';
 import { type ScrollRevealConfig } from '../../shared/animations/scroll-reveal-config';
 import { LanguageStore } from '../../i18n/language.store';
-import { getReferencesContent } from './references.data';
+import { getReferencesContent, type ReferenceQuote } from './references.data';
 
 const REFERENCES_REVEALS: readonly ScrollRevealConfig[] = [
   {
@@ -46,6 +47,7 @@ export class ReferencesComponent implements OnDestroy {
 
   readonly content = computed(() => getReferencesContent(this.languageStore.language()));
   readonly eyebrow = computed(() => this.content().eyebrow);
+  readonly expandedQuoteIndexes = signal<ReadonlySet<number>>(new Set<number>());
   readonly title = computed(() => this.content().title);
   readonly quotes = computed(() => this.content().quotes);
 
@@ -56,6 +58,38 @@ export class ReferencesComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.animationContext?.revert();
     this.animationContext = null;
+  }
+
+  hasHiddenParagraphs(quote: ReferenceQuote): boolean {
+    return quote.paragraphs.length > 1;
+  }
+
+  extraParagraphs(quote: ReferenceQuote): readonly string[] {
+    return quote.paragraphs.slice(1);
+  }
+
+  isQuoteExpanded(index: number): boolean {
+    return this.expandedQuoteIndexes().has(index);
+  }
+
+  quoteToggleLabel(index: number): string {
+    return this.isQuoteExpanded(index)
+      ? this.content().showLessLabel
+      : this.content().showMoreLabel;
+  }
+
+  toggleQuote(index: number): void {
+    this.expandedQuoteIndexes.update((expandedIndexes) => {
+      const nextExpandedIndexes = new Set(expandedIndexes);
+
+      if (nextExpandedIndexes.has(index)) {
+        nextExpandedIndexes.delete(index);
+      } else {
+        nextExpandedIndexes.add(index);
+      }
+
+      return nextExpandedIndexes;
+    });
   }
 
   private initAnimation(): void {

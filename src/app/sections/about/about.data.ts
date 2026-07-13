@@ -9,6 +9,7 @@ export interface AboutContent {
   contextLeft: AboutTextBlockData;
   contextRight: AboutTextBlockData;
   introLead: AboutTextBlockData;
+  introVision: AboutTextBlockData;
   introSecondary: AboutTextBlockData;
   portrait: AboutImageData;
   viewportAriaLabel: string;
