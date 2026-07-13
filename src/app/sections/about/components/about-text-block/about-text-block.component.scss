@@ -606,6 +606,17 @@
       }
     }
   }
+
+  :host.about-stage__context-block--center {
+    align-items: flex-start;
+
+    .about-stage__statement--secondary,
+    .about-stage__support {
+      width: 100%;
+      max-width: 32rem;
+      text-align: left;
+    }
+  }
 }
 
 @media (max-width: 480px) and (orientation: portrait) {

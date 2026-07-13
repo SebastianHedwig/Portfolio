@@ -161,6 +161,13 @@
   }
 }
 
+@media (min-width: 481px) and (max-width: 760px) and (orientation: portrait) {
+  app-tech-stack-learning-item {
+    margin-top: clamp(1.75rem, 4svh, 2.75rem);
+    margin-bottom: clamp(4.25rem, 8svh, 6rem);
+  }
+}
+
 @media (max-width: 390px) and (orientation: portrait) {
   .tech-stage {
     app-tech-stack-text-block.tech-stage__intro {
