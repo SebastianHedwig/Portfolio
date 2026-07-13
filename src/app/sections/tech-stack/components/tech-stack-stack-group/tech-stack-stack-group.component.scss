@@ -32,6 +32,7 @@
 
   &.tech-stage__stack--extended {
     --support-icon-gap: clamp(2rem, 5vw, 5rem);
+    --tech-stage-group-label-width: calc(15ch + 3em);
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -44,6 +45,16 @@
     --tech-stage-group-label-left: 50%;
     --tech-stage-group-label-shift-x: -50%;
     --tech-stage-group-label-shift: 0.5rem;
+
+    .tech-stage__group-label {
+      line-height: 1.32;
+      white-space: normal;
+    }
+
+    .tech-stage__group-label-space {
+      display: block;
+      height: 0;
+    }
   }
 
   .tech-stage__group-label {
@@ -57,7 +68,7 @@
   }
 
   &.tech-stage__stack--extended.tech-stage__stack--lang-en {
-    --tech-stage-group-label-width: calc(28ch + 5.4em);
+    --tech-stage-group-label-width: calc(14ch + 3em);
   }
 }
 
@@ -106,16 +117,31 @@
       --tech-stage-group-label-shift-x: 0;
     }
 
+    &.tech-stage__stack--core,
+    &.tech-stage__stack--main {
+      justify-content: center;
+      gap: clamp(0.85rem, 3vw, 1.55rem);
+
+      .tech-stage__item--core,
+      .tech-stage__item--main {
+        flex: 0 0 clamp(5.25rem, 22vw, 6rem);
+      }
+    }
+
+    &.tech-stage__stack--core {
+      gap: clamp(0.5rem, 2vw, 1rem);
+
+      .tech-stage__item--core {
+        flex-basis: clamp(4.85rem, 20.5vw, 5.5rem);
+      }
+    }
+
     &.tech-stage__stack--extended {
       --support-icon-gap: clamp(2.5rem, 6vw, 4.5rem);
       flex-wrap: wrap;
       justify-content: center;
       gap: clamp(2.4rem, 5svh, 3.5rem) var(--support-icon-gap);
       padding-block: clamp(5rem, 10svh, 8rem);
-    }
-
-    &.tech-stage__stack--main {
-      gap: clamp(2.5rem, 7vw, 7rem);
     }
 
     .tech-stage__group-label {

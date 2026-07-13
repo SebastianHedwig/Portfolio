@@ -605,6 +605,97 @@
   }
 }
 
+@media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
+  .about-stage {
+    padding-block: clamp(4.5rem, 8vh, 5.5rem) clamp(4rem, 7vh, 5rem);
+
+    &__scroll-space {
+      height: 320svh;
+    }
+
+    &__sticky,
+    &__viewport {
+      height: 100svh;
+    }
+
+    &__sticky {
+      align-items: center;
+    }
+
+    &__chapter {
+      padding-inline: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    &__scene {
+      width: min(100%, 62rem);
+      height: min(100%, 43rem);
+    }
+
+    &__scene--intro {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(1.15rem, 2.2vw, 1.75rem);
+      padding-block: clamp(2.25rem, 5vh, 3.25rem) clamp(2.75rem, 6vh, 4rem);
+    }
+
+    &__scene--context {
+      padding-block: clamp(3rem, 7vh, 4.5rem);
+    }
+
+    &__intro-copy-column,
+    &__text-zone--lead,
+    &__text-zone--vision,
+    &__text-zone--secondary {
+      width: min(18rem, 100%);
+    }
+
+    &__text-zone--vision {
+      order: 1;
+      align-self: stretch;
+    }
+
+    app-about-image {
+      --about-image-size: min(clamp(14rem, 24vw, 17rem), clamp(14rem, 42vh, 18.5rem));
+      order: 2;
+      flex: 0 0 var(--about-image-size);
+      align-self: center;
+      width: min(100%, var(--about-image-size));
+    }
+
+    &__intro-copy-column {
+      order: 3;
+      align-self: stretch;
+      gap: clamp(2.25rem, 5vh, 3.25rem);
+      height: auto;
+      justify-content: space-between;
+      padding-block: clamp(0.5rem, 1.5vh, 1rem);
+    }
+
+    &__context-rail {
+      flex-direction: column;
+      gap: clamp(2.25rem, 4.75vh, 3.4rem);
+      height: 100%;
+      justify-content: center;
+      padding-inline: clamp(1rem, 3vw, 2rem);
+    }
+
+    &__context-bottom {
+      gap: clamp(2.35rem, 5vh, 3.4rem);
+    }
+
+    &__context-bottom-row {
+      flex-direction: row;
+      gap: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    &__context-block--center,
+    &__context-block--right {
+      width: min(28rem, 46%);
+    }
+  }
+}
+
 @media (max-width: 760px) and (orientation: portrait) {
   .about-stage {
     &__anchor {
@@ -640,7 +731,7 @@
 @media (max-width: 480px) and (orientation: portrait) {
   .about-stage {
     &__scene--intro {
-      gap: clamp(1.6rem, 4.8svh, 2.4rem);
+      gap: clamp(3.25rem, 7svh, 4.5rem);
     }
 
     app-about-image {

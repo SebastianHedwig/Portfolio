@@ -52,6 +52,12 @@
   }
 }
 
+@media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
+  .section--tech-stack {
+    margin-top: clamp(-8rem, -12svh, -5rem);
+  }
+}
+
 @media (min-width: 1600px) and (min-height: 1000px) and (orientation: landscape) {
   .landing-stage {
     scroll-margin-top: clamp(2rem, 4vh, 3.5rem);

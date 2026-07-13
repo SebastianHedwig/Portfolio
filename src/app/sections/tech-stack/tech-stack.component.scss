@@ -8,25 +8,70 @@
   --tech-stage-side-offset: clamp(4rem, 8vw, 8rem);
   --tech-stage-center-width: min(100%, 86rem);
 
-  @include mixins.stack();
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: clamp(2.5rem, 5vw, 6rem);
+  row-gap: clamp(6rem, 12vh, 10rem);
+  align-items: start;
   position: relative;
   min-height: 112svh;
+  padding-inline: clamp(2rem, 5vw, 5rem);
   padding-block: clamp(9rem, 14vh, 15rem);
   will-change: transform, opacity;
 
+  app-tech-stack-text-block.tech-stage__intro {
+    flex: 0 0 100%;
+    order: 1;
+  }
+
+  app-tech-stack-stack-group.tech-stage__stack--core {
+    flex: 1 1 calc((100% - clamp(2.5rem, 5vw, 6rem)) / 2);
+    order: 2;
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 4.5rem);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  app-tech-stack-stack-group.tech-stage__stack--main {
+    flex: 1 1 calc((100% - clamp(2.5rem, 5vw, 6rem)) / 2);
+    order: 3;
+    justify-content: center;
+    gap: clamp(1.6rem, 3.2vw, 3.5rem);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  app-tech-stack-stack-group.tech-stage__stack--extended {
+    flex: 1 1 calc((100% - clamp(2.5rem, 5vw, 6rem)) / 2);
+    order: 5;
+    --support-icon-gap: clamp(2rem, 4vw, 3.5rem);
+    align-self: start;
+    gap: clamp(3rem, 6vh, 4.8rem) var(--support-icon-gap);
+    padding:
+      clamp(7rem, 13vh, 9rem)
+      clamp(1rem, 3vw, 2rem)
+      clamp(3rem, 7vh, 5rem);
+  }
+
   &__mid-row {
+    flex: 1 1 calc((100% - clamp(2.5rem, 5vw, 6rem)) / 2);
+    order: 4;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    gap: clamp(4rem, 10vw, 11rem);
-    padding-block: clamp(1rem, 3vh, 2rem);
+    justify-content: center;
+    gap: clamp(5.75rem, 11vh, 8rem);
+    padding:
+      clamp(0.75rem, 2.5vh, 1.5rem)
+      0
+      clamp(5rem, 10vh, 7rem);
 
     app-tech-stack-learning-item {
       flex: 0 0 max-content;
+      transform: translateY(clamp(0.8rem, 1.8vh, 1.35rem));
     }
 
     app-tech-stack-text-block.tech-stage__focus {
-      flex: 0 0 min(20rem, 100%);
+      flex: 0 0 min(38rem, 100%);
       margin-left: 0;
       margin-right: 0;
     }
@@ -38,7 +83,8 @@
     --tech-stage-side-offset: clamp(2rem, 4vw, 4rem);
     --tech-stage-center-width: min(100%, 72rem);
 
-    gap: 4rem;
+    row-gap: clamp(6rem, 10vh, 8rem);
+    padding-inline: clamp(1.5rem, 4vw, 3.5rem);
     min-height: 100svh;
     padding-block: clamp(6.5rem, 12vh, 9rem);
 
@@ -65,21 +111,53 @@
     display: contents;
   }
 
-  app-tech-stack-text-block.tech-stage__intro,
-  app-tech-stack-stack-group {
+  .tech-stage app-tech-stack-text-block.tech-stage__intro,
+  .tech-stage app-tech-stack-stack-group.tech-stage__stack--core,
+  .tech-stage app-tech-stack-stack-group.tech-stage__stack--main,
+  .tech-stage app-tech-stack-stack-group.tech-stage__stack--extended {
     flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  app-tech-stack-text-block.tech-stage__intro {
+    order: 1;
+  }
+
+  app-tech-stack-stack-group.tech-stage__stack--core {
+    order: 2;
+  }
+
+  app-tech-stack-stack-group.tech-stage__stack--main {
+    order: 3;
   }
 
   app-tech-stack-learning-item {
-    flex: 0 0 calc((100% - clamp(2.5rem, 6vw, 4rem)) / 2);
+    order: 4;
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transform: none;
+  }
+
+  app-tech-stack-text-block.tech-stage__focus {
+    order: 5;
+    flex: 0 0 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  app-tech-stack-text-block.tech-stage__focus {
-    flex: 0 0 calc((100% - clamp(2.5rem, 6vw, 4rem)) / 2);
-    display: flex;
-    justify-content: center;
+  app-tech-stack-stack-group.tech-stage__stack--extended {
+    order: 6;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) and (orientation: portrait) {
+  app-tech-stack-learning-item {
+    margin-top: clamp(0.75rem, 2svh, 1.35rem);
+    margin-bottom: clamp(3.5rem, 7svh, 5rem);
   }
 }
 
@@ -99,7 +177,7 @@
     }
 
     app-tech-stack-text-block.tech-stage__focus {
-      order: 3;
+      order: 5;
     }
 
     app-tech-stack-learning-item {
@@ -108,7 +186,7 @@
     }
 
     app-tech-stack-stack-group.tech-stage__stack--main {
-      order: 5;
+      order: 3;
     }
 
     app-tech-stack-stack-group.tech-stage__stack--extended {

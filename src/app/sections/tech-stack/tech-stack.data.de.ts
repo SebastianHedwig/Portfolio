@@ -23,10 +23,7 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     ],
     titleTag: 'h2',
     copyClass: 'tech-stage__copy',
-    copyLines: [
-      'Ich arbeite nicht mit möglichst vielen Tools, sondern mit den richtigen.',
-      'Sinnvoll gewählt und bewusst eingesetzt.',
-    ],
+    copyLines: [],
   },
   focusBlock: {
     containerClass: 'tech-stage__focus',
@@ -35,7 +32,7 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     titleTag: 'h3',
     copyClass: 'tech-stage__copy tech-stage__copy--compact',
     copyLines: [
-      'Ein durchdachter, reduzierter Stack führt zu besseren Ergebnissen als komplexe Setups ohne Richtung.',
+      'Ein durchdachter, reduzierter Stack führt zu besseren Ergebnissen als komplexe Setups ohne Richtung. Ich arbeite nicht mit möglichst vielen Tools, sondern mit den richtigen. Sinnvoll gewählt und bewusst eingesetzt.',
     ],
   },
   learningItem: createItem(
