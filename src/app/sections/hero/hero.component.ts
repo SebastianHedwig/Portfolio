@@ -16,6 +16,11 @@ import { HeroPortraitComponent } from './components/hero-portrait/hero-portrait.
 import { LanguageStore } from '../../i18n/language.store';
 import { getHeroContent } from './hero.data';
 
+const HERO_EXIT_START = 'top -30%';
+const HERO_EXIT_END = 'bottom 5%';
+const HERO_MOBILE_EXIT_START = 'top -120%';
+const HERO_MOBILE_EXIT_END = 'bottom -25%';
+
 @Component({
   selector: 'app-hero',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -115,10 +120,12 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   }
 
   private exitTrigger(host: HTMLElement): Record<string, unknown> {
+    const isMobilePortrait = this.isMobilePortrait();
+
     return {
       trigger: host,
-      start: this.isMobilePortrait() ? 'top -135%' : 'top -30%',
-      end: this.isMobilePortrait() ? 'bottom -35%' : 'bottom 5%',
+      start: isMobilePortrait ? HERO_MOBILE_EXIT_START : HERO_EXIT_START,
+      end: isMobilePortrait ? HERO_MOBILE_EXIT_END : HERO_EXIT_END,
       scrub: 0.8,
       invalidateOnRefresh: true,
     };

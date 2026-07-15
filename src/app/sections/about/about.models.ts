@@ -7,10 +7,10 @@ export type AboutTextBlockData = {
   eyebrowClass?: string;
   title: string;
   titleClass: string;
-  titleTag: 'h2' | 'p';
+  titleTag: 'h2' | 'h3' | 'p';
   subtitle?: string;
   subtitleClass?: string;
-  subtitleTag?: 'h2' | 'p';
+  subtitleTag?: 'h2' | 'h3' | 'p';
   valueStatements?: AboutValueStatementData[];
 };
 

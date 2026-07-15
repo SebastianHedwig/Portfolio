@@ -36,7 +36,7 @@
     </div>
 
     <div class="projects-stage__result">
-      <p class="projects-stage__result-title">
+      <h2 class="projects-stage__result-title">
         @for (line of resultLines(); track line.className) {
           <span
             [class]="line.className"
@@ -45,7 +45,7 @@
             {{ line.text }}
           </span>
         }
-      </p>
+      </h2>
 
       <p class="stage-shell__subtitle stage-shell__lead projects-stage__subtitle">
         @for (line of leadLines(); track $index) {

@@ -292,12 +292,6 @@
 }
 
 @media (max-width: 760px) and (orientation: portrait) {
-  .about-stage {
-    &__context-copy {
-      text-align: justify;
-    }
-  }
-
   :host.about-stage__text-zone--lead,
   :host.about-stage__text-zone--vision,
   :host.about-stage__text-zone--secondary {
@@ -308,17 +302,6 @@
     .about-stage__support--mobile-copy {
       display: block;
       white-space: pre-line;
-    }
-  }
-
-  :host {
-    &.about-stage__context-block,
-    &.about-stage__text-zone--lead,
-    &.about-stage__text-zone--vision,
-    &.about-stage__text-zone--secondary {
-      .about-stage__support {
-        text-align: justify;
-      }
     }
   }
 }
@@ -423,7 +406,7 @@
 
     .about-stage__support {
       margin-inline: auto;
-      text-align: center;
+      text-align: justify;
       white-space: pre-line;
     }
   }
@@ -453,17 +436,21 @@
     }
 
     .about-stage__context-copy {
-      text-align: left;
+      text-align: justify;
     }
   }
 
   :host.about-stage__context-block--center {
     align-items: flex-end;
 
-    .about-stage__statement--secondary,
-    .about-stage__support {
+    .about-stage__statement--secondary {
       width: min(100%, 27rem);
       text-align: left;
+    }
+
+    .about-stage__support {
+      width: min(100%, 27rem);
+      text-align: justify;
     }
   }
 }
@@ -481,9 +468,13 @@
     .about-stage__text-block-body {
       grid-column: 1 / -1;
       grid-row: 3;
-      width: min(100%, 40rem);
+      width: 100%;
       gap: clamp(1.5rem, 2.8svh, 2.25rem);
       margin-inline: 0;
+    }
+
+    .about-stage__text-block-body .about-stage__support {
+      max-width: none;
     }
   }
 }
@@ -582,11 +573,16 @@
   :host.about-stage__context-block--center {
     align-items: flex-start;
 
-    .about-stage__statement--secondary,
-    .about-stage__support {
+    .about-stage__statement--secondary {
       width: 100%;
       max-width: tokens.$copy-width-standard;
       text-align: left;
+    }
+
+    .about-stage__support {
+      width: 100%;
+      max-width: tokens.$copy-width-standard;
+      text-align: justify;
     }
   }
 }

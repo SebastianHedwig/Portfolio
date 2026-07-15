@@ -7,7 +7,7 @@
   </header>
 
   <div class="references-stage__body">
-    @for (quote of quotes(); track $index) {
+    @for (quote of quotes(); track quote.id) {
       <div
         class="references-stage__quote"
         [class.references-stage__quote--is-expanded]="isQuoteExpanded($index)"
@@ -21,7 +21,7 @@
             [attr.aria-hidden]="!isQuoteExpanded($index)"
           >
             <div class="references-stage__quote-extra-inner">
-              @for (paragraph of extraParagraphs(quote); track $index) {
+              @for (paragraph of extraParagraphs(quote); track paragraph) {
                 <p class="references-stage__quote-text">{{ paragraph }}</p>
               }
             </div>

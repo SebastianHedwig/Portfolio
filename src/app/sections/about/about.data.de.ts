@@ -20,7 +20,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
     title: 'Mein Anspruch.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
-    titleTag: 'h2',
+    titleTag: 'h3',
     copy:
       'Für mich gibt es keine Probleme! \nNur Wege zur Lösung.\n\nIch bleibe dran. \nBis aus einer Idee etwas entsteht, das wirklich funktioniert und überzeugt.',
     copyClass: 'about-stage__support',
@@ -34,7 +34,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleTag: 'h2',
     subtitle: 'Der Blick nach vorn.',
     subtitleClass: 'about-stage__statement about-stage__statement--secondary',
-    subtitleTag: 'p',
+    subtitleTag: 'h3',
     copy:
       'Mein Bestreben ist es, mich kontinuierlich weiterzuentwickeln und moderne Webanwendungen ganzheitlich zu verstehen. Im Frontend möchte ich mein Wissen über Angular hinaus gezielt durch Technologien wie React, Vue.js und Flutter erweitern.\n\nGleichzeitig möchte ich meine Backend-Kompetenzen mit Python ausbauen und mein Verständnis für APIs, Containerisierung und Entwicklungsprozesse mithilfe von Docker und Postman weiter vertiefen. Mein Ziel ist es, Anwendungen nicht nur zu entwickeln, sondern ihre Architektur und technischen Zusammenhänge umfassend zu verstehen.',
     copyClass: 'about-stage__support',
@@ -43,7 +43,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     containerClass: 'about-stage__text-zone about-stage__text-zone--secondary',
     title: 'Der Weg ist nicht immer gerade.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
-    titleTag: 'p',
+    titleTag: 'h3',
     copy:
       'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, dranzubleiben, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
     mobileCopy:
@@ -76,7 +76,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     containerClass: 'about-stage__context-block about-stage__context-block--center',
     title: 'Was mich antreibt.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
-    titleTag: 'p',
+    titleTag: 'h3',
     copy:
       'Mich motiviert der Moment, in dem aus einer Idee ein Erlebnis wird, das nicht nur präzise ist, sondern beim Nutzer spürbar etwas hinterlässt.',
     copyClass: 'about-stage__support',
@@ -85,7 +85,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     containerClass: 'about-stage__context-block about-stage__context-block--right',
     title: 'Aus Flörsheim.\n Mit Anspruch im Detail.',
     titleClass: 'about-stage__context-title',
-    titleTag: 'p',
+    titleTag: 'h3',
     copy:
       'Ich arbeite strukturiert, ruhig und mit Blick für das Wesentliche. So entstehen digitale Erlebnisse, die klar geführt sind, sauber funktionieren und im Detail überzeugen.',
     copyClass: 'about-stage__context-copy',

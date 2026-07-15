@@ -7,6 +7,7 @@ export const REFERENCES_CONTENT_EN: ReferencesContent = {
   title: 'Voices',
   quotes: [
     {
+      id: 'daniel-m',
       variant: 'primary',
       paragraphs: [
         'Highly reliable and always on top of everything. You never have to worry that something will slip through. He has a strong sense of responsibility without seeming tense about it, which is honestly rare.',
@@ -16,6 +17,7 @@ export const REFERENCES_CONTENT_EN: ReferencesContent = {
       author: 'Daniel M. — Team colleague at Developer Akademie',
     },
     {
+      id: 'dominic-r',
       variant: 'secondary',
       paragraphs: [
         'An exceptionally committed leader who always gives full effort. He analyzes quickly and precisely, then follows through on solutions consistently.',

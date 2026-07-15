@@ -16,7 +16,7 @@ import { LocalizedAnchorNavigationService } from '../../shared/navigation/locali
 import { DesktopFooterComponent } from '../landing/components/desktop-footer/desktop-footer.component';
 import { MobileFooterComponent } from '../landing/components/mobile-footer/mobile-footer.component';
 import { type CaseStudyMediaItem, getCaseStudyPageContent } from './case-studies.data';
-import { type LegalPageBlock } from '../imprint/imprint.data';
+import { getLegalPageBlockTrackKey, type LegalPageBlock } from '../imprint/imprint.data';
 
 const MOBILE_LAYOUT_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 
@@ -39,6 +39,7 @@ export class CaseStudiesPageComponent implements OnDestroy {
   readonly openSections = signal<ReadonlySet<number>>(new Set([0]));
   readonly isMobileLayout = signal(this.getInitialMobileLayout());
   readonly activeMedia = signal<CaseStudyMediaItem | null>(null);
+  readonly trackLegalBlock = getLegalPageBlockTrackKey;
 
   private mobileLayoutMediaQuery: MediaQueryList | null = null;
   private cleanupMobileLayoutListener: (() => void) | null = null;

@@ -8,15 +8,10 @@ export const LANDING_FOOTER_CONTENT_EN: LandingFooterContent = {
     firstName: 'Sebastian',
     surnameInitial: 'H',
     surnameTail: 'edwig',
-    role: 'Frontend Developer',
   },
   meta: {
     copyrightText: 'Sebastian Hedwig 2026',
     location: 'Flörsheim am Main - Hessen, Germany',
-    repository: {
-      label: 'To the Portfolio - Repository',
-      href: 'https://github.com/SebastianHedwig/Portfolio',
-    },
   },
   imprintLabel: 'Imprint',
   imprintPath: 'impressum',

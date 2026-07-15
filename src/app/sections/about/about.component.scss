@@ -164,7 +164,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: landscape) {
   .about-stage {
     padding-block: clamp(4rem, 8vh, 6rem) clamp(6rem, 10vh, 8rem);
 
@@ -294,6 +294,7 @@
         calc(100vw - #{tokens.$section-inline-padding} - #{tokens.$section-inline-padding}),
         50rem
       );
+      height: auto;
       margin-inline: auto;
     }
 

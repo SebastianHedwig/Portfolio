@@ -20,6 +20,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
   viewportAriaLabel: 'Project sequence',
   items: [
     {
+      id: 'join',
       statement: 'Structure, so that it works.',
       eyebrow: 'Kanban board',
       title: 'Join',
@@ -61,6 +62,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
     },
     {
+      id: 'panda-jungle-run',
       statement: 'A Game With Real Flow',
       eyebrow: '2D platformer',
       title: 'Panda - Jungle Run',
@@ -98,6 +100,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       },
     },
     {
+      id: 'pokedex',
       statement: 'Pokémon. Easy to explore.',
       eyebrow: 'API-based application',
       title: 'Pokédex',

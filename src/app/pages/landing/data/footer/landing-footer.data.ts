@@ -15,7 +15,6 @@ export interface LandingFooterContent {
     firstName: string;
     logoAlt: string;
     logoSrc: string;
-    role: string;
     surnameInitial: string;
     surnameTail: string;
   };
@@ -27,10 +26,6 @@ export interface LandingFooterContent {
   meta: {
     copyrightText: string;
     location: string;
-    repository: {
-      href: string;
-      label: string;
-    };
   };
 }
 

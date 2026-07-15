@@ -34,7 +34,12 @@ const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) 
 const LARGE_DESKTOP_STAGE_QUERY = '(min-width: 1600px) and (orientation: landscape)';
 const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
   {
-    selector: '.about-stage__text-zone--vision',
+    selector: '.about-stage__text-zone--vision .about-stage__text-block-header',
+    start: 'top 110%',
+    end: 'top 68%',
+  },
+  {
+    selector: '.about-stage__text-zone--vision .about-stage__text-block-body',
     start: 'top 110%',
     end: 'top 68%',
   },
@@ -77,7 +82,12 @@ const ABOUT_TABLET_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
 
 const ABOUT_COMPACT_PORTRAIT_REVEALS: readonly ScrollRevealConfig[] = [
   {
-    selector: '.about-stage__text-zone--vision',
+    selector: '.about-stage__text-zone--vision .about-stage__text-block-header',
+    start: 'top 98%',
+    end: 'top 56%',
+  },
+  {
+    selector: '.about-stage__text-zone--vision .about-stage__text-block-body',
     start: 'top 98%',
     end: 'top 56%',
   },

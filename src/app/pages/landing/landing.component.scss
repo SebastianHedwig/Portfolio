@@ -4,7 +4,7 @@
   &-page {
     --landing-stage-scroll-margin: clamp(1.75rem, 3.5vh, 3rem);
     --landing-tech-scroll-margin: var(--landing-stage-scroll-margin);
-    --landing-about-tech-offset: clamp(-6rem, -9svh, -3rem);
+    --landing-about-tech-offset: clamp(-4.5rem, -6svh, -2.5rem);
     --landing-stage-gap: 0rem;
 
     @include mixins.stack;
@@ -52,13 +52,13 @@
 @media (max-width: 1368px) and (orientation: landscape) {
   .landing-page {
     --landing-stage-scroll-margin: clamp(1.25rem, 3vh, 2.5rem);
-    --landing-about-tech-offset: clamp(-8rem, -12svh, -4rem);
+    --landing-about-tech-offset: clamp(-5.5rem, -8svh, -3.5rem);
   }
 }
 
 @media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
   .landing-page {
-    --landing-about-tech-offset: clamp(-6rem, -9svh, -3.5rem);
+    --landing-about-tech-offset: clamp(-4.5rem, -7svh, -3rem);
   }
 }
 

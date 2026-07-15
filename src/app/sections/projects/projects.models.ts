@@ -16,6 +16,7 @@ export interface ProjectStageItemData {
     githubHref?: string;
     liveHref?: string;
   };
+  id: string;
   statement: string;
   eyebrow: string;
   title: string;

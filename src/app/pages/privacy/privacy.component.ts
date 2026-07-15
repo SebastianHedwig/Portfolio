@@ -12,6 +12,7 @@ import { MobileFooterComponent } from '../landing/components/mobile-footer/mobil
 import { SecondaryButtonComponent } from '../../shared/components/secondary-button/secondary-button.component';
 import { LanguageStore } from '../../i18n/language.store';
 import { getPrivacyContent } from './privacy.data';
+import { getLegalPageBlockTrackKey } from '../imprint/imprint.data';
 
 const MOBILE_LAYOUT_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 
@@ -28,6 +29,7 @@ export class PrivacyComponent implements OnDestroy {
 
   readonly content = computed(() => getPrivacyContent(this.languageStore.language()));
   readonly isMobileLayout = signal(this.getInitialMobileLayout());
+  readonly trackLegalBlock = getLegalPageBlockTrackKey;
 
   private mobileLayoutMediaQuery: MediaQueryList | null = null;
   private cleanupMobileLayoutListener: (() => void) | null = null;

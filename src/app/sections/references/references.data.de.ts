@@ -7,6 +7,7 @@ export const REFERENCES_CONTENT_DE: ReferencesContent = {
   title: 'Stimmen',
   quotes: [
     {
+      id: 'daniel-m',
       variant: 'primary',
       paragraphs: [
         'Sehr zuverlässig und immer den Überblick – man muss sich keine Sorgen machen, dass etwas untergeht. Er hat ein wirklich ausgeprägtes Verantwortungsbewusstsein, ohne dabei verkrampft zu wirken – was ehrlich gesagt selten ist.',
@@ -16,6 +17,7 @@ export const REFERENCES_CONTENT_DE: ReferencesContent = {
       author: 'Daniel M. — Teamkollege in der Developer Akademie',
     },
     {
+      id: 'dominic-r',
       variant: 'secondary',
       paragraphs: [
         'Überdurchschnittlich engagierte Führungskraft und immer mit vollem Einsatz bei der Sache. Analysiert schnell und präzise und findet Lösungen, die er konsequent umsetzt.',

@@ -20,7 +20,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
     title: 'My requirement.',
     titleClass: 'about-stage__statement about-stage__statement--secondary about-stage__statement--intro-en',
-    titleTag: 'h2',
+    titleTag: 'h3',
     copy:
       'To me, there are no problems! \nOnly paths toward a solution.\n\nI keep going. \nUntil an idea becomes something that truly works and convinces.',
     copyClass: 'about-stage__support',
@@ -34,7 +34,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleTag: 'h2',
     subtitle: 'Looking ahead.',
     subtitleClass: 'about-stage__statement about-stage__statement--secondary',
-    subtitleTag: 'p',
+    subtitleTag: 'h3',
     copy:
       'My aspiration is to keep developing continuously and to understand modern web applications holistically. In the frontend, I want to expand my knowledge beyond Angular through technologies such as React, Vue.js, and Flutter.\n\nIn addition, I want to strengthen my backend skills with Python and deepen my understanding of APIs, containerization, and development processes using Docker and Postman. My goal is not only to build applications, but to understand their architecture and technical relationships comprehensively.',
     copyClass: 'about-stage__support',
@@ -43,7 +43,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     containerClass: 'about-stage__text-zone about-stage__text-zone--secondary',
     title: 'The path is not always straight.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
-    titleTag: 'p',
+    titleTag: 'h3',
     copy:
       'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to keep going, adjust the perspective and improve solutions step by step.',
     mobileCopy:
@@ -76,7 +76,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     containerClass: 'about-stage__context-block about-stage__context-block--center',
     title: 'What drives me.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
-    titleTag: 'p',
+    titleTag: 'h3',
     copy:
       'I am motivated by the moment when an idea turns into an experience that is not only precise, but leaves a tangible impression on the user.',
     copyClass: 'about-stage__support',
@@ -85,7 +85,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     containerClass: 'about-stage__context-block about-stage__context-block--right',
     title: 'From Flörsheim.\n With intent in every detail.',
     titleClass: 'about-stage__context-title',
-    titleTag: 'p',
+    titleTag: 'h3',
     copy:
       'I work in a structured, calm way and with a clear focus on what matters. This creates digital experiences that are clearly guided, reliable in use, and convincing in the details.',
     copyClass: 'about-stage__context-copy',

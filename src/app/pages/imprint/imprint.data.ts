@@ -37,6 +37,19 @@ export interface LegalPageContent {
   title: string;
 }
 
+export function getLegalPageBlockTrackKey(block: LegalPageBlock): string {
+  switch (block.type) {
+    case 'heading':
+      return `${block.type}:${block.level}:${block.text}`;
+    case 'paragraph':
+      return `${block.type}:${block.text}`;
+    case 'list':
+      return `${block.type}:${block.items.join('|')}`;
+    case 'source':
+      return `${block.type}:${block.href}:${block.text}`;
+  }
+}
+
 const IMPRINT_CONTENT_BY_LANGUAGE: Record<AppLanguage, LegalPageContent> = {
   de: IMPRINT_CONTENT_DE,
   en: IMPRINT_CONTENT_EN,

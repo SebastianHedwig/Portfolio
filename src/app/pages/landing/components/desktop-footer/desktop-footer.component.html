@@ -1,52 +1,32 @@
 <footer class="section__inner stage-shell stage-shell--compact desktop-footer">
   <div class="desktop-footer__body">
-    <a
-      class="desktop-footer__column desktop-footer__column--brand desktop-footer__brand-link"
-      [href]="anchorNavigation.buildHref('#hero')"
-      [attr.aria-label]="footer().brand.ariaLabel"
-      (click)="anchorNavigation.handleClick($event, '#hero')"
-    >
-      <div class="desktop-footer__brand-row">
-        <img
-          class="desktop-footer__logo"
-          [src]="footer().brand.logoSrc"
-          width="128"
-          height="128"
-          [alt]="footer().brand.logoAlt"
-          loading="lazy"
-          decoding="async"
-        />
-
-        <p class="desktop-footer__name">
-          <span>{{ footer().brand.firstName }}</span>
-          <span>
-            <span class="desktop-footer__name-accent">{{ footer().brand.surnameInitial }}</span>{{ footer().brand.surnameTail }}
-          </span>
-        </p>
-      </div>
-
-      <p class="desktop-footer__role">
-        {{ footer().brand.role }}
-      </p>
-    </a>
-
-    <div class="desktop-footer__column desktop-footer__column--meta">
-      <p class="desktop-footer__meta-line desktop-footer__meta-line--copyright">
-        <span class="desktop-footer__copyright-symbol">©</span>
-        <span>{{ footer().meta.copyrightText }}</span>
-      </p>
-      <p class="desktop-footer__meta-line">{{ footer().meta.location }}</p>
+    <div class="desktop-footer__column desktop-footer__column--brand">
       <a
-        class="desktop-footer__meta-link"
-        [href]="footer().meta.repository.href"
-        target="_blank"
-        rel="noopener noreferrer"
+        class="desktop-footer__brand-link"
+        [href]="anchorNavigation.buildHref('#hero')"
+        [attr.aria-label]="footer().brand.ariaLabel"
+        (click)="anchorNavigation.handleClick($event, '#hero')"
       >
-        <span class="desktop-footer__meta-link-text">{{ footer().meta.repository.label }}</span>
-      </a>
-    </div>
+        <div class="desktop-footer__brand-row">
+          <img
+            class="desktop-footer__logo"
+            [src]="footer().brand.logoSrc"
+            width="128"
+            height="128"
+            [alt]="footer().brand.logoAlt"
+            loading="lazy"
+            decoding="async"
+          />
 
-    <div class="desktop-footer__column desktop-footer__column--links">
+          <p class="desktop-footer__name">
+            <span>{{ footer().brand.firstName }}</span>
+            <span>
+              <span class="desktop-footer__name-accent">{{ footer().brand.surnameInitial }}</span>{{ footer().brand.surnameTail }}
+            </span>
+          </p>
+        </div>
+      </a>
+
       <div class="desktop-footer__icon-row">
         @for (icon of footer().icons; track icon.src) {
           @if (icon.href) {
@@ -94,7 +74,17 @@
           }
         }
       </div>
+    </div>
 
+    <div class="desktop-footer__column desktop-footer__column--meta">
+      <p class="desktop-footer__meta-line desktop-footer__meta-line--copyright">
+        <span class="desktop-footer__copyright-symbol">©</span>
+        <span>{{ footer().meta.copyrightText }}</span>
+      </p>
+      <p class="desktop-footer__meta-line">{{ footer().meta.location }}</p>
+    </div>
+
+    <div class="desktop-footer__column desktop-footer__column--links">
       <a
         class="desktop-footer__imprint-link"
         [href]="privacyHref()"

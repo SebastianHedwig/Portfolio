@@ -4,6 +4,7 @@ import { REFERENCES_CONTENT_EN } from './references.data.en';
 
 export interface ReferenceQuote {
   author: string;
+  id: string;
   paragraphs: readonly string[];
   variant: 'primary' | 'secondary';
 }

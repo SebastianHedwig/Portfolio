@@ -83,8 +83,10 @@
   color: tokens.$color-muted;
   font-size: $font-size;
   hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
   line-height: $line-height;
   overflow-wrap: break-word;
+  word-break: normal;
 
   @if $align != null {
     text-align: $align;

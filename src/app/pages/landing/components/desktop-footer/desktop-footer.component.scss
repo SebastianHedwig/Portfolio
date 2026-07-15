@@ -16,8 +16,13 @@
   }
 
   &__column--brand {
-    @include mixins.stack();
+    @include mixins.stack(clamp(0.95rem, 2vh, 1.35rem));
     align-items: flex-start;
+  }
+
+  &__brand-link {
+    display: inline-flex;
+    color: inherit;
     cursor: pointer;
 
     @media (hover: hover) and (pointer: fine) {
@@ -25,10 +30,6 @@
         transform: rotate(8deg) scale(1.05);
       }
     }
-  }
-
-  &__brand-link {
-    color: inherit;
   }
 
   &__column--meta {
@@ -58,7 +59,6 @@
   }
 
   &__name,
-  &__role,
   &__meta-line {
     margin: 0;
   }
@@ -77,44 +77,10 @@
     color: tokens.$color-accent;
   }
 
-  &__role {
-    color: tokens.$color-muted;
-    font-family: tokens.$font-eyebrow;
-    font-size: clamp(0.88rem, 1vw, 1rem);
-    font-weight: 500;
-    letter-spacing: 0.12rem;
-    text-transform: uppercase;
-  }
-
   &__meta-line {
     color: tokens.$color-muted;
     font-size: clamp(0.95rem, 1.15vw, 1.05rem);
     line-height: 1.45;
-  }
-
-  &__meta-link {
-    color: rgba(tokens.$color-heading, 0.78);
-    font-family: tokens.$font-eyebrow;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    transition: color tokens.$motion-duration-fast tokens.$motion-ease-standard;
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        color: tokens.$color-accent;
-
-        .desktop-footer__meta-link-text {
-          text-shadow: 0 0 0.75rem rgba(53, 199, 255, 0.16);
-          transform: translateY(-0.05rem);
-        }
-      }
-    }
-  }
-
-  &__meta-link-text {
-    display: inline-block;
-    transition: transform tokens.$motion-duration-base tokens.$motion-ease-standard;
   }
 
   &__meta-line--copyright {
@@ -132,6 +98,7 @@
     display: flex;
     align-items: center;
     gap: clamp(1rem, 2vw, 1.4rem);
+    margin-left: clamp(0.35rem, 0.8vw, 0.55rem);
   }
 
   &__icon-item {
@@ -152,7 +119,7 @@
   }
 
   &__icon-label {
-    bottom: calc(100% + 0.8rem);
+    top: calc(100% + 0.55rem);
   }
 
   @media (hover: none), (pointer: coarse) {
@@ -197,7 +164,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    &__meta-link-text,
     &__imprint-text {
       transition: none;
     }
@@ -225,9 +191,7 @@
       font-size: clamp(1.05rem, 1.7vw, 1.25rem);
     }
 
-    &__role,
     &__meta-line,
-    &__meta-link,
     &__imprint-link {
       font-size: clamp(0.78rem, 1vw, 0.9rem);
     }

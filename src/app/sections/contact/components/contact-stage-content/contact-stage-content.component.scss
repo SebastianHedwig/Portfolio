@@ -27,7 +27,7 @@
 
   &__paragraph {
     margin: 0;
-    @include mixins.long-copy(1.02rem, 1.82, null, pre-line);
+    @include mixins.long-copy(1.02rem, 1.82, justify, pre-line);
   }
 
   &__cv-link {

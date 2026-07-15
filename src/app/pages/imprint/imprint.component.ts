@@ -11,7 +11,7 @@ import { DesktopFooterComponent } from '../landing/components/desktop-footer/des
 import { MobileFooterComponent } from '../landing/components/mobile-footer/mobile-footer.component';
 import { SecondaryButtonComponent } from '../../shared/components/secondary-button/secondary-button.component';
 import { LanguageStore } from '../../i18n/language.store';
-import { getImprintContent } from './imprint.data';
+import { getImprintContent, getLegalPageBlockTrackKey } from './imprint.data';
 
 const MOBILE_LAYOUT_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 
@@ -28,6 +28,7 @@ export class ImprintComponent implements OnDestroy {
 
   readonly content = computed(() => getImprintContent(this.languageStore.language()));
   readonly isMobileLayout = signal(this.getInitialMobileLayout());
+  readonly trackLegalBlock = getLegalPageBlockTrackKey;
 
   private mobileLayoutMediaQuery: MediaQueryList | null = null;
   private cleanupMobileLayoutListener: (() => void) | null = null;

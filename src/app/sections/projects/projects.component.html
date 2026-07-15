@@ -6,7 +6,7 @@
 
     <div class="projects-stage__sticky">
       <div #viewport class="projects-stage__viewport" [attr.aria-label]="content().viewportAriaLabel">
-        @for (project of projects(); track $index) {
+        @for (project of projects(); track project.id) {
           <app-projects-stage-item [project]="project"></app-projects-stage-item>
         }
       </div>

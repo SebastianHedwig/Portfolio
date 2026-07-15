@@ -1,5 +1,5 @@
 <div class="project-moment__stack">
-  <p class="project-moment__stack-label">{{ stack().label }}</p>
+  <h4 class="project-moment__stack-label">{{ stack().label }}</h4>
   @if (stack().icons?.length) {
     <div class="project-moment__stack-icons" aria-label="{{ stack().value }}">
       @for (icon of stack().icons; track icon.src) {
