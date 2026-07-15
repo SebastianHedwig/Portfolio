@@ -2,7 +2,7 @@
 @use 'abstracts/tokens';
 
 .hero-description {
-  @include mixins.stack(clamp(0.85rem, 2vh, 1.35rem));
+  @include mixins.stack(tokens.$space-eyebrow-title);
   max-width: 45rem;
 
   &__eyebrow {
@@ -12,20 +12,14 @@
 
   &__headline {
     @include mixins.stack;
+    @include mixins.stage-primary-title(700, 0.95);
     margin: 0;
     max-width: 10.2ch;
-    color: tokens.$color-heading;
-    font-size: clamp(3.15rem, 4.9vw, 5.5rem);
-    font-weight: 700;
-    line-height: 0.95;
     gap: 0.2rem;
 
     span {
       display: block;
-      text-shadow:
-        0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
-        0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
-        0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
+      @include mixins.heading-depth-shadow;
     }
   }
 
@@ -60,7 +54,7 @@
 
 @media (min-width: 1025px) and (max-height: 1080px) and (orientation: landscape) {
   .hero-description {
-    gap: clamp(0.74rem, 1.55vh, 1.15rem);
+    gap: tokens.$space-eyebrow-title;
 
     &__headline {
       font-size: clamp(4.85rem, calc(7.43vh + 0.49rem), 5.5rem);
@@ -80,7 +74,7 @@
 
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero-description {
-    gap: clamp(0.7rem, 1.7vh, 1rem);
+    gap: tokens.$space-eyebrow-title;
 
     &__headline {
       font-size: clamp(2.6rem, 4.6vw, 4.8rem);
@@ -111,7 +105,7 @@
 @media (max-width: 760px) and (orientation: portrait) {
   .hero-description {
     align-items: center;
-    gap: clamp(0.38rem, 1.05svh, 0.68rem);
+    gap: tokens.$space-eyebrow-title;
     max-width: 100%;
     text-align: center;
 

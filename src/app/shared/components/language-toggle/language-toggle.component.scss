@@ -28,7 +28,7 @@
     background: rgba(tokens.$color-accent, 0.18);
     box-shadow: 0 0 1.1rem rgba(53, 199, 255, 0.12);
     transform: translateX(0);
-    transition: transform 220ms ease;
+    transition: transform tokens.$motion-duration-base tokens.$motion-ease-standard;
   }
 
   &--en::before {
@@ -53,7 +53,9 @@
     font-size: var(--language-toggle-option-font-size, 0.78rem);
     letter-spacing: var(--language-toggle-option-letter-spacing, 0.055em);
     cursor: pointer;
-    transition: background-color 180ms ease, color 180ms ease;
+    transition:
+      background-color tokens.$motion-duration-fast tokens.$motion-ease-standard,
+      color tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {

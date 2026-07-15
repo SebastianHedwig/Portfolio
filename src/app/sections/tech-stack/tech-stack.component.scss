@@ -1,4 +1,5 @@
 @use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 :host {
   display: block;
@@ -44,10 +45,12 @@
     flex: 1 1 calc((100% - clamp(2.5rem, 5vw, 6rem)) / 2);
     order: 5;
     --support-icon-gap: clamp(2rem, 4vw, 3.5rem);
+    --tech-stage-group-label-icon-gap: clamp(1.7rem, 3.2vh, 2.45rem);
+    --tech-stage-extended-label-height: calc(2rem * 1.32 * 2);
     align-self: start;
     gap: clamp(3rem, 6vh, 4.8rem) var(--support-icon-gap);
     padding:
-      clamp(7rem, 13vh, 9rem)
+      calc(var(--tech-stage-extended-label-height) + var(--tech-stage-group-label-icon-gap))
       clamp(1rem, 3vw, 2rem)
       clamp(3rem, 7vh, 5rem);
   }
@@ -101,7 +104,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: clamp(5rem, 9svh, 7rem) clamp(2.5rem, 6vw, 4rem);
+    gap: tokens.$space-story-step clamp(2.5rem, 6vw, 4rem);
     padding-block: 0;
     align-items: center;
     justify-content: space-around;

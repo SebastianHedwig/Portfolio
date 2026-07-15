@@ -13,16 +13,18 @@
   }
 
   &__header {
-    @include mixins.stack(1.25rem);
+    @include mixins.stack(tokens.$space-eyebrow-title);
     max-width: min(48rem, 100%);
   }
 
   &__eyebrow {
     @include mixins.stage-eyebrow;
+    margin: 0;
   }
 
   &__title {
     max-width: 15ch;
+    margin: 0;
     font-size: clamp(3.15rem, 4.9vw, 5.5rem);
     line-height: 1.02;
   }
@@ -53,7 +55,7 @@
   }
 
   &__copy {
-    max-width: min(34rem, 100%);
+    max-width: min(tokens.$copy-width-comfortable, 100%);
     font-size: 1rem;
   }
 
@@ -64,10 +66,6 @@
     min-height: var(--stage-min-height, 68svh);
     gap: clamp(2rem, 4vw, 3.5rem);
     padding-block: clamp(3.8rem, 7vw, 6rem);
-
-    &__header {
-      gap: 1rem;
-    }
 
     &__title {
       font-size: clamp(2.6rem, 4.6vw, 4.8rem);

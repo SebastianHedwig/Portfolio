@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: center;
   transition:
-    transform 180ms ease,
-    opacity 180ms ease;
+    transform tokens.$motion-duration-fast tokens.$motion-ease-standard,
+    opacity tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
@@ -57,8 +57,8 @@
   filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(297%)
     hue-rotate(182deg) brightness(104%) contrast(101%);
   transition:
-    transform 180ms ease,
-    opacity 180ms ease;
+    transform tokens.$motion-duration-fast tokens.$motion-ease-standard,
+    opacity tokens.$motion-duration-fast tokens.$motion-ease-standard;
 }
 
 @mixin interactive-icon-hover-label($font-size: 0.9rem) {

@@ -28,7 +28,7 @@ interface AboutAnimationElements {
   section: HTMLElement;
 }
 
-const ABOUT_BASE_VIEWPORT_HEIGHT = 1080;
+const ABOUT_SCROLL_START = 'top bottom+=46%';
 const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
 const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) and (orientation: portrait)';
 const LARGE_DESKTOP_STAGE_QUERY = '(min-width: 1600px) and (orientation: landscape)';
@@ -243,7 +243,7 @@ export class AboutComponent implements OnDestroy {
         trigger: elements.section,
         start: this.getEntryStart(),
         endTrigger: elements.scrollSpace,
-        end: 'bottom top-=20%',
+        end: 'bottom',
         scrub: 1.2,
         invalidateOnRefresh: true,
       },
@@ -322,17 +322,7 @@ export class AboutComponent implements OnDestroy {
   }
 
   private getEntryStart(): string {
-    return `top bottom+=${this.getEntryOffsetPercent()}%`;
-  }
-
-  private getEntryOffsetPercent(): number {
-    const offsetPercent =
-      ((ABOUT_BASE_VIEWPORT_HEIGHT * 1.8) / window.innerHeight) * 100;
-    return this.roundToTenth(Math.min(100, offsetPercent));
-  }
-
-  private roundToTenth(value: number): number {
-    return Math.round(value * 10) / 10;
+    return ABOUT_SCROLL_START;
   }
 
   private isStackedStage(): boolean {

@@ -56,6 +56,71 @@
   text-transform: uppercase;
 }
 
+@mixin heading-depth-shadow {
+  text-shadow:
+    0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+    0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+    0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
+}
+
+@mixin stage-primary-title($weight: 600, $line-height: 0.98) {
+  color: tokens.$color-heading;
+  font-family: tokens.$font-primary;
+  font-size: clamp(3.15rem, 4.9vw, 5.5rem);
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin stage-secondary-title($weight: 700, $line-height: 1) {
+  color: tokens.$color-heading;
+  font-family: tokens.$font-primary;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin long-copy($font-size: 1rem, $line-height: 1.75, $align: null, $white-space: null) {
+  color: tokens.$color-muted;
+  font-size: $font-size;
+  hyphens: auto;
+  line-height: $line-height;
+  overflow-wrap: break-word;
+
+  @if $align != null {
+    text-align: $align;
+  }
+
+  @if $white-space != null {
+    white-space: $white-space;
+  }
+}
+
+@mixin soft-panel($radius: clamp(0.75rem, 1.2vw, 1rem), $with-background: true) {
+  border-radius: $radius;
+  box-shadow:
+    0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
+    -0.22rem -0.28rem 1.25rem rgba(255, 255, 255, 0.1),
+    0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08),
+    inset 0 0 1.1rem rgba(53, 199, 255, 0.055);
+
+  @if $with-background {
+    background: rgba(233, 240, 251, 0.005);
+  }
+}
+
+@mixin media-surface($radius: 1rem) {
+  border-radius: $radius;
+  box-shadow:
+    0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
+    0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08);
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
 @mixin page-width {
   width: 100%;
   max-width: tokens.$site-max-width;
@@ -85,8 +150,8 @@
   opacity: 0;
   transform: translateY(0.3rem);
   transition:
-    opacity 220ms ease,
-    transform 260ms ease;
+    opacity tokens.$motion-duration-base tokens.$motion-ease-standard,
+    transform 260ms tokens.$motion-ease-standard;
 
   @for $index from 1 through 15 {
     &:nth-child(#{$index}) {

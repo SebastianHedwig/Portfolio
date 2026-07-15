@@ -10,7 +10,7 @@ export const HERO_CONTENT_DE: HeroContent = {
       'die nicht nur',
       'funktionieren,',
       'sondern',
-      'überzeugen',
+      'überzeugen.',
     ],
     text:
       'Frontend Entwicklung mit Fokus auf Interaktion, Erlebnis und Performance. Sauber umgesetzt mit ANGULAR, TYPESCRIPT und SCSS.',

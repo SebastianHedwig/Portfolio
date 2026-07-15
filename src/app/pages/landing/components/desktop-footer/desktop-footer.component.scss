@@ -98,7 +98,7 @@
     font-size: 0.9rem;
     letter-spacing: 0.08em;
     text-decoration: none;
-    transition: color 180ms ease;
+    transition: color tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
@@ -114,7 +114,7 @@
 
   &__meta-link-text {
     display: inline-block;
-    transition: transform 220ms ease;
+    transition: transform tokens.$motion-duration-base tokens.$motion-ease-standard;
   }
 
   &__meta-line--copyright {
@@ -175,7 +175,9 @@
     font-size: 0.9rem;
     letter-spacing: 0.08em;
     text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
-    transition: color 180ms ease, opacity 180ms ease;
+    transition:
+      color tokens.$motion-duration-fast tokens.$motion-ease-standard,
+      opacity tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
@@ -191,7 +193,7 @@
 
   &__imprint-text {
     display: inline-block;
-    transition: transform 220ms ease;
+    transition: transform tokens.$motion-duration-base tokens.$motion-ease-standard;
   }
 
   @media (prefers-reduced-motion: reduce) {

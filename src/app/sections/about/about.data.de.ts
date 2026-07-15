@@ -18,7 +18,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
   viewportAriaLabel: 'Über-mich-Sequenz',
   introLead: {
     containerClass: 'about-stage__text-zone about-stage__text-zone--lead',
-    title: 'Mein Anspruch',
+    title: 'Mein Anspruch.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h2',
     copy:
@@ -29,7 +29,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     containerClass: 'about-stage__text-zone about-stage__text-zone--vision',
     eyebrow: 'Über mich',
     eyebrowClass: 'about-stage__eyebrow',
-    title: 'Meine Vision.',
+    title: 'Meine Vision',
     titleClass: 'about-stage__statement',
     titleTag: 'h2',
     subtitle: 'Der Blick nach vorn.',

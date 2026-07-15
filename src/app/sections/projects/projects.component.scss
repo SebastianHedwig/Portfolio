@@ -85,7 +85,7 @@
     &__viewport {
       display: flex;
       flex-direction: column;
-      gap: clamp(18rem, 26svh, 24rem);
+      gap: tokens.$space-scroll-moment;
       height: auto;
       max-width: 100%;
       min-width: 0;

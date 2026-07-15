@@ -17,8 +17,10 @@ export class HeroDescriptionComponent {
     'moderne',
     'experiences,',
     'überzeugen',
+    'überzeugen.',
     'modern',
     'convince',
+    'convince.',
   ]);
 
   isAccentLine(line: string): boolean {

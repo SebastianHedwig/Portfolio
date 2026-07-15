@@ -1,4 +1,5 @@
 @use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 :host {
   @include mixins.stack;
@@ -9,7 +10,7 @@
   justify-content: flex-start;
   align-self: flex-start;
   overflow: visible;
-  animation: about-image-float 7.2s ease-in-out infinite;
+  animation: about-image-float tokens.$motion-duration-media-float tokens.$motion-ease-soft infinite;
   will-change: transform;
 
   &::before {
@@ -47,6 +48,14 @@
 
   100% {
     transform: translateY(var(--about-image-offset-y, 0));
+  }
+}
+
+@include mixins.reduced-motion {
+  :host {
+    animation: none;
+    transform: translateY(var(--about-image-offset-y, 0));
+    will-change: auto;
   }
 }
 

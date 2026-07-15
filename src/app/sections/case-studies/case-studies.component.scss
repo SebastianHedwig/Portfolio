@@ -15,10 +15,7 @@
 
   &__title {
     max-width: 13ch;
-    text-shadow:
-      0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
-      0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
-      0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
+    @include mixins.heading-depth-shadow;
   }
 
   &__body {
@@ -37,12 +34,7 @@
     width: 100%;
     min-height: clamp(34rem, 58vh, 45rem);
     padding: clamp(2.8rem, 5vw, 4.6rem) clamp(2.1rem, 4.8vw, 4rem);
-    border-radius: clamp(0.75rem, 1.2vw, 1rem);
-    box-shadow:
-      0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
-      -0.22rem -0.28rem 1.25rem rgba(255, 255, 255, 0.1),
-      0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08),
-      inset 0 0 1.1rem rgba(53, 199, 255, 0.055);
+    @include mixins.soft-panel($with-background: false);
 
     &::before {
       content: '';
@@ -89,7 +81,7 @@
   }
 
   &__preview-description {
-    max-width: 42rem;
+    max-width: tokens.$copy-width-prose;
     margin: clamp(1.45rem, 3vh, 2.25rem) 0 0;
     color: rgba(tokens.$color-text, 0.9);
     font-size: clamp(0.98rem, 1.2vw, 1.08rem);
@@ -150,12 +142,9 @@
     width: 100%;
     max-width: 43rem;
     aspect-ratio: 16 / 9;
-    border-radius: 1rem;
     object-fit: cover;
-    box-shadow:
-      0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
-      0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08);
-    animation: case-study-preview-float 7.2s ease-in-out infinite;
+    @include mixins.media-surface;
+    animation: case-study-preview-float tokens.$motion-duration-media-float tokens.$motion-ease-soft infinite;
     will-change: transform;
   }
 }
@@ -174,10 +163,17 @@
   }
 }
 
+@include mixins.reduced-motion {
+  .case-studies-stage__preview-image {
+    animation: none;
+    will-change: auto;
+  }
+}
+
 @media (max-width: 1024px) {
   .case-studies-stage {
     min-height: 58svh;
-    gap: clamp(2rem, 5vh, 3.25rem);
+    gap: tokens.$space-panel-flow;
 
     &__header {
       margin-inline: unset;

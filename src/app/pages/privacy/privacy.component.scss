@@ -31,7 +31,9 @@
     font-size: 0.82rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: color 180ms ease, transform 180ms ease;
+    transition:
+      color tokens.$motion-duration-fast tokens.$motion-ease-standard,
+      transform tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {

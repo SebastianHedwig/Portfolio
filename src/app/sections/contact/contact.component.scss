@@ -41,7 +41,7 @@
     &__body {
       margin-inline: unset;
       flex-direction: column;
-      gap: clamp(10rem, 20vh, 16rem);
+      gap: tokens.$space-form-flow;
       justify-content: flex-start;
     }
 

@@ -2,13 +2,19 @@
 
 .landing {
   &-page {
+    --landing-stage-scroll-margin: clamp(1.75rem, 3.5vh, 3rem);
+    --landing-tech-scroll-margin: var(--landing-stage-scroll-margin);
+    --landing-about-tech-offset: clamp(-6rem, -9svh, -3rem);
+    --landing-stage-gap: 0rem;
+
     @include mixins.stack;
+    gap: var(--landing-stage-gap);
   }
 
   &-stage {
     @include mixins.stack;
     width: 100%;
-    scroll-margin-top: clamp(1.75rem, 3.5vh, 3rem);
+    scroll-margin-top: var(--landing-stage-scroll-margin);
 
     &:focus {
       outline: none;
@@ -28,7 +34,8 @@
 .section--tech-stack {
   position: relative;
   z-index: 0;
-  margin-top: clamp(-10rem, -15svh, -5rem);
+  margin-top: var(--landing-about-tech-offset);
+  scroll-margin-top: var(--landing-tech-scroll-margin);
 }
 
 .section--projects {
@@ -43,48 +50,36 @@
 }
 
 @media (max-width: 1368px) and (orientation: landscape) {
-  .landing-stage {
-    scroll-margin-top: clamp(1.25rem, 3vh, 2.5rem);
-  }
-
-  .section--tech-stack {
-    margin-top: clamp(-12rem, -18svh, -6rem);
+  .landing-page {
+    --landing-stage-scroll-margin: clamp(1.25rem, 3vh, 2.5rem);
+    --landing-about-tech-offset: clamp(-8rem, -12svh, -4rem);
   }
 }
 
 @media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
-  .section--tech-stack {
-    margin-top: clamp(-8rem, -12svh, -5rem);
+  .landing-page {
+    --landing-about-tech-offset: clamp(-6rem, -9svh, -3.5rem);
   }
 }
 
 @media (min-width: 1600px) and (min-height: 1000px) and (orientation: landscape) {
-  .landing-stage {
-    scroll-margin-top: clamp(2rem, 4vh, 3.5rem);
+  .landing-page {
+    --landing-stage-scroll-margin: clamp(2rem, 4vh, 3.5rem);
   }
 }
 
 @media (max-width: 1024px) and (orientation: portrait) {
-  .landing-stage {
-    scroll-margin-top: clamp(5.25rem, 8svh, 6.5rem);
-  }
-
   .landing-page {
-    gap: clamp(5.5rem, 9svh, 8rem);
-  }
-
-  .section--tech-stack {
-    margin-top: clamp(-3.3rem, -4svh, -2.3rem);
-    scroll-margin-top: clamp(6.75rem, 11svh, 8rem);
+    --landing-stage-scroll-margin: clamp(5.25rem, 8svh, 6.5rem);
+    --landing-tech-scroll-margin: clamp(6.75rem, 11svh, 8rem);
+    --landing-about-tech-offset: clamp(-2.4rem, -3svh, -1.6rem);
+    --landing-stage-gap: clamp(5.5rem, 9svh, 8rem);
   }
 }
 
 @media (max-width: 760px) and (orientation: portrait) {
-  .landing-stage {
-    scroll-margin-top: clamp(4.5rem, 8svh, 5.5rem);
-  }
-
-  .section--tech-stack {
-    scroll-margin-top: clamp(6.75rem, 12svh, 8.25rem);
+  .landing-page {
+    --landing-stage-scroll-margin: clamp(4.5rem, 8svh, 5.5rem);
+    --landing-tech-scroll-margin: clamp(6.75rem, 12svh, 8.25rem);
   }
 }

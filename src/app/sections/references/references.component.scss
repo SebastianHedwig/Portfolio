@@ -14,10 +14,7 @@
   }
 
   &__title {
-    text-shadow:
-      0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
-      0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
-      0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
+    @include mixins.heading-depth-shadow;
   }
 
   &__body {
@@ -37,13 +34,7 @@
       clamp(3.75rem, 6vh, 4.75rem)
       clamp(1.5rem, 3vw, 2.2rem)
       clamp(1.35rem, 2.6vh, 2rem);
-    border-radius: clamp(0.75rem, 1.2vw, 1rem);
-    background: rgba(233, 240, 251, 0.005);
-    box-shadow:
-      0.7rem 1.15rem 2.8rem rgba(0, 0, 0, 0.24),
-      -0.22rem -0.28rem 1.25rem rgba(255, 255, 255, 0.1),
-      0.22rem 0.4rem 1rem rgba(53, 199, 255, 0.08),
-      inset 0 0 1.1rem rgba(53, 199, 255, 0.055);
+    @include mixins.soft-panel;
 
     &::before {
       position: absolute;
@@ -147,7 +138,7 @@
 
     &__body {
       flex-direction: column;
-      gap: clamp(2.5rem, 5vh, 4rem);
+      gap: tokens.$space-section-flow;
       min-height: auto;
       padding-top: clamp(1.5rem, 3vh, 2.5rem);
     }
@@ -165,9 +156,9 @@
       overflow: hidden;
       transform: translateY(-0.35rem);
       transition:
-        grid-template-rows 680ms cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 520ms ease,
-        transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+        grid-template-rows tokens.$motion-duration-reveal tokens.$motion-ease-expressive,
+        opacity 520ms tokens.$motion-ease-standard,
+        transform tokens.$motion-duration-reveal tokens.$motion-ease-expressive;
     }
 
     &__quote-extra-inner {
