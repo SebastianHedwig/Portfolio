@@ -90,7 +90,11 @@
 
   &__value-detail {
     display: inline-flex;
-    color: tokens.$color-muted;
+    color: tokens.$color-accent-soft;
+    text-shadow:
+      0.18rem 0.18rem 0 rgba(255, 255, 255, 0.1),
+      0.42rem 0.42rem 0 rgba(255, 255, 255, 0.055),
+      0.7rem 0.7rem 0.34rem rgba(255, 255, 255, 0.03);
     clip-path: inset(0 100% 0 0);
     animation: about-value-detail-cycle tokens.$motion-duration-word-cycle tokens.$motion-ease-soft infinite;
     animation-delay: calc(var(--about-row-index) * 3.6s);
