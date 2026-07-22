@@ -13,6 +13,8 @@
   &__header {
     --projects-entry-title-size: clamp(3.15rem, 4.9vw, 5.5rem);
     --projects-entry-keyword-size: clamp(2.8rem, 4.7vw, 5.4rem);
+    --projects-keyword-cycle-duration: 7.2s;
+    --projects-keyword-cycle-step: calc(var(--projects-keyword-cycle-duration) / 3);
 
     display: flex;
     justify-content: center;
@@ -116,7 +118,7 @@
       transform: scale(0.94);
       text-align: center;
       filter: blur(0.08rem);
-      animation: projects-stage-keyword-value-cycle tokens.$motion-duration-word-cycle tokens.$motion-ease-soft infinite;
+      animation: projects-stage-keyword-value-cycle var(--projects-keyword-cycle-duration) tokens.$motion-ease-soft infinite;
       will-change: opacity, transform, filter;
     }
 
@@ -125,19 +127,19 @@
     }
 
     .projects-stage__title-line--5 .projects-stage__keyword-text {
-      animation-delay: 3.6s;
+      animation-delay: var(--projects-keyword-cycle-step);
     }
 
     .projects-stage__title-line--6 .projects-stage__keyword-text {
-      animation-delay: 7.2s;
+      animation-delay: calc(var(--projects-keyword-cycle-step) * 2);
     }
 
     .projects-stage__title-line--5 .projects-stage__keyword-line {
-      animation-delay: 3.6s;
+      animation-delay: var(--projects-keyword-cycle-step);
     }
 
     .projects-stage__title-line--6 .projects-stage__keyword-line {
-      animation-delay: 7.2s;
+      animation-delay: calc(var(--projects-keyword-cycle-step) * 2);
     }
   }
 
@@ -156,7 +158,7 @@
     border-radius: 999px;
     box-shadow: 0 0 1.1rem rgba(tokens.$color-accent, 0.2);
     opacity: 0.9;
-    animation: projects-stage-keyword-underline tokens.$motion-duration-word-cycle tokens.$motion-ease-soft infinite;
+    animation: projects-stage-keyword-underline var(--projects-keyword-cycle-duration) tokens.$motion-ease-soft infinite;
   }
 
   &__subtitle {
@@ -175,35 +177,42 @@
 
 @keyframes projects-stage-keyword-value-cycle {
   0%,
-  4%,
-  30%,
   100% {
     opacity: 0;
     transform: scale(0.94);
     filter: blur(0.08rem);
   }
 
-  9%,
-  25% {
+  7%,
+  26% {
     opacity: 1;
     transform: scale(1);
     filter: blur(0);
+  }
+
+  33.333% {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(0.08rem);
   }
 }
 
 @keyframes projects-stage-keyword-underline {
   0%,
-  4%,
-  30%,
   100% {
     opacity: 0;
     transform: scaleX(0.38);
   }
 
-  9%,
-  25% {
+  7%,
+  26% {
     opacity: 1;
     transform: scaleX(1);
+  }
+
+  33.333% {
+    opacity: 0;
+    transform: scaleX(0.38);
   }
 }
 

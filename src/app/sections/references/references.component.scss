@@ -87,7 +87,11 @@
     max-width: 31rem;
     color: tokens.$color-heading;
     font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    overflow-wrap: break-word;
     text-align: justify;
+    word-break: normal;
   }
 
   &__quote-extra {

@@ -22,7 +22,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary about-stage__statement--intro-en',
     titleTag: 'h3',
     copy:
-      'To me, there are no problems! \nOnly paths toward a solution.\n\nI keep going. \nUntil an idea becomes something that truly works and convinces.',
+      'To me, there are no problems! \nOnly paths toward a solution.\n\nI stay with the process. \nUntil an idea becomes a viable approach.',
     copyClass: 'about-stage__support',
   },
   introVision: {
@@ -36,7 +36,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     subtitleClass: 'about-stage__statement about-stage__statement--secondary',
     subtitleTag: 'h3',
     copy:
-      'My aspiration is to keep developing continuously and to understand modern web applications holistically. In the frontend, I want to expand my knowledge beyond Angular through technologies such as React, Vue.js, and Flutter.\n\nIn addition, I want to strengthen my backend skills with Python and deepen my understanding of APIs, containerization, and development processes using Docker and Postman. My goal is not only to build applications, but to understand their architecture and technical relationships comprehensively.',
+      'My aspiration is to keep developing continuously and to keep broadening my perspective on modern web development. In the frontend, I want to go beyond Angular and deepen my knowledge of technologies such as React, Vue.js, and Flutter.\n\nIn addition, I want to strengthen my backend skills with Python and sharpen my understanding of APIs, containerization, and development processes with Docker and Postman. The goal is not only to build applications, but to understand their architecture and technical relationships comprehensively.',
     copyClass: 'about-stage__support',
   },
   introSecondary: {
@@ -45,14 +45,14 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h3',
     copy:
-      'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to keep going, adjust the perspective and improve solutions step by step.',
+      'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to persevere, adjust the perspective and improve solutions step by step.',
     mobileCopy:
-      'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to keep going, adjust the perspective and improve solutions step by step.',
+      'In cycling, as in development, speed is not the only thing that matters. Progress is not always linear. Sometimes it feels easy, sometimes headwind and detours take effort.\n\nWhat matters is to persevere, adjust the perspective and improve solutions step by step.',
     copyClass: 'about-stage__support',
   },
   contextLeft: {
     containerClass: 'about-stage__context-block about-stage__context-block--left',
-    title: 'Focused.\nClear.\nDirect.',
+    title: 'Focused in execution. Clear in structure. Direct in communication.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
     valueStatements: [
@@ -78,7 +78,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h3',
     copy:
-      'I am motivated by the moment when an idea turns into an experience that is not only precise, but leaves a tangible impression on the user.',
+      'I am motivated by the moment when details come together, workflows become understandable, and complexity turns into a clear user experience.',
     copyClass: 'about-stage__support',
   },
   contextRight: {
@@ -87,7 +87,7 @@ export const ABOUT_CONTENT_EN: AboutContent = {
     titleClass: 'about-stage__context-title',
     titleTag: 'h3',
     copy:
-      'I work in a structured, calm way and with a clear focus on what matters. This creates digital experiences that are clearly guided, reliable in use, and convincing in the details.',
+      'Whether on site or remote, I work in a structured, calm way and with a clear focus on what matters. This creates digital solutions that are clearly guided, cleanly implemented, and consistent in the details.',
     copyClass: 'about-stage__context-copy',
   },
 } as const;

@@ -24,19 +24,31 @@
   } @else if (hasTitle() && block().titleTag === 'h2') {
     <h2 id="about-title" [class]="block().titleClass">
       @for (line of titleLines(); track line.text + line.punctuation + $index) {
-        <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
+        <span>
+          @for (segment of line.segments; track segment.text + $index) {
+            <span [class.about-stage__title-accent]="segment.accent">{{ segment.text }}</span>
+          }<span class="about-stage__title-punctuation">{{ line.punctuation }}</span>
+        </span>
       }
     </h2>
   } @else if (hasTitle() && block().titleTag === 'h3') {
     <h3 [class]="block().titleClass">
       @for (line of titleLines(); track line.text + line.punctuation + $index) {
-        <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
+        <span>
+          @for (segment of line.segments; track segment.text + $index) {
+            <span [class.about-stage__title-accent]="segment.accent">{{ segment.text }}</span>
+          }<span class="about-stage__title-punctuation">{{ line.punctuation }}</span>
+        </span>
       }
     </h3>
   } @else if (hasTitle()) {
     <p [class]="block().titleClass">
       @for (line of titleLines(); track line.text + line.punctuation + $index) {
-        <span>{{ line.text }}<span class="about-stage__title-punctuation">{{ line.punctuation }}</span></span>
+        <span>
+          @for (segment of line.segments; track segment.text + $index) {
+            <span [class.about-stage__title-accent]="segment.accent">{{ segment.text }}</span>
+          }<span class="about-stage__title-punctuation">{{ line.punctuation }}</span>
+        </span>
       }
     </p>
   }

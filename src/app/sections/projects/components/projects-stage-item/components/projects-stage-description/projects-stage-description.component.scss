@@ -43,14 +43,8 @@
     }
   }
 
-  &__description-label,
   &__description-value {
     margin: 0;
-  }
-
-  &__description-label {
-    @include mixins.caps-label(1.5rem);
-    color: tokens.$color-accent-soft;
   }
 
   &__description-value {
@@ -78,10 +72,6 @@
   }
 
   .project-moment {
-    &__description-label {
-      font-size: clamp(1.18rem, 6vw, 1.45rem);
-    }
-
     &__description-value {
       font-size: clamp(0.96rem, 4vw, 1.06rem);
       line-height: 1.48;
@@ -105,10 +95,6 @@
 
 @media (max-width: 1368px) and (orientation: landscape) {
   .project-moment {
-    &__description-label {
-      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    }
-
     &__description-value {
       font-size: clamp(0.9rem, 1.45vw, 1rem);
       line-height: 1.48;

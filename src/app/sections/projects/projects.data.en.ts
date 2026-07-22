@@ -15,7 +15,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       'outcomes.',
     ],
     lead:
-      'Not a catalog. Not a grid.\nJust three focused moments, each revealing a different part of how I work.',
+      'Three focused moments, each revealing a different part of how I work.',
   },
   viewportAriaLabel: 'Project sequence',
   items: [
@@ -33,7 +33,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
         value: 'A task manager inspired by the Kanban system, translating structure, interaction, and collaboration into a clear interface. Built with vanilla JavaScript, drag and drop, and real-time synchronization through Firebase.',
       },
       stack: {
-        label: 'Stack',
+        label: 'Tech Stack',
         value: 'JavaScript, CSS, HTML, and Firebase.',
         icons: [
           {
@@ -75,7 +75,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
         value: 'A 2D browser platformer developed in JavaScript with a custom engine. Inspired by classic side-scrolling platformers and optimized for all screen sizes. The central character is a panda moving through the jungle while facing different challenges.',
       },
       stack: {
-        label: 'Stack',
+        label: 'Tech Stack',
         value: 'JavaScript, HTML, and CSS.',
         icons: [
           {
@@ -113,7 +113,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
         value: 'A browser-based Pokédex powered by the PokéAPI. The application structures and visualizes large data sets, making them accessible through a clear interface.',
       },
       stack: {
-        label: 'Stack',
+        label: 'Tech Stack',
         value: 'JavaScript, HTML, CSS, and REST API.',
         icons: [
           {

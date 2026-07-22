@@ -32,12 +32,14 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: clamp(1.1rem, 2vw, 1.6rem);
+    gap: clamp(0.8rem, 1.6vw, 1rem);
   }
 
   &__stack-item {
     @include mixins.stack(0.7rem);
     align-items: center;
+    flex: 0 1 max-content;
+    min-width: max(4.8rem, 8ch);
     @include interactive-icon-hover.interactive-icon-hover-host(
       '.project-moment__stack-icon-label',
       '.project-moment__stack-icon',
@@ -48,8 +50,8 @@
 
   &__stack-icon {
     display: block;
-    width: clamp(3.4rem, 5.3vw, 4.6rem);
-    height: clamp(3.4rem, 5.3vw, 4.6rem);
+    width: clamp(3.15rem, 4.9vw, 4.25rem);
+    height: clamp(3.15rem, 4.9vw, 4.25rem);
     object-fit: contain;
     @include interactive-icon-hover.interactive-icon-hover-icon;
   }
@@ -140,19 +142,19 @@
     }
 
     &__stack-icons {
-      column-gap: clamp(0.85rem, 1.55vw, 1.2rem);
+      column-gap: clamp(0.75rem, 1.35vw, 1rem);
       row-gap: clamp(0.9rem, 2vh, 1.2rem);
     }
 
     &__stack-item {
       gap: 0.55rem;
       flex-basis: max(clamp(3.35rem, 5.2vw, 4.6rem), 8ch);
-      min-width: 0;
+      min-width: max(4.4rem, 8ch);
     }
 
     &__stack-icon {
-      width: clamp(2.45rem, 4vw, 3.4rem);
-      height: clamp(2.45rem, 4vw, 3.4rem);
+      width: clamp(2.35rem, 3.75vw, 3.15rem);
+      height: clamp(2.35rem, 3.75vw, 3.15rem);
     }
 
     &__stack-icon-label {

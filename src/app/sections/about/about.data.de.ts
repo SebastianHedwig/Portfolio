@@ -22,7 +22,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h3',
     copy:
-      'Für mich gibt es keine Probleme! \nNur Wege zur Lösung.\n\nIch bleibe dran. \nBis aus einer Idee etwas entsteht, das wirklich funktioniert und überzeugt.',
+      'Für mich gibt es keine Probleme! \nNur Wege zur Lösung.\n\nIch bleibe im Prozess. \nBis aus einer Idee ein tragfähiger Ansatz wird.',
     copyClass: 'about-stage__support',
   },
   introVision: {
@@ -36,7 +36,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     subtitleClass: 'about-stage__statement about-stage__statement--secondary',
     subtitleTag: 'h3',
     copy:
-      'Mein Bestreben ist es, mich kontinuierlich weiterzuentwickeln und moderne Webanwendungen ganzheitlich zu verstehen. Im Frontend möchte ich mein Wissen über Angular hinaus gezielt durch Technologien wie React, Vue.js und Flutter erweitern.\n\nGleichzeitig möchte ich meine Backend-Kompetenzen mit Python ausbauen und mein Verständnis für APIs, Containerisierung und Entwicklungsprozesse mithilfe von Docker und Postman weiter vertiefen. Mein Ziel ist es, Anwendungen nicht nur zu entwickeln, sondern ihre Architektur und technischen Zusammenhänge umfassend zu verstehen.',
+      'Mein Bestreben ist es, mich kontinuierlich weiterzuentwickeln und meinen Blick auf moderne Webentwicklung stetig zu erweitern. Im Frontend möchte ich über Angular hinaus Technologien wie React, Vue.js und Flutter gezielt vertiefen.\n\nGleichzeitig möchte ich meine Backend-Kompetenzen mit Python ausbauen und mein Verständnis für APIs, Containerisierung und Entwicklungsprozesse mit Docker und Postman weiter schärfen. Ziel ist es, Anwendungen nicht nur zu entwickeln, sondern ihre Architektur und technischen Zusammenhänge umfassend zu verstehen.',
     copyClass: 'about-stage__support',
   },
   introSecondary: {
@@ -45,14 +45,15 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h3',
     copy:
-      'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, dranzubleiben, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
+      'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, durchzuhalten, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
     mobileCopy:
-      'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, dranzubleiben, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
+      'Beim Radfahren wie in der Entwicklung zählt nicht nur Tempo. Fortschritt entsteht nicht immer linear. Manchmal läuft es leicht, manchmal kosten Gegenwind und Umwege Kraft.\n\nWichtig ist, durchzuhalten, den Blick neu auszurichten und Lösungen Schritt für Schritt zu verbessern.',
     copyClass: 'about-stage__support',
   },
   contextLeft: {
     containerClass: 'about-stage__context-block about-stage__context-block--left',
-    title: 'Fokussiert.\nKlar.\nDirekt.',
+    title:
+      'Fokussiert in der Umsetzung. Klar in der Struktur. Direkt in der Kommunikation.',
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'p',
     valueStatements: [
@@ -78,7 +79,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h3',
     copy:
-      'Mich motiviert der Moment, in dem aus einer Idee ein Erlebnis wird, das nicht nur präzise ist, sondern beim Nutzer spürbar etwas hinterlässt.',
+      'Mich motiviert der Moment, in dem Details greifen, Abläufe verständlich werden und aus Komplexität eine klare Nutzungserfahrung entsteht.',
     copyClass: 'about-stage__support',
   },
   contextRight: {
@@ -87,7 +88,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__context-title',
     titleTag: 'h3',
     copy:
-      'Ich arbeite strukturiert, ruhig und mit Blick für das Wesentliche. So entstehen digitale Erlebnisse, die klar geführt sind, sauber funktionieren und im Detail überzeugen.',
+      'Ob vor Ort oder remote, ich arbeite strukturiert, ruhig und mit Blick für das Wesentliche. So entstehen digitale Lösungen, die klar geführt, sauber umgesetzt und im Detail stimmig bleiben.',
     copyClass: 'about-stage__context-copy',
   },
 } as const;

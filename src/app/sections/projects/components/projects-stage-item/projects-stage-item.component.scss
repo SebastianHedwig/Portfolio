@@ -47,6 +47,7 @@
 
     app-projects-stage-stack {
       flex: 1 1 0;
+      max-width: 28rem;
       min-width: 0;
     }
   }
@@ -98,6 +99,7 @@
       app-projects-stage-stack {
         order: 1;
         flex: 0 0 var(--project-left-column);
+        max-width: 28rem;
       }
     }
   }
@@ -118,6 +120,7 @@
       app-projects-stage-description,
       app-projects-stage-stack {
         flex: initial;
+        max-width: none;
         order: initial;
       }
 
@@ -221,6 +224,7 @@
       app-projects-stage-stack {
         order: 1;
         flex: 0 0 var(--project-left-column);
+        max-width: 27rem;
       }
     }
 

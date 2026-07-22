@@ -39,21 +39,43 @@ export class AboutTextBlockComponent {
   readonly mobileCopySegments = computed(() =>
     this.getCopySegments(this.block().mobileCopy ?? this.block().copy),
   );
-  private getTitleLineParts(line: string): { punctuation: string; text: string } {
+  private getTitleLineParts(line: string): {
+    punctuation: string;
+    segments: Array<{ accent: boolean; text: string }>;
+    text: string;
+  } {
     const match = line.match(/^(.*?)([.!?])$/);
+    const text = match ? match[1] : line;
+    const punctuation = match ? match[2] : '';
 
-    return match
-      ? { text: match[1], punctuation: match[2] }
-      : { text: line, punctuation: '' };
+    return {
+      punctuation,
+      segments: this.getTitleSegments(text),
+      text,
+    };
   }
 
   private readonly accentPattern = /(Erlebnisse|sind das Ergebnis|experiences|are the result)/gi;
+  private readonly titleAccentPattern = /(Aus Flörsheim|From Flörsheim)/gi;
   private readonly accentSegments = new Set([
     'erlebnisse',
     'sind das ergebnis',
     'experiences',
     'are the result',
   ]);
+  private readonly titleAccentSegments = new Set([
+    'aus flörsheim',
+    'from flörsheim',
+  ]);
+
+  private getTitleSegments(title: string): Array<{ accent: boolean; text: string }> {
+    const segments = title.split(this.titleAccentPattern).filter((segment) => segment.length > 0);
+
+    return segments.map((segment) => ({
+      accent: this.titleAccentSegments.has(segment.toLowerCase()),
+      text: segment,
+    }));
+  }
 
   private getCopySegments(copy: string): Array<{ accent: boolean; text: string }> {
     if (!this.shouldAccentCopy()) {

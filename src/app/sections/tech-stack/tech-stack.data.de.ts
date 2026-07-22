@@ -18,7 +18,7 @@ export const TECH_STACK_CONTENT_DE: TechStackContent = {
     eyebrow: 'Tech Stack',
     titleClass: 'tech-stage__headline',
     titleLines: [
-      'Technologie ist Werkzeug.',
+      'Technologie ist ein Werkzeug.',
       'Ihr Nutzen entsteht durch die Art der Anwendung.',
     ],
     titleTag: 'h2',

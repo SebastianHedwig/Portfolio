@@ -15,7 +15,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
       'entstehen.',
     ],
     lead:
-      'Kein Katalog. Kein Raster.\nNur drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.',
+      'Drei fokussierte Momente, die jeweils einen anderen Teil meiner Arbeitsweise sichtbar machen.',
   },
   viewportAriaLabel: 'Projektsequenz',
   items: [
@@ -33,7 +33,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
         value: 'Ein Aufgabenmanager, inspiriert vom Kanban-System, der Struktur, Interaktion und Zusammenarbeit in eine klare Oberfläche übersetzt. Umgesetzt mit reinem JavaScript, Drag-and-Drop und Echtzeit-Synchronisierung über Firebase.',
       },
       stack: {
-        label: 'Stack',
+        label: 'Tech Stack',
         value: 'Java Script, CSS HTML und Firebase.',
         icons: [
           {
@@ -75,7 +75,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
         value: 'Ein 2D-Platformer im Browser. Entwickelt in JavaScript mit eigener Engine. Inspiriert von klassischen Side-Scrolling-Platformern und für alle Endgeräte optimiert. Zentrale Spielfigur ist ein Panda, der sich durch den Dschungel bewegt und dabei auf verschiedene Herausforderungen trifft.',
       },
       stack: {
-        label: 'Stack',
+        label: 'Tech Stack',
         value: 'Java Script, HTML und CSS.',
         icons: [
           {
@@ -113,7 +113,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
         value: 'Ein Pokédex im Browser, basierend auf der PokéAPI. Die Anwendung strukturiert und visualisiert umfangreiche Datensätze und macht sie über eine klare Oberfläche zugänglich.',
       },
       stack: {
-        label: 'Stack',
+        label: 'Tech Stack',
         value: 'Java Script, HTML, CSS und REST API.',
         icons: [
           {
