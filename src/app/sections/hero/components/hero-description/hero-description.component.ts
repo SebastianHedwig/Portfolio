@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { PrimaryButtonComponent } from '../../../../shared/components/primary-button/primary-button.component';
 import { type HeroDescriptionData } from '../../hero.models';
@@ -13,17 +13,21 @@ import { type HeroDescriptionData } from '../../hero.models';
 })
 export class HeroDescriptionComponent {
   readonly content = input.required<HeroDescriptionData>();
-  private readonly accentLines = new Set([
+  readonly headlineLines = computed(() =>
+    this.content().headlineLines.map((line) => this.createHeadlineSegments(line)),
+  );
+
+  private readonly accentWords = new Set([
     'moderne',
     'experiences,',
-    'überzeugen',
     'überzeugen.',
     'modern',
-    'convince',
     'convince.',
   ]);
 
-  isAccentLine(line: string): boolean {
-    return this.accentLines.has(line.toLowerCase());
+  private createHeadlineSegments(line: string): { text: string; isAccent: boolean }[] {
+    return line
+      .split(/(\s+)/)
+      .map((text) => ({ text, isAccent: this.accentWords.has(text.toLowerCase()) }));
   }
 }

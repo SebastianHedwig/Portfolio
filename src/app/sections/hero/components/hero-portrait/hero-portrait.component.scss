@@ -13,22 +13,9 @@
     position: relative;
     width: fit-content;
     margin-inline: auto auto;
-    margin-left: clamp(-28rem, -16vw, -13rem);
+    margin-left: clamp(-24rem, -13.5vw, -9.5rem);
     overflow: visible;
     transform: translateY(clamp(-2rem, -3vh, -0.35rem));
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 12% 7% -7%;
-      z-index: 0;
-      border-radius: 44% 48% 38% 42%;
-      background: rgba(74, 171, 214, 0.15);
-      filter: blur(5.5rem);
-      opacity: 0.6;
-      pointer-events: none;
-      transform: scale(1.04, 1.12);
-    }
 
     picture {
       display: block;
@@ -78,7 +65,7 @@
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero-portrait {
     &__image-shell {
-      margin-left: clamp(-19rem, -15vw, -10.5rem);
+      margin-left: clamp(-16.5rem, -12.5vw, -8rem);
       top: auto;
       transform: translateY(-0.35rem);
     }
@@ -113,12 +100,6 @@
       margin-inline: auto;
       margin-left: 0;
       transform: translateY(clamp(-0.4rem, -0.6svh, 0rem));
-
-      &::before {
-        inset: 18% 9% -4%;
-        filter: blur(3.6rem);
-        opacity: 0.46;
-      }
     }
 
     &__image {

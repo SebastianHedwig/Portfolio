@@ -14,11 +14,12 @@
     @include mixins.stack;
     @include mixins.stage-primary-title(700, 0.95);
     margin: 0;
-    max-width: 10.2ch;
+    max-width: 16ch;
     gap: 0.2rem;
 
-    span {
+    > span {
       display: block;
+      white-space: nowrap;
       @include mixins.heading-depth-shadow;
     }
   }
@@ -29,7 +30,7 @@
 
   &__text {
     max-width: 25rem;
-    margin: clamp(0.5rem, 1.5vh, 1rem) 0 0;
+    margin: clamp(1.15rem, 3vh, 2rem) 0;
     color: tokens.$color-muted;
     font-size: 1rem;
     line-height: 1.55;
@@ -39,7 +40,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    padding-top: clamp(1rem, 2.8vh, 1.75rem);
+    padding-top: clamp(1.35rem, 3.4vh, 2.25rem);
   }
 }
 
@@ -54,8 +55,6 @@
 
 @media (min-width: 1025px) and (max-height: 1080px) and (orientation: landscape) {
   .hero-description {
-    gap: tokens.$space-eyebrow-title;
-
     &__headline {
       font-size: clamp(4.85rem, calc(7.43vh + 0.49rem), 5.5rem);
       gap: clamp(0.12rem, 0.27vh, 0.2rem);
@@ -67,7 +66,7 @@
     }
 
     &__actions {
-      padding-top: clamp(0.8rem, 2vh, 1.35rem);
+      padding-top: clamp(1rem, 2.4vh, 1.6rem);
     }
   }
 }
@@ -89,7 +88,7 @@
     }
 
     &__actions {
-      padding-top: clamp(0.75rem, 2vh, 1.2rem);
+      padding-top: clamp(0.95rem, 2.4vh, 1.45rem);
     }
   }
 }
@@ -98,6 +97,10 @@
   .hero {
     &-description__headline {
       text-wrap: wrap;
+
+      > span {
+        white-space: normal;
+      }
     }
   }
 }

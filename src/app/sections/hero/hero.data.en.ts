@@ -5,12 +5,9 @@ export const HERO_CONTENT_EN: HeroContent = {
     eyebrow: 'Design meets performance',
     headlineLines: [
       'Modern',
-      'web',
-      'experiences,',
-      'that do more',
-      'than just work,',
-      'they also',
-      'convince.',
+      'web experiences,',
+      'that work',
+      'and convince.',
     ],
     text:
       'Frontend development focused on interaction, experience, and performance. Carefully built with ANGULAR, TYPESCRIPT and SCSS.',

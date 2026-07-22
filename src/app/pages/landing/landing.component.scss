@@ -28,7 +28,23 @@
 }
 
 .section--hero {
+  position: relative;
   scroll-margin-top: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 58vw 74vh at 57% 48%,
+      rgba(74, 171, 214, 0.16) 0%,
+      rgba(74, 171, 214, 0.11) 28%,
+      rgba(74, 171, 214, 0.045) 46%,
+      transparent 61%
+    );
+    pointer-events: none;
+  }
 }
 
 .section--tech-stack {
