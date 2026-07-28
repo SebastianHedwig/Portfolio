@@ -277,6 +277,8 @@ export const CASE_STUDY_PAGE_CONTENT_EN: CaseStudyPageContent = createCaseStudyC
     meta: CASE_STUDY_META_EN,
     preview: {
       alt: 'Preview of the English portfolio homepage',
+      dialogLabel: 'Enlarged portfolio preview',
+      openLabel: 'Open enlarged portfolio preview',
       src: 'assets/images/case-studies/portfolio-hero-preview-en.webp',
     },
     title: 'Portfolio',

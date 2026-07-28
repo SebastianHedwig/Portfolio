@@ -44,6 +44,10 @@ export class CaseStudiesPageComponent implements OnDestroy {
   private mobileLayoutMediaQuery: MediaQueryList | null = null;
   private cleanupMobileLayoutListener: (() => void) | null = null;
   private previousBodyOverflow: string | null = null;
+  private previousBodyPosition: string | null = null;
+  private previousBodyTop: string | null = null;
+  private previousBodyWidth: string | null = null;
+  private lockedScrollY = 0;
 
   constructor() {
     afterNextRender(() => this.initMobileLayoutQuery());
@@ -180,8 +184,15 @@ export class CaseStudiesPageComponent implements OnDestroy {
       return;
     }
 
+    this.lockedScrollY = window.scrollY;
     this.previousBodyOverflow = document.body.style.overflow;
+    this.previousBodyPosition = document.body.style.position;
+    this.previousBodyTop = document.body.style.top;
+    this.previousBodyWidth = document.body.style.width;
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${this.lockedScrollY}px`;
+    document.body.style.width = '100%';
   }
 
   private unlockPageScroll(): void {
@@ -190,7 +201,15 @@ export class CaseStudiesPageComponent implements OnDestroy {
     }
 
     document.body.style.overflow = this.previousBodyOverflow;
+    document.body.style.position = this.previousBodyPosition ?? '';
+    document.body.style.top = this.previousBodyTop ?? '';
+    document.body.style.width = this.previousBodyWidth ?? '';
     this.previousBodyOverflow = null;
+    this.previousBodyPosition = null;
+    this.previousBodyTop = null;
+    this.previousBodyWidth = null;
+    window.scrollTo(0, this.lockedScrollY);
+    this.lockedScrollY = 0;
   }
 
   private isDesignProcessSection(sectionTitle: string): boolean {

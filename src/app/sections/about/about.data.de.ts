@@ -22,7 +22,7 @@ export const ABOUT_CONTENT_DE: AboutContent = {
     titleClass: 'about-stage__statement about-stage__statement--secondary',
     titleTag: 'h3',
     copy:
-      'Für mich gibt es keine Probleme! \nNur Wege zur Lösung.\n\nIch bleibe im Prozess. \nBis aus einer Idee ein tragfähiger Ansatz wird.',
+      'Für mich gibt es keine Probleme! \nNur Wege zur Lösung.\n\nIch bleibe im Prozess. Bis aus einer Idee ein tragfähiger Ansatz wird.',
     copyClass: 'about-stage__support',
   },
   introVision: {

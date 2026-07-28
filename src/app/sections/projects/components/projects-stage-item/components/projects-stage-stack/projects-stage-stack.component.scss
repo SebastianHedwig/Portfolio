@@ -12,14 +12,8 @@
     gap: 0.5rem;
   }
 
-  &__stack-label,
   &__stack-value {
     margin: 0;
-  }
-
-  &__stack-label {
-    @include mixins.caps-label(1.5rem);
-    color: tokens.$color-accent-soft;
   }
 
   &__stack-value {
@@ -30,9 +24,9 @@
 
   &__stack-icons {
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
     gap: clamp(0.8rem, 1.6vw, 1rem);
+    padding-top: 0.5rem;
   }
 
   &__stack-item {
@@ -99,11 +93,18 @@
   }
 }
 
+@media (max-width: 760px) and (orientation: portrait) {
+  .project-moment {
+    &__stack-icons {
+      flex-wrap: wrap;
+    }
+  }
+}
+
 @media (max-width: 480px) and (orientation: portrait) {
   .project-moment {
     &__stack-icons {
       column-gap: clamp(0.45rem, 2.2vw, 0.65rem);
-      row-gap: clamp(0.7rem, 3.4vw, 0.95rem);
     }
 
     &__stack-item {
@@ -122,6 +123,33 @@
   }
 }
 
+@media (min-width: 1025px) and (max-height: 1080px) and (orientation: landscape) {
+  .project-moment {
+    &__stack {
+      justify-content: flex-start;
+    }
+
+    &__stack-icons {
+      column-gap: clamp(0.45rem, 0.8vw, 0.65rem);
+      row-gap: clamp(0.65rem, 1.45vh, 0.85rem);
+    }
+
+    &__stack-item {
+      gap: 0.5rem;
+      min-width: max(3.95rem, 7.5ch);
+    }
+
+    &__stack-icon {
+      width: clamp(2.65rem, 3.4vw, 3.35rem);
+      height: clamp(2.65rem, 3.4vw, 3.35rem);
+    }
+
+    &__stack-icon-label {
+      font-size: 0.78rem;
+    }
+  }
+}
+
 @media (max-width: 390px) and (orientation: portrait) {
   :host {
     width: 100%;
@@ -132,10 +160,6 @@
 
 @media (min-width: 1025px) and (max-width: 1368px) {
   .project-moment {
-    &__stack-label {
-      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    }
-
     &__stack-value {
       font-size: clamp(0.9rem, 1.45vw, 1rem);
       line-height: 1.48;

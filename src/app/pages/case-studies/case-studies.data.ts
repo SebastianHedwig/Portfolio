@@ -26,6 +26,8 @@ export type CaseStudyPageContent = LegalPageContent & {
   meta: readonly CaseStudyMetaItem[];
   preview: {
     alt: string;
+    dialogLabel: string;
+    openLabel: string;
     src: string;
   };
 };

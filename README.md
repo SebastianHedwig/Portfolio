@@ -4,7 +4,7 @@ Personal portfolio website for Sebastian Hedwig, Frontend Developer. The site pr
 
 Live site: [sebastian-hedwig.de](https://sebastian-hedwig.de)
 
-![Portfolio Hero Preview](src/assets/images/readme/portfolio-hero-preview-en.png)
+![Portfolio Hero Preview](src/assets/images/readme/portfolio-hero-preview-en.jpg)
 
 ## Overview
 

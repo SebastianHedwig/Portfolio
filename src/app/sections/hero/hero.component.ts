@@ -18,8 +18,8 @@ import { getHeroContent } from './hero.data';
 
 const HERO_EXIT_START = 'top -30%';
 const HERO_EXIT_END = 'bottom 5%';
-const HERO_MOBILE_EXIT_START = 'top -120%';
-const HERO_MOBILE_EXIT_END = 'bottom -25%';
+const HERO_MOBILE_EXIT_START = 'top -95%';
+const HERO_MOBILE_EXIT_END = 'bottom 5%';
 
 @Component({
   selector: 'app-hero',

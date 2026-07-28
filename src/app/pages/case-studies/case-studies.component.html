@@ -46,14 +46,21 @@
           </div>
           <div class="case-study-page__meta-preview">
             <figure class="case-study-page__preview">
-              <img
-                class="case-study-page__preview-image"
-                [src]="content().preview.src"
-                [alt]="content().preview.alt"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-              />
+              <button
+                class="case-study-page__preview-button"
+                type="button"
+                [attr.aria-label]="content().preview.openLabel"
+                (click)="openMediaDialog(content().preview)"
+              >
+                <img
+                  class="case-study-page__preview-image"
+                  [src]="content().preview.src"
+                  [alt]="content().preview.alt"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </button>
             </figure>
           </div>
         </div>

@@ -42,6 +42,16 @@
     border-radius: 1.25rem;
   }
 
+  &__preview-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    cursor: zoom-in;
+  }
+
   &__preview-image {
     display: block;
     width: 100%;
@@ -193,7 +203,7 @@
     border-radius: inherit;
   }
 
-  @media (max-width: 42rem) {
+  @media (max-width: tokens.$breakpoint-desktop) {
     &__meta-layout {
       flex-direction: column;
       align-items: stretch;
@@ -205,6 +215,13 @@
       width: 100%;
     }
 
+    &__preview {
+      width: min(100%, 36rem);
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 42rem) {
     &__meta-panel {
       min-height: 0;
     }

@@ -21,7 +21,15 @@ import { getTechStackContent } from './tech-stack.data';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const STACKED_STAGE_QUERY = '(max-width: 1024px) and (orientation: portrait)';
+const NARROW_STACKED_STAGE_QUERY = '(max-width: 380px) and (orientation: portrait)';
 const COMPACT_STACKED_STAGE_QUERY = '(max-width: 360px) and (max-height: 520px) and (orientation: portrait)';
+const TECH_STACK_STAGE_ENTRANCE_START = 'top bottom+=300%';
+const TECH_STACK_STAGE_ENTRANCE_MOBILE_START = 'top bottom+=560%';
+const TECH_STACK_STAGE_ENTRANCE_NARROW_MOBILE_START = 'top bottom+=660%';
+const TECH_STACK_STAGE_ENTRANCE_END = 'top 62%';
+const TECH_STACK_STAGE_ENTRANCE_MOBILE_END = 'top 88%';
+const TECH_STACK_STAGE_ENTRANCE_NARROW_MOBILE_END = 'top 96%';
 
 const TECH_STACK_REVEALS: readonly ScrollRevealConfig[] = [
   {
@@ -150,12 +158,32 @@ export class TechStackComponent implements OnDestroy {
       defaults: { ease: 'none' },
       scrollTrigger: {
         trigger: this.host.nativeElement,
-        start: 'top bottom+=275%',
-        end: 'top 62%',
+        start: () => this.getStageEntranceStart(),
+        end: () => this.getStageEntranceEnd(),
         scrub: 1.7,
         invalidateOnRefresh: true,
       },
     }).to(stage, { yPercent: 0, autoAlpha: 1, duration: 1 });
+  }
+
+  private getStageEntranceStart(): string {
+    if (window.matchMedia(NARROW_STACKED_STAGE_QUERY).matches) {
+      return TECH_STACK_STAGE_ENTRANCE_NARROW_MOBILE_START;
+    }
+
+    return window.matchMedia(STACKED_STAGE_QUERY).matches
+      ? TECH_STACK_STAGE_ENTRANCE_MOBILE_START
+      : TECH_STACK_STAGE_ENTRANCE_START;
+  }
+
+  private getStageEntranceEnd(): string {
+    if (window.matchMedia(NARROW_STACKED_STAGE_QUERY).matches) {
+      return TECH_STACK_STAGE_ENTRANCE_NARROW_MOBILE_END;
+    }
+
+    return window.matchMedia(STACKED_STAGE_QUERY).matches
+      ? TECH_STACK_STAGE_ENTRANCE_MOBILE_END
+      : TECH_STACK_STAGE_ENTRANCE_END;
   }
 
   private initScrollLabels(stage: HTMLElement, revealConfigs: readonly ScrollRevealConfig[]): void {

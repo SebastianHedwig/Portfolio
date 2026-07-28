@@ -91,6 +91,10 @@
     --landing-about-tech-offset: clamp(-2.4rem, -3svh, -1.6rem);
     --landing-stage-gap: clamp(5.5rem, 9svh, 8rem);
   }
+
+  .section--hero::before {
+    content: none;
+  }
 }
 
 @media (max-width: 760px) and (orientation: portrait) {
