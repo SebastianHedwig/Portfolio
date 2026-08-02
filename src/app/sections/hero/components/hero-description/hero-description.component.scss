@@ -29,11 +29,26 @@
   }
 
   &__text {
-    max-width: 25rem;
-    margin: clamp(1.15rem, 3vh, 2rem) 0;
+    max-width: 32rem;
+    margin: clamp(1.15rem, 3vh, 2rem) 0 0;
     color: tokens.$color-muted;
     font-size: 1rem;
     line-height: 1.55;
+  }
+
+  &__text-detail {
+    display: block;
+  }
+
+  &__quality-line {
+    max-width: max-content;
+    margin: clamp(0.45rem, 1.2vh, 0.75rem) 0 0;
+    color: tokens.$color-accent-soft;
+    font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
   }
 
   &__actions {
@@ -61,8 +76,14 @@
     }
 
     &__text {
+      max-width: 32rem;
       font-size: clamp(0.9rem, calc(1.14vh + 0.33rem), 1rem);
       line-height: 1.48;
+    }
+
+    &__quality-line {
+      max-width: max-content;
+      white-space: nowrap;
     }
 
     &__actions {
@@ -82,9 +103,23 @@
     }
 
     &__text {
-      max-width: 20rem;
+      max-width: 31rem;
       font-size: 0.88rem;
       line-height: 1.5;
+    }
+
+    &__quality-line {
+      max-width: max-content;
+      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+
+    &__text-detail {
+      display: inline;
+
+      &::before {
+        content: ' ';
+      }
     }
 
     &__actions {
@@ -101,6 +136,19 @@
       > span {
         white-space: normal;
       }
+    }
+
+    &-description__text-detail {
+      display: inline;
+
+      &::before {
+        content: ' ';
+      }
+    }
+
+    &-description__quality-line {
+      max-width: 25rem;
+      white-space: normal;
     }
   }
 }
@@ -125,6 +173,12 @@
       margin-top: clamp(0.18rem, 0.55svh, 0.35rem);
       font-size: clamp(0.76rem, 3.35vw, 0.88rem);
       line-height: 1.38;
+    }
+
+    &__quality-line {
+      max-width: min(100%, 20rem);
+      margin-top: clamp(0.4rem, 1.1svh, 0.65rem);
+      font-size: clamp(0.64rem, 2.75vw, 0.74rem);
     }
 
     &__actions {

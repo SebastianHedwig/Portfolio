@@ -79,7 +79,7 @@
 
   &__context-block {
     gap: clamp(1rem, 2.5vh, 1.75rem);
-    width: min(100%, 25rem);
+    width: 100%;
   }
 
   &__text-zone {
@@ -167,6 +167,11 @@
 @media (max-width: 1024px) and (orientation: landscape) {
   .about-stage {
     padding-block: clamp(4rem, 8vh, 6rem) clamp(6rem, 10vh, 8rem);
+
+    &__anchor {
+      top: 18rem;
+      scroll-margin-top: clamp(4.75rem, 8vh, 6rem);
+    }
 
     &__scroll-space {
       height: 312svh;
@@ -418,7 +423,7 @@
     }
 
     &__anchor {
-      top: clamp(7rem, 13vh, 10rem);
+      top: clamp(18rem, 24vh, 22rem);
       scroll-margin-top: clamp(4.25rem, 8vh, 5.75rem);
     }
 
@@ -574,6 +579,10 @@
 
 @media (min-width: 761px) and (max-width: 1024px) and (orientation: portrait) {
   .about-stage {
+    &__anchor {
+      scroll-margin-top: clamp(7.75rem, 11svh, 9rem);
+    }
+
     &__scene--intro {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(17rem, 22rem);

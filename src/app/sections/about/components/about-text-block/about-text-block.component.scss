@@ -323,7 +323,6 @@
       max-width: none;
       font-size: clamp(1.55rem, 4.8vw, 4.2rem);
       transform: translateX(-50%);
-      animation-name: about-value-row-cycle-centered;
     }
 
     &__value-lead {
@@ -422,24 +421,6 @@
   }
 }
 
-@keyframes about-value-row-cycle-centered {
-  0%,
-  100% {
-    clip-path: inset(0 101% 0 0);
-    opacity: 0;
-  }
-
-  8%,
-  25% {
-    clip-path: inset(0 0 0 0);
-    opacity: 1;
-  }
-
-  33.333% {
-    clip-path: inset(0 0 0 101%);
-    opacity: 0;
-  }
-}
 
 @media (min-width: 761px) and (max-width: 1024px) and (orientation: portrait) {
   :host.about-stage__text-zone--vision {

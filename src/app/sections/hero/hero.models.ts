@@ -7,7 +7,9 @@ export type HeroDescriptionData = {
   action: HeroPrimaryActionData;
   eyebrow: string;
   headlineLines: string[];
+  qualities: string;
   text: string;
+  textDetail: string;
 };
 
 export type HeroIdentityData = {
@@ -20,7 +22,6 @@ export type HeroPortraitData = {
   height: number;
   mobileWebpSrc: string;
   compactMobileWebpSrc: string;
-  src: string;
   webpSrc: string;
   width: number;
 };

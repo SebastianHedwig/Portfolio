@@ -101,6 +101,14 @@
   }
 }
 
+@media (min-width: 761px) and (max-width: 1024px) and (orientation: landscape) {
+  .project-moment {
+    &__stack-icons {
+      flex-wrap: wrap;
+    }
+  }
+}
+
 @media (max-width: 480px) and (orientation: portrait) {
   .project-moment {
     &__stack-icons {
@@ -158,7 +166,7 @@
   }
 }
 
-@media (min-width: 1025px) and (max-width: 1368px) {
+@media (min-width: 1025px) and (max-width: 1169px) and (orientation: landscape) {
   .project-moment {
     &__stack-value {
       font-size: clamp(0.9rem, 1.45vw, 1rem);
@@ -168,6 +176,7 @@
     &__stack-icons {
       column-gap: clamp(0.75rem, 1.35vw, 1rem);
       row-gap: clamp(0.9rem, 2vh, 1.2rem);
+      flex-wrap: wrap;
     }
 
     &__stack-item {

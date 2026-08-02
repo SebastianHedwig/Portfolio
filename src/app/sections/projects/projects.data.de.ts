@@ -55,7 +55,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
         ],
       },
       visual: {
-        src: 'assets/images/projects/project-join-1500.png',
+        src: 'assets/images/projects/project-join-1500.webp',
         width: 1500,
         height: 1001,
         alt: 'Projektvorschau von Join',
@@ -93,7 +93,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
         ],
       },
       visual: {
-        src: 'assets/images/projects/project-panda-1500.png',
+        src: 'assets/images/projects/project-panda-1500.webp',
         width: 1500,
         height: 1000,
         alt: 'Projektvorschau von Panda Jungle Run',
@@ -135,7 +135,7 @@ export const PROJECTS_CONTENT_DE: ProjectsContent = {
         ],
       },
       visual: {
-        src: 'assets/images/projects/project-pokedex-1280.png',
+        src: 'assets/images/projects/project-pokedex-1280.webp',
         width: 1280,
         height: 792,
         alt: 'Projektvorschau eines Pokédex',

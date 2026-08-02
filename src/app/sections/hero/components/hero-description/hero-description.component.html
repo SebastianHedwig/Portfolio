@@ -12,7 +12,12 @@
   </h1>
 
   <p class="hero-description__text">
-    {{ content().text }}
+    <span>{{ content().text }}</span>
+    <span class="hero-description__text-detail">{{ content().textDetail }}</span>
+  </p>
+
+  <p class="hero-description__quality-line">
+    {{ content().qualities }}
   </p>
 
   <div class="hero-description__actions">

@@ -10,7 +10,9 @@ export const HERO_CONTENT_DE: HeroContent = {
       'und überzeugen.',
     ],
     text:
-      'Frontend Entwicklung mit Fokus auf Interaktion, Erlebnis und Performance. Sauber umgesetzt mit ANGULAR, TYPESCRIPT und SCSS.',
+      'Frontend-Entwicklung mit ANGULAR, TYPESCRIPT und SCSS.',
+    textDetail: 'Performant. Wartbar. Durchdacht.',
+    qualities: 'Performance · Wartbarkeit · Barrierefreiheit · User Experience',
     action: {
       href: '#contact',
       label: "Let's Talk",
@@ -21,7 +23,6 @@ export const HERO_CONTENT_DE: HeroContent = {
     tagline: 'Frontend Developer',
   },
   portrait: {
-    src: 'assets/images/portraits/sebastian-portrait-1600.png',
     compactMobileWebpSrc: 'assets/images/portraits/sebastian-portrait-1200.webp',
     mobileWebpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
     webpSrc: 'assets/images/portraits/sebastian-portrait-1600.webp',
