@@ -75,3 +75,9 @@
     }
   }
 }
+
+@media (min-width: 1921px) and (orientation: landscape) {
+  .contact-stage {
+    --stage-min-height: 70svh;
+  }
+}

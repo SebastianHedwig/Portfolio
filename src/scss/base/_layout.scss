@@ -47,6 +47,14 @@ app-root {
   }
 }
 
+@media (min-width: 1921px) {
+  .section {
+    &:not(.section--projects):not(.section--about):not(.section--contact) > * {
+      max-width: clamp(tokens.$site-max-width, 76vw, tokens.$site-max-width-wide);
+    }
+  }
+}
+
 @media (max-width: 1024px) and (orientation: portrait) {
   html,
   body {

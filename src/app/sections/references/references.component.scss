@@ -215,3 +215,14 @@
     }
   }
 }
+
+@media (min-width: 1921px) and (orientation: landscape) {
+  .references-stage {
+    min-height: 76svh;
+    gap: clamp(2rem, 4vh, 3.5rem);
+
+    &__body {
+      min-height: clamp(32rem, 64vh, 44rem);
+    }
+  }
+}

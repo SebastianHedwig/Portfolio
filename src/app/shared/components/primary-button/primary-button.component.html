@@ -1,9 +1,9 @@
 @if (href(); as targetHref) {
   <a
     class="primary-button"
-    [class.primary-button--disabled]="disabled()"
+    [class.primary-button--disabled]="disabled() || visuallyDisabled()"
     [href]="disabled() ? null : resolvedHref()"
-    [attr.aria-disabled]="disabled()"
+    [attr.aria-disabled]="disabled() || visuallyDisabled()"
     [attr.tabindex]="disabled() ? -1 : null"
     [attr.target]="isExternalHref(targetHref) ? '_blank' : null"
     [attr.rel]="isExternalHref(targetHref) ? 'noopener noreferrer' : null"
@@ -19,9 +19,10 @@
 } @else {
   <button
     class="primary-button"
-    [class.primary-button--disabled]="disabled()"
+    [class.primary-button--disabled]="disabled() || visuallyDisabled()"
     [type]="type()"
     [disabled]="disabled()"
+    [attr.aria-disabled]="disabled() || visuallyDisabled()"
   >
     <span class="primary-button__label">{{ label() }}</span>
     <span

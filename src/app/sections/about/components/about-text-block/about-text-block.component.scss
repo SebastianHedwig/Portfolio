@@ -129,7 +129,7 @@
 
   &__context-copy {
     max-width: tokens.$copy-width-tight;
-    @include mixins.long-copy(0.95rem, 1.75, justify);
+    @include mixins.long-copy(1rem, 1.75, justify);
   }
 }
 

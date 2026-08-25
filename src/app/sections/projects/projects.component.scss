@@ -146,3 +146,9 @@
     }
   }
 }
+
+@media (min-width: 1921px) and (orientation: landscape) {
+  .projects-stage {
+    padding-block: clamp(4rem, 6vh, 6rem) clamp(4.5rem, 7vh, 6.5rem);
+  }
+}

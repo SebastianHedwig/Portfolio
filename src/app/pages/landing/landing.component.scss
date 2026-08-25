@@ -85,6 +85,18 @@
   }
 }
 
+@media (min-width: 1921px) and (orientation: landscape) {
+  .section--hero::before {
+    background: radial-gradient(
+      ellipse min(54vw, 118rem) min(74vh, 86rem) at 54% 52%,
+      rgba(74, 171, 214, 0.17) 0%,
+      rgba(74, 171, 214, 0.11) 30%,
+      rgba(74, 171, 214, 0.045) 49%,
+      transparent 64%
+    );
+  }
+}
+
 @media (max-width: 1024px) and (orientation: portrait) {
   .landing-page {
     --landing-stage-scroll-margin: clamp(5.25rem, 8svh, 6.5rem);

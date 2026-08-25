@@ -20,15 +20,20 @@
       maxlength="50"
       [placeholder]="content().form.name.placeholder"
     />
-    @if (showError(form.controls.name)) {
-      <span class="contact-stage__field-error">
+    <span class="contact-stage__field-rule" aria-hidden="true"></span>
+    <span
+      class="contact-stage__field-error"
+      [class.contact-stage__field-error--visible]="showError(form.controls.name)"
+      [attr.aria-hidden]="showError(form.controls.name) ? null : true"
+    >
+      @if (showError(form.controls.name)) {
         @if (form.controls.name.hasError('required')) {
           {{ content().form.name.requiredError }}
         } @else if (form.controls.name.hasError('maxlength')) {
           {{ content().form.name.maxlengthError }}
         }
-      </span>
-    }
+      }
+    </span>
   </label>
 
   <label
@@ -51,8 +56,13 @@
       formControlName="email"
       [placeholder]="content().form.email.placeholder"
     />
-    @if (showError(form.controls.email)) {
-      <span class="contact-stage__field-error">
+    <span class="contact-stage__field-rule" aria-hidden="true"></span>
+    <span
+      class="contact-stage__field-error"
+      [class.contact-stage__field-error--visible]="showError(form.controls.email)"
+      [attr.aria-hidden]="showError(form.controls.email) ? null : true"
+    >
+      @if (showError(form.controls.email)) {
         @if (form.controls.email.hasError('required')) {
           {{ content().form.email.requiredError }}
         } @else if (form.controls.email.hasError('blockedDomain')) {
@@ -60,8 +70,8 @@
         } @else if (form.controls.email.hasError('email')) {
           {{ content().form.email.emailError }}
         }
-      </span>
-    }
+      }
+    </span>
   </label>
 
   <label
@@ -84,15 +94,20 @@
       maxlength="100"
       [placeholder]="content().form.subject.placeholder"
     />
-    @if (showError(form.controls.subject)) {
-      <span class="contact-stage__field-error">
+    <span class="contact-stage__field-rule" aria-hidden="true"></span>
+    <span
+      class="contact-stage__field-error"
+      [class.contact-stage__field-error--visible]="showError(form.controls.subject)"
+      [attr.aria-hidden]="showError(form.controls.subject) ? null : true"
+    >
+      @if (showError(form.controls.subject)) {
         @if (form.controls.subject.hasError('required')) {
           {{ content().form.subject.requiredError }}
         } @else if (form.controls.subject.hasError('maxlength')) {
           {{ content().form.subject.maxlengthError }}
         }
-      </span>
-    }
+      }
+    </span>
   </label>
 
   <label
@@ -118,8 +133,13 @@
     <span class="contact-stage__field-meta" [style.opacity]="messageLength() > 0 ? 0.72 : 0.38">
       {{ messageLength() }} / {{ messageMaxLength }} {{ content().form.message.counterSuffix }}
     </span>
-    @if (showError(form.controls.message)) {
-      <span class="contact-stage__field-error">
+    <span class="contact-stage__field-rule" aria-hidden="true"></span>
+    <span
+      class="contact-stage__field-error"
+      [class.contact-stage__field-error--visible]="showError(form.controls.message)"
+      [attr.aria-hidden]="showError(form.controls.message) ? null : true"
+    >
+      @if (showError(form.controls.message)) {
         @if (form.controls.message.hasError('required')) {
           {{ content().form.message.requiredError }}
         } @else if (form.controls.message.hasError('minlength')) {
@@ -127,8 +147,8 @@
         } @else if (form.controls.message.hasError('maxlength')) {
           {{ content().form.message.maxlengthError }}
         }
-      </span>
-    }
+      }
+    </span>
   </label>
 
   <div class="contact-stage__consent-wrap">
@@ -156,17 +176,22 @@
         }}
       </span>
     </label>
-    @if (showError(form.controls.consent)) {
-      <span class="contact-stage__field-error contact-stage__field-error--consent">
+    <span
+      class="contact-stage__field-error contact-stage__field-error--consent"
+      [class.contact-stage__field-error--visible]="showError(form.controls.consent)"
+      [attr.aria-hidden]="showError(form.controls.consent) ? null : true"
+    >
+      @if (showError(form.controls.consent)) {
         {{ content().form.consentError }}
-      </span>
-    }
+      }
+    </span>
   </div>
 
   <app-primary-button
     class="contact-stage__submit"
     [label]="isSubmitting() ? content().submittingLabel : content().submitLabel"
     type="submit"
-    [disabled]="form.invalid || isSubmitting()"
+    [disabled]="isSubmitting()"
+    [visuallyDisabled]="form.invalid || isSubmitting()"
   />
 </form>

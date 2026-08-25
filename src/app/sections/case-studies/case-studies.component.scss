@@ -269,3 +269,14 @@
     }
   }
 }
+
+@media (min-width: 1921px) and (orientation: landscape) {
+  .case-studies-stage {
+    min-height: 64svh;
+    gap: clamp(2rem, 4vh, 3.5rem);
+
+    &__preview {
+      min-height: clamp(30rem, 50vh, 39rem);
+    }
+  }
+}

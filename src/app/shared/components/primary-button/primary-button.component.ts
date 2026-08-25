@@ -18,6 +18,7 @@ export class PrimaryButtonComponent {
   readonly label = input.required<string>();
   readonly type = input<'button' | 'submit' | 'reset'>('button');
   readonly disabled = input(false);
+  readonly visuallyDisabled = input(false);
   readonly resolvedHref = computed(() => {
     const targetHref = this.href();
 
@@ -31,7 +32,7 @@ export class PrimaryButtonComponent {
   handleLinkClick(event: MouseEvent): void {
     const targetHref = this.href();
 
-    if (this.disabled()) {
+    if (this.disabled() || this.visuallyDisabled()) {
       event.preventDefault();
       return;
     }

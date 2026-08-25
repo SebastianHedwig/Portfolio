@@ -203,3 +203,25 @@
     }
   }
 }
+
+@media (min-width: 1921px) and (orientation: landscape) {
+  .tech-stage {
+    min-height: 100svh;
+    row-gap: clamp(3.75rem, 6vh, 6.5rem);
+    padding-block: clamp(5.5rem, 8vh, 9rem);
+
+    app-tech-stack-stack-group.tech-stage__stack--core,
+    app-tech-stack-stack-group.tech-stage__stack--main {
+      padding-block: clamp(3rem, 5vh, 5rem);
+    }
+
+    app-tech-stack-stack-group.tech-stage__stack--extended {
+      padding-bottom: clamp(2rem, 4vh, 3.5rem);
+    }
+
+    &__mid-row {
+      gap: clamp(4.25rem, 7vh, 6rem);
+      padding-bottom: clamp(3rem, 5.5vh, 5rem);
+    }
+  }
+}

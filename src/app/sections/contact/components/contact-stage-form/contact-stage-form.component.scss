@@ -7,17 +7,15 @@
 }
 
 form {
-  @include mixins.stack(clamp(2.5rem, 4vw, 5rem));
+  @include mixins.stack(clamp(1.55rem, 2.7vw, 3.25rem));
   width: 100%;
 }
 
 .contact-stage {
   &__field {
     @include mixins.stack(0.65rem);
-    position: relative;
     width: 100%;
     padding-bottom: 0.45rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
 
     &--message {
       padding-bottom: 0.6rem;
@@ -60,10 +58,12 @@ form {
   }
 
   &__field--valid {
-    border-bottom-color: rgba(82, 214, 146, 0.34);
-
     .contact-stage__field-label {
       color: rgba(82, 214, 146, 0.92);
+    }
+
+    .contact-stage__field-rule {
+      background-color: rgba(82, 214, 146, 0.34);
     }
   }
 
@@ -101,35 +101,57 @@ form {
     transition: opacity tokens.$motion-duration-fast tokens.$motion-ease-standard;
   }
 
+  &__field-rule {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.12);
+    transition: background-color tokens.$motion-duration-fast tokens.$motion-ease-standard;
+  }
+
   &__field-error {
-    position: absolute;
-    top: calc(100% + 0.45rem);
-    left: 0;
+    display: block;
+    min-height: calc(0.82rem * 1.35);
     max-width: 100%;
-    color: rgba(tokens.$color-accent-soft, 0.9);
+    color: rgba(255, 95, 118, 0.94);
     font-size: 0.82rem;
     line-height: 1.35;
+    opacity: 0;
+    visibility: hidden;
     white-space: normal;
+    transition:
+      opacity tokens.$motion-duration-fast tokens.$motion-ease-standard,
+      visibility 0s linear tokens.$motion-duration-fast;
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
 
     &--consent {
-      top: calc(100% + 0.45rem);
-      left: 1.95rem;
+      margin-top: 0.45rem;
+      margin-left: 1.95rem;
     }
   }
 
   &__field:focus-within {
-    border-bottom-color: rgba(tokens.$color-accent-soft, 0.42);
-
     .contact-stage__field-label {
       color: rgba(tokens.$color-heading, 0.88);
+    }
+
+    .contact-stage__field-rule {
+      background-color: rgba(tokens.$color-accent-soft, 0.42);
     }
   }
 
   &__field--valid:focus-within {
-    border-bottom-color: rgba(82, 214, 146, 0.42);
-
     .contact-stage__field-label {
       color: rgba(82, 214, 146, 0.92);
+    }
+
+    .contact-stage__field-rule {
+      background-color: rgba(82, 214, 146, 0.42);
     }
   }
 
@@ -295,7 +317,7 @@ form {
 
   &__submit {
     align-self: flex-end;
-    margin-top: calc(clamp(2.5rem, 4vw, 5rem) * -0.5);
+    margin-top: calc(clamp(1.55rem, 2.7vw, 3.25rem) * -0.25);
   }
 }
 
@@ -309,7 +331,7 @@ form {
 
 @media (max-width: 1368px) and (orientation: landscape) {
   form {
-    gap: clamp(1.8rem, 3.5vw, 3.2rem);
+    gap: clamp(1.35rem, 2.6vw, 2.35rem);
   }
 
   .contact-stage {
@@ -332,7 +354,7 @@ form {
     }
 
     &__submit {
-      margin-top: calc(clamp(1.8rem, 3.5vw, 3.2rem) * 0.2);
+      margin-top: calc(clamp(1.35rem, 2.6vw, 2.35rem) * 0.25);
     }
   }
 }

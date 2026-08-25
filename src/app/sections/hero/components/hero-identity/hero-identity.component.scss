@@ -13,7 +13,7 @@
   align-self: flex-end;
   width: min(100%, 50rem);
   text-align: right;
-  transform: translateY(clamp(1.25rem, 3vh, 2.25rem));
+  transform: translateY(clamp(0.625rem, 1.5vh, 1.125rem));
 
   &__name,
   &__tagline {
@@ -53,7 +53,7 @@
   .hero-identity {
     --hero-identity-name-size: clamp(2.25rem, 4.55vw, 3.45rem);
 
-    transform: translateY(clamp(0.75rem, 2vh, 1.35rem));
+    transform: translateY(clamp(0.375rem, 1vh, 0.675rem));
   }
 }
 
