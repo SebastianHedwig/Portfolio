@@ -1,7 +1,9 @@
 @use 'abstracts/mixins';
+@use 'abstracts/tokens';
 
 :host {
   --landing-header-height: 5rem;
+  --landing-mobile-header-height: 5rem;
   --landing-header-gap: clamp(0.75rem, 1.5svh, 1.5rem);
   --landing-about-anchor-shift: clamp(3rem, 6svh, 6rem);
   --landing-content-anchor-shift: clamp(3rem, 6svh, 6rem);
@@ -136,5 +138,29 @@
     );
     --landing-stage-scroll-margin: clamp(4.5rem, 8svh, 5.5rem);
     --landing-tech-scroll-margin: clamp(6.75rem, 12svh, 8.25rem);
+  }
+
+  .section--tech-stack,
+  .section--case-studies,
+  .section--references,
+  .section--contact {
+    --landing-mobile-anchor-margin: calc(
+      var(--landing-stage-scroll-margin) - var(--landing-content-anchor-shift)
+    );
+    --landing-mobile-anchor-padding: #{tokens.$section-block-padding};
+
+    // Keep existing anchors unless the visible mobile header needs more room.
+    scroll-margin-top: max(
+      var(--landing-mobile-anchor-margin),
+      calc(
+        var(--landing-mobile-header-height) + var(--landing-header-gap) -
+        var(--landing-mobile-anchor-padding)
+      )
+    );
+  }
+
+  .section--tech-stack {
+    --landing-mobile-anchor-margin: 0rem;
+    --landing-mobile-anchor-padding: 0rem;
   }
 }

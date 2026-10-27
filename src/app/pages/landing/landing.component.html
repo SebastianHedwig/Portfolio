@@ -1,5 +1,7 @@
 @if (isMobileLayout()) {
-  <app-mobile-header></app-mobile-header>
+  <app-mobile-header
+    (headerHeightChange)="mobileHeaderHeight.set($event)"
+  ></app-mobile-header>
 } @else {
   <app-desktop-header
     (headerHeightChange)="desktopHeaderHeight.set($event)"

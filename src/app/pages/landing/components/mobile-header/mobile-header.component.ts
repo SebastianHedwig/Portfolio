@@ -7,6 +7,7 @@ import {
   computed,
   effect,
   inject,
+  output,
   signal,
   viewChild,
 } from '@angular/core';
@@ -37,6 +38,7 @@ export class MobileHeaderComponent implements OnDestroy {
   readonly isLanguageSwitching = signal(false);
   readonly isMobileMenuOpen = signal(false);
   readonly isMobileMenuClosing = signal(false);
+  readonly headerHeightChange = output<number>();
 
   private readonly languageStore = inject(LanguageStore);
   readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
@@ -49,9 +51,13 @@ export class MobileHeaderComponent implements OnDestroy {
   private mobileMenuCloseTimer: ReturnType<typeof setTimeout> | null = null;
   private hasInitializedLanguage = false;
   private suppressInteractionsUntil = 0;
+  private headerResizeObserver: ResizeObserver | null = null;
 
   constructor() {
-    afterNextRender(() => this.initEventListeners());
+    afterNextRender(() => {
+      this.initEventListeners();
+      this.observeHeaderHeight();
+    });
     this.initLanguageSwitchEffect();
   }
 
@@ -85,9 +91,19 @@ export class MobileHeaderComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.headerResizeObserver?.disconnect();
     this.clearIdleRevealTimer();
     this.clearMobileMenuCloseTimer();
     this.cleanupEventListeners();
+  }
+
+  private observeHeaderHeight(): void {
+    const header = this.header().nativeElement;
+    const publishHeight = () => this.headerHeightChange.emit(header.offsetHeight);
+
+    publishHeight();
+    this.headerResizeObserver = new ResizeObserver(publishHeight);
+    this.headerResizeObserver.observe(header);
   }
 
   toggleMobileMenu(): void {
