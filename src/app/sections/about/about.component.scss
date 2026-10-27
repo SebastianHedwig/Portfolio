@@ -756,7 +756,7 @@
 
 @media (min-width: 1921px) and (orientation: landscape) {
   .about-stage {
-    padding-block: clamp(5.5rem, 8vh, 9rem) clamp(4.5rem, 6vh, 7rem);
+    padding-block: unset;
 
     &__scene--intro {
       padding-block-start: clamp(1.5rem, 3vh, 3rem);
