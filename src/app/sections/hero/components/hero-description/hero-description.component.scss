@@ -78,11 +78,11 @@
 
     &__text {
       max-width: 35rem;
-      font-size: clamp(1rem, 0.56vw, 1.16rem);
+      font-size: clamp(1.1rem, 0.56vw, 1.16rem);
     }
 
     &__quality-line {
-      font-size: clamp(0.85rem, 0.45vw, 0.9rem);
+      font-size: clamp(1rem, 0.45vw, 0.9rem);
     }
   }
 }
