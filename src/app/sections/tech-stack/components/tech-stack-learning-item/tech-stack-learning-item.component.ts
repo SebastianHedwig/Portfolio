@@ -34,6 +34,7 @@ export class TechStackLearningItemComponent implements OnDestroy {
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly languageStore = inject(LanguageStore);
   private popupCloseTimeoutId: number | null = null;
+  private labelWaveAnimations: Animation[] = [];
 
   readonly item = input.required<TechStackItemData>();
   readonly plannedStack = input.required<PlannedStackData>();
@@ -84,7 +85,38 @@ export class TechStackLearningItemComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.labelWaveAnimations.forEach((animation) => animation.cancel());
     this.clearPopupCloseTimeout();
+  }
+
+  playLabelWave(): void {
+    if (
+      this.labelWaveAnimations.length > 0 ||
+      !window.matchMedia(
+        '(min-width: 1025px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)',
+      ).matches
+    ) {
+      return;
+    }
+
+    const letters = this.elementRef.nativeElement.querySelectorAll<HTMLElement>(
+      '.tech-stage__learning-label .tech-stage__label-letter',
+    );
+    const animations = Array.from(letters, (letter, index) => letter.animate(
+      [
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-0.3rem)' },
+        { transform: 'translateY(0)' },
+      ],
+      { duration: 260, delay: index * 18, easing: 'ease', iterations: 1 },
+    ));
+
+    this.labelWaveAnimations = animations;
+    void Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
+      if (this.labelWaveAnimations === animations) {
+        this.labelWaveAnimations = [];
+      }
+    });
   }
 
   @HostListener('document:click', ['$event'])

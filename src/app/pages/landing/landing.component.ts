@@ -48,9 +48,13 @@ const LANDING_SECTION_IDS = [
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
+  host: {
+    '[style.--landing-header-height.px]': 'desktopHeaderHeight()',
+  },
 })
 export class LandingComponent implements OnDestroy {
   readonly isMobileLayout = signal(this.getInitialMobileLayout());
+  readonly desktopHeaderHeight = signal<number | null>(null);
 
   private mobileLayoutMediaQuery: MediaQueryList | null = null;
   private cleanupMobileLayoutListener: (() => void) | null = null;

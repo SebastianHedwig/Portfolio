@@ -7,6 +7,7 @@ import {
   computed,
   effect,
   inject,
+  output,
   signal,
   viewChild,
 } from '@angular/core';
@@ -31,6 +32,7 @@ export class DesktopHeaderComponent implements OnDestroy {
   readonly header = viewChild.required<ElementRef<HTMLElement>>('header');
   readonly isHidden = signal(false);
   readonly isLanguageSwitching = signal(false);
+  readonly headerHeightChange = output<number>();
 
   private readonly languageStore = inject(LanguageStore);
   readonly anchorNavigation = inject(LocalizedAnchorNavigationService);
@@ -42,9 +44,13 @@ export class DesktopHeaderComponent implements OnDestroy {
   private idleRevealTimer: ReturnType<typeof setTimeout> | null = null;
   private hasInitializedLanguage = false;
   private suppressInteractionsUntil = 0;
+  private headerResizeObserver: ResizeObserver | null = null;
 
   constructor() {
-    afterNextRender(() => this.initEventListeners());
+    afterNextRender(() => {
+      this.initEventListeners();
+      this.observeHeaderHeight();
+    });
     this.initLanguageSwitchEffect();
   }
 
@@ -78,8 +84,18 @@ export class DesktopHeaderComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.headerResizeObserver?.disconnect();
     this.clearIdleRevealTimer();
     this.cleanupEventListeners();
+  }
+
+  private observeHeaderHeight(): void {
+    const header = this.header().nativeElement;
+    const publishHeight = () => this.headerHeightChange.emit(header.offsetHeight);
+
+    publishHeight();
+    this.headerResizeObserver = new ResizeObserver(publishHeight);
+    this.headerResizeObserver.observe(header);
   }
 
   private initEventListeners(): void {

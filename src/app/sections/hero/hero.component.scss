@@ -9,6 +9,7 @@
 }
 
 .hero {
+  --hero-desktop-top-space: 0rem;
   @include mixins.beside();
   position: relative;
   z-index: 1;
@@ -94,7 +95,7 @@
     align-self: flex-start;
     flex: 1 1 72%;
     min-width: 0;
-    padding-top: clamp(0.5rem, 1.75vh, 1.125rem);
+    padding-top: 0;
     justify-content: space-between;
     min-height: clamp(34rem, 70vh, 58rem);
   }
@@ -158,17 +159,17 @@
 
 @media (min-width: 1921px) {
   .hero {
+    --hero-desktop-top-space: calc(
+      clamp(5rem, 7vh, 10rem) + clamp(1.25rem, 2vh, 2.5rem)
+    );
     gap: clamp(4rem, 4.8vw, 8rem);
     align-items: center;
     justify-content: center;
-    padding-block:
-      clamp(5rem, 7vh, 10rem)
-      clamp(2rem, 4vh, 5rem);
+    padding-block-end: clamp(2rem, 4vh, 5rem);
 
     &__visual {
       flex-basis: min(88rem, 58%);
       min-height: clamp(50rem, 78svh, 74rem);
-      padding-top: clamp(1.25rem, 2vh, 2.5rem);
     }
 
     app-hero-description {
@@ -234,7 +235,7 @@
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero {
     gap: clamp(1.4rem, 3vw, 2.5rem);
-    padding-block: clamp(0.45rem, 1.4vh, 0.9rem);
+    padding-block-end: clamp(0.45rem, 1.4vh, 0.9rem);
 
     &__statement-band {
       display: block;
@@ -247,7 +248,6 @@
     &__visual {
       flex-basis: 68%;
       min-height: clamp(30rem, 76svh, 44rem);
-      padding-top: clamp(1.75rem, 4vh, 2.75rem);
     }
 
     app-hero-description {
@@ -363,6 +363,15 @@
       flex: 1 1 0;
       min-height: 0;
     }
+  }
+}
+
+@media (min-width: 1025px), (orientation: landscape) {
+  .hero {
+    padding-block-start: max(
+      var(--hero-desktop-top-space),
+      calc(var(--landing-header-height, 5rem) + var(--landing-header-gap, 0.75rem))
+    );
   }
 }
 

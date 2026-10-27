@@ -1,7 +1,9 @@
 @if (isMobileLayout()) {
   <app-mobile-header></app-mobile-header>
 } @else {
-  <app-desktop-header></app-desktop-header>
+  <app-desktop-header
+    (headerHeightChange)="desktopHeaderHeight.set($event)"
+  ></app-desktop-header>
 }
 
 <main class="landing-page">

@@ -1,5 +1,10 @@
 @use 'abstracts/mixins';
 
+:host {
+  --landing-header-height: 5rem;
+  --landing-header-gap: clamp(0.75rem, 1.5svh, 1.5rem);
+}
+
 .landing {
   &-page {
     --landing-stage-scroll-margin: clamp(1.75rem, 3.5vh, 3rem);
