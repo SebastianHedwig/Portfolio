@@ -236,7 +236,7 @@ export class ProjectsComponent implements OnDestroy {
     index: number,
   ): void {
     const label = `stage-${index + 1}-transition`;
-    const duration = index === 1 ? 0.82 : 1.08;
+    const duration = 1.08;
 
     timeline.addLabel(label);
     this.addPanelExit(timeline, panel, label, duration);

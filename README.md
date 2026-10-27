@@ -92,7 +92,6 @@ When public routes, route names, preview images, or indexed page copy change, up
 | --- | --- | --- |
 | Join | [GitHub](https://github.com/SebastianHedwig/Project_Join) | [join.sebastian-hedwig.de](https://join.sebastian-hedwig.de) |
 | Panda - Jungle Run | [GitHub](https://github.com/SebastianHedwig/Panda_Jungle_Run) | [panda.sebastian-hedwig.de](https://panda.sebastian-hedwig.de) |
-| Pokedex | [GitHub](https://github.com/SebastianHedwig/Pokedex_Page) | [pokedex.sebastian-hedwig.de](https://pokedex.sebastian-hedwig.de) |
 
 ## Project Structure
 

@@ -15,7 +15,7 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
       'outcomes.',
     ],
     lead:
-      'Three focused moments, each revealing a different part of how I work.',
+      'Two focused moments, each revealing a different part of how I work.',
   },
   viewportAriaLabel: 'Project sequence',
   items: [
@@ -97,48 +97,6 @@ export const PROJECTS_CONTENT_EN: ProjectsContent = {
         width: 1500,
         height: 1000,
         alt: 'Panda Jungle Run project preview',
-      },
-    },
-    {
-      id: 'pokedex',
-      statement: 'Pokémon. Easy to explore.',
-      eyebrow: 'API-based application',
-      title: 'Pokédex',
-      actions: {
-        githubHref: 'https://github.com/SebastianHedwig/Pokedex_Page',
-        liveHref: 'https://pokedex.sebastian-hedwig.de',
-      },
-      description: {
-        label: 'Description',
-        value: 'A browser-based Pokédex powered by the PokéAPI. The application structures and visualizes large data sets, making them accessible through a clear interface.',
-      },
-      stack: {
-        label: 'Tech Stack',
-        value: 'JavaScript, HTML, CSS, and REST API.',
-        icons: [
-          {
-            src: 'assets/icons/tech-stack/JavaScript.svg',
-            alt: 'JavaScript',
-          },
-          {
-            src: 'assets/icons/tech-stack/Html.svg',
-            alt: 'HTML',
-          },
-          {
-            src: 'assets/icons/tech-stack/Css.svg',
-            alt: 'CSS',
-          },
-          {
-            src: 'assets/icons/tech-stack/Api.svg',
-            alt: 'REST API',
-          },
-        ],
-      },
-      visual: {
-        src: 'assets/images/projects/project-pokedex-1280.webp',
-        width: 1280,
-        height: 792,
-        alt: 'Pokédex project preview',
       },
     },
   ],

@@ -16,13 +16,16 @@
   }
 
   &__anchor {
+    --about-anchor-scroll-margin: clamp(5.5rem, 9vh, 7.5rem);
     position: absolute;
     top: clamp(10.25rem, 14.5vh, 13rem);
     left: 0;
     width: 1px;
     height: 1px;
     pointer-events: none;
-    scroll-margin-top: clamp(5.5rem, 9vh, 7.5rem);
+    scroll-margin-top: calc(
+      var(--about-anchor-scroll-margin) - var(--landing-about-anchor-shift, 0rem)
+    );
   }
 
   &__sticky {
@@ -170,7 +173,7 @@
 
     &__anchor {
       top: 18rem;
-      scroll-margin-top: clamp(4.75rem, 8vh, 6rem);
+      --about-anchor-scroll-margin: clamp(4.75rem, 8vh, 6rem);
     }
 
     &__scroll-space {
@@ -268,7 +271,7 @@
 
     &__anchor {
       top: 0;
-      scroll-margin-top: clamp(6.25rem, 10svh, 7.5rem);
+      --about-anchor-scroll-margin: clamp(6.25rem, 10svh, 7.5rem);
     }
 
     &__sticky {
@@ -424,7 +427,7 @@
 
     &__anchor {
       top: clamp(18rem, 24vh, 22rem);
-      scroll-margin-top: clamp(4.25rem, 8vh, 5.75rem);
+      --about-anchor-scroll-margin: clamp(4.25rem, 8vh, 5.75rem);
     }
 
     &__sticky,
@@ -552,7 +555,7 @@
   .about-stage {
     &__anchor {
       top: clamp(13.5rem, 22vh, 16rem);
-      scroll-margin-top: clamp(3.25rem, 5.5vh, 4.5rem);
+      --about-anchor-scroll-margin: clamp(3.25rem, 5.5vh, 4.5rem);
     }
   }
 }
@@ -560,7 +563,7 @@
   .about-stage {
     &__anchor {
       top: clamp(18rem, 26vh, 24rem);
-      scroll-margin-top: clamp(8rem, 10vh, 10rem);
+      --about-anchor-scroll-margin: clamp(8rem, 10vh, 10rem);
     }
   }
 }
@@ -580,7 +583,7 @@
 @media (min-width: 761px) and (max-width: 1024px) and (orientation: portrait) {
   .about-stage {
     &__anchor {
-      scroll-margin-top: clamp(7.75rem, 11svh, 9rem);
+      --about-anchor-scroll-margin: clamp(7.75rem, 11svh, 9rem);
     }
 
     &__scene--intro {
@@ -709,7 +712,7 @@
 @media (max-width: 760px) and (orientation: portrait) {
   .about-stage {
     &__anchor {
-      scroll-margin-top: clamp(6rem, 11svh, 7.25rem);
+      --about-anchor-scroll-margin: clamp(6rem, 11svh, 7.25rem);
     }
 
     &__viewport {
@@ -757,6 +760,10 @@
 @media (min-width: 1921px) and (orientation: landscape) {
   .about-stage {
     padding-block: unset;
+
+    &__anchor {
+      top: 43svh;
+    }
 
     &__scene--intro {
       padding-block-start: clamp(1.5rem, 3vh, 3rem);

@@ -3,6 +3,8 @@
 :host {
   --landing-header-height: 5rem;
   --landing-header-gap: clamp(0.75rem, 1.5svh, 1.5rem);
+  --landing-about-anchor-shift: clamp(3rem, 6svh, 6rem);
+  --landing-content-anchor-shift: clamp(3rem, 6svh, 6rem);
 }
 
 .landing {
@@ -30,6 +32,9 @@
 .section--about {
   position: relative;
   z-index: 1;
+  scroll-margin-top: calc(
+    var(--landing-stage-scroll-margin) - var(--landing-about-anchor-shift)
+  );
 }
 
 .section--hero {
@@ -68,6 +73,14 @@
 .section--references {
   position: relative;
   z-index: 0;
+}
+
+.section--case-studies,
+.section--references,
+.section--contact {
+  scroll-margin-top: calc(
+    var(--landing-stage-scroll-margin) - var(--landing-content-anchor-shift)
+  );
 }
 
 @media (max-width: 1368px) and (orientation: landscape) {
@@ -117,6 +130,10 @@
 
 @media (max-width: 760px) and (orientation: portrait) {
   .landing-page {
+    --landing-about-anchor-shift: clamp(0.5rem, 1svh, 1rem);
+    --landing-content-anchor-shift: calc(
+      clamp(3rem, 6svh, 6rem) + clamp(0.75rem, 1.5svh, 1.25rem)
+    );
     --landing-stage-scroll-margin: clamp(4.5rem, 8svh, 5.5rem);
     --landing-tech-scroll-margin: clamp(6.75rem, 12svh, 8.25rem);
   }
