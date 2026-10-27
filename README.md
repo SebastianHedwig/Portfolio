@@ -119,6 +119,7 @@ public/             Favicon, robots.txt, and sitemap.xml
 | `npm run build` | Creates a production build |
 | `npm run watch` | Builds continuously in development mode |
 | `npm run ng` | Runs the Angular CLI through npm |
+| `.\deploy.ps1` | Builds the frontend, uploads it to the VPS, and starts the server-side deployment script (PowerShell) |
 
 ## Prerequisites
 
@@ -149,7 +150,7 @@ Create a production build:
 npm run build
 ```
 
-Build artifacts are written to the `dist/` directory.
+Deployable frontend files are written to `dist/Portfolio/browser/`.
 
 ## Deployment and Backend
 
@@ -162,6 +163,33 @@ Backend-managed responsibilities include:
 - Handling mailing and message delivery workflows
 
 This keeps the public frontend focused on presentation and interaction while operational concerns such as contact submission and mail handling are managed through the VPS backend.
+
+### Deploying with PowerShell
+
+The repository includes [deploy.ps1](deploy.ps1) to build and deploy the frontend from the local machine.
+
+Requirements:
+
+- PowerShell and the local Node.js/npm setup, with project dependencies installed through `npm install`
+- OpenSSH client commands `ssh` and `scp` available on the local machine
+- SSH access to the VPS account configured in `$Server`
+- A writable staging directory configured in `$RemoteStage` (currently `/home/basti/portfolio-upload`)
+- The server-side script `~/deploy-portfolio.sh` available on the VPS
+
+Run from the repository root in PowerShell:
+
+```powershell
+.\deploy.ps1
+```
+
+The script performs these steps:
+
+1. Runs `npm run build` and checks that `dist/Portfolio/browser/index.csr.html` exists.
+2. Creates the remote staging directory if needed and clears its existing contents.
+3. Uploads the contents of `dist/Portfolio/browser/` to the staging directory using `scp`.
+4. Starts `bash ~/deploy-portfolio.sh` on the VPS through an interactive SSH session.
+
+The script stops if the build, output check, staging preparation, upload, or server-side deployment fails. Adjust `$Server` and `$RemoteStage` in `deploy.ps1` when deploying to a different VPS account or staging directory. The server-side deployment logic is maintained separately on the VPS.
 
 ## Content
 
