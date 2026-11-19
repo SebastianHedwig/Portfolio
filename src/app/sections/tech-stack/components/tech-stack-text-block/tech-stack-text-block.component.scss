@@ -1,6 +1,10 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
+:host .tech-stage__copy {
+  font-size: var(--body-copy-size);
+}
+
 :host {
   @include mixins.stack(clamp(1rem, 2.4vh, 1.75rem));
 
@@ -89,6 +93,7 @@
     &__copy {
       max-width: tokens.$copy-width-compact;
       @include mixins.long-copy(1rem, 1.75);
+      font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
 
       &--compact {
         max-width: 23rem;
@@ -144,7 +149,7 @@
 
       &__copy {
         max-width: tokens.$copy-width-tight;
-        font-size: 0.92rem;
+        font-size: 1rem;
         line-height: 1.62;
 
         &--compact {

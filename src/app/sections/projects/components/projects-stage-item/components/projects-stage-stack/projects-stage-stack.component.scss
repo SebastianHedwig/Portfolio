@@ -2,6 +2,10 @@
 @use 'abstracts/tokens';
 @use 'components/interactive-icon-hover';
 
+:host .project-moment__stack-value {
+  font-size: var(--body-copy-size);
+}
+
 :host {
   @include mixins.project-moment-meta-host;
 }
@@ -54,7 +58,7 @@
     top: calc(100% + 0.3rem);
     bottom: auto;
     margin: 0;
-    @include interactive-icon-hover.interactive-icon-hover-label(0.9rem);
+    @include interactive-icon-hover.interactive-icon-hover-label;
   }
 
   &__stack-icon-label-letter {
@@ -125,9 +129,6 @@
       height: clamp(2.65rem, 12vw, 3.05rem);
     }
 
-    &__stack-icon-label {
-      font-size: 0.74rem;
-    }
   }
 }
 
@@ -152,9 +153,6 @@
       height: clamp(2.65rem, 3.4vw, 3.35rem);
     }
 
-    &__stack-icon-label {
-      font-size: 0.78rem;
-    }
   }
 }
 
@@ -169,7 +167,7 @@
 @media (min-width: 1025px) and (max-width: 1169px) and (orientation: landscape) {
   .project-moment {
     &__stack-value {
-      font-size: clamp(0.9rem, 1.45vw, 1rem);
+      font-size: 1rem;
       line-height: 1.48;
     }
 
@@ -192,7 +190,6 @@
 
     &__stack-icon-label {
       max-width: clamp(3.8rem, 5.8vw, 5rem);
-      font-size: 0.74rem;
       line-height: 1.1;
       text-align: center;
       white-space: normal;

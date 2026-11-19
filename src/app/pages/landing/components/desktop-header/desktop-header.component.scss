@@ -89,7 +89,7 @@
     margin-left: -0.2rem;
     color: tokens.$color-heading;
     font-family: tokens.$font-primary;
-    font-size: clamp(0.88rem, 0.95vw, 1rem);
+    font-size: 1rem;
     font-weight: 600;
     line-height: 0.96;
     opacity: 0.95;
@@ -128,6 +128,7 @@
     margin-block: -0.18rem;
     color: rgba(tokens.$color-heading, 0.78);
     font-family: tokens.$font-eyebrow;
+    font-size: clamp(1rem, 1vw, 1.125rem);
     font-weight: 400;
     letter-spacing: 0.08em;
     text-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.28);
@@ -187,10 +188,6 @@
       height: 2.15rem;
     }
 
-    &__name {
-      font-size: clamp(0.78rem, 0.85vw, 0.9rem);
-    }
-
     &__nav {
       padding-top: 0;
     }
@@ -217,10 +214,6 @@
       height: 2.05rem;
     }
 
-    &__name {
-      font-size: 0.76rem;
-    }
-
     &__nav,
     &__controls {
       gap: clamp(0.52rem, 1.15vw, 0.82rem);
@@ -228,14 +221,16 @@
 
     &__link {
     position: relative;
-      font-size: clamp(0.74rem, 0.98vw, 0.88rem);
       letter-spacing: 0.055em;
     }
 
     app-language-toggle {
       --language-toggle-option-min-width: 2.35rem;
       --language-toggle-option-padding: 0.3rem 0.58rem 0.34rem;
-      --language-toggle-option-font-size: 0.68rem;
     }
   }
+}
+
+app-language-toggle {
+  --language-toggle-option-font-size: 1rem;
 }

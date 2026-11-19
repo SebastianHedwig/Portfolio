@@ -366,6 +366,12 @@
   }
 }
 
+@media (max-width: 375px) and (max-height: 730px) and (orientation: portrait) {
+  .hero__statement-band {
+    bottom: 3.5rem;
+  }
+}
+
 @media (min-width: 1025px), (orientation: landscape) {
   .hero {
     padding-block-start: max(

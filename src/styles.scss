@@ -7,6 +7,11 @@
 @use 'components/stage-shell';
 @use 'components/tech-stage-stack-group';
 
+:root {
+  --body-copy-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
+  --label-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 380ms;
@@ -52,7 +57,7 @@
   }
 }
 
-@media (orientation: landscape) and (max-width: 1024px) and (max-height: 700px) {
+@media (orientation: landscape) and (max-width: 1023px) and (max-height: 700px) and (pointer: coarse) and (hover: none) {
   html,
   body {
     overflow: hidden;

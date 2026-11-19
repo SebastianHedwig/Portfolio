@@ -6,7 +6,7 @@ export const CONTACT_CONTENT_EN: ContactContent = {
   eyebrow: 'Contact',
   title: 'Ready to build something?',
   copy: [
-    'If you have an idea or want to build something: \nLet’s talk.',
+    'If you have an idea or want to build something: Let’s talk.',
     'I care about clean, thoughtful solutions, keep developing continuously, and stay open to new challenges and collaboration.',
   ],
   cvLinkLabel: 'CV / Resume (PDF)',

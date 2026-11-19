@@ -40,6 +40,7 @@
   &__support {
     max-width: tokens.$copy-width-tight;
     @include mixins.long-copy(1rem, 1.7);
+    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
   }
 
   &__copy-accent {
@@ -130,6 +131,7 @@
   &__context-copy {
     max-width: tokens.$copy-width-tight;
     @include mixins.long-copy(1rem, 1.75, justify);
+    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
   }
 }
 
@@ -188,6 +190,7 @@
 
     .about-stage__support {
       max-width: tokens.$copy-width-wide;
+      font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
     }
   }
 
@@ -459,7 +462,7 @@
 
     &__support,
     &__context-copy {
-      font-size: clamp(0.76rem, 1.25vw, 0.88rem);
+      font-size: 1rem;
       line-height: 1.55;
     }
   }
@@ -495,7 +498,7 @@
   :host.about-stage__context-block--left {
     .about-stage__support {
       max-width: 48rem;
-      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      font-size: 1rem;
       line-height: 1.55;
     }
   }
@@ -505,13 +508,27 @@
       margin-block:
         clamp(1.5rem, 3.2vh, 2.25rem)
         clamp(1.9rem, 4vh, 2.85rem);
-      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      font-size: 1rem;
       line-height: 1.55;
     }
   }
 }
 
 @media (min-width: 1025px) {
+  :host {
+    .about-stage__support,
+    .about-stage__context-copy {
+      line-height: clamp(1.2em, calc(1.2em + (100vh - 667px) * 0.02), 1.7em);
+    }
+  }
+
+  :host.about-stage__context-block--left,
+  :host.about-stage__context-bottom-head {
+    .about-stage__support {
+      line-height: clamp(1.2em, calc(1.2em + (100vh - 667px) * 0.02), 1.7em);
+    }
+  }
+
   :host.about-stage__context-block--center,
   :host.about-stage__context-block--right {
     .about-stage__statement--secondary,
@@ -579,7 +596,7 @@
 
     &__support {
       max-width: 100%;
-      font-size: clamp(0.9rem, 3.75vw, 0.96rem);
+      font-size: clamp(1rem, 3.75vw, 1.06rem);
       line-height: 1.52;
     }
   }
@@ -615,4 +632,12 @@
       }
     }
   }
+}
+
+:host .about-stage__support,
+:host .about-stage__context-copy,
+:host.about-stage__text-zone--vision .about-stage__support,
+:host.about-stage__context-block--left .about-stage__support,
+:host.about-stage__context-bottom-head .about-stage__support {
+  font-size: var(--body-copy-size);
 }

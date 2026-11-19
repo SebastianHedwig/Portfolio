@@ -61,12 +61,17 @@
   .hero-identity {
     --hero-identity-name-size: clamp(1.92rem, 9.25vw, 2.65rem);
 
-    align-items: flex-end;
+    align-items: center;
     align-self: center;
     width: fit-content;
     max-width: 100%;
-    text-align: right;
+    text-align: center;
     transform: none;
+
+    &__tagline {
+      font-size: 1rem;
+      transform: none;
+    }
   }
 }
 

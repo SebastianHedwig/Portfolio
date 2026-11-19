@@ -50,6 +50,7 @@
 
   &__paragraph {
     margin: 0;
+    font-size: var(--body-copy-size);
     width: 100%;
     color: rgba(tokens.$color-heading, 0.76);
     line-height: 1.72;

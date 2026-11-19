@@ -166,7 +166,7 @@
     margin: 0 0 0 -0.2rem;
     color: tokens.$color-heading;
     font-family: tokens.$font-primary;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 0.96;
     opacity: 0.95;
@@ -308,6 +308,7 @@
   }
 
   &__mobile-language-toggle {
+    --language-toggle-option-font-size: 1rem;
     --language-toggle-justify-content: space-around;
     --language-toggle-option-letter-spacing: 0.08em;
     justify-content: space-around;

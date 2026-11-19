@@ -84,6 +84,7 @@
 
   &__paragraph {
     margin: 0;
+    font-size: var(--body-copy-size);
     max-width: 64ch;
     color: rgba(tokens.$color-heading, 0.76);
     line-height: 1.72;

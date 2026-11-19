@@ -72,7 +72,7 @@
     }
 
     &__lead {
-      font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+      font-size: clamp(1rem, 1.4vw, 1.05rem);
     }
 
     &__body {
@@ -80,7 +80,7 @@
     }
 
     &__copy {
-      font-size: 0.92rem;
+      font-size: 1rem;
       line-height: 1.6;
     }
   }
@@ -100,4 +100,9 @@
       font-size: clamp(2.1rem, 10vw, 3rem);
     }
   }
+}
+
+.stage-shell__lead,
+.stage-shell__copy {
+  font-size: var(--body-copy-size);
 }

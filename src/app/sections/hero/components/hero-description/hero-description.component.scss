@@ -29,10 +29,10 @@
   }
 
   &__text {
-    max-width: 32rem;
+    max-width: 100%;
     margin: clamp(1.15rem, 3vh, 2rem) 0 0;
     color: tokens.$color-muted;
-    font-size: 1rem;
+    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
     line-height: 1.55;
   }
 
@@ -44,7 +44,7 @@
     max-width: max-content;
     margin: clamp(0.45rem, 1.2vh, 0.75rem) 0 0;
     color: tokens.$color-accent-soft;
-    font-size: clamp(0.85rem, 0.9vw, 0.9rem);
+    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
     font-weight: 700;
     line-height: 1.45;
     letter-spacing: 0.04em;
@@ -77,7 +77,6 @@
     }
 
     &__text {
-      max-width: 35rem;
       font-size: clamp(1.1rem, 0.56vw, 1.16rem);
     }
 
@@ -107,8 +106,7 @@
     }
 
     &__text {
-      max-width: 32rem;
-      font-size: clamp(0.9rem, calc(1.14vh + 0.33rem), 1rem);
+      font-size: 1rem;
       line-height: 1.48;
     }
 
@@ -134,15 +132,14 @@
     }
 
     &__text {
-      max-width: 31rem;
-      font-size: 0.88rem;
+      font-size: 1rem;
       line-height: 1.5;
     }
 
     &__quality-line {
-      max-width: max-content;
-      font-size: 0.72rem;
-      white-space: nowrap;
+      max-width: 100%;
+      font-size: 1rem;
+      white-space: normal;
     }
 
     &__text-detail {
@@ -200,16 +197,15 @@
     }
 
     &__text {
-      max-width: min(100%, 20rem);
       margin-top: clamp(0.18rem, 0.55svh, 0.35rem);
-      font-size: clamp(0.76rem, 3.35vw, 0.88rem);
+      font-size: clamp(1rem, 3.35vw, 1.1rem);
       line-height: 1.38;
     }
 
     &__quality-line {
       max-width: min(100%, 20rem);
       margin-top: clamp(0.4rem, 1.1svh, 0.65rem);
-      font-size: clamp(0.64rem, 2.75vw, 0.74rem);
+      font-size: clamp(1rem, 3.35vw, 1.1rem);
     }
 
     &__actions {
@@ -217,4 +213,9 @@
       padding-top: clamp(2rem, 5svh, 3rem);
     }
   }
+}
+
+.hero-description__text,
+.hero-description__quality-line {
+  font-size: var(--body-copy-size);
 }

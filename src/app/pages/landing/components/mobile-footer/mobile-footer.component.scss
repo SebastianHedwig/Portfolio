@@ -88,7 +88,7 @@
 
   &__meta-line {
     color: tokens.$color-muted;
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+    font-size: var(--body-copy-size);
     line-height: 1.45;
   }
 
@@ -176,9 +176,6 @@
       gap: 1rem;
     }
 
-    &__icon-label {
-      font-size: 0.85rem;
-    }
 
     &__icon {
       width: 1.75rem;

@@ -170,11 +170,7 @@
 
     &__label {
       bottom: calc(100% + 0.9rem);
-      @include interactive-icon-hover.interactive-icon-hover-label(0.9rem);
-
-      &--extended {
-        font-size: 0.8rem;
-      }
+      @include interactive-icon-hover.interactive-icon-hover-label;
 
       &-letter {
         @include interactive-icon-hover.interactive-icon-hover-letter;

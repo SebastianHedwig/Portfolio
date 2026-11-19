@@ -1,6 +1,10 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
+:host .projects-stage__subtitle {
+  font-size: var(--body-copy-size);
+}
+
 :host {
   display: flex;
   justify-content: center;
@@ -265,7 +269,7 @@
 
     &__subtitle {
       width: min(100%, 34rem);
-      font-size: 0.92rem;
+      font-size: 1rem;
       line-height: 1.62;
     }
   }

@@ -80,7 +80,7 @@
       position: static;
       left: auto;
       transform: none;
-      font-size: 1rem;
+      font-size: var(--body-copy-size);
       text-align: center;
     }
   }
@@ -198,7 +198,7 @@
 
 .tech-stage__learning-popup-label {
   color: rgba(tokens.$color-heading, 0.88);
-  font-size: 1rem;
+  font-size: var(--label-size);
   line-height: 1.1;
   text-align: center;
   white-space: nowrap;
@@ -230,7 +230,7 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.045);
   color: tokens.$color-heading;
   font-family: tokens.$font-eyebrow;
-  font-size: 0.9rem;
+  font-size: var(--label-size);
   font-weight: 600;
   line-height: 1;
   pointer-events: none;
@@ -287,7 +287,7 @@
 
   .tech-stage__learning-popup-title {
     margin-bottom: 0.62rem;
-    font-size: clamp(0.78rem, 3.5vw, 0.92rem);
+    font-size: var(--label-size);
   }
 
   .tech-stage__learning-popup-grid {
@@ -303,9 +303,6 @@
     height: clamp(1.45rem, 6.2vw, 1.8rem);
   }
 
-  .tech-stage__learning-popup-label {
-    font-size: 0.62rem;
-  }
 }
 
 @media (max-width: 480px) and (orientation: portrait) {

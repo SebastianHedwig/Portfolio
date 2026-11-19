@@ -61,7 +61,7 @@
     opacity tokens.$motion-duration-fast tokens.$motion-ease-standard;
 }
 
-@mixin interactive-icon-hover-label($font-size: 0.9rem) {
+@mixin interactive-icon-hover-label($font-size: var(--label-size)) {
   @include mixins.tech-stage-label($font-size);
 }
 
