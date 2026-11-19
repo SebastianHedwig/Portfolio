@@ -20,6 +20,7 @@ export class HeroDescriptionComponent {
   private readonly accentWords = new Set([
     'moderne',
     'experiences,',
+    'die',
     'überzeugen.',
     'modern',
     'convince.',

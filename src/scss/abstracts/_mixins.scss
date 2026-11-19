@@ -26,6 +26,14 @@
   justify-content: center;
 }
 
+@mixin mobile-landscape {
+  // Viewport-only previews can retain the desktop pointer and hover settings.
+  @media (orientation: landscape) and (max-width: 1024px) and (max-height: 480px),
+    (orientation: landscape) and (max-width: 1023px) and (max-height: 700px) and (pointer: coarse) and (hover: none) {
+    @content;
+  }
+}
+
 @mixin stage-overlay-panel($z-index: null) {
   @include overlay-center;
   padding-inline: tokens.$section-inline-padding;

@@ -514,11 +514,20 @@
   }
 }
 
+@media (min-width: 900px) and (max-width: 1024px) and (max-height: 667px) and (orientation: landscape) {
+  :host .about-stage__support,
+  :host .about-stage__context-copy,
+  :host.about-stage__context-block--left .about-stage__support,
+  :host.about-stage__context-bottom-head .about-stage__support {
+    line-height: 1.2;
+  }
+}
+
 @media (min-width: 1025px) {
   :host {
     .about-stage__support,
     .about-stage__context-copy {
-      line-height: clamp(1.2em, calc(1.2em + (100vh - 667px) * 0.02), 1.7em);
+      line-height: clamp(1.2em, calc(1.2em + (100vh - 667px) * 0.02), 1.5em);
     }
   }
 

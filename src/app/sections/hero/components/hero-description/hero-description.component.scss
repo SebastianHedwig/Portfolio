@@ -181,6 +181,32 @@
   }
 }
 
+@media (min-width: 900px) and (max-width: 1024px) and (max-height: 667px) and (orientation: landscape) {
+  .hero-description {
+    min-width: 0;
+    gap: 0.5rem;
+
+    &__headline {
+      font-size: clamp(1.9rem, min(4.1vw, 7svh), 2.75rem);
+    }
+
+    &__text {
+      margin-block-start: 0.5rem;
+      line-height: 1.4;
+    }
+
+    &__quality-line {
+      margin-block-start: 0.25rem;
+      line-height: 1.35;
+      text-wrap: balance;
+    }
+
+    &__actions {
+      padding-block-start: 0.5rem;
+    }
+  }
+}
+
 @media (max-width: 760px) and (orientation: portrait) {
   .hero-description {
     align-items: center;
