@@ -2,7 +2,7 @@
 @use 'abstracts/tokens';
 
 .hero-identity {
-  --hero-identity-name-size: clamp(2.8rem, 5.1vw, 4.9rem);
+  --hero-identity-name-size: clamp(2.8rem, calc(100vw * 60 / 1024), 4.9rem);
   --hero-identity-tagline-size: calc(var(--hero-identity-name-size) * 0.1837);
   --hero-identity-gap: calc(var(--hero-identity-name-size) * 0.0449);
   --hero-identity-tagline-offset-x: calc(var(--hero-identity-name-size) * -0.6531);
@@ -51,15 +51,7 @@
 
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero-identity {
-    --hero-identity-name-size: clamp(2.25rem, 4.55vw, 3.45rem);
-
     transform: translateY(clamp(0.375rem, 1vh, 0.675rem));
-  }
-}
-
-@media (min-width: 900px) and (max-width: 1024px) and (max-height: 667px) and (orientation: landscape) {
-  .hero-identity {
-    --hero-identity-name-size: clamp(1.9rem, 3.6vw, 2.35rem);
   }
 }
 

@@ -23,6 +23,7 @@ export class HeroDescriptionComponent {
     'die',
     'überzeugen.',
     'modern',
+    'that',
     'convince.',
   ]);
 
