@@ -226,19 +226,12 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .hero__statement-band {
-    display: none;
-  }
-}
-
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero {
     gap: clamp(1.4rem, 3vw, 2.5rem);
     padding-block-end: clamp(0.45rem, 1.4vh, 0.9rem);
 
     &__statement-band {
-      display: block;
       left: clamp(-8rem, 6vw, 16rem);
       top: auto;
       bottom: clamp(6rem, 12svh, 10.25rem);
@@ -273,7 +266,6 @@
     padding-block: clamp(0.6rem, 1.4svh, 1rem);
 
     &__statement-band {
-      display: block;
       left: clamp(-4rem, -1vw, 4rem);
       right: clamp(1rem, 2.5vw, 1.5rem);
       bottom: clamp(1.4rem, 2.4svh, 2.4rem);
@@ -306,7 +298,6 @@
     overflow-y: clip;
 
     &__visual {
-      display: flex;
       order: 1;
       flex: none;
       align-items: center;
@@ -320,7 +311,6 @@
     }
 
     &__statement-band {
-      position: absolute;
       order: 3;
       left: 50%;
       right: auto;
@@ -361,7 +351,6 @@
     app-hero-portrait {
       width: 100%;
       flex: 1 1 0;
-      min-height: 0;
     }
   }
 }

@@ -1,10 +1,6 @@
 @use 'abstracts/mixins';
 @use 'abstracts/tokens';
 
-:host .tech-stage__copy {
-  font-size: var(--body-copy-size);
-}
-
 :host {
   @include mixins.stack(clamp(1rem, 2.4vh, 1.75rem));
 
@@ -92,8 +88,7 @@
 
     &__copy {
       max-width: tokens.$copy-width-compact;
-      @include mixins.long-copy(1rem, 1.75);
-      font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
+      @include mixins.long-copy;
 
       &--compact {
         max-width: 23rem;
@@ -125,16 +120,8 @@
     &.tech-stage__focus {
       width: min(32rem, 100%);
 
-      .tech-stage__subheadline {
-        margin-inline: auto;
-        max-width: 13ch;
-        text-align: center;
-      }
-
       .tech-stage__copy--compact {
-        margin-inline: auto;
         max-width: 30rem;
-        text-align: justify;
       }
     }
 

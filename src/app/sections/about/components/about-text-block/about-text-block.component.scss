@@ -39,8 +39,7 @@
 
   &__support {
     max-width: tokens.$copy-width-tight;
-    @include mixins.long-copy(1rem, 1.7);
-    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
+    @include mixins.long-copy(1.7);
   }
 
   &__copy-accent {
@@ -130,8 +129,7 @@
 
   &__context-copy {
     max-width: tokens.$copy-width-tight;
-    @include mixins.long-copy(1rem, 1.75, justify);
-    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
+    @include mixins.long-copy($align: justify);
   }
 }
 
@@ -190,7 +188,6 @@
 
     .about-stage__support {
       max-width: tokens.$copy-width-wide;
-      font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
     }
   }
 
@@ -204,7 +201,6 @@
     .about-stage__support {
       align-self: flex-start;
       max-width: tokens.$copy-width-broad;
-      font-size: clamp(1rem, 1.35vw, 1.2rem);
       line-height: 1.75;
       text-align: left;
       white-space: pre;
@@ -225,7 +221,6 @@
       margin-inline: auto;
       margin-bottom: clamp(2rem, 5vh, 4rem);
       padding-bottom: clamp(0.55rem, 1.2vh, 0.85rem);
-      font-size: clamp(1rem, 1.35vw, 1.2rem);
       line-height: 1.75;
       text-align: center;
       white-space: pre-line;
@@ -317,32 +312,17 @@
     }
 
     &__value-statement {
-      inset: 0 auto auto 50%;
       align-items: center;
-      justify-content: center;
       gap: 0.28em;
-      text-align: center;
-      width: max-content;
-      max-width: none;
       font-size: clamp(1.55rem, 4.8vw, 4.2rem);
-      transform: translateX(-50%);
-    }
-
-    &__value-lead {
-      color: tokens.$color-accent-soft;
-      @include mixins.heading-depth-shadow;
     }
 
     &__value-detail {
-      color: tokens.$color-heading;
       font-size: 1em;
       line-height: inherit;
-      @include mixins.heading-depth-shadow;
     }
 
     &__value-letter {
-      opacity: 1;
-      transform: none;
       animation: none;
     }
   }
@@ -462,7 +442,6 @@
 
     &__support,
     &__context-copy {
-      font-size: 1rem;
       line-height: 1.55;
     }
   }
@@ -498,7 +477,6 @@
   :host.about-stage__context-block--left {
     .about-stage__support {
       max-width: 48rem;
-      font-size: 1rem;
       line-height: 1.55;
     }
   }
@@ -508,7 +486,6 @@
       margin-block:
         clamp(1.5rem, 3.2vh, 2.25rem)
         clamp(1.9rem, 4vh, 2.85rem);
-      font-size: 1rem;
       line-height: 1.55;
     }
   }
@@ -605,7 +582,6 @@
 
     &__support {
       max-width: 100%;
-      font-size: clamp(1rem, 3.75vw, 1.06rem);
       line-height: 1.52;
     }
   }
@@ -641,12 +617,4 @@
       }
     }
   }
-}
-
-:host .about-stage__support,
-:host .about-stage__context-copy,
-:host.about-stage__text-zone--vision .about-stage__support,
-:host.about-stage__context-block--left .about-stage__support,
-:host.about-stage__context-bottom-head .about-stage__support {
-  font-size: var(--body-copy-size);
 }

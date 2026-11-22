@@ -28,11 +28,15 @@
     color: tokens.$color-accent-soft;
   }
 
+  &__text,
+  &__quality-line {
+    font-size: var(--body-copy-size);
+  }
+
   &__text {
     max-width: 100%;
     margin: clamp(1.15rem, 3vh, 2rem) 0 0;
     color: tokens.$color-muted;
-    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
     line-height: 1.55;
   }
 
@@ -44,7 +48,6 @@
     max-width: max-content;
     margin: clamp(0.45rem, 1.2vh, 0.75rem) 0 0;
     color: tokens.$color-accent-soft;
-    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
     font-weight: 700;
     line-height: 1.45;
     letter-spacing: 0.04em;
@@ -75,14 +78,6 @@
       font-size: clamp(5.5rem, 4.25vw, 6.6rem);
       gap: clamp(0.16rem, 0.28vh, 0.28rem);
     }
-
-    &__text {
-      font-size: clamp(1.1rem, 0.56vw, 1.16rem);
-    }
-
-    &__quality-line {
-      font-size: clamp(1rem, 0.45vw, 0.9rem);
-    }
   }
 }
 
@@ -106,13 +101,7 @@
     }
 
     &__text {
-      font-size: 1rem;
       line-height: 1.48;
-    }
-
-    &__quality-line {
-      max-width: max-content;
-      white-space: nowrap;
     }
 
     &__actions {
@@ -123,8 +112,6 @@
 
 @media (max-width: 1368px) and (orientation: landscape) {
   .hero-description {
-    gap: tokens.$space-eyebrow-title;
-
     &__headline {
       font-size: clamp(2.6rem, 4.6vw, 4.8rem);
       gap: 0.14rem;
@@ -132,13 +119,11 @@
     }
 
     &__text {
-      font-size: 1rem;
       line-height: 1.5;
     }
 
     &__quality-line {
       max-width: 100%;
-      font-size: 1rem;
       white-space: normal;
     }
 
@@ -210,7 +195,6 @@
 @media (max-width: 760px) and (orientation: portrait) {
   .hero-description {
     align-items: center;
-    gap: tokens.$space-eyebrow-title;
     max-width: 100%;
     text-align: center;
 
@@ -224,14 +208,12 @@
 
     &__text {
       margin-top: clamp(0.18rem, 0.55svh, 0.35rem);
-      font-size: clamp(1rem, 3.35vw, 1.1rem);
       line-height: 1.38;
     }
 
     &__quality-line {
       max-width: min(100%, 20rem);
       margin-top: clamp(0.4rem, 1.1svh, 0.65rem);
-      font-size: clamp(1rem, 3.35vw, 1.1rem);
     }
 
     &__actions {
@@ -239,9 +221,4 @@
       padding-top: clamp(2rem, 5svh, 3rem);
     }
   }
-}
-
-.hero-description__text,
-.hero-description__quality-line {
-  font-size: var(--body-copy-size);
 }

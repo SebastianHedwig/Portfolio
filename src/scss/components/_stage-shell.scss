@@ -31,7 +31,7 @@
 
   &__lead {
     max-width: tokens.$copy-max-width;
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-size: var(--body-copy-size);
   }
 
   &__body {
@@ -47,18 +47,6 @@
     min-height: clamp(16rem, 28vh, 24rem);
     min-width: 0;
   }
-
-  &__label {
-    color: tokens.$color-heading;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-  }
-
-  &__copy {
-    max-width: min(tokens.$copy-width-comfortable, 100%);
-    font-size: 1rem;
-  }
-
 }
 
 @media (max-width: 1368px) and (orientation: landscape) {
@@ -71,17 +59,8 @@
       font-size: clamp(2.6rem, 4.6vw, 4.8rem);
     }
 
-    &__lead {
-      font-size: clamp(1rem, 1.4vw, 1.05rem);
-    }
-
     &__body {
       gap: clamp(2rem, 4vw, 3.5rem);
-    }
-
-    &__copy {
-      font-size: 1rem;
-      line-height: 1.6;
     }
   }
 }
@@ -100,9 +79,4 @@
       font-size: clamp(2.1rem, 10vw, 3rem);
     }
   }
-}
-
-.stage-shell__lead,
-.stage-shell__copy {
-  font-size: var(--body-copy-size);
 }

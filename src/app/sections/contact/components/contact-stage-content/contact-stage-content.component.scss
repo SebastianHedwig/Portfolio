@@ -27,8 +27,7 @@
 
   &__paragraph {
     margin: 0;
-    @include mixins.long-copy(1.02rem, 1.82, justify, pre-line);
-    font-size: clamp(1rem, min(1.2vw, 1.7vh), 1.2rem);
+    @include mixins.long-copy(1.82, justify, pre-line);
   }
 
   &__cv-link {
@@ -78,10 +77,6 @@
 }
 
 @media (max-width: 1368px) and (orientation: landscape) {
-  :host {
-    gap: tokens.$space-eyebrow-title;
-  }
-
   .contact-stage {
     &__copy {
       max-width: 28rem;
@@ -89,7 +84,6 @@
     }
 
     &__paragraph {
-      font-size: 1rem;
       line-height: 1.62;
     }
 
@@ -106,8 +100,4 @@
       font-size: 1rem;
     }
   }
-}
-
-.contact-stage__paragraph {
-  font-size: var(--body-copy-size);
 }

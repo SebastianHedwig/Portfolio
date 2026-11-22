@@ -87,9 +87,9 @@
   line-height: $line-height;
 }
 
-@mixin long-copy($font-size: 1rem, $line-height: 1.75, $align: null, $white-space: null) {
+@mixin long-copy($line-height: 1.75, $align: null, $white-space: null) {
   color: tokens.$color-muted;
-  font-size: $font-size;
+  font-size: var(--body-copy-size);
   hyphens: auto;
   hyphenate-limit-chars: 6 3 3;
   line-height: $line-height;
